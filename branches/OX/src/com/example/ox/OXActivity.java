@@ -35,6 +35,7 @@ public class OXActivity extends Activity implements OnOXChangeListener {
 		OXText[7] = (TextView) findViewById(R.id.txtOX8);
 		OXText[8] = (TextView) findViewById(R.id.txtOX9);
 		Clear = (Button) findViewById(R.id.button1);
+		Toast.makeText(this, "Welcome To OX", Toast.LENGTH_SHORT).show();
 
 		Clear.setOnClickListener(new OnClickListener() {
 
