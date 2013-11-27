@@ -1,5 +1,6 @@
 package com.example.textgetter;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -28,10 +29,19 @@ public class PetDataGet {
 	private static final String NEWLINE = "\r\n";
 	private static final String SPACE = " ";
 	private static final String filename = "MyFoMonData";
-	
+
 	private static String[] SetData;
 	private static Context context;
 	private static String DataInFile = "";
+
+	public PetDataGet(Context context) {
+		PetDataGet.context = context;
+		if (!isFileExistance()) {
+			InitialWrite();
+		}
+		Update();
+
+	}
 
 	public static void Write(String data) {
 		if (data.split(SPACE).length == 13) {
@@ -75,7 +85,13 @@ public class PetDataGet {
 			E.printStackTrace();
 		}
 	}
-	
+
+	public static boolean isFileExistance() {
+		File file = context.getFileStreamPath(filename);
+		Log.i(PetDataGet.class.getName(), file.exists() + "");
+		return file.exists();
+	}
+
 	public void InitialWrite() {
 		Log.i(this.getClass().getName(), "OK?");
 		FileOutputStream outputStream;
@@ -93,10 +109,10 @@ public class PetDataGet {
 		}
 	}
 
-	public static int getDataSize(){
+	public static int getDataSize() {
 		return SetData.length;
 	}
-	
+
 	public static void Clear() {
 		FileOutputStream outputStream;
 		try {
@@ -118,12 +134,6 @@ public class PetDataGet {
 		} catch (ArrayIndexOutOfBoundsException E) {
 			return null;
 		}
-	}
-
-	public PetDataGet(Context context) {
-		PetDataGet.context = context;
-		InitialWrite();
-		Update();
 	}
 
 	public static String getData(int index, int type) {
@@ -166,10 +176,10 @@ public class PetDataGet {
 		Integer[] data = { temp1[0], temp1[1], temp1[2], temp2[0], temp2[1] };
 		return data;
 	}
-	
-	public static void FileLogShow(){
+
+	public static void FileLogShow() {
 		Update();
-		Log.i(PetDataGet.class.getName(),DataInFile);
+		Log.i(PetDataGet.class.getName(), DataInFile);
 	}
-	
+
 }
