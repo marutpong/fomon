@@ -27,7 +27,7 @@ import android.util.Log;
 public class PetDataGet {
 
 	private static final String NEWLINE = "\r\n";
-	private static final String SPACE = " ";
+	private static final String SPACE = ",";
 	private static final String filename = "MyFoMonData";
 
 	private static String[] SetData;
@@ -99,7 +99,7 @@ public class PetDataGet {
 			outputStream = context.openFileOutput(filename,
 					Context.MODE_PRIVATE);
 
-			String string = "Head1 A E I O U" + NEWLINE + "Head2 a e i o u"
+			String string = "Head1,A,E,I,O,U" + NEWLINE + "Head2,a,e,i,o,u"
 					+ NEWLINE;
 
 			outputStream.write(string.getBytes());
