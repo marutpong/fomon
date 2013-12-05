@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import android.content.Context;
 import android.util.Log;
@@ -49,6 +52,28 @@ public class PetDataGet {
 	}
 
 	/*
+	 * Only Initial
+	 * There is an example to add CURRENT DATE
+	 */
+	public void InitialWrite() {
+		Log.i(this.getClass().getName(), "OK?");
+		
+		FileOutputStream outputStream;
+		try {
+			outputStream = context.openFileOutput(filename,
+					Context.MODE_PRIVATE);
+
+			String string = "PathPic,12.5,18.8,KaomunKai,30,10,15,20," + getCurrentTime() + NEWLINE 
+					+ "PathPic2,12.55,18.88,KaomunKai2,300,100,150,200," + getCurrentTime() + NEWLINE;
+
+			outputStream.write(string.getBytes());
+			outputStream.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/*
 	 * Check if data that's split by SPACE(,) have 13 element
 	 * Then, DataInFile = DataInFile + data + NEWLINE and write it in file
 	 * (DataInFile is String)
@@ -69,12 +94,14 @@ public class PetDataGet {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			
+			SetData.add(new PetDBox(data));
 
 		}
 	}
 
 	/*
-	 * Use for update ArrayList
+	 * Use for update ArrayList and TempWrite
 	 * This method called only take a photo
 	 */
 	public static void Update() {
@@ -97,6 +124,7 @@ public class PetDataGet {
 			SetData = new ArrayList<PetDBox>();
 			for(String tmp: data.split(NEWLINE)){
 				SetData.add(new PetDBox(tmp));
+				Log.i("OKAY", tmp.split(SPACE).length+"");
 			}
 			
 		} catch (IOException E) {
@@ -114,28 +142,78 @@ public class PetDataGet {
 		return file.exists();
 	}
 
-	/* Only Initial*/
-	public void InitialWrite() {
-		Log.i(this.getClass().getName(), "OK?");
-		FileOutputStream outputStream;
+	/*
+	 * For get date by week
+	 */
+	public static ArrayList<PetDBox> getSetPetDBoxByWeek(){
+		ArrayList<PetDBox> tmp = new ArrayList<PetDBox>();
+		
+		Calendar c = Calendar.getInstance();
+		c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+		c.set(Calendar.HOUR_OF_DAY, 0);
+		c.set(Calendar.MINUTE, 0);
+		c.set(Calendar.SECOND, 0);
+		c.set(Calendar.MILLISECOND, 0);
+
+		Date dateWeek = null;
 		try {
-			outputStream = context.openFileOutput(filename,
-					Context.MODE_PRIVATE);
-
-			String string = "PathPic,12.5,18.8,KaomunKai,30,10,15,20,11,12,2013,23,00" + NEWLINE + "PathPic2,12.55,18.88,KaomunKai2,300,100,150,200,10,10,2014,20,15"
-					+ NEWLINE;
-
-			outputStream.write(string.getBytes());
-			outputStream.close();
-		} catch (IOException e) {
+			dateWeek = PetDataType.dateFormat.parse(PetDataType.dateFormat.format(c.getTime()));
+		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		
+		for(int i=0; i<SetData.size(); i++){
+			if(SetData.get(i).getTimeStamp().after(dateWeek))
+				SetData.add(SetData.get(i));
+			else
+				break;
+		}
+		
+		return tmp;
+	}
+	
+	/*
+	 * For get date by month
+	 */
+	public static ArrayList<PetDBox> getSetPetDBoxByMonth(){
+		ArrayList<PetDBox> tmp = new ArrayList<PetDBox>();
+		
+		Calendar c = Calendar.getInstance();
+		c.set(Calendar.DAY_OF_MONTH, Calendar.MONDAY);
+		c.set(Calendar.HOUR_OF_DAY, 0);
+		c.set(Calendar.MINUTE, 0);
+		c.set(Calendar.SECOND, 0);
+		c.set(Calendar.MILLISECOND, 0);
+
+		Date dateWeek = null;
+		try {
+			dateWeek = PetDataType.dateFormat.parse(PetDataType.dateFormat.format(c.getTime()));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		for(int i=0; i<SetData.size(); i++){
+			if(SetData.get(i).getTimeStamp().after(dateWeek))
+				SetData.add(SetData.get(i));
+			else
+				break;
+		}
+		
+		return tmp;
 	}
 
 	/*
+	 * Get Current Time
+	 */
+	public static String getCurrentTime(){
+		Calendar c = Calendar.getInstance();
+		return PetDataType.dateFormat.format(c.getTime());
+	}
+	
+	/*
 	 * Check Size
 	 */
-	public static int getDataSize() {
+	public static int getSetPetDBoxSize() {
 		return SetData.size();
 	}
 
@@ -170,20 +248,8 @@ public class PetDataGet {
 		}
 	}
 
-	public static ArrayList<PetDBox> getSetData() {
+	public static ArrayList<PetDBox> getSetPetDBox() {
 		return SetData;
-	}
-	
-	/*
-	 * Get ArrayList of wanted list filter by D/M/Y
-	 */
-	public static ArrayList<PetDBox> getDataBoxFilter(int D,int M, int Y){
-		ArrayList<PetDBox> tmp = new ArrayList<PetDBox>();
-		for(PetDBox a : SetData){
-			if(a.isBeforeDate(D, M, Y))
-				tmp.add(a);
-		}
-		return tmp;
 	}
 	
 	/*

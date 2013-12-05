@@ -71,11 +71,7 @@ public class MainActivity extends Activity {
 				case 5: tmp = i.getProtien()+""; break;
 				case 6: tmp = i.getCarbohydrate()+""; break;
 				case 7: tmp = i.getFat()+""; break;
-				case 8: tmp = i.getDay()+""; break;
-				case 9: tmp = i.getMonth()+""; break;
-				case 10: tmp = i.getYear()+""; break;
-				case 11: tmp = i.getHour()+""; break;
-				case 12: tmp = i.getMinuted()+""; break;
+				case 8: tmp = i.getTimeStamp().toString()+""; break;
 				default: tmp = "";
 			}
 			showNum.setText(tmp);
