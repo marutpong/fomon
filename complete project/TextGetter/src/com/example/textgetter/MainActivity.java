@@ -32,8 +32,8 @@ public class MainActivity extends Activity {
 		showNum = (TextView) findViewById(R.id.showNum);
 		btnClr  = (Button) findViewById(R.id.btnClr);
 		
-		a = new PetDataGet(this);
-
+		a = new PetDataGet(getApplicationContext());		
+		
 		btnWrite.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -60,7 +60,25 @@ public class MainActivity extends Activity {
 	
 	protected void update() {
 			PetDataGet.Update();
-			showNum.setText(PetDataGet.getData(Integer.parseInt(edtHead.getText().toString()),Integer.parseInt(edtAttr.getText().toString())));
+			PetDBox i = PetDataGet.getDataBox(Integer.parseInt(edtHead.getText().toString()));
+			String tmp = null;
+			switch(Integer.parseInt(edtAttr.getText().toString())){
+				case 0: tmp = i.getPicturePath(); break;
+				case 1: tmp = i.getLatitude()+""; break;
+				case 2: tmp = i.getLongtitude()+""; break;
+				case 3: tmp = i.getFoodType()+""; break;
+				case 4: tmp = i.getKCalories()+""; break;
+				case 5: tmp = i.getProtien()+""; break;
+				case 6: tmp = i.getCarbohydrate()+""; break;
+				case 7: tmp = i.getFat()+""; break;
+				case 8: tmp = i.getDay()+""; break;
+				case 9: tmp = i.getMonth()+""; break;
+				case 10: tmp = i.getYear()+""; break;
+				case 11: tmp = i.getHour()+""; break;
+				case 12: tmp = i.getMinuted()+""; break;
+				default: tmp = "";
+			}
+			showNum.setText(tmp);
 	}
 
 	protected void write(){

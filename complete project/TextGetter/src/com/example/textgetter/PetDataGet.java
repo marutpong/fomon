@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import android.content.Context;
 import android.util.Log;
@@ -26,14 +27,18 @@ import android.util.Log;
 
 public class PetDataGet {
 
-	private static final String NEWLINE = "\r\n";
-	private static final String SPACE = ",";
-	private static final String filename = "MyFoMonData";
+	public static final String NEWLINE = "\r\n";
+	public static final String SPACE = ",";
+	public static final String filename = "MyFoMonData";
 
-	private static String[] SetData;
+	private static ArrayList<PetDBox> SetData;
 	private static Context context;
 	private static String DataInFile = "";
 
+	/*
+	 * Initial Call when create object
+	 * So, We might don't need to call "Update"
+	 */
 	public PetDataGet(Context context) {
 		PetDataGet.context = context;
 		if (!isFileExistance()) {
@@ -43,8 +48,13 @@ public class PetDataGet {
 
 	}
 
+	/*
+	 * Check if data that's split by SPACE(,) have 13 element
+	 * Then, DataInFile = DataInFile + data + NEWLINE and write it in file
+	 * (DataInFile is String)
+	 */
 	public static void Write(String data) {
-		if (data.split(SPACE).length == 13) {
+		if (PetDBox.isCorrectPattern(data)) {
 			Update();
 
 			FileOutputStream outputStream;
@@ -63,6 +73,10 @@ public class PetDataGet {
 		}
 	}
 
+	/*
+	 * Use for update ArrayList
+	 * This method called only take a photo
+	 */
 	public static void Update() {
 		FileInputStream inputStream;
 
@@ -80,18 +94,27 @@ public class PetDataGet {
 
 			Log.i(PetDataGet.class.getName(), data);
 
-			SetData = data.split(NEWLINE);
+			SetData = new ArrayList<PetDBox>();
+			for(String tmp: data.split(NEWLINE)){
+				SetData.add(new PetDBox(tmp));
+			}
+			
 		} catch (IOException E) {
 			E.printStackTrace();
 		}
 	}
 
+	/* Check if file exist
+	 * yes, do nothing
+	 * no, write initial
+	 */
 	public static boolean isFileExistance() {
 		File file = context.getFileStreamPath(filename);
 		Log.i(PetDataGet.class.getName(), file.exists() + "");
 		return file.exists();
 	}
 
+	/* Only Initial*/
 	public void InitialWrite() {
 		Log.i(this.getClass().getName(), "OK?");
 		FileOutputStream outputStream;
@@ -99,7 +122,7 @@ public class PetDataGet {
 			outputStream = context.openFileOutput(filename,
 					Context.MODE_PRIVATE);
 
-			String string = "Head1,A,E,I,O,U" + NEWLINE + "Head2,a,e,i,o,u"
+			String string = "PathPic,12.5,18.8,KaomunKai,30,10,15,20,11,12,2013,23,00" + NEWLINE + "PathPic2,12.55,18.88,KaomunKai2,300,100,150,200,10,10,2014,20,15"
 					+ NEWLINE;
 
 			outputStream.write(string.getBytes());
@@ -109,10 +132,17 @@ public class PetDataGet {
 		}
 	}
 
+	/*
+	 * Check Size
+	 */
 	public static int getDataSize() {
-		return SetData.length;
+		return SetData.size();
 	}
 
+	/*
+	 * Remove all in FILE!!!
+	 * We have to delete file, too.
+	 */
 	public static void Clear() {
 		FileOutputStream outputStream;
 		try {
@@ -128,55 +158,21 @@ public class PetDataGet {
 		}
 	}
 
-	public static String getDataSet(int index) {
+	/*
+	 * Get it with OOP concept
+	 * cc: Marupong -_-
+	 */
+	public static PetDBox getDataBox(int index) {
 		try {
-			return SetData[index];
+			return SetData.get(index);
 		} catch (ArrayIndexOutOfBoundsException E) {
 			return null;
 		}
 	}
 
-	public static String getData(int index, int type) {
-		String[] temp = null;
-		try {
-			temp = SetData[index].split(SPACE);
-			return temp[type];
-		} catch (ArrayIndexOutOfBoundsException E) {
-			return null;
-		}
-	}
-
-	public static Integer[] getNutritions(int index) {
-		String[] temp = SetData[index].split(SPACE);
-		Integer[] data = { Integer.parseInt(temp[PetDataType.KCalories]),
-				Integer.parseInt(temp[PetDataType.Protien]),
-				Integer.parseInt(temp[PetDataType.Carbohydrate]),
-				Integer.parseInt(temp[PetDataType.Fat]) };
-		return data;
-	}
-
-	public static Integer[] getDate(int index) {
-		String[] temp = SetData[index].split(SPACE);
-		Integer[] data = { Integer.parseInt(temp[PetDataType.Day]),
-				Integer.parseInt(temp[PetDataType.Month]),
-				Integer.parseInt(temp[PetDataType.Year]) };
-		return data;
-	}
-
-	public static Integer[] getTime(int index) {
-		String[] temp = SetData[index].split(SPACE);
-		Integer[] data = { Integer.parseInt(temp[PetDataType.Hour]),
-				Integer.parseInt(temp[PetDataType.Minuted]) };
-		return data;
-	}
-
-	public static Integer[] getDateTime(int index) {
-		Integer[] temp1 = getDate(index);
-		Integer[] temp2 = getTime(index);
-		Integer[] data = { temp1[0], temp1[1], temp1[2], temp2[0], temp2[1] };
-		return data;
-	}
-
+	/*
+	 * Show What is in file at the Log (info)
+	 */
 	public static void FileLogShow() {
 		Update();
 		Log.i(PetDataGet.class.getName(), DataInFile);
