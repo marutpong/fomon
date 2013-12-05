@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ActionBar.Tab;
-import android.content.Intent;
 import android.view.Menu;
+import android.view.WindowManager;
 
 public class PetMainActivity extends Activity {
 
@@ -16,9 +16,11 @@ public class PetMainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		Tab tempTab;
 		
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+	            WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		
+		Tab tempTab;
 		mActionBar = getActionBar();
 		mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
@@ -29,8 +31,8 @@ public class PetMainActivity extends Activity {
 						new MyTabListener(this, HomeFragment.class.getName()));
 		mActionBar.addTab(tempTab);
 		
-		Intent a = new Intent(this, com.projnsc.bestprojectever.MainActivity.class);
-		startActivity(a);
+//		Intent a = new Intent(this, NavGoogleMAP.class);
+//		startActivity(a);
 
 	}
 

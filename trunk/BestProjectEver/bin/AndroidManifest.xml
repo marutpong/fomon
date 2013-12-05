@@ -46,7 +46,7 @@
         </activity>
         
         <activity
-            android:name="com.projnsc.bestprojectever.MainActivity"
+            android:name="com.projnsc.bestprojectever.NavGoogleMAP"
             android:label="MainActivity" >
         </activity>
         

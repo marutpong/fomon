@@ -1,6 +1,6 @@
 package TabFragment;
 
-import PetHome.PetPanel;
+import com.projnsc.bestprojectever.R;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,8 +14,8 @@ public class HomeFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-//		View v = inflater.inflate(R.layout.frag1, container, false);
-		mView = new PetPanel(getActivity());
+		mView = inflater.inflate(R.layout.pet_home_fragment, container, false);
+//		mView = new PetPanel(getActivity());
 		return mView;
 	}
 
