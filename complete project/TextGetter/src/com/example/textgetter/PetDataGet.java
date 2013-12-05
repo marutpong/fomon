@@ -165,7 +165,7 @@ public class PetDataGet {
 	public static PetDBox getDataBox(int index) {
 		try {
 			return SetData.get(index);
-		} catch (ArrayIndexOutOfBoundsException E) {
+		} catch (Exception E) {
 			return null;
 		}
 	}
