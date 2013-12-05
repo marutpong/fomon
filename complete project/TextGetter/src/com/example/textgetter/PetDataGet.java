@@ -170,6 +170,22 @@ public class PetDataGet {
 		}
 	}
 
+	public static ArrayList<PetDBox> getSetData() {
+		return SetData;
+	}
+	
+	/*
+	 * Get ArrayList of wanted list filter by D/M/Y
+	 */
+	public static ArrayList<PetDBox> getDataBoxFilter(int D,int M, int Y){
+		ArrayList<PetDBox> tmp = new ArrayList<PetDBox>();
+		for(PetDBox a : SetData){
+			if(a.isBeforeDate(D, M, Y))
+				tmp.add(a);
+		}
+		return tmp;
+	}
+	
 	/*
 	 * Show What is in file at the Log (info)
 	 */
