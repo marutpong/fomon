@@ -47,7 +47,13 @@
         
         <activity
             android:name="com.projnsc.bestprojectever.NavGoogleMAP"
-            android:label="MainActivity" >
+            android:label="GoogleMap Show" >
+        </activity>
+        
+        <activity
+            android:screenOrientation="landscape"
+            android:name="com.projnsc.bestprojectever.MonEatingPhotoActivity"
+            android:label="Photo Eating" >
         </activity>
         
     </application>
