@@ -1,4 +1,4 @@
-package PetHome;
+package petHome;
 
 import com.projnsc.bestprojectever.R;
 import java.util.Random;

@@ -1,4 +1,4 @@
-package GPSLocation;
+package gpsLocation;
 
 import android.app.Activity;
 import android.content.Context;

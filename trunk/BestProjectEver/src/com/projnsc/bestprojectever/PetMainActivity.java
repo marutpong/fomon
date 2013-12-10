@@ -1,7 +1,8 @@
 package com.projnsc.bestprojectever;
 
-import TabFragment.HomeFragment;
-import TabPlayer.MyTabListener;
+import tabFragment.HistogramFragment;
+import tabFragment.HomeFragment;
+import tabPlayer.MyTabListener;
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -30,6 +31,14 @@ public class PetMainActivity extends Activity {
 				.setTabListener(
 						new MyTabListener(this, HomeFragment.class.getName()));
 		mActionBar.addTab(tempTab);
+		
+		tempTab = mActionBar
+				.newTab()
+				.setText("Histogram")
+				.setTabListener(
+						new MyTabListener(this, HistogramFragment.class.getName()));
+		mActionBar.addTab(tempTab);
+		
 		
 //		Intent a = new Intent(this, NavGoogleMAP.class);
 //		startActivity(a);

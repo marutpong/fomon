@@ -1,4 +1,4 @@
-package TabPlayer;
+package tabPlayer;
 
 import android.app.ActionBar;
 import android.app.Activity;
