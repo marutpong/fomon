@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BestProjectEver</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="food_search">Food Search</string>
+    <string name="pet_name">Pet Name</string>
+
+</resources>
