@@ -55,6 +55,8 @@
             android:name="com.projnsc.bestprojectever.MonEatingPhotoActivity"
             android:label="Photo Eating" >
         </activity>
+        <activity android:name="HistoryDetail"></activity>
+        <activity android:name="history.HistoryBarActivities"></activity>
         
     </application>
 
