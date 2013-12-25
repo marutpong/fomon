@@ -1,6 +1,7 @@
 package com.projnsc.bestprojectever;
 
 import tabFragment.HistogramFragment;
+import tabFragment.HistoryFragment;
 import tabFragment.HomeFragment;
 import tabPlayer.MyTabListener;
 import android.os.Bundle;
@@ -37,6 +38,13 @@ public class PetMainActivity extends Activity {
 				.setText("Histogram")
 				.setTabListener(
 						new MyTabListener(this, HistogramFragment.class.getName()));
+		mActionBar.addTab(tempTab);
+		
+		tempTab = mActionBar
+				.newTab()
+				.setText("History")
+				.setTabListener(
+						new MyTabListener(this, HistoryFragment.class.getName()));
 		mActionBar.addTab(tempTab);
 		
 		
