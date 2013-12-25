@@ -1,7 +1,5 @@
 package com.projnsc.bestprojectever;
 
-import history.HistoryBarActivities;
-
 import java.io.File;
 
 import textGetter.PetDBox;
@@ -15,15 +13,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 @SuppressLint("NewApi") public class HistoryDetail extends Activity {
 	
@@ -70,6 +65,7 @@ import android.widget.Toast;
 		setTitle(stringDate+" "+pet.getFoodType());
 		
 		String text = "";
+		
 		File imgFile = new  File(old.getExtras().getString("imagePath")+"");
 		if(imgFile.exists()){
 		    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());

@@ -35,7 +35,7 @@
         android:text="Current" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/dummyPetInputNameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/btnTakePhoto"

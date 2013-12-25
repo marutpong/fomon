@@ -2,6 +2,9 @@ package petHome;
 
 import com.projnsc.bestprojectever.R;
 import java.util.Random;
+
+import preferenceSetting.PetUniqueDate;
+
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -25,13 +28,30 @@ public class PetSprite {
 	private boolean FirstPosSet = false;
 
 	public PetSprite(Resources res, int x, int y) {
-		mBitmap = BitmapFactory.decodeResource(res, R.drawable.pet_s7);
+		int spriteID = getMonSpriteID();
+		mBitmap = BitmapFactory.decodeResource(res, spriteID);
 		Petwidth = mBitmap.getWidth() / BMP_COLUMNS;
 		Petheight = mBitmap.getHeight() / BMP_ROWS;
 		mX = x;
 		mY = y;
 		mSpeedX = randomFacetor() * (rand.nextInt(1) == 0 ? -1 : 1);
 		mSpeedY = randomFacetor() * (rand.nextInt(1) == 0 ? -1 : 1);
+	}
+
+	private int getMonSpriteID() {
+		int spriteID;
+		switch (PetUniqueDate.getMonID()) {
+		case 1:
+			spriteID = R.drawable.pet_s7;
+			break;
+		case 2:
+			spriteID = R.drawable.pet_s6;
+			break;
+		default:
+			spriteID = R.drawable.pet_s7;
+			break;
+		}
+		return spriteID;
 	}
 
 	public void setPetFirstRandomPosition(int width, int height) {
