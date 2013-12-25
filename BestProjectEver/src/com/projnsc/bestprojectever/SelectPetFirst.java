@@ -15,10 +15,11 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 
-public class SelectPetFirst extends Activity implements OnCharacterTouchListener {
+public class SelectPetFirst extends Activity implements
+		OnCharacterTouchListener {
 
 	private int MonSelectedID = -1;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -26,11 +27,10 @@ public class SelectPetFirst extends Activity implements OnCharacterTouchListener
 		PetUniqueDate.setContext(this);
 
 		if (PetUniqueDate.getMonName() == PrefDataType.NONE) {
-
 			SelectMonPanel A = new SelectMonPanel(this);
 			A.setOnCharacterTouchListener(this);
 			setContentView(A);
-		}else{
+		} else {
 			Intent mNext = new Intent(getApplicationContext(),
 					PetMainActivity.class);
 			finish();
@@ -48,8 +48,8 @@ public class SelectPetFirst extends Activity implements OnCharacterTouchListener
 	@Override
 	public void CharacterTouched(int ID) {
 		MonSelectedID = ID;
-		String name = (ID==1? "Moragon" : "Mini-Knight");
-		
+		String name = (ID == 1 ? "Moragon" : "Mini-Knight");
+
 		new AlertDialog.Builder(this).setTitle("Confirm Monster Selection")
 				.setMessage("Do you want to select " + name)
 				.setNegativeButton("Cancel", null)
@@ -67,7 +67,8 @@ public class SelectPetFirst extends Activity implements OnCharacterTouchListener
 
 		final View view = getLayoutInflater().inflate(R.layout.input_textfield,
 				null);
-		final EditText nameInput = (EditText) view.findViewById(R.id.intxtPetName);
+		final EditText nameInput = (EditText) view
+				.findViewById(R.id.intxtPetName);
 
 		new AlertDialog.Builder(this).setTitle("Input your new pet name")
 				.setView(view).setNegativeButton("Cancel", null)
@@ -100,7 +101,7 @@ public class SelectPetFirst extends Activity implements OnCharacterTouchListener
 	}
 
 	protected void success(final String name) {
-		
+
 		new AlertDialog.Builder(this).setTitle("Success")
 				.setMessage("Your new Pet name is " + name)
 				.setPositiveButton("OK", new OnClickListener() {

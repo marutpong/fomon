@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
@@ -17,6 +18,16 @@ public class PetPanel extends SurfaceView implements Callback{
 	public static int PetFieldWidth;
 	public static int PetFieldHeight;
 	private Bitmap BACKGROUND;
+	
+	public interface OnPetTouchListener{
+		void OnPetTouch();
+	}
+	
+	private OnPetTouchListener onPetTouchListener;
+	
+	public void setOnPetTouchListener(OnPetTouchListener onPetTouchListener) {
+		this.onPetTouchListener = onPetTouchListener;
+	}
 	
 	public PetPanel(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
@@ -68,6 +79,21 @@ public class PetPanel extends SurfaceView implements Callback{
 		}
 	}
 
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		
+		boolean PetTouched = false;
+		if(mPet.isCollition(event.getX(), event.getY())){
+			PetTouched = true;
+		}
+		
+		if(PetTouched && onPetTouchListener != null){
+			onPetTouchListener.OnPetTouch();
+		}
+		
+		return super.onTouchEvent(event);
+	}
+	
 	@Override
 	public void surfaceDestroyed(SurfaceHolder holder) {
 		if(mThread.isAlive()){

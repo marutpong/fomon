@@ -111,4 +111,8 @@ public class PetSprite {
 		return DIRECTION_TO_ANIMATION_MAP[direction];
 	}
 
+	public boolean isCollition(float x2, float y2) {
+		return x2 > mX && x2 < mX + Petwidth && y2 > mY && y2 < mY + Petheight;
+	}
+
 }
