@@ -36,8 +36,8 @@
             android:value="AIzaSyC1hvUToxE6TeZVYkixD_VljBnOvCbqTO4" />
 
         <activity
-            android:name="com.projnsc.bestprojectever.PetMainActivity"
-            android:label="@string/app_name" >
+            android:name="com.projnsc.bestprojectever.SelectPetFirst"
+            android:label="Pet Select" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -57,6 +57,7 @@
         </activity>
         <activity android:name="HistoryDetail"></activity>
         <activity android:name="history.HistoryBarActivities"></activity>
+        <activity android:name="PetMainActivity" android:label="@string/app_name"></activity>
         
     </application>
 

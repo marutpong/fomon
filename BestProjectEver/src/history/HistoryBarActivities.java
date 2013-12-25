@@ -8,7 +8,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 public class HistoryBarActivities extends Activity {
 	PetDBox pet;

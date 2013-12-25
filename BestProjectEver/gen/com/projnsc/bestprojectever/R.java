@@ -210,19 +210,22 @@ containing a value of this type.
         public static final int ic_plusone_small_off_client=0x7f02001e;
         public static final int ic_plusone_standard_off_client=0x7f02001f;
         public static final int ic_plusone_tall_off_client=0x7f020020;
-        public static final int pet_s7=0x7f020021;
+        public static final int pet_s6=0x7f020021;
+        public static final int pet_s7=0x7f020022;
     }
     public static final class id {
         public static final int LinearLayout1=0x7f050005;
         public static final int LinearLayout2=0x7f050007;
-        public static final int action_settings=0x7f050025;
+        public static final int action_settings=0x7f050026;
         public static final int btnChMode=0x7f050023;
         public static final int btnSearchFood=0x7f050020;
         public static final int btnTakePhoto=0x7f05001f;
+        public static final int dummyPetInputNameLabel=0x7f050021;
         public static final int histogramPanel1=0x7f050022;
         public static final int hybrid=0x7f050004;
         public static final int imageThumbnail=0x7f05001d;
         public static final int imageView1=0x7f05000f;
+        public static final int intxtPetName=0x7f050024;
         public static final int labelCalories=0x7f050012;
         public static final int labelCarbohydrate=0x7f050017;
         public static final int labelFat=0x7f05001a;
@@ -230,7 +233,7 @@ containing a value of this type.
         public static final int map=0x7f05001e;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
-        public static final int petPanel1=0x7f050024;
+        public static final int petPanel1=0x7f050025;
         public static final int progressCarbohydrate=0x7f050009;
         public static final int progressFat=0x7f05000a;
         public static final int progressProtien=0x7f050008;
@@ -244,7 +247,6 @@ containing a value of this type.
         public static final int tableRow5=0x7f050016;
         public static final int terrain=0x7f050003;
         public static final int testList=0x7f050006;
-        public static final int textView1=0x7f050021;
         public static final int txtCalories=0x7f050013;
         public static final int txtCarbohydrate=0x7f050018;
         public static final int txtDate=0x7f050011;
@@ -263,7 +265,8 @@ containing a value of this type.
         public static final int activity_main=0x7f030004;
         public static final int activity_pet_main=0x7f030005;
         public static final int hist_show_fragment=0x7f030006;
-        public static final int pet_home_fragment=0x7f030007;
+        public static final int input_textfield=0x7f030007;
+        public static final int pet_home_fragment=0x7f030008;
     }
     public static final class menu {
         public static final int bar_activities=0x7f0a0000;
