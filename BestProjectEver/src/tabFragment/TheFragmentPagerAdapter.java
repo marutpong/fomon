@@ -15,7 +15,7 @@ public class TheFragmentPagerAdapter extends FragmentPagerAdapter {
 	  if (allFragment.isEmpty()){
 		 	allFragment.add(new HomeFragment());
 		 	allFragment.add(new HistogramFragment());
-//		 	allFragment.add(new HistoryFragment());
+		 	allFragment.add(new HistoryFragment());
 		 	allFragment.add(new QuestFragment());
 		 	allFragment.add(new SettingFragment());
 	  }

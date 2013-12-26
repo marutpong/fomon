@@ -62,25 +62,31 @@ public class SettingFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				showRenameDialog();
+//				showRenameDialog();
+				addRandomText();
 			}
 		});
 
 		return mView;
 	}
 
+	protected void addRandomText() {
+		PetDataGet.setContext(getActivity());
+		PetDataGet.Write("AAAA,1.2,1.3,RICE,4,5,6,7,11,12,2013,23,07");
+	}
+
 	protected void askForClearData() {
-		new AlertDialog.Builder(getActivity()).setTitle("Warning!")
-		.setMessage("All data will lose, You have to replay the game. Do you want to continue?")
-		.setPositiveButton("Yes", new OnClickListener() {
-			
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				clearALLdataANDReGame();
-			}
-		})
-		.setNegativeButton("No", null)
-		.show();
+		new AlertDialog.Builder(getActivity())
+				.setTitle("Warning!")
+				.setMessage(
+						"All data will lose, You have to replay the game. Do you want to continue?")
+				.setPositiveButton("Yes", new OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						clearALLdataANDReGame();
+					}
+				}).setNegativeButton("No", null).show();
 	}
 
 	protected void clearALLdataANDReGame() {
@@ -88,7 +94,7 @@ public class SettingFragment extends Fragment {
 		PetDataGet.Clear();
 		PetUniqueDate.SetMonName(PrefDataType.NONE);
 		PetUniqueDate.SetMonID(PrefDataType.NONEINT);
-		Intent next = new Intent(getActivity(),SelectPetFirst.class);
+		Intent next = new Intent(getActivity(), SelectPetFirst.class);
 		getActivity().finish();
 		startActivity(next);
 	}
@@ -112,9 +118,7 @@ public class SettingFragment extends Fragment {
 							fail();
 						}
 					}
-				})
-				.setNegativeButton("Cancel", null)
-				.show();
+				}).setNegativeButton("Cancel", null).show();
 
 	}
 
