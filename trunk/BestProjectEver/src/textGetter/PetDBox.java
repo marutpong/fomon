@@ -57,8 +57,8 @@ public class PetDBox {
 		}
 		return false;
 	}
-	
-	private boolean isCorrectPattern(String[] input){
+
+	private boolean isCorrectPattern(String[] input) {
 		if (input.length == 13) {
 			try {
 				Double.parseDouble(input[1]);
@@ -185,12 +185,26 @@ public class PetDBox {
 		return Hour;
 	}
 
+	public String getHourString() {
+		if (Hour < 10)
+			return "0" + Hour;
+		else
+			return "" + Hour;
+	}
+
 	public void setHour(int hour) {
 		Hour = hour;
 	}
 
 	public int getMinuted() {
 		return Minuted;
+	}
+
+	public String getMinutedString() {
+		if (Minuted < 10)
+			return "0" + Minuted;
+		else
+			return "" + Minuted;
 	}
 
 	public void setMinuted(int minuted) {

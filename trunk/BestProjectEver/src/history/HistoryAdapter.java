@@ -77,11 +77,11 @@ public abstract class HistoryAdapter extends BaseAdapter implements ListAdapter 
 						Toast.LENGTH_LONG).show();
 				myHolder.showImgThumbnail.setImageBitmap(myBitmap);
 			} catch (Exception ex) {
-
+				
 			}
 		}
 		
-		myHolder.list_DateTime.setText(NumBox.getDay() + "/" + NumBox.getMonth() + "/" + NumBox.getYear() + " " + NumBox.getHour()+ ":" + NumBox.getMinuted());
+		myHolder.list_DateTime.setText(NumBox.getDay() + "/" + NumBox.getMonth() + "/" + NumBox.getYear() + " " + NumBox.getHourString()+ ":" + NumBox.getMinutedString());
 
 		return convertView;
 	}
