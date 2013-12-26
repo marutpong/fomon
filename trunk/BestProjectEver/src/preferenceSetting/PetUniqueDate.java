@@ -52,6 +52,11 @@ public class PetUniqueDate {
 		editPref.commit();
 	}
 	
+	public static void SetMonSPD(int SPDChange){
+		editPref.putInt(PrefDataType.MONSPD, SPDChange);
+		editPref.commit();
+	}
+	
 	public static void SetFacebookID(String facebookID){
 		editPref.putString(PrefDataType.FBID, facebookID);
 		editPref.commit();
@@ -75,6 +80,10 @@ public class PetUniqueDate {
 	
 	public static int getMonDEF(){
 		return mainPref.getInt(PrefDataType.MONDEF, PrefDataType.NONEINT);
+	}
+	
+	public static int getMonSPD(){
+		return mainPref.getInt(PrefDataType.MONSPD, PrefDataType.NONEINT);
 	}
 
 	public static String getFacebookID(){

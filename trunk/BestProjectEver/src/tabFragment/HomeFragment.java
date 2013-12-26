@@ -56,11 +56,13 @@ public class HomeFragment extends Fragment implements OnPetTouchListener {
 		final TextView txtPetHP = (TextView) view.findViewById(R.id.txtPetHPST);
 		final TextView txtPetATK = (TextView) view.findViewById(R.id.txtPetATKST);
 		final TextView txtPetDEF = (TextView) view.findViewById(R.id.txtPetDEFST);
+		final TextView txtPetSPD = (TextView) view.findViewById(R.id.txtPetSPDST);
 		
 		txtPetName.setText(" : " + PetUniqueDate.getMonName());
 		txtPetHP.setText(" : " + PetUniqueDate.getMonHP());
 		txtPetATK.setText(" : " + PetUniqueDate.getMonATK());
 		txtPetDEF.setText(" : " + PetUniqueDate.getMonDEF());
+		txtPetSPD.setText(" : " + PetUniqueDate.getMonSPD());
 		
 		new AlertDialog.Builder(getActivity()).setTitle("Pet Status")
 		.setView(view)

@@ -31,11 +31,15 @@ public class SelectPetFirst extends Activity implements
 			A.setOnCharacterTouchListener(this);
 			setContentView(A);
 		} else {
-			Intent mNext = new Intent(getApplicationContext(),
-					MainPaggerActivity.class);
-			finish();
-			startActivity(mNext);
+			goToHomePetActivity();
 		}
+	}
+
+	private void goToHomePetActivity() {
+		Intent mNext = new Intent(getApplicationContext(),
+				MainPaggerActivity.class);
+		finish();
+		startActivity(mNext);
 	}
 
 	@Override
@@ -109,10 +113,7 @@ public class SelectPetFirst extends Activity implements
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						setFirstMonStatus(name);
-						Intent mNext = new Intent(getApplicationContext(),
-								PetMainActivity.class);
-						finish();
-						startActivity(mNext);
+						goToHomePetActivity();
 					}
 				}).show();
 
@@ -124,6 +125,7 @@ public class SelectPetFirst extends Activity implements
 		PetUniqueDate.SetMonATK(10);
 		PetUniqueDate.SetMonDEF(10);
 		PetUniqueDate.SetMonHP(30);
+		PetUniqueDate.SetMonSPD(5);
 	}
 
 }
