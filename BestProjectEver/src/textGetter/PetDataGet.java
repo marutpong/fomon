@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
 /*
@@ -45,7 +46,6 @@ public class PetDataGet {
 			InitialWrite();
 		}
 		Update();
-
 	}
 
 	/*
@@ -192,6 +192,11 @@ public class PetDataGet {
 	public static void FileLogShow() {
 		Update();
 		Log.i(PetDataGet.class.getName(), DataInFile);
+	}
+	
+	public static void setContext(Context context){
+		PetDataGet.context = context;
+		Update();
 	}
 
 }

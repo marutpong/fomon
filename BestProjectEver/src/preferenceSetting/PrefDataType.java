@@ -7,6 +7,7 @@ public class PrefDataType {
 	public static final String MONHP = "MonsterHP";
 	public static final String MONATK = "MonsterATK";
 	public static final String MONDEF = "MonsterDEF";
+	public static final String MONSPD = "MonsterSPD";
 	public static final String MONID = "MonsterID";
 	public static final String QUESTPROTIEN = "QuestProtien";
 	public static final String QUESTCARBOHYDRATE = "QuestCarbohydrate";
