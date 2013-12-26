@@ -216,15 +216,15 @@ containing a value of this type.
     public static final class id {
         public static final int LinearLayout1=0x7f050005;
         public static final int LinearLayout2=0x7f050007;
-        public static final int PetNameLabel=0x7f050026;
-        public static final int action_settings=0x7f05002f;
+        public static final int PetNameLabel=0x7f050028;
+        public static final int action_settings=0x7f050031;
         public static final int btnChMode=0x7f050023;
         public static final int btnSearchFood=0x7f050020;
         public static final int btnTakePhoto=0x7f05001f;
-        public static final int dummyATTACK=0x7f05002b;
-        public static final int dummyDEFENSE=0x7f05002d;
-        public static final int dummyHEALTHPOINT=0x7f050029;
-        public static final int dummyPETNAME=0x7f050027;
+        public static final int dummyATTACK=0x7f05002d;
+        public static final int dummyDEFENSE=0x7f05002f;
+        public static final int dummyHEALTHPOINT=0x7f05002b;
+        public static final int dummyPETNAME=0x7f050029;
         public static final int dummyPetInputNameLabel=0x7f050021;
         public static final int histogramPanel1=0x7f050022;
         public static final int hybrid=0x7f050004;
@@ -238,7 +238,9 @@ containing a value of this type.
         public static final int map=0x7f05001e;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
-        public static final int petPanel1=0x7f050025;
+        public static final int pager=0x7f050025;
+        public static final int pager_title_strip=0x7f050026;
+        public static final int petPanel1=0x7f050027;
         public static final int progressCarbohydrate=0x7f050009;
         public static final int progressFat=0x7f05000a;
         public static final int progressProtien=0x7f050008;
@@ -257,10 +259,10 @@ containing a value of this type.
         public static final int txtDate=0x7f050011;
         public static final int txtFat=0x7f05001b;
         public static final int txtFoodname=0x7f050010;
-        public static final int txtPetATKST=0x7f05002c;
-        public static final int txtPetDEFST=0x7f05002e;
-        public static final int txtPetHPST=0x7f05002a;
-        public static final int txtPetNameST=0x7f050028;
+        public static final int txtPetATKST=0x7f05002e;
+        public static final int txtPetDEFST=0x7f050030;
+        public static final int txtPetHPST=0x7f05002c;
+        public static final int txtPetNameST=0x7f05002a;
         public static final int txtProtien=0x7f050015;
     }
     public static final class integer {
@@ -275,8 +277,9 @@ containing a value of this type.
         public static final int activity_pet_main=0x7f030005;
         public static final int hist_show_fragment=0x7f030006;
         public static final int input_textfield=0x7f030007;
-        public static final int pet_home_fragment=0x7f030008;
-        public static final int pet_status_show=0x7f030009;
+        public static final int main_pagger=0x7f030008;
+        public static final int pet_home_fragment=0x7f030009;
+        public static final int pet_status_show=0x7f03000a;
     }
     public static final class menu {
         public static final int bar_activities=0x7f0a0000;
