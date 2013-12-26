@@ -32,7 +32,7 @@ public class SelectPetFirst extends Activity implements
 			setContentView(A);
 		} else {
 			Intent mNext = new Intent(getApplicationContext(),
-					PetMainActivity.class);
+					MainPaggerActivity.class);
 			finish();
 			startActivity(mNext);
 		}

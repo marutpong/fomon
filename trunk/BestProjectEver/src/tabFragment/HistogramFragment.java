@@ -2,7 +2,7 @@ package tabFragment;
 
 import histogramDraw.HistogramModule;
 import histogramDraw.HistogramPanel;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +18,6 @@ public class HistogramFragment extends Fragment {
 	HistogramPanel mHPanel;
 	HistogramModule mHModule;
 	Button btnModeChange;
-	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
