@@ -30,7 +30,6 @@ public class HistoryFragment extends Fragment implements OnItemClickListener, On
 	//private Button button;
 	private HistoryAdapter myAdapter;
 	private PetDataGet petData;
-	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
