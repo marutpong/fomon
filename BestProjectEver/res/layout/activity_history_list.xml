@@ -15,7 +15,9 @@
             android:layout_weight="1"
             android:maxHeight="84dp"
             android:maxWidth="84dp"
-            android:src="@drawable/ic_launcher" />
+            android:minHeight="60dp"
+            android:minWidth="60dp"
+            android:src="@drawable/defaultphoto_tmb" />
 
         <TextView
             android:id="@+id/txtFoodname"
