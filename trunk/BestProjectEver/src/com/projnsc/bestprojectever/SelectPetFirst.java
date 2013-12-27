@@ -37,7 +37,7 @@ public class SelectPetFirst extends Activity implements
 
 	private void goToHomePetActivity() {
 		Intent mNext = new Intent(getApplicationContext(),
-				MainPaggerActivity.class);
+				MainPaggerNew.class);
 		finish();
 		startActivity(mNext);
 	}
