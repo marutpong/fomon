@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import android.content.Context;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
 /*
@@ -173,6 +172,8 @@ public class PetDataGet {
 	public static ArrayList<PetDBox> getSetData() {
 		return SetData;
 	}
+	
+	
 	
 	/*
 	 * Get ArrayList of wanted list filter by D/M/Y

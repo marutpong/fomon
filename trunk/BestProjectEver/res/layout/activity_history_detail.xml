@@ -54,6 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Calories"
+                android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
@@ -77,6 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Protien"
+                android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
@@ -100,6 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Carbohydrate"
+                android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
@@ -123,6 +126,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Fat"
+                android:gravity="center"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView

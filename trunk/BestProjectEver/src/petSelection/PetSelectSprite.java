@@ -1,5 +1,7 @@
 package petSelection;
 
+import preferenceSetting.PetUniqueDate;
+
 import com.projnsc.bestprojectever.R;
 
 import android.content.res.Resources;
@@ -20,7 +22,7 @@ public class PetSelectSprite {
 	private int mY;
 	private Bitmap mBitmap;
 	private int AnimationRow = DIRECTION_TO_ANIMATION_MAP[2]; // Always Down
-	private static int SpriteAnimate[] = { R.drawable.pet_s7, R.drawable.pet_s6 };
+	private static final int SpriteAnimate[] = { R.drawable.pet_s7, R.drawable.pet_s6 };
 	private int Key;
 
 	public PetSelectSprite(Resources res, int x, int y, int Key) {
@@ -30,6 +32,14 @@ public class PetSelectSprite {
 		mX = x;
 		mY = y;
 		this.Key = Key;
+	}
+	
+	public PetSelectSprite(Resources res, int x, int y) {
+		mBitmap = BitmapFactory.decodeResource(res, PetUniqueDate.getPetResource());
+		Petwidth = mBitmap.getWidth() / BMP_COLUMNS;
+		Petheight = mBitmap.getHeight() / BMP_ROWS;
+		mX = x;
+		mY = y;
 	}
 
 	public int getKey() {
