@@ -1,21 +1,19 @@
 package histogramDraw;
 
-import java.text.DecimalFormat;
-
 import textGetter.PetDataType;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.Log;
+import android.graphics.Paint.Align;
 
 public class HistogramLine {
 
-	private static Paint tPaint = new Paint();
 	private static float MaxValue = -1;
 //	private static final DecimalFormat Floatform = new DecimalFormat("0");
 	private static float SpeedFactor = -1;
 	private static final float SpeedPerPixel = (float) 0.0125;
+	private static Paint textPaint = new Paint();
 	
 	private int iniX;
 	private int Height;
@@ -45,6 +43,10 @@ public class HistogramLine {
 
 	public HistogramLine(int iniX, float SelfMax, Paint mPaint, int Color,
 			String txt) {
+		
+		textPaint.setColor(android.graphics.Color.WHITE);
+	    textPaint.setTextAlign(Align.CENTER);
+		
 		int Height = HistogramPanel.getViewHeight();
 		float idelViewHeight = (float) HistogramPanel.HeightMarginFactor
 				* (float) Height;
@@ -97,21 +99,18 @@ public class HistogramLine {
 		canvas.drawLine(iniX, HistogramPanel.defaultBasePosY, iniX,
 				HistogramPanel.defaultBasePosY - Height, mPaint);
 		
-		int shiftText = 0 ;
-		Math.round(HistogramPanel.LineStrokeWidth/3);
+		textPaint.setColor(BrushColor);
+		canvas.drawText(text, iniX - ((textPaint.descent() + textPaint.ascent()) / 2), HistogramPanel.defaultBasePosY
+				+ HistogramPanel.TextMarginBaseLine, textPaint);
 		
-		tPaint.setColor(BrushColor);
-		canvas.drawText(text, iniX - shiftText, HistogramPanel.defaultBasePosY
-				+ HistogramPanel.TextMarginBaseLine, tPaint);
-		
-		tPaint.setColor(Color.WHITE);
+		textPaint.setColor(Color.WHITE);
 		if (Height >= (int) SelfMax)
 			printf = RealValue;
 		else
 			printf = Height * INVERSTVALUE;
-		canvas.drawText(Math.round(printf) + "", iniX - shiftText,
+		canvas.drawText(Math.round(printf) + "", iniX - ((textPaint.descent() + textPaint.ascent()) / 2) ,
 				HistogramPanel.defaultBasePosY - Height
-						- HistogramPanel.TextMarginTopLine, tPaint);
+						- HistogramPanel.TextMarginTopLine, textPaint);
 	}
 
 }
