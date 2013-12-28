@@ -1,67 +1,117 @@
 package histogramDraw;
 
+import java.text.DecimalFormat;
+
+import textGetter.PetDataType;
+
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 
 public class HistogramLine {
 
-	private static final int TEXTSHIFT1 = 5;
-	private static final int TEXTSHIFT2 = 8;
-	private static int mShift;
+	private static Paint tPaint = new Paint();
+	private static float MaxValue = -1;
+//	private static final DecimalFormat Floatform = new DecimalFormat("0");
+	private static float SpeedFactor = -1;
+	private static final float SpeedPerPixel = (float) 0.0125;
+	
 	private int iniX;
 	private int Height;
-	private int SelfMax;
+	private float SelfMax;
 	private Paint mPaint;
 	private int BrushColor;
+	private int BrushLineColor;
 	private String text;
-	private static Paint tPaint = new Paint();
-	
+	private int SpeedUp = 1;
+	private float INVERSTVALUE = 0;
+	private float RealValue = 0;
+
+	public static void setMaxValue(float maxValue) {
+		MaxValue = maxValue;
+	}
+
 	public int getIniX() {
 		return iniX;
 	}
-	
+
 	public HistogramLine(int iniX, int SelfMax, Paint mPaint) {
 		this.iniX = iniX;
 		this.SelfMax = SelfMax;
 		Height = 0;
 		this.mPaint = mPaint;
 	}
-	
-	public HistogramLine(int iniX, int SelfMax, Paint mPaint, int Color, String txt) {
+
+	public HistogramLine(int iniX, float SelfMax, Paint mPaint, int Color,
+			String txt) {
+		int Height = HistogramPanel.getViewHeight();
+		float idelViewHeight = (float) HistogramPanel.HeightMarginFactor
+				* (float) Height;
+
+		SpeedFactor = Math.round(((float) idelViewHeight)*SpeedPerPixel);
+		
 		this.iniX = iniX;
-		this.SelfMax = SelfMax;
-		Height = 0;
+		RealValue = SelfMax;
+		this.Height = 0;
 		this.mPaint = mPaint;
 		BrushColor = Color;
 		text = txt;
+		this.SelfMax = (SelfMax / MaxValue) * (idelViewHeight);
+		INVERSTVALUE = MaxValue / (HistogramPanel.HeightMarginFactor * Height);
+		this.SpeedUp = (int) Math.round(this.SelfMax/idelViewHeight*SpeedFactor );
 	}
-	
-	public void animate(){
-		if(Height<SelfMax)
-			Height++;
+
+	public void animate() {
+		if (Height < SelfMax) {
+			Height = Height + SpeedUp;
+			
+			float realCal = Height * INVERSTVALUE;
+			
+			if (Height >= SelfMax){
+				Height = (int) Math.round(SelfMax);
+				realCal = RealValue;
+			}
+			
+			if(realCal <= PetDataType.RequireCalPerDay*0.5){
+				BrushLineColor = Color.BLUE;
+			}else if(realCal < PetDataType.RequireCalPerDay*0.75){
+				BrushLineColor = Color.argb(255, 25, 255, 255);
+			}else if(realCal >= PetDataType.RequireCalPerDay*1.5){
+				BrushLineColor = Color.RED;
+			}else if(realCal > PetDataType.RequireCalPerDay*1.25){
+				BrushLineColor = Color.YELLOW;
+			}else{
+				BrushLineColor = Color.GREEN;
+			}
+		}
 	}
-	
-	public void doDraw(Canvas canvas){
+
+	public void doDraw(Canvas canvas) {
+		float printf = 0;
 		/*
 		 * set brush style before draw line
 		 */
 		mPaint.setStrokeWidth(HistogramPanel.LineStrokeWidth);
-		mPaint.setColor(BrushColor);
-		canvas.drawLine(iniX, HistogramPanel.defaultBasePosY, iniX, HistogramPanel.defaultBasePosY - Height, mPaint);
+		mPaint.setColor(BrushLineColor);
+		canvas.drawLine(iniX, HistogramPanel.defaultBasePosY, iniX,
+				HistogramPanel.defaultBasePosY - Height, mPaint);
+		
+		int shiftText = 0 ;
+		Math.round(HistogramPanel.LineStrokeWidth/3);
+		
 		tPaint.setColor(BrushColor);
-		mShift = setShift(text);
-		canvas.drawText(text, iniX-mShift, HistogramPanel.defaultBasePosY + HistogramPanel.TextMarginBaseLine, tPaint);
+		canvas.drawText(text, iniX - shiftText, HistogramPanel.defaultBasePosY
+				+ HistogramPanel.TextMarginBaseLine, tPaint);
+		
 		tPaint.setColor(Color.WHITE);
-		mShift = setShift(Height+"");
-		canvas.drawText(Height+"", iniX-mShift, HistogramPanel.defaultBasePosY -Height -HistogramPanel.TextMarginTopLine, tPaint);
-	}
-	
-	private int setShift(String txt){
-		if(txt.length()<2)
-			return TEXTSHIFT1;
+		if (Height >= (int) SelfMax)
+			printf = RealValue;
 		else
-			return TEXTSHIFT2;
+			printf = Height * INVERSTVALUE;
+		canvas.drawText(Math.round(printf) + "", iniX - shiftText,
+				HistogramPanel.defaultBasePosY - Height
+						- HistogramPanel.TextMarginTopLine, tPaint);
 	}
-	
+
 }

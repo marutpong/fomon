@@ -15,6 +15,8 @@ public class PetDataType {
 	public static final int Year = 10 ;
 	public static final int Hour = 11 ;
 	public static final int Minuted = 12 ;
+	public static final float RequireCalPerDay = 2000;
+	public static final float RequireCalFactor = (float) 1.5;
 	
 
 }
