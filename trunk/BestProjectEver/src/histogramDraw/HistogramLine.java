@@ -1,7 +1,5 @@
 package histogramDraw;
 
-import com.projnsc.bestprojectever.R;
-
 import textGetter.PetDataType;
 
 import android.graphics.Canvas;

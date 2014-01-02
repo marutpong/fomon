@@ -15,6 +15,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -36,6 +37,16 @@ public class EatPanel extends SurfaceView implements Callback {
 	private Canvas tempCanvas;
 	private Queue<Pixel> QPixel = new LinkedList<Pixel>();
 
+	public EatPanel(Context context, AttributeSet attrs, int defStyle) {
+		super(context, attrs, defStyle);
+		init();
+	}
+
+	public EatPanel(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		init();
+	}
+
 	public EatPanel(Context context) {
 		super(context);
 		init();
@@ -52,7 +63,12 @@ public class EatPanel extends SurfaceView implements Callback {
 	@SuppressLint("NewApi")
 	private void init() {
 		getHolder().addCallback(this);
-		mFood = BitmapFactory.decodeResource(getResources(), R.drawable.dummyfoodeattest);
+//		BitmapFactory.Options o = new BitmapFactory.Options();
+//		o.inSampleSize = 2;
+//		o.inDither = false;
+//		o.inPurgeable = true;
+		mFood = BitmapFactory.decodeResource(getResources(),
+				R.drawable.dummyfoodeattest);
 		mFood.setHasAlpha(true);
 		mTFood = mFood.copy(Config.ARGB_8888, true);
 		mPaint.setXfermode(new PorterDuffXfermode(Mode.CLEAR));
@@ -62,21 +78,22 @@ public class EatPanel extends SurfaceView implements Callback {
 	}
 
 	public void doDraw(Canvas canvas) {
-		Log.i("SIZE",mPool.size()+"");
+		Log.i("SIZE", mPool.size() + "");
 		canvas.drawBitmap(mFood, 0, 0, null);
 		canvas.drawARGB(170, 0, 0, 0);
 		if (ClearView) {
 			tempCanvas.drawBitmap(mFood, 0, 0, null);
 			ClearView = false;
 		}
-		
+
 		synchronized (QPixel) {
-			while(!QPixel.isEmpty()){
+			while (!QPixel.isEmpty()) {
 				Pixel tmp = QPixel.remove();
-				tempCanvas.drawCircle(tmp.getX(), tmp.getY(), EatRadius, mPaint);
+				tempCanvas
+						.drawCircle(tmp.getX(), tmp.getY(), EatRadius, mPaint);
 			}
 		}
-		
+
 		canvas.drawBitmap(mTFood, 0, 0, null);
 		mEating.doDraw(canvas);
 	}
