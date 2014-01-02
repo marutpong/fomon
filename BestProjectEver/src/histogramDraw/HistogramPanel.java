@@ -22,8 +22,6 @@ public class HistogramPanel extends SurfaceView implements Callback,
 
 	public static int defaultBasePosY;
 	public static int LineStrokeWidth = 0;
-	public static final int TextMarginBaseLine = 20;
-	public static final int TextMarginTopLine = 10;
 	private static final double LineWidthFactor = 1.6;
 	private static int BaseLineStrokeWidth = 8;
 	private static final float BaseLineStrokeFactor = (float) 0.02;
@@ -33,6 +31,7 @@ public class HistogramPanel extends SurfaceView implements Callback,
 			Color.argb(255, 255, 0, 255), Color.GREEN,
 			Color.argb(255, 255, 128, 0), Color.BLUE,
 			Color.argb(255, 128, 0, 128), Color.RED };
+	public static long TextRealSize = 0;
 	private static String[] TextDayList = { "MO", "TU", "WE", "TH", "FR", "SA",
 			"SU" };
 
@@ -135,7 +134,7 @@ public class HistogramPanel extends SurfaceView implements Callback,
 		mpaint.setColor(Color.WHITE);
 		mpaint.setStrokeWidth(BaseLineStrokeWidth);
 		if (CalData.size() <= 1) {
-			canvas.drawLine((viewHeight * heightBaseFactor) / 2, viewHeight
+			canvas.drawLine(viewWidth / 2, viewHeight
 					* heightBaseFactor, viewWidth, viewHeight
 					* heightBaseFactor, mpaint);
 		} else {
@@ -200,6 +199,7 @@ public class HistogramPanel extends SurfaceView implements Callback,
 		viewWidth = width;
 		defaultBasePosY = Math.round(height * heightBaseFactor);
 		BaseLineStrokeWidth = (int) (viewHeight * BaseLineStrokeFactor);
+		TextRealSize = Math.round((viewHeight * 0.025)); 
 		if (LineSet.size() >= 1)
 			AddLinetoThread();
 	}
