@@ -1,16 +1,18 @@
 package histogramDraw;
 
+import com.projnsc.bestprojectever.R;
+
 import textGetter.PetDataType;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
+import android.util.Log;
 
 public class HistogramLine {
 
 	private static float MaxValue = -1;
-//	private static final DecimalFormat Floatform = new DecimalFormat("0");
 	private static float SpeedFactor = -1;
 	private static final float SpeedPerPixel = (float) 0.0125;
 	private static Paint textPaint = new Paint();
@@ -25,6 +27,7 @@ public class HistogramLine {
 	private int SpeedUp = 1;
 	private float INVERSTVALUE = 0;
 	private float RealValue = 0;
+	
 
 	public static void setMaxValue(float maxValue) {
 		MaxValue = maxValue;
@@ -46,6 +49,9 @@ public class HistogramLine {
 		
 		textPaint.setColor(android.graphics.Color.WHITE);
 	    textPaint.setTextAlign(Align.CENTER);
+	    textPaint.setTextSize(HistogramPanel.TextRealSize);
+	    
+	    Log.i("ASSDD",HistogramPanel.LineStrokeWidth+"");
 		
 		int Height = HistogramPanel.getViewHeight();
 		float idelViewHeight = (float) HistogramPanel.HeightMarginFactor
@@ -101,7 +107,7 @@ public class HistogramLine {
 		
 		textPaint.setColor(BrushColor);
 		canvas.drawText(text, iniX - ((textPaint.descent() + textPaint.ascent()) / 2), HistogramPanel.defaultBasePosY
-				+ HistogramPanel.TextMarginBaseLine, textPaint);
+				+ HistogramPanel.TextRealSize*2, textPaint);
 		
 		textPaint.setColor(Color.WHITE);
 		if (Height >= (int) SelfMax)
@@ -110,7 +116,7 @@ public class HistogramLine {
 			printf = Height * INVERSTVALUE;
 		canvas.drawText(Math.round(printf) + "", iniX - ((textPaint.descent() + textPaint.ascent()) / 2) ,
 				HistogramPanel.defaultBasePosY - Height
-						- HistogramPanel.TextMarginTopLine, textPaint);
+						- HistogramPanel.TextRealSize, textPaint);
 	}
 
 }
