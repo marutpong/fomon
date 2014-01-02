@@ -63,6 +63,11 @@ public class PetUniqueDate {
 		editPref.putString(PrefDataType.FBID, facebookID);
 		editPref.commit();
 	}
+	
+	public static void SetMonsterBirthDay(String monBD){
+		editPref.putString(PrefDataType.MONBIRTHDAY, monBD);
+		editPref.commit();
+	}
 
 	public static String getMonName() {
 		return mainPref.getString(PrefDataType.MONNAME, PrefDataType.NONE);
@@ -90,6 +95,10 @@ public class PetUniqueDate {
 
 	public static String getFacebookID() {
 		return mainPref.getString(PrefDataType.FBID, PrefDataType.NONE);
+	}
+	
+	public static String getMonsterBirthday() {
+		return mainPref.getString(PrefDataType.MONBIRTHDAY, PrefDataType.NONE);
 	}
 
 	public Context getmContext() {

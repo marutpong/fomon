@@ -1,5 +1,9 @@
 package textGetter;
 
+import java.text.SimpleDateFormat;
+
+import android.annotation.SuppressLint;
+
 public class PetDataType {
 
 	public static final int PicturePath = 0 ;
@@ -10,11 +14,11 @@ public class PetDataType {
 	public static final int Protien = 5 ;
 	public static final int Carbohydrate = 6 ;
 	public static final int Fat = 7 ;
-	public static final int Day = 8 ;
-	public static final int Month = 9 ;
-	public static final int Year = 10 ;
-	public static final int Hour = 11 ;
-	public static final int Minuted = 12 ;
+	public static final int TimeStamp = 8;
+	private static final String TimeFormat = "dd-MM-yyyy HH:mm";
+	public static final int DataSize = 9;
+	@SuppressLint("SimpleDateFormat")
+	public static final SimpleDateFormat dateFormat = new SimpleDateFormat(TimeFormat);
 	public static final float RequireCalPerDay = 2000;
 	public static final float RequireCalFactor = (float) 1.5;
 	
