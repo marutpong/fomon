@@ -54,7 +54,8 @@ import android.widget.TextView;
 		//show_btnGoNext = (Button) findViewById(R.id.show_btnGonext);
 		show_btnBack = (Button) findViewById(R.id.show_btnBack);
 		
-		String stringDate = pet.getDay() + "/" + pet.getMonth() + "/" + pet.getYear() + " " + pet.getHourString()+ ":" + pet.getMinutedString();
+//		String stringDate = pet.getDay() + "/" + pet.getMonthString() + "/" + pet.getYear() + " " + pet.getHourString()+ ":" + pet.getMinutedString();
+		String stringDate = pet.getTimebyStringFormat();
 		txtFoodname.setText(pet.getFoodType());
 		txtDate.setText(stringDate);
 		txtCalories.setText(" : " + pet.getKCalories());

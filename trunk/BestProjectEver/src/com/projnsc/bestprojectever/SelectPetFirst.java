@@ -4,6 +4,7 @@ import petSelection.SelectMonPanel;
 import petSelection.SelectMonPanel.OnCharacterTouchListener;
 import preferenceSetting.PetUniqueDate;
 import preferenceSetting.PrefDataType;
+import textGetter.PetDataGet;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -126,6 +127,7 @@ public class SelectPetFirst extends Activity implements
 		PetUniqueDate.SetMonDEF(10);
 		PetUniqueDate.SetMonHP(30);
 		PetUniqueDate.SetMonSPD(5);
+		PetUniqueDate.SetMonsterBirthDay(PetDataGet.getCurrentTime());
 	}
 
 }

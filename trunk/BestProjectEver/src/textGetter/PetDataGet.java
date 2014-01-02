@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import android.content.Context;
 import android.util.Log;
@@ -121,8 +124,8 @@ public class PetDataGet {
 			outputStream = context.openFileOutput(filename,
 					Context.MODE_PRIVATE);
 
-			String string = "PathPic,12.5,18.8,KaomunKai,30,10,15,20,11,12,2013,23,00" + NEWLINE + "PathPic2,12.55,18.88,KaomunKai2,300,100,150,200,10,10,2014,20,15"
-					+ NEWLINE;
+			String string = "PathPic,12.5,18.8,KaomunKai,30,10,15,20," + getCurrentTime() + NEWLINE 
+					+ "PathPic2,12.55,18.88,KaomunKai2,300,100,150,200," + getCurrentTime() + NEWLINE;
 
 			outputStream.write(string.getBytes());
 			outputStream.close();
@@ -173,20 +176,6 @@ public class PetDataGet {
 		return SetData;
 	}
 	
-	
-	
-	/*
-	 * Get ArrayList of wanted list filter by D/M/Y
-	 */
-	public static ArrayList<PetDBox> getDataBoxFilter(int D,int M, int Y){
-		ArrayList<PetDBox> tmp = new ArrayList<PetDBox>();
-		for(PetDBox a : SetData){
-			if(a.isBeforeDate(D, M, Y))
-				tmp.add(a);
-		}
-		return tmp;
-	}
-	
 	/*
 	 * Show What is in file at the Log (info)
 	 */
@@ -198,6 +187,74 @@ public class PetDataGet {
 	public static void setContext(Context context){
 		PetDataGet.context = context;
 		Update();
+	}
+	
+	/*
+	 * For get date by week
+	 */
+	public static ArrayList<PetDBox> getSetPetDBoxByWeek(){
+		ArrayList<PetDBox> tmp = new ArrayList<PetDBox>();
+		
+		Calendar c = Calendar.getInstance();
+		c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+		c.set(Calendar.HOUR_OF_DAY, 0);
+		c.set(Calendar.MINUTE, 0);
+		c.set(Calendar.SECOND, 0);
+		c.set(Calendar.MILLISECOND, 0);
+
+		Date dateWeek = null;
+		try {
+			dateWeek = PetDataType.dateFormat.parse(PetDataType.dateFormat.format(c.getTime()));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		for(int i=0; i<SetData.size(); i++){
+			if(SetData.get(i).getTimeStamp().after(dateWeek))
+				SetData.add(SetData.get(i));
+			else
+				break;
+		}
+		
+		return tmp;
+	}
+	
+	/*
+	 * For get date by month
+	 */
+	public static ArrayList<PetDBox> getSetPetDBoxByMonth(){
+		ArrayList<PetDBox> tmp = new ArrayList<PetDBox>();
+		
+		Calendar c = Calendar.getInstance();
+		c.set(Calendar.DAY_OF_MONTH, Calendar.MONDAY);
+		c.set(Calendar.HOUR_OF_DAY, 0);
+		c.set(Calendar.MINUTE, 0);
+		c.set(Calendar.SECOND, 0);
+		c.set(Calendar.MILLISECOND, 0);
+
+		Date dateWeek = null;
+		try {
+			dateWeek = PetDataType.dateFormat.parse(PetDataType.dateFormat.format(c.getTime()));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		for(int i=0; i<SetData.size(); i++){
+			if(SetData.get(i).getTimeStamp().after(dateWeek))
+				SetData.add(SetData.get(i));
+			else
+				break;
+		}
+		
+		return tmp;
+	}
+
+	/*
+	 * Get Current Time
+	 */
+	public static String getCurrentTime(){
+		Calendar c = Calendar.getInstance();
+		return PetDataType.dateFormat.format(c.getTime());
 	}
 
 }

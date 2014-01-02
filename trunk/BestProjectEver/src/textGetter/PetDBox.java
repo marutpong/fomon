@@ -1,5 +1,9 @@
 package textGetter;
 
+import java.security.Timestamp;
+import java.text.ParseException;
+import java.util.Date;
+
 public class PetDBox {
 
 	private String PicturePath;
@@ -10,46 +14,38 @@ public class PetDBox {
 	private float Protien;
 	private float Carbohydrate;
 	private float Fat;
-	private int Day;
-	private int Month;
-	private int Year;
-	private int Hour;
-	private int Minuted;
+	private Date TimeStamp = null;
 
 	public PetDBox(String input) {
 		String[] tmpData = input.split(PetDataGet.SPACE);
 		if (isCorrectPattern(tmpData)) {
-			PicturePath = tmpData[0];
-			Latitude = Double.parseDouble(tmpData[1]);
-			Longtitude = Double.parseDouble(tmpData[2]);
-			FoodType = tmpData[3];
-			KCalories = Float.parseFloat(tmpData[4]);
-			Protien = Float.parseFloat(tmpData[5]);
-			Carbohydrate = Float.parseFloat(tmpData[6]);
-			Fat = Float.parseFloat(tmpData[7]);
-			Day = Integer.parseInt(tmpData[8]);
-			Month = Integer.parseInt(tmpData[9]);
-			Year = Integer.parseInt(tmpData[10]);
-			Hour = Integer.parseInt(tmpData[11]);
-			Minuted = Integer.parseInt(tmpData[12]);
+			PicturePath = tmpData[PetDataType.PicturePath];
+			Latitude = Double.parseDouble(tmpData[PetDataType.Latitude]);
+			Longtitude = Double.parseDouble(tmpData[PetDataType.Longtitude]);
+			FoodType = tmpData[PetDataType.FoodType];
+			KCalories = Float.parseFloat(tmpData[PetDataType.KCalories]);
+			Protien = Float.parseFloat(tmpData[PetDataType.Protien]);
+			Carbohydrate = Float.parseFloat(tmpData[PetDataType.Carbohydrate]);
+			Fat = Float.parseFloat(tmpData[PetDataType.Fat]);
+			try {
+				TimeStamp = PetDataType.dateFormat.parse(tmpData[PetDataType.TimeStamp]);
+			} catch (ParseException e) {
+				//NOPE cause already check
+			}
 		}
 	}
 
 	public static boolean isCorrectPattern(String input) {
 		String[] tmpData = input.split(PetDataGet.SPACE);
-		if (tmpData.length == 13) {
+		if (tmpData.length == PetDataType.DataSize) {
 			try {
-				Double.parseDouble(tmpData[1]);
-				Double.parseDouble(tmpData[2]);
-				Float.parseFloat(tmpData[4]);
-				Float.parseFloat(tmpData[5]);
-				Float.parseFloat(tmpData[6]);
-				Float.parseFloat(tmpData[7]);
-				Integer.parseInt(tmpData[8]);
-				Integer.parseInt(tmpData[9]);
-				Integer.parseInt(tmpData[10]);
-				Integer.parseInt(tmpData[11]);
-				Integer.parseInt(tmpData[12]);
+				Double.parseDouble(tmpData[PetDataType.Latitude]);
+				Double.parseDouble(tmpData[PetDataType.Longtitude]);
+				Float.parseFloat(tmpData[PetDataType.KCalories]);
+				Float.parseFloat(tmpData[PetDataType.Protien]);
+				Float.parseFloat(tmpData[PetDataType.Carbohydrate]);
+				Float.parseFloat(tmpData[PetDataType.Fat]);
+				PetDataType.dateFormat.parse(tmpData[PetDataType.TimeStamp]);
 			} catch (Exception E) {
 				return false;
 			}
@@ -57,38 +53,21 @@ public class PetDBox {
 		}
 		return false;
 	}
-
-	private boolean isCorrectPattern(String[] input) {
-		if (input.length == 13) {
+	
+	private boolean isCorrectPattern(String[] input){
+		if (input.length == PetDataType.DataSize) {
 			try {
-				Double.parseDouble(input[1]);
-				Double.parseDouble(input[2]);
-				Float.parseFloat(input[4]);
-				Float.parseFloat(input[5]);
-				Float.parseFloat(input[6]);
-				Float.parseFloat(input[7]);
-				Integer.parseInt(input[8]);
-				Integer.parseInt(input[9]);
-				Integer.parseInt(input[10]);
-				Integer.parseInt(input[11]);
-				Integer.parseInt(input[12]);
+				Double.parseDouble(input[PetDataType.Latitude]);
+				Double.parseDouble(input[PetDataType.Longtitude]);
+				Float.parseFloat(input[PetDataType.KCalories]);
+				Float.parseFloat(input[PetDataType.Protien]);
+				Float.parseFloat(input[PetDataType.Carbohydrate]);
+				Float.parseFloat(input[PetDataType.Fat]);
+				PetDataType.dateFormat.parse(input[PetDataType.TimeStamp]);
 			} catch (Exception E) {
 				return false;
 			}
 			return true;
-		}
-		return false;
-	}
-
-	/*
-	 * return true if this.date is EQUAL or MORE that in.date
-	 */
-	public boolean isBeforeDate(int Day, int Month, int Year) {
-		if (this.Year >= Year) {
-			if (this.Month >= Month) {
-				if (this.Day >= Day)
-					return true;
-			}
 		}
 		return false;
 	}
@@ -157,58 +136,16 @@ public class PetDBox {
 		Fat = fat;
 	}
 
-	public int getDay() {
-		return Day;
+	public Date getTimeStamp() {
+		return TimeStamp;
 	}
-
-	public void setDay(int day) {
-		Day = day;
+	
+	public void setTimeStamp(Date timeStamp) {
+		TimeStamp = timeStamp;
 	}
-
-	public int getMonth() {
-		return Month;
-	}
-
-	public void setMonth(int month) {
-		Month = month;
-	}
-
-	public int getYear() {
-		return Year;
-	}
-
-	public void setYear(int year) {
-		Year = year;
-	}
-
-	public int getHour() {
-		return Hour;
-	}
-
-	public String getHourString() {
-		if (Hour < 10)
-			return "0" + Hour;
-		else
-			return "" + Hour;
-	}
-
-	public void setHour(int hour) {
-		Hour = hour;
-	}
-
-	public int getMinuted() {
-		return Minuted;
-	}
-
-	public String getMinutedString() {
-		if (Minuted < 10)
-			return "0" + Minuted;
-		else
-			return "" + Minuted;
-	}
-
-	public void setMinuted(int minuted) {
-		Minuted = minuted;
+	
+	public String getTimebyStringFormat(){
+		return PetDataType.dateFormat.format(TimeStamp);
 	}
 
 }

@@ -81,8 +81,8 @@ public abstract class HistoryAdapter extends BaseAdapter implements ListAdapter 
 			}
 		}
 		
-		myHolder.list_DateTime.setText(NumBox.getDay() + "/" + NumBox.getMonth() + "/" + NumBox.getYear() + " " + NumBox.getHourString()+ ":" + NumBox.getMinutedString());
-
+//		myHolder.list_DateTime.setText(NumBox.getDay() + "/" + NumBox.getMonthString() + "/" + NumBox.getYear() + " " + NumBox.getHourString()+ ":" + NumBox.getMinutedString());
+		myHolder.list_DateTime.setText(NumBox.getTimebyStringFormat());
 		return convertView;
 	}
 
