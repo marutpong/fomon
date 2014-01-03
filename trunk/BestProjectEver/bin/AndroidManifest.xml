@@ -60,6 +60,7 @@
         <activity android:name="PetMainActivity" android:label="@string/app_name"></activity>
         <activity android:name="MainPaggerActivity"></activity>
         <activity android:name="MainPaggerNew"></activity>
+        <activity android:name="FightListActivity"></activity>
         
     </application>
 

@@ -93,7 +93,7 @@ public class SettingFragment extends Fragment {
 		PetDataGet.setContext(getActivity());
 		PetDataGet.Clear();
 		PetUniqueDate.SetMonName(PrefDataType.NONE);
-		PetUniqueDate.SetMonID(PrefDataType.NONEINT);
+		PetUniqueDate.SetMonTypeID(PrefDataType.NONEINT);
 		Intent next = new Intent(getActivity(), SelectPetFirst.class);
 		getActivity().finish();
 		startActivity(next);

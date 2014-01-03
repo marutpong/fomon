@@ -122,7 +122,7 @@ public class SelectPetFirst extends Activity implements
 
 	protected void setFirstMonStatus(String name) {
 		PetUniqueDate.SetMonName(name);
-		PetUniqueDate.SetMonID(MonSelectedID);
+		PetUniqueDate.SetMonTypeID(MonSelectedID);
 		PetUniqueDate.SetMonATK(10);
 		PetUniqueDate.SetMonDEF(10);
 		PetUniqueDate.SetMonHP(30);

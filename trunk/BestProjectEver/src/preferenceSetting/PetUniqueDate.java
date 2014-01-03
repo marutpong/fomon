@@ -34,7 +34,7 @@ public class PetUniqueDate {
 		editPref.commit();
 	}
 
-	public static void SetMonID(int monID) {
+	public static void SetMonTypeID(int monID) {
 		editPref.putInt(PrefDataType.MONID, monID);
 		editPref.commit();
 	}
@@ -73,7 +73,7 @@ public class PetUniqueDate {
 		return mainPref.getString(PrefDataType.MONNAME, PrefDataType.NONE);
 	}
 
-	public static int getMonID() {
+	public static int getMonTypeID() {
 		return mainPref.getInt(PrefDataType.MONID, PrefDataType.NONEINT);
 	}
 
@@ -113,8 +113,8 @@ public class PetUniqueDate {
 	}
 
 	public static int getPetResource() {
-		Log.i(PetUniqueDate.class.getName(),getMonID()+"");
-		switch (getMonID()) {
+		Log.i(PetUniqueDate.class.getName(),getMonTypeID()+"");
+		switch (getMonTypeID()) {
 		case 1:
 			return R.drawable.pet_s7;
 		case 2:
