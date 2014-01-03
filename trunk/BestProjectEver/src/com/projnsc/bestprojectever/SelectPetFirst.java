@@ -6,6 +6,7 @@ import preferenceSetting.PetUniqueDate;
 import preferenceSetting.PrefDataType;
 import textGetter.PetDataGet;
 import android.os.Bundle;
+import android.provider.Settings.Secure;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -127,6 +128,10 @@ public class SelectPetFirst extends Activity implements
 		PetUniqueDate.SetMonDEF(10);
 		PetUniqueDate.SetMonHP(30);
 		PetUniqueDate.SetMonSPD(5);
+		String android_id = Secure.getString(
+    			getContentResolver(),
+	            Secure.ANDROID_ID);
+		PetUniqueDate.SetFacebookID(android_id);
 		PetUniqueDate.SetMonsterBirthDay(PetDataGet.getCurrentTime());
 	}
 
