@@ -127,6 +127,7 @@ public class MainPaggerNew extends FragmentActivity implements
 		fragments.add(Fragment.instantiate(this, HistoryFragment.class.getName()));
 		fragments.add(Fragment.instantiate(this, QuestFragment.class.getName()));
 		fragments.add(Fragment.instantiate(this, SettingFragment.class.getName()));
+		fragments.add(Fragment.instantiate(this, ServerFragment.class.getName()));
 		this.mPagerAdapter = new PagerAdapterNew(
 				super.getSupportFragmentManager(), fragments);
 		//
@@ -165,7 +166,10 @@ public class MainPaggerNew extends FragmentActivity implements
 				(tabInfo = new TabInfo("Tab5", SettingFragment.class, args)));
 		this.mapTabInfo.put(tabInfo.tag, tabInfo);
 		
-				
+		MainPaggerNew.AddTab(this, this.mTabHost,
+				this.mTabHost.newTabSpec("Tab6").setIndicator("Server"),
+				(tabInfo = new TabInfo("Tab6", ServerFragment.class, args)));
+		this.mapTabInfo.put(tabInfo.tag, tabInfo);
 		// Default to first tab
 		// this.onTabChanged("Tab1");
 		//
