@@ -28,9 +28,9 @@ public class QuestFragment extends Fragment {
 		//old = getIntent();
 		//pet = PetDataGet.getDataBox(old.getExtras().getInt("index"));
 		
-		progressCarbohydrate = (ProgressBar) mView.findViewById(R.id.progressCarbohydrate);
-		progressProtien = (ProgressBar) mView.findViewById(R.id.progressProtien);
-		progressFat = (ProgressBar) mView.findViewById(R.id.progressFat);
+		progressCarbohydrate = (ProgressBar) mView.findViewById(R.id.progressATK);
+		progressProtien = (ProgressBar) mView.findViewById(R.id.progressHP);
+		progressFat = (ProgressBar) mView.findViewById(R.id.atkValue);
 		
 		
 		progressCarbohydrate.setProgress(0);

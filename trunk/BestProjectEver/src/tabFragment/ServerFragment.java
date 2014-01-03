@@ -7,7 +7,6 @@ import textGetter.PetDataGet;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.provider.Settings.Secure;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.projnsc.bestprojectever.FightListActivity;
-import com.projnsc.bestprojectever.MainPaggerNew;
 import com.projnsc.bestprojectever.R;
 import com.projnsc.bestprojectever.SelectPetFirst;
 

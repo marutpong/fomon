@@ -63,6 +63,7 @@ public class PetSelectSprite {
 		mY = (int) Math.round(yCen) - (Petheight / 2);
 	}
 
+	//CheckForPetClick
 	public boolean isCollition(float x2, float y2) {
 		return x2 > mX && x2 < mX + Petwidth && y2 > mY && y2 < mY + Petheight;
 	}
