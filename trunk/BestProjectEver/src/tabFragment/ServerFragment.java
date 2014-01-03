@@ -109,7 +109,7 @@ public class ServerFragment extends Fragment {
 					Intent mNext = new Intent(getActivity(),FightListActivity.class);
 					startActivity(mNext);
 				} else {
-					Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
+					Toast.makeText(getActivity(), "Please connect WIFI.", Toast.LENGTH_LONG).show();
 				}
 			}
 		});
