@@ -11,21 +11,21 @@
     tools:context=".HistoryBarActivities" >
 
     <ProgressBar
-        android:id="@+id/progressProtien"
+        android:id="@+id/progressHP"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:progressDrawable="@drawable/custom_progress" />
 
     <ProgressBar
-        android:id="@+id/progressCarbohydrate"
+        android:id="@+id/progressATK"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" 
         android:progressDrawable="@drawable/custom_progress"/>
 
     <ProgressBar
-        android:id="@+id/progressFat"
+        android:id="@+id/atkValue"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" 

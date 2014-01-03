@@ -29,8 +29,8 @@ public class EatPanel extends SurfaceView implements Callback {
 	private static int EatRadius;
 	private Bitmap mFood, mTFood;
 	private EatThread mThread;
-	private static int PanelWidth;
-	private static int PanelHight;
+	public static int PanelWidth;
+	public static int PanelHight;
 	private Set<Pixel> mPool;
 	private Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 	private EatingSprite mEating;

@@ -1,6 +1,5 @@
 package textGetter;
 
-import java.security.Timestamp;
 import java.text.ParseException;
 import java.util.Date;
 

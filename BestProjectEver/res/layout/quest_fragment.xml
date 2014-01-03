@@ -11,14 +11,14 @@
     tools:context=".QuestFragment" >
 
     <TextView
-        android:id="@+id/dummyChangeNameSet"
+        android:id="@+id/dummyHPEmo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Quest#1"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ProgressBar
-        android:id="@+id/progressProtien"
+        android:id="@+id/progressHP"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
          />
 
     <TextView
-        android:id="@+id/txtQuest02"
+        android:id="@+id/dummyATKemo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Quest#2"
@@ -36,7 +36,7 @@
          />
 
     <ProgressBar
-        android:id="@+id/progressCarbohydrate"
+        android:id="@+id/progressATK"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" 
@@ -46,14 +46,14 @@
 		/>
 
     <TextView
-        android:id="@+id/txtQuest03"
+        android:id="@+id/dummyDEFemo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Quest#3"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ProgressBar
-        android:id="@+id/progressFat"
+        android:id="@+id/atkValue"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" 
@@ -61,5 +61,10 @@
         android:minHeight="30dip" 
 		android:maxHeight="40dip"
 		/>
+
+    <petShowEmotion.PetShowEmotionPanel
+        android:id="@+id/petShowEmotionPanel1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

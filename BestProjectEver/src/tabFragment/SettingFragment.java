@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.projnsc.bestprojectever.R;
 import com.projnsc.bestprojectever.SelectPetFirst;
+import com.projnsc.bestprojectever.ShowStatResultActivity;
 
 public class SettingFragment extends Fragment {
 
@@ -64,6 +65,7 @@ public class SettingFragment extends Fragment {
 			public void onClick(View v) {
 //				showRenameDialog();
 				addRandomText();
+				
 			}
 		});
 
@@ -71,8 +73,10 @@ public class SettingFragment extends Fragment {
 	}
 
 	protected void addRandomText() {
-		PetDataGet.setContext(getActivity());
-		PetDataGet.Write("AAAA,1.2,1.3,RICE,4,5,6,7,11,12,2013,23,07");
+		Intent A = new Intent(getActivity(),ShowStatResultActivity.class);
+		startActivity(A);
+//		PetDataGet.setContext(getActivity());
+//		PetDataGet.Write("AAAA,1.2,1.3,RICE,4,5,6,7,11,12,2013,23,07");
 	}
 
 	protected void askForClearData() {

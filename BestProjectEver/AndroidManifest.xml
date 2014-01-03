@@ -61,6 +61,7 @@
         <activity android:name="MainPaggerActivity"></activity>
         <activity android:name="MainPaggerNew"></activity>
         <activity android:name="FightListActivity"></activity>
+        <activity android:label="Stat Up" android:name="ShowStatResultActivity"></activity>
         
     </application>
 

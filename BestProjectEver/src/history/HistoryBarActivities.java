@@ -25,9 +25,9 @@ public class HistoryBarActivities extends Activity {
 		old = getIntent();
 		pet = PetDataGet.getDataBox(old.getExtras().getInt("index"));
 		
-		progressCarbohydrate = (ProgressBar) findViewById(R.id.progressCarbohydrate);
-		progressProtien = (ProgressBar) findViewById(R.id.progressProtien);
-		progressFat = (ProgressBar) findViewById(R.id.progressFat);
+		progressCarbohydrate = (ProgressBar) findViewById(R.id.progressATK);
+		progressProtien = (ProgressBar) findViewById(R.id.progressHP);
+		progressFat = (ProgressBar) findViewById(R.id.atkValue);
 		
 		
 		progressCarbohydrate.setProgress(0);

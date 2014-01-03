@@ -28,7 +28,6 @@ public class Pixel{
 		Pixel tmp = (Pixel) obj;
 		return this.X == tmp.X && this.Y == tmp.Y;
 	}
-
 	
 }
 
