@@ -6,8 +6,6 @@ import petShowEmotion.PetStatGradualIncrease.OnMonsterStatChange;
 import preferenceSetting.PetUniqueDate;
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -28,12 +26,14 @@ public class ShowStatResultActivity extends Activity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
-		setContentView(R.layout.pet_stat_up_activity);
+		setContentView(R.layout.activity_pet_stat_up);
 
 		int HPUp = 10;
 		int ATKUp = 5;
 		int DEFUp = 3;
 		int SPDUp = 2;
+		
+		//Save to Database
 		
 		mPetStatModule = new PetStatGradualIncrease(HPUp, ATKUp, DEFUp, SPDUp);
 		mPetStatModule.setOnMonsterStatChange(this);

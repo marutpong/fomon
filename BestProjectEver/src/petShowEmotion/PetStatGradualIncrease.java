@@ -15,6 +15,8 @@ public class PetStatGradualIncrease {
 	private int curATK = 0;
 	private int curDEF = 0;
 	private int curSPD = 0;
+	private int dummyCounter = 0;
+	private final int MaxDummyCounter = 3*8;
 
 	public int getCurATK() {
 		return curATK;
@@ -65,8 +67,12 @@ public class PetStatGradualIncrease {
 			curDEF++;
 		if (stg4)
 			curSPD++;
-		if(!stg1 && !stg2 && !stg3 && !stg4)
-			NotifyCompleteStatChange();
+		if(!stg1 && !stg2 && !stg3 && !stg4){
+			if(dummyCounter > MaxDummyCounter)
+				NotifyCompleteStatChange();
+			else
+				dummyCounter++;
+		}
 		else
 			NotifyStatChange();
 	}

@@ -62,6 +62,7 @@
         <activity android:name="MainPaggerNew"></activity>
         <activity android:name="FightListActivity"></activity>
         <activity android:label="Stat Up" android:name="ShowStatResultActivity"></activity>
+        <activity android:name="ShowPetVersusResultActivity" android:label="Battle Result"></activity>
         
     </application>
 

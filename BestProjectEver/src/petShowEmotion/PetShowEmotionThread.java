@@ -1,7 +1,5 @@
 package petShowEmotion;
 
-import com.projnsc.bestprojectever.ShowStatResultActivity;
-
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
