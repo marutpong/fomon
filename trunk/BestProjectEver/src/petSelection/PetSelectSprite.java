@@ -2,8 +2,6 @@ package petSelection;
 
 import preferenceSetting.PetUniqueDate;
 
-import com.projnsc.bestprojectever.R;
-
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
