@@ -115,6 +115,25 @@ public class PetUniqueDate {
 	public static int getPetResource() {
 		Log.i(PetUniqueDate.class.getName(),getMonTypeID()+"");
 		switch (getMonTypeID()) {
+		case 10:
+			return R.drawable.baby1;
+		case 11:
+			return R.drawable.middle1;
+		case 1:
+			return R.drawable.pet_s7;
+		case 2:
+			return R.drawable.pet_s6;
+		default:
+			return R.drawable.pet_s7;
+		}
+	}
+
+	public static int getPetResource(int key) {
+		switch (key) {
+		case 10:
+			return R.drawable.baby1;
+		case 11:
+			return R.drawable.middle1;
 		case 1:
 			return R.drawable.pet_s7;
 		case 2:

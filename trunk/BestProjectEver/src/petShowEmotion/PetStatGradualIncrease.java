@@ -42,6 +42,7 @@ public class PetStatGradualIncrease {
 	public interface OnMonsterStatChange {
 		void OnMonsterStatHasChange(
 				PetStatGradualIncrease petStatGradualIncrease);
+		void OnMonsterStatChangeComplete();
 	}
 
 	private OnMonsterStatChange onMonsterStatChange;
@@ -51,15 +52,28 @@ public class PetStatGradualIncrease {
 	}
 
 	public void runIncrease() {
-		if (curHP <= upHp)
+		boolean stg1 = curHP <= upHp;
+		boolean stg2 = curATK <= upATK;
+		boolean stg3 = curDEF <= upDEF;
+		boolean stg4 = curSPD <= upSPD;
+		
+		if (stg1)
 			curHP++;
-		if (curATK <= upATK)
+		if (stg2)
 			curATK++;
-		if (curDEF <= upDEF)
+		if (stg3)
 			curDEF++;
-		if (curSPD <= upSPD)
+		if (stg4)
 			curSPD++;
-		NotifyStatChange();
+		if(!stg1 && !stg2 && !stg3 && !stg4)
+			NotifyCompleteStatChange();
+		else
+			NotifyStatChange();
+	}
+
+	private void NotifyCompleteStatChange() {
+		if(onMonsterStatChange != null)
+			onMonsterStatChange.OnMonsterStatChangeComplete();
 	}
 
 	private void NotifyStatChange() {

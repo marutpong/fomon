@@ -64,10 +64,13 @@ public class PetPanel extends SurfaceView implements Callback{
 	@Override
 	public void surfaceChanged(SurfaceHolder holder, int format, int width,
 			int height) {
+		Bitmap nBACKGROUND;
 		PetFieldHeight = height;
 		PetFieldWidth = width;
 		mPet.setPetFirstRandomPosition(width, height);
-		BACKGROUND = Bitmap.createScaledBitmap(BACKGROUND, width, height, false);
+		nBACKGROUND = Bitmap.createScaledBitmap(BACKGROUND, width, height, false);
+		BACKGROUND.recycle();
+		BACKGROUND = nBACKGROUND;
 	}
 
 	@Override
