@@ -29,7 +29,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Health Point"
+                android:text="Health"
                 android:gravity="left"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -37,7 +37,7 @@
                 android:id="@+id/txtHPemo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:text="hpValue"
                 android:gravity="right"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -72,7 +72,7 @@
             android:id="@+id/txtATKemo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:text="atkValue"
             android:gravity="right"
             android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -105,7 +105,7 @@
             android:id="@+id/txtDEFemo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:text="defValue"
             android:gravity="right"
             android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -138,7 +138,7 @@
             android:id="@+id/txtSPDemo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:text="spdValue"
             android:gravity="right"
             android:textAppearance="?android:attr/textAppearanceLarge" />

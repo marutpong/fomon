@@ -1,5 +1,7 @@
 package petShowEmotion;
 
+import com.projnsc.bestprojectever.ShowStatResultActivity;
+
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
@@ -36,6 +38,7 @@ public class PetShowEmotionThread extends Thread{
 			canvas = mHolder.lockCanvas();
 			
 			if(canvas != null){
+				
 				mPanel.RunAnimate();
 				mPanel.doDraw(canvas);
 				mHolder.unlockCanvasAndPost(canvas);

@@ -54,7 +54,7 @@ public class SelectMonPanel extends SurfaceView implements Callback{
 		getHolder().addCallback(this);
 		mThread = new PetFieldThread(this);
 		mPetSet.add(new PetSelectSprite(getResources(), 0, 0, 1));
-		mPetSet.add(new PetSelectSprite(getResources(), 0, 0, 2));
+		mPetSet.add(new PetSelectSprite(getResources(), 0, 0, 11));
 		BACKGROUND = BitmapFactory.decodeResource(getResources(), R.drawable.bg_forest);
 	}
 

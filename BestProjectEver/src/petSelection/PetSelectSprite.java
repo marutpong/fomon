@@ -22,20 +22,29 @@ public class PetSelectSprite {
 	private int mY;
 	private Bitmap mBitmap;
 	private int AnimationRow = DIRECTION_TO_ANIMATION_MAP[2]; // Always Down
-	private static final int SpriteAnimate[] = { R.drawable.pet_s7, R.drawable.pet_s6 };
 	private int Key;
 
 	public PetSelectSprite(Resources res, int x, int y, int Key) {
-		mBitmap = BitmapFactory.decodeResource(res, SpriteAnimate[Key - 1]);
+		mBitmap = BitmapFactory.decodeResource(res,
+				PetUniqueDate.getPetResource(Key));
 		Petwidth = mBitmap.getWidth() / BMP_COLUMNS;
 		Petheight = mBitmap.getHeight() / BMP_ROWS;
 		mX = x;
 		mY = y;
 		this.Key = Key;
 	}
-	
+
 	public PetSelectSprite(Resources res, int x, int y) {
-		mBitmap = BitmapFactory.decodeResource(res, PetUniqueDate.getPetResource());
+		try {
+			mBitmap = BitmapFactory.decodeResource(res,
+					PetUniqueDate.getPetResource());
+		} catch (OutOfMemoryError E) {
+			BitmapFactory.Options o = new BitmapFactory.Options();
+			o.inDither = false; 
+			o.inPurgeable = true;
+			mBitmap = BitmapFactory.decodeResource(res,
+					PetUniqueDate.getPetResource(), o);
+		}
 		Petwidth = mBitmap.getWidth() / BMP_COLUMNS;
 		Petheight = mBitmap.getHeight() / BMP_ROWS;
 		mX = x;
@@ -63,7 +72,7 @@ public class PetSelectSprite {
 		mY = (int) Math.round(yCen) - (Petheight / 2);
 	}
 
-	//CheckForPetClick
+	// CheckForPetClick
 	public boolean isCollition(float x2, float y2) {
 		return x2 > mX && x2 < mX + Petwidth && y2 > mY && y2 < mY + Petheight;
 	}

@@ -23,9 +23,12 @@ public class EmotionSprite {
 	private int AnimationRow; // Always Down
 
 	public EmotionSprite(Resources res, int x, int y, String emoKey) {
+		Bitmap tBitmap;
 		mBitmap = BitmapFactory.decodeResource(res, R.drawable.rpgmakervxballoon);
-		mBitmap = Bitmap.createScaledBitmap(mBitmap, mBitmap.getWidth()*3, mBitmap.getHeight()*3,
+		tBitmap = Bitmap.createScaledBitmap(mBitmap, mBitmap.getWidth()*3, mBitmap.getHeight()*3,
 				false);
+		mBitmap.recycle();
+		mBitmap = tBitmap;
 		Petwidth = mBitmap.getWidth() / BMP_COLUMNS;
 		Petheight = mBitmap.getHeight() / BMP_ROWS;
 		mX = x;

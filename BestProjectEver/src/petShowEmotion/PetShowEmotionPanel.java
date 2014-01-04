@@ -59,7 +59,7 @@ public class PetShowEmotionPanel extends SurfaceView implements Callback {
 	}
 
 	public void setEmoKey(String emoKey) {
-		if(mEmotion!=null)
+		if (mEmotion != null)
 			mEmotion.setEmoKey(emoKey);
 		else
 			this.emoKey = emoKey;
@@ -83,7 +83,7 @@ public class PetShowEmotionPanel extends SurfaceView implements Callback {
 		// canvas.drawBitmap(BACKGROUND, 0, 0, null);
 		canvas.drawColor(Color.BLACK);
 		mPetShow.doDraw(canvas);
-//		if (mEmotion.getRunFrame() <= EmotionSprite.getRunFrameThreashole())
+		// if (mEmotion.getRunFrame() <= EmotionSprite.getRunFrameThreashole())
 		mEmotion.doDraw(canvas);
 	}
 
@@ -99,22 +99,30 @@ public class PetShowEmotionPanel extends SurfaceView implements Callback {
 
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
-		if (!mThread.isAlive()) {
-			mThread = new PetShowEmotionThread(this);
-			mThread.setRunning(true);
-			mThread.start();
-		}
+		startThread();
 	}
 
 	@Override
 	public void surfaceDestroyed(SurfaceHolder holder) {
+		stopThread();
+	}
+
+	public void setPetStatModule(PetStatGradualIncrease mPetStatModule) {
+		this.mPetStatModule = mPetStatModule;
+	}
+
+	public void stopThread() {
 		if (mThread.isAlive()) {
 			mThread.setRunning(false);
 		}
 	}
 
-	public void setPetStatModule(PetStatGradualIncrease mPetStatModule) {
-		this.mPetStatModule = mPetStatModule;
+	public void startThread() {
+		if (!mThread.isAlive()) {
+			mThread = new PetShowEmotionThread(this);
+			mThread.setRunning(true);
+			mThread.start();
+		}
 	}
 
 }
