@@ -23,11 +23,14 @@ public class PetSprite {
 	private int mSpeedX;
 	private int mSpeedY;
 	private Bitmap mBitmap;
-	private Random rand = new Random();
+	private static final Random rand = new Random();
 	private boolean FirstPosSet = false;
 
 	public PetSprite(Resources res, int x, int y) {
-		mBitmap = BitmapFactory.decodeResource(res, PetUniqueDate.getPetResource());
+		BitmapFactory.Options o = new BitmapFactory.Options();
+		o.inDither = false;
+		o.inPurgeable = true;
+		mBitmap = BitmapFactory.decodeResource(res, PetUniqueDate.getPetResource(),o);
 		Petwidth = mBitmap.getWidth() / BMP_COLUMNS;
 		Petheight = mBitmap.getHeight() / BMP_ROWS;
 		mX = x;

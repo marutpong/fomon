@@ -47,7 +47,7 @@ public class PetShowEmotionPanel extends SurfaceView implements Callback {
 		mThread = new PetShowEmotionThread(this);
 		mThread.setRunning(false);
 		mPetShow = new PetSelectSprite(getResources(), 0, 0);
-		mEmotion = new EmotionSprite(getResources(), 0, 0, this.emoKey);
+		mEmotion = new EmotionSprite(getResources(), 0, 0);
 	}
 
 	private void init(String emoKey) {

@@ -21,12 +21,17 @@ public class EmotionSprite {
 	private int runFrame = 0;
 	private Bitmap mBitmap;
 	private int AnimationRow; // Always Down
+	private boolean AllowRunFrameThreashole = false;
 
 	public EmotionSprite(Resources res, int x, int y, String emoKey) {
 		Bitmap tBitmap;
-		mBitmap = BitmapFactory.decodeResource(res, R.drawable.rpgmakervxballoon);
-		tBitmap = Bitmap.createScaledBitmap(mBitmap, mBitmap.getWidth()*3, mBitmap.getHeight()*3,
-				false);
+		BitmapFactory.Options o = new BitmapFactory.Options();
+		o.inDither = false;
+		o.inPurgeable = true;
+		mBitmap = BitmapFactory.decodeResource(res,
+				R.drawable.rpgmakervxballoon,o);
+		tBitmap = Bitmap.createScaledBitmap(mBitmap, mBitmap.getWidth() * 3,
+				mBitmap.getHeight() * 3, false);
 		mBitmap.recycle();
 		mBitmap = tBitmap;
 		Petwidth = mBitmap.getWidth() / BMP_COLUMNS;
@@ -35,26 +40,31 @@ public class EmotionSprite {
 		mY = y;
 		this.AnimationRow = KeytoInt(emoKey);
 	}
-	
-	public void setEmoKey(String emoKey){
+
+	public void setEmoKey(String emoKey) {
 		this.AnimationRow = KeytoInt(emoKey);
 		runFrame = 0;
 	}
-	
+
 	private int KeytoInt(String emoKey) {
-		if(emoKey=="LOVE")
+		if (emoKey.equalsIgnoreCase("LOVE"))
 			return 3;
-		if(emoKey=="WIN")
+		if (emoKey.equalsIgnoreCase("WIN"))
 			return 2;
-		if(emoKey=="LOSE")
+		if (emoKey.equalsIgnoreCase("LOSE"))
 			return 6;
+		if (emoKey.equalsIgnoreCase("QUESTION"))
+			return 1;
+		if (emoKey.equalsIgnoreCase("EXAMINATION"))
+			return 0;
 		return -1;
 	}
 
 	public EmotionSprite(Resources res, int x, int y) {
-		mBitmap = BitmapFactory.decodeResource(res, R.drawable.rpgmakervxballoon);
-		mBitmap = Bitmap.createScaledBitmap(mBitmap, mBitmap.getWidth()*3, mBitmap.getHeight()*3,
-				false);
+		mBitmap = BitmapFactory.decodeResource(res,
+				R.drawable.rpgmakervxballoon);
+		mBitmap = Bitmap.createScaledBitmap(mBitmap, mBitmap.getWidth() * 3,
+				mBitmap.getHeight() * 3, false);
 		Petwidth = mBitmap.getWidth() / BMP_COLUMNS;
 		Petheight = mBitmap.getHeight() / BMP_ROWS;
 		mX = x;
@@ -65,22 +75,28 @@ public class EmotionSprite {
 	public static int getRunFrameThreashole() {
 		return runFrameThreashole;
 	}
-	
+
 	public void animate() {
 		currentFrame = ++currentFrame % BMP_COLUMNS;
 		runFrame++;
 	}
-	
+
 	public int getRunFrame() {
 		return runFrame;
 	}
-	
+
 	public void doDraw(Canvas canvas) {
-		int srcX = currentFrame * Petwidth;
-		int srcY = AnimationRow * Petheight;
-		Rect src = new Rect(srcX, srcY, srcX + Petwidth, srcY + Petheight);
-		Rect dst = new Rect(mX, mY, mX + Petwidth, mY + Petheight);
-		canvas.drawBitmap(mBitmap, src, dst, null);
+		if (!AllowRunFrameThreashole || runFrame <= runFrameThreashole) {
+			int srcX = currentFrame * Petwidth;
+			int srcY = AnimationRow * Petheight;
+			Rect src = new Rect(srcX, srcY, srcX + Petwidth, srcY + Petheight);
+			Rect dst = new Rect(mX, mY, mX + Petwidth, mY + Petheight);
+			try {
+				canvas.drawBitmap(mBitmap, src, dst, null);
+			} catch (RuntimeException E) {
+
+			}
+		}
 	}
 
 	public void setCenPos(float f, float yCen) {
@@ -88,9 +104,18 @@ public class EmotionSprite {
 		mY = (int) Math.round(yCen) - (Petheight / 2);
 	}
 
-	//CheckForPetClick
+	// CheckForPetClick
 	public boolean isCollition(float x2, float y2) {
 		return x2 > mX && x2 < mX + Petwidth && y2 > mY && y2 < mY + Petheight;
 	}
-	
+
+	public void setAllowRunFrameThreshole(boolean b) {
+		AllowRunFrameThreashole = b;
+	}
+
+	public void forceRecycle() {
+		if (mBitmap != null)
+			mBitmap.recycle();
+	}
+
 }

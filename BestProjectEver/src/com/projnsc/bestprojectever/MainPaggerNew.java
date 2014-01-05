@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -103,6 +104,15 @@ public class MainPaggerNew extends FragmentActivity implements
 		// Intialise ViewPager
 		horizontalScroll = (HorizontalScrollView) findViewById(R.id.horizontalscroll);
 		this.intialiseViewPager();
+		
+		if (getIntent().getExtras()!=null && getIntent().getExtras().getBoolean("isFromEvolution")) {
+			new AlertDialog.Builder(this)
+					.setTitle("Congratulation")
+					.setMessage(
+							"You pet has change its form but you still have to take care of it")
+					.setPositiveButton("OK", null).show();
+		}
+		
 	}
 
 	/**

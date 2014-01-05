@@ -18,6 +18,7 @@ public class TheFragmentPagerAdapter extends FragmentPagerAdapter {
 		 	allFragment.add(new HistoryFragment());
 		 	allFragment.add(new QuestFragment());
 		 	allFragment.add(new SettingFragment());
+		 	allFragment.add(new ServerFragment());
 	  }
     // TODO Auto-generated constructor stub
   }
