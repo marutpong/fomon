@@ -6,9 +6,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.util.Log;
-
-import com.projnsc.bestprojectever.R;
 
 public class PetEvolutionSprite {
 
@@ -141,10 +138,10 @@ public class PetEvolutionSprite {
 
 		BitmapFactory.Options o = new BitmapFactory.Options();
 		o.inDither = false;
+		o.inSampleSize=2;
 		o.inPurgeable = true;
 		sBitmap = BitmapFactory.decodeResource(res,
 				PetUniqueDate.getPetResource(monStartID), o);
-
 		sPetwidth = sBitmap.getWidth() / BMP_COLUMNS;
 		sPetheight = sBitmap.getHeight() / BMP_ROWS;
 		fBitmap = BitmapFactory.decodeResource(res,

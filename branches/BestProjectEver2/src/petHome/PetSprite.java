@@ -23,7 +23,7 @@ public class PetSprite {
 	private int mSpeedX;
 	private int mSpeedY;
 	private Bitmap mBitmap;
-	private static Random rand = new Random();
+	private static final Random rand = new Random();
 	private boolean FirstPosSet = false;
 
 	public PetSprite(Resources res, int x, int y) {
