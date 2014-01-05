@@ -6,7 +6,7 @@ import android.view.SurfaceHolder;
 public class PetBattleThread extends Thread {
 
 	private static final int DEFAULT_SLEEP_FRAME = 10;
-	public static final int FPS = 10;
+	public static final int FPS = 5;
 	private PetBattlePanel mPanel;
 	private SurfaceHolder mHolder;
 	private boolean Running = false;

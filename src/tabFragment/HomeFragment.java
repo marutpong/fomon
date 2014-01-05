@@ -4,6 +4,7 @@ import petHome.PetPanel;
 import petHome.PetPanel.OnPetTouchListener;
 import preferenceSetting.PetUniqueDate;
 
+import com.projnsc.bestprojectever.ImageProcessActivity;
 import com.projnsc.bestprojectever.MonEatingPhotoActivity;
 import com.projnsc.bestprojectever.R;
 import android.os.Bundle;
@@ -27,6 +28,9 @@ public class HomeFragment extends Fragment implements OnPetTouchListener {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		
+		PetUniqueDate.SetMonTypeID(12);
+		
 		mView = inflater.inflate(R.layout.pet_home_fragment, container, false);
 //		mView = new PetPanel(getActivity());
 		
@@ -40,7 +44,8 @@ public class HomeFragment extends Fragment implements OnPetTouchListener {
 			
 			@Override
 			public void onClick(View v) {
-				Intent tIntent = new Intent(getActivity(), MonEatingPhotoActivity.class);
+				//Intent tIntent = new Intent(getActivity(), MonEatingPhotoActivity.class);
+				Intent tIntent = new Intent(getActivity(), ImageProcessActivity.class);
 				startActivity(tIntent);
 			}
 		});

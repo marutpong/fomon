@@ -22,7 +22,7 @@ public class PetEvolutionActivity extends Activity implements OnEvolutionFinishL
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
-		MonFinishID = 11;
+		MonFinishID = 12;
 		
 		mEvolPanel = new PetEvolutionPanel(this);
 		mEvolPanel.setOnEvolutionFinishListener(this);

@@ -51,11 +51,14 @@ public class SelectMonPanel extends SurfaceView implements Callback{
 	
 	private void init() {
 		mPetSet = new ArrayList<PetSelectSprite>();
+		BitmapFactory.Options o = new BitmapFactory.Options();
+		o.inDither = false; 
+		o.inPurgeable = true;
 		getHolder().addCallback(this);
 		mThread = new PetFieldThread(this);
 		mPetSet.add(new PetSelectSprite(getResources(), 0, 0, 1));
 		mPetSet.add(new PetSelectSprite(getResources(), 0, 0, 10));
-		BACKGROUND = BitmapFactory.decodeResource(getResources(), R.drawable.bg_forest);
+		BACKGROUND = BitmapFactory.decodeResource(getResources(), R.drawable.bg_forest,o);
 	}
 
 	private void mPetSetFixPosition() {
@@ -121,6 +124,12 @@ public class SelectMonPanel extends SurfaceView implements Callback{
 		}
 	}
 
+	public void forceRecycle(){
+		for(PetSelectSprite mPet : mPetSet){
+			mPet.forceRecycle();
+		}
+	}
+	
 	@Override
 	public void surfaceDestroyed(SurfaceHolder holder) {
 		if(mThread.isAlive()){

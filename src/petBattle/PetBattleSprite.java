@@ -2,7 +2,6 @@ package petBattle;
 
 import java.util.Random;
 
-import petHome.PetPanel;
 import preferenceSetting.PetUniqueDate;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -12,7 +11,7 @@ import android.graphics.Rect;
 
 public class PetBattleSprite {
 
-	private int[] DIRECTION_TO_ANIMATION_MAP = { 3, 1, 0, 2 };
+//	private int[] DIRECTION_TO_ANIMATION_MAP = { 3, 1, 0, 2 };
 	private static final int BMP_ROWS = 4;
 	private static final int BMP_COLUMNS = 4;
 	private int currentFrame = 0;

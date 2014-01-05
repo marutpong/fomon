@@ -37,7 +37,7 @@ public class PetSelectSprite {
 
 	public PetSelectSprite(Resources res, int x, int y) {
 		BitmapFactory.Options o = new BitmapFactory.Options();
-		o.inDither = false;
+		o.inDither = false; 
 		o.inPurgeable = true;
 		mBitmap = BitmapFactory.decodeResource(res,
 				PetUniqueDate.getPetResource(), o);
@@ -71,6 +71,11 @@ public class PetSelectSprite {
 	// CheckForPetClick
 	public boolean isCollition(float x2, float y2) {
 		return x2 > mX && x2 < mX + Petwidth && y2 > mY && y2 < mY + Petheight;
+	}
+	
+	public void forceRecycle(){
+		if(mBitmap!=null)
+			mBitmap.recycle();
 	}
 
 }

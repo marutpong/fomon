@@ -34,7 +34,7 @@
         android:layout_weight="0" >
 
         <TableRow
-            android:id="@+id/tableRow10"
+            android:id="@+id/tableRow1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
