@@ -110,7 +110,8 @@
         </activity>
         <activity
             android:name="PetBattleActivity"
-            android:label="Pet Battle Stage" >
+            android:label="Pet Battle Stage"
+            android:screenOrientation="landscape" >
         </activity>
     </application>
 
