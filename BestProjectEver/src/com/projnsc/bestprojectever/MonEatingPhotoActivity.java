@@ -7,6 +7,8 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 
+import processImage.Hist_Phog;
+
 import textGetter.PetDataType;
 
 import monsterEatPhoto.EatPanel;
@@ -27,7 +29,7 @@ import android.view.Window;
 import android.widget.Button;
 
 public class MonEatingPhotoActivity extends Activity {
-
+	Hist_Phog hist_phog = new Hist_Phog(this);
 	private static final int MENU_CLEAR_ID = 1000;
 	private Set<Pixel> mPool = new HashSet<Pixel>();
 	EatPanel mPanel;
@@ -38,10 +40,15 @@ public class MonEatingPhotoActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Log.i("TEXT",
+				getIntent().getExtras().getString(
+						ImageProcessActivity.getIntentExtraKeyPicSavePath()));
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_mon_eat_pic);
 		// mPanel = new EatPanel(this);
 		mPanel = (EatPanel) findViewById(R.id.eatPanel1);
+		mPanel.setImagePicPath(getIntent().getExtras().getString(
+				ImageProcessActivity.getIntentExtraKeyPicSavePath()));
 		mPanel.setPixelPool(mPool);
 		// setContentView(mPanel);
 		btnCancel = (Button) findViewById(R.id.btnEatCancel);
@@ -87,6 +94,7 @@ public class MonEatingPhotoActivity extends Activity {
 	}
 
 	protected void gotoCalculatePicEat() {
+		String fullPath;
 		Pixel[] PixelPool = mPool.toArray(new Pixel[0]);
 		int minX, minY, maxX, maxY;
 		Arrays.sort(PixelPool, new Comparator<Pixel>() {
@@ -97,7 +105,7 @@ public class MonEatingPhotoActivity extends Activity {
 			}
 		});
 		minX = PixelPool[0].getX();
-		maxX = PixelPool[PixelPool.length-1].getX();
+		maxX = PixelPool[PixelPool.length - 1].getX();
 		Arrays.sort(PixelPool, new Comparator<Pixel>() {
 
 			@Override
@@ -106,26 +114,33 @@ public class MonEatingPhotoActivity extends Activity {
 			}
 		});
 		minY = PixelPool[0].getY();
-		maxY = PixelPool[PixelPool.length-1].getY();
+		maxY = PixelPool[PixelPool.length - 1].getY();
 		int Heigh = EatPanel.PanelHight;
 		int Width = EatPanel.PanelWidth;
-		
-		Bitmap mFood = BitmapFactory.decodeResource(getResources(),
-				R.drawable.dummyfoodeattest);
-		mFood = Bitmap.createScaledBitmap(mFood, Width, Heigh,
-				false);
-		Log.i(this.getClass().getName(),"Width Real: " + mFood.getWidth() + " Height Real: " + mFood.getHeight());
-		Log.i(this.getClass().getName(),"miX: " + minX + " mxX: " + maxX + " abs: " + Math.abs(maxX-minX));
-		Log.i(this.getClass().getName(),"miY: " + minY + " mxY: " + maxY + " abs: " + Math.abs(maxY-minY));
-//		for(int i=0; i<PixelPool.length; i++){
-//			Log.i(this.getClass().getName()+" OK", PixelPool[i].getX() + " " + PixelPool[i].getY());
-//		}
-		mFood = Bitmap.createBitmap(mFood, minX, minY, Math.abs(maxX-minX), Math.abs(maxY-minY));
+
+//		Bitmap mFood = BitmapFactory.decodeResource(getResources(),
+//				R.drawable.dummyfoodeattest);
+		Bitmap mFood = BitmapFactory.decodeFile(getIntent().getExtras().getString(
+				ImageProcessActivity.getIntentExtraKeyPicSavePath()));
+		mFood = Bitmap.createScaledBitmap(mFood, Width, Heigh, false);
+		Log.i(this.getClass().getName(), "Width Real: " + mFood.getWidth()
+				+ " Height Real: " + mFood.getHeight());
+		Log.i(this.getClass().getName(), "miX: " + minX + " mxX: " + maxX
+				+ " abs: " + Math.abs(maxX - minX));
+		Log.i(this.getClass().getName(), "miY: " + minY + " mxY: " + maxY
+				+ " abs: " + Math.abs(maxY - minY));
+		// for(int i=0; i<PixelPool.length; i++){
+		// Log.i(this.getClass().getName()+" OK", PixelPool[i].getX() + " " +
+		// PixelPool[i].getY());
+		// }
+		mFood = Bitmap.createBitmap(mFood, minX, minY, Math.abs(maxX - minX),
+				Math.abs(maxY - minY));
 
 		String root = Environment.getExternalStorageDirectory().toString();
 		File myDir = new File(root + "/" + PetDataType.FolderSavedName);
 		myDir.mkdirs();
 		File file = new File(myDir, PetDataType.TempFilePetEatSaveName);
+		fullPath = root + "/" + PetDataType.FolderSavedName + "/" + PetDataType.TempFilePetEatSaveName;
 		if (file.exists())
 			file.delete();
 		try {
@@ -133,10 +148,16 @@ public class MonEatingPhotoActivity extends Activity {
 			mFood.compress(Bitmap.CompressFormat.JPEG, 100, out);
 			out.flush();
 			out.close();
-
+			Log.i(this.getClass().getName(), "Success!!!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		int[] classFood  = hist_phog.histImage(fullPath);
+		
+		Log.d("TEXT", String.valueOf(classFood[0])+"  "+String.valueOf(classFood[1]));
+
+		// /
 
 	}
 
