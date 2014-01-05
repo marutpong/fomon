@@ -1,8 +1,12 @@
 package tabFragment;
 
+import historyDatabase.HistoryDatabase;
+import historyDatabase.HistoryType;
+
+import java.util.Random;
+
 import preferenceSetting.PetUniqueDate;
 import preferenceSetting.PrefDataType;
-import textGetter.PetDataGet;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -28,6 +32,8 @@ public class SettingFragment extends Fragment {
 	View mView;
 	Button btnRename;
 	Button btnClear;
+	Button btnChangServerIP;
+
 	TextView txtPetNameSet;
 	TextView txtHPSet;
 	TextView txtATKSet;
@@ -41,6 +47,7 @@ public class SettingFragment extends Fragment {
 
 		btnRename = (Button) mView.findViewById(R.id.btnChangePetNameSet);
 		btnClear = (Button) mView.findViewById(R.id.btnClearData);
+		btnChangServerIP = (Button) mView.findViewById(R.id.btn_serverip);
 		txtPetNameSet = (TextView) mView.findViewById(R.id.txtPetNameSet);
 		txtHPSet = (TextView) mView.findViewById(R.id.txtPetHPSet);
 		txtATKSet = (TextView) mView.findViewById(R.id.txtPetATKSet);
@@ -70,7 +77,15 @@ public class SettingFragment extends Fragment {
 				
 			}
 		});
-
+		
+		btnChangServerIP.setOnClickListener(new android.view.View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				showChangeServerIPDialog();
+			}
+		});
 		return mView;
 	}
 
@@ -81,6 +96,10 @@ public class SettingFragment extends Fragment {
 		startActivity(A);
 //		PetDataGet.setContext(getActivity());
 //		PetDataGet.Write("AAAA,1.2,1.3,RICE,4,5,6,7,11,12,2013,23,07");
+		
+		//Add random
+		Random randGen = new Random();
+		HistoryDatabase.insertHistory("aaaaa", 11.1212, 21.1212, 1+randGen.nextInt(21), HistoryType.getCurrentDate(), HistoryType.getCurrentTime());
 	}
 
 	protected void askForClearData() {
@@ -98,8 +117,7 @@ public class SettingFragment extends Fragment {
 	}
 
 	protected void clearALLdataANDReGame() {
-		PetDataGet.setContext(getActivity());
-		PetDataGet.Clear();
+		HistoryDatabase.Clear();
 		PetUniqueDate.SetMonName(PrefDataType.NONE);
 		PetUniqueDate.SetMonTypeID(PrefDataType.NONEINT);
 		Intent next = new Intent(getActivity(), SelectPetFirst.class);
@@ -129,7 +147,29 @@ public class SettingFragment extends Fragment {
 				}).setNegativeButton("Cancel", null).show();
 
 	}
+	protected void showChangeServerIPDialog() {
 
+		final View view = getActivity().getLayoutInflater().inflate(
+				R.layout.input_textfield, null);
+		final EditText nameInput = (EditText) view
+				.findViewById(R.id.intxtPetName);
+		nameInput.setText(PetUniqueDate.getServerIP());
+		
+		new AlertDialog.Builder(getActivity()).setTitle("Change Server IP Adddress")
+				.setView(view).setPositiveButton("OK", new OnClickListener() {
+					
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						Log.i("THIS", nameInput.getText().toString());
+						if (nameInput.getText().toString().length() > 0) {
+							PetUniqueDate.SetServerIP(nameInput.getText().toString());
+						} else {
+							fail();
+						}
+					}
+				}).setNegativeButton("Cancel", null).show();
+
+	}
 	protected void fail() {
 		new AlertDialog.Builder(getActivity()).setTitle("Warning!")
 				.setMessage("You can't leave your pet name as Blank")

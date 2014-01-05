@@ -1,9 +1,15 @@
 package com.projnsc.bestprojectever;
 
 import tabFragment.*;
+import historyDatabase.HistoryDatabase;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
+
+import foodDatabase.FoodDatabase;
+
+import preferenceSetting.PetUniqueDate;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -104,15 +110,72 @@ public class MainPaggerNew extends FragmentActivity implements
 		// Intialise ViewPager
 		horizontalScroll = (HorizontalScrollView) findViewById(R.id.horizontalscroll);
 		this.intialiseViewPager();
-		
-		if (getIntent().getExtras()!=null && getIntent().getExtras().getBoolean("isFromEvolution")) {
+
+		if (getIntent().getExtras() != null
+				&& getIntent().getExtras().getBoolean("isFromEvolution")) {
 			new AlertDialog.Builder(this)
 					.setTitle("Congratulation")
 					.setMessage(
 							"You pet has change its form but you still have to take care of it")
 					.setPositiveButton("OK", null).show();
 		}
-		
+
+		// Set server IP Address
+		if (PetUniqueDate.isServerIPEmpty()) {
+			PetUniqueDate.SetServerIP("10.73.10.65");
+		}
+		// Initial Food Database
+		FoodDatabase.fd = new FoodDatabase(this);
+		FoodDatabase.fd.getWritableDatabase();
+
+		FoodDatabase.insertFood(1, "ข้าวมันไก่", 619, 10.9, 28, 80.9, 16, 27,
+				213, 1251, 95, 3, 8, 1, 5, 0, 2);
+		FoodDatabase.insertFood(2, "ข้าวหมูทอดกระเทียม", 441, 13.9, 11.2, 71,
+				16, 22, 243, 608, 201, 3, 10, 0, 4, 2, 4);
+		FoodDatabase.insertFood(3, "ข้าวซอย", 154, 5.8, 10.6, 8.9, 25, -1, -1,
+				-1, 61, 1, 5, 1, 5, 0, 1);
+		FoodDatabase.insertFood(4, "ขนมจีนน้ำเงี้ยว", 308, 18.9, 5.6, 45.6, 70,
+				56, 648, 1862, 162, 3, 9, 0, 4, 0, 2);
+		FoodDatabase.insertFood(5, "ข้าวหมูแดง", 521, 21.9, 16.5, 71.3, 17, 30,
+				473, 1307, 357, 4, 9, 0, 4, 1, 3);
+		FoodDatabase.insertFood(6, "ข้าวผัด", 581, 22.7, 25.2, 65.8, 37, 28,
+				212, 906, 243, 3, 10, 1, 4, 2, 4);
+		FoodDatabase.insertFood(7, "ส้มตำ", 85, 3.7, 2.1, 12.8, 71, -1, -1, -1,
+				64, 2, 7, 1, 5, 0, 1);
+		FoodDatabase.insertFood(8, "ผัดซีอิ้ว", 633, 16, 26.8, 81.9, 118, 51,
+				594, 1592, 292, 1, 6, 0, 3, 0, 2);
+		FoodDatabase.insertFood(9, "เย็นตาโฟ", 381, 17.5, 15.9, 42, 40, 65.8,
+				391, 2313, 164, 1, 8, 0, 4, 0, 1);
+		FoodDatabase.insertFood(10, "ข้าวหมูกรอบ", 490, 20.4, 21.8, 54.6, -1,
+				-1, -1, -1, -1, 2, 6, 0, 1, 0, 1);
+		FoodDatabase.insertFood(11, "ข้าวราดกระเพรา", 469, 24.2, 14.8, 59.9,
+				31, 50.6, 379, 1880, 225, 3, 9, 2, 4, 0, 1);
+		FoodDatabase.insertFood(12, "หอยทอด", 812, 20.2, 65.6, 35.1, 91, 67,
+				284, 1450, 462, 1, 7, 0, 2, 1, 5);
+		FoodDatabase.insertFood(13, "ข้าวหมกไก่", 619, 10.9, 28, 80.9, 16, 27,
+				213, 1251, 95, 2, 5, 1, 6, 0, 2);
+		FoodDatabase.insertFood(14, "ข้าวราดผัดผัก", 332, 8.8, 5.9, 60.9, 29,
+				26.3, 239, 1352, 100, 3, 12, 0, 3, 2, 4);
+		FoodDatabase.insertFood(15, "หมูปิ้ง", 72, 6.8, 2.5, 5.6, -1, -1, -1,
+				-1, -1, 1, 4, 0, 1, 0, 1);
+		FoodDatabase.insertFood(16, "ผัดไทย", 486, 20.9, 19.9, 55.7, 201, 95,
+				471, 1060, 317, 2, 8, 0, 4, 1, 3);
+		FoodDatabase.insertFood(17, "ข้าวขาหมู", 152, 6.7, 5.7, 18.5, 236, -1,
+				-1, -1, 43, 3, 9, 1, 2, 0, 3);
+		FoodDatabase.insertFood(18, "ข้าวคลุกกะปิ", 565, 20.5, 19.5, 76.7, 147,
+				56.7, 519, 1999, 260, 1, 6, 0, 2, 0, 1);
+		FoodDatabase.insertFood(19, "สลัดผัก", 92, 1, 6.4, 7.6, -1, -1, -1, -1,
+				-1, 3, 12, 0, 1, 0, 2);
+		FoodDatabase.insertFood(20, "ราดหน้า", 506, 16.5, 21.8, 60.9, 89, 61.1,
+				497, 1753, 190, 2, 7, 0, 3, 1, 3);
+		FoodDatabase.insertFood(21, "ไข่ดาว", 160, 12.3, 11.7, 1.4, 126, -1,
+				-1, -1, 204, 3, 3, 0, 0, 1, 1);
+
+		// Initial History Database
+		HistoryDatabase.hd = new HistoryDatabase(this);
+		HistoryDatabase.hd.getWritableDatabase();
+		HistoryDatabase.SelectAllData();
+
 	}
 
 	/**
@@ -133,11 +196,16 @@ public class MainPaggerNew extends FragmentActivity implements
 
 		List<Fragment> fragments = new Vector<Fragment>();
 		fragments.add(Fragment.instantiate(this, HomeFragment.class.getName()));
-		fragments.add(Fragment.instantiate(this, HistogramFragment.class.getName()));
-		fragments.add(Fragment.instantiate(this, HistoryFragment.class.getName()));
-		fragments.add(Fragment.instantiate(this, QuestFragment.class.getName()));
-		fragments.add(Fragment.instantiate(this, SettingFragment.class.getName()));
-		fragments.add(Fragment.instantiate(this, ServerFragment.class.getName()));
+		fragments.add(Fragment.instantiate(this,
+				HistogramFragment.class.getName()));
+		fragments.add(Fragment.instantiate(this,
+				HistoryFragment.class.getName()));
+		fragments
+				.add(Fragment.instantiate(this, QuestFragment.class.getName()));
+		fragments.add(Fragment.instantiate(this,
+				SettingFragment.class.getName()));
+		fragments
+				.add(Fragment.instantiate(this, ServerFragment.class.getName()));
 		this.mPagerAdapter = new PagerAdapterNew(
 				super.getSupportFragmentManager(), fragments);
 		//
@@ -165,17 +233,17 @@ public class MainPaggerNew extends FragmentActivity implements
 				this.mTabHost.newTabSpec("Tab3").setIndicator("History"),
 				(tabInfo = new TabInfo("Tab3", HistoryFragment.class, args)));
 		this.mapTabInfo.put(tabInfo.tag, tabInfo);
-		
+
 		MainPaggerNew.AddTab(this, this.mTabHost,
 				this.mTabHost.newTabSpec("Tab4").setIndicator("Quest"),
 				(tabInfo = new TabInfo("Tab4", QuestFragment.class, args)));
 		this.mapTabInfo.put(tabInfo.tag, tabInfo);
-		
+
 		MainPaggerNew.AddTab(this, this.mTabHost,
 				this.mTabHost.newTabSpec("Tab5").setIndicator("Setting"),
 				(tabInfo = new TabInfo("Tab5", SettingFragment.class, args)));
 		this.mapTabInfo.put(tabInfo.tag, tabInfo);
-		
+
 		MainPaggerNew.AddTab(this, this.mTabHost,
 				this.mTabHost.newTabSpec("Tab6").setIndicator("Server"),
 				(tabInfo = new TabInfo("Tab6", ServerFragment.class, args)));
@@ -221,20 +289,21 @@ public class MainPaggerNew extends FragmentActivity implements
 	 * (int, float, int)
 	 */
 
-
 	@Override
-	public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-	    View tabView = mTabHost.getTabWidget().getChildAt(position);
-	    if (tabView != null)
-	    {
-	        final int width = horizontalScroll.getWidth();
-	        final int scrollPos = tabView.getLeft() - (width - tabView.getWidth()) / 2;
-	        horizontalScroll.smoothScrollTo(scrollPos, 0);
-	    } else {
-	    	horizontalScroll.smoothScrollBy(positionOffsetPixels, 0);
-	    	//horizontalScroll.scrollBy(positionOffsetPixels, 0);
-	    }
+	public void onPageScrolled(int position, float positionOffset,
+			int positionOffsetPixels) {
+		View tabView = mTabHost.getTabWidget().getChildAt(position);
+		if (tabView != null) {
+			final int width = horizontalScroll.getWidth();
+			final int scrollPos = tabView.getLeft()
+					- (width - tabView.getWidth()) / 2;
+			horizontalScroll.smoothScrollTo(scrollPos, 0);
+		} else {
+			horizontalScroll.smoothScrollBy(positionOffsetPixels, 0);
+			// horizontalScroll.scrollBy(positionOffsetPixels, 0);
+		}
 	}
+
 	@Override
 	public void onPageSelected(int position) {
 		// TODO Auto-generated method stub

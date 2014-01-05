@@ -1,5 +1,9 @@
 package histogramDraw;
 
+import foodDatabase.FoodDatabase;
+import historyDatabase.HistoryDatabase;
+import historyDatabase.HistoryType;
+
 import java.util.ArrayList;
 
 public class HistogramModule {
@@ -38,19 +42,16 @@ public class HistogramModule {
 
 	// DUMP NOW
 	private void UpdateWeek() {
-		int sM[] = { 800, 1000, 1750, 3000, 1500, 1800, 2000 };
 		CalWeek.clear();
-		for (int i = 0; i < sM.length; i++)
-			CalWeek.add((float) sM[i]);
+		CalWeek = HistoryDatabase.getHistoryListByWeek();
 	}
 
 	//DUMP NOW
 	private void UpdataToday(){
-		
-		int DUMPADD = 700;
 		CalToday.clear();
-		CalToday.add((float) DUMPADD);
-		
+		//CalToday.add((float) HistoryDatabase.getCaloriesOfDate(HistoryType.getCurrentDate()));
+		CalToday.add((float) (HistoryDatabase.getSumNutritionOfDate(HistoryType.getCurrentDate(),FoodDatabase.Enum.calories.ordinal())));
+
 	}
 	
 	// DUMP NOW

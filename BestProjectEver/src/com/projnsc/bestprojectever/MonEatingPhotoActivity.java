@@ -1,5 +1,7 @@
 package com.projnsc.bestprojectever;
 
+import historyDatabase.HistoryType;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Arrays;
@@ -9,7 +11,6 @@ import java.util.Set;
 
 import processImage.Hist_Phog;
 
-import textGetter.PetDataType;
 
 import monsterEatPhoto.EatPanel;
 import monsterEatPhoto.Pixel;
@@ -137,10 +138,10 @@ public class MonEatingPhotoActivity extends Activity {
 				Math.abs(maxY - minY));
 
 		String root = Environment.getExternalStorageDirectory().toString();
-		File myDir = new File(root + "/" + PetDataType.FolderSavedName);
+		File myDir = new File(root + "/" + HistoryType.FolderSavedName);
 		myDir.mkdirs();
-		File file = new File(myDir, PetDataType.TempFilePetEatSaveName);
-		fullPath = root + "/" + PetDataType.FolderSavedName + "/" + PetDataType.TempFilePetEatSaveName;
+		File file = new File(myDir, HistoryType.TempFilePetEatSaveName);
+		fullPath = root + "/" + HistoryType.FolderSavedName + "/" + HistoryType.TempFilePetEatSaveName;
 		if (file.exists())
 			file.delete();
 		try {

@@ -14,7 +14,7 @@
         android:id="@+id/dummyHPEmo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Quest#1"
+        android:text="HP"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ProgressBar
@@ -31,9 +31,8 @@
         android:id="@+id/dummyATKemo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Quest#2"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-         />
+        android:text="ATK"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ProgressBar
         android:id="@+id/progressATK"
@@ -49,7 +48,7 @@
         android:id="@+id/dummyDEFemo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Quest#3"
+        android:text="DEF"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ProgressBar

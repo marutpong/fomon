@@ -18,7 +18,6 @@ import com.projnsc.bestprojectever.R;
 import processImage.ImageProcessView;
 import processImage.ImageProcessView.OnImageProcess;
 
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -60,7 +59,7 @@ public class ImageProcessActivity extends Activity implements
 	public static String getIntentExtraKeyPicSavePath() {
 		return INTENT_EXTRA_KEY_PIC_SAVE_PATH;
 	}
-	
+
 	private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
 		// Unknown by dumb people :3 yep
 		@Override
@@ -130,15 +129,15 @@ public class ImageProcessActivity extends Activity implements
 					String fileName = folder + "/Pic_FoMons"
 							+ currentDateandTime + ".jpg";
 					PictureFileName = fileName;
-					
-					/*Display display = getWindowManager().getDefaultDisplay();
-					Point size = new Point();
-					display.getSize(size);
-					int width = size.x;
-					int height = size.y;
-					Log.d(TAG, "width "+String.valueOf(width)+" heigth "+String.valueOf(height));
-					*/
-					
+
+					/*
+					 * Display display = getWindowManager().getDefaultDisplay();
+					 * Point size = new Point(); display.getSize(size); int
+					 * width = size.x; int height = size.y; Log.d(TAG,
+					 * "width "+String
+					 * .valueOf(width)+" heigth "+String.valueOf(height));
+					 */
+
 					mOpenCvCameraView.takePicture(fileName);
 					// Toast.makeText(this, "Picture is already created.",
 					// Toast.LENGTH_LONG).show();
@@ -150,14 +149,13 @@ public class ImageProcessActivity extends Activity implements
 					// Do something else on failure
 				}
 
-				
 			}
 
-//			private void chagePage(String fileName) {
-//				intend.putExtra(INTENT_EXTRA_KEY_PIC_SAVE_PATH, fileName);
-//				startActivityForResult(intend, 0);
-//
-//			}
+			// private void chagePage(String fileName) {
+			// intend.putExtra(INTENT_EXTRA_KEY_PIC_SAVE_PATH, fileName);
+			// startActivityForResult(intend, 0);
+			//
+			// }
 		});
 	}
 
@@ -251,7 +249,8 @@ public class ImageProcessActivity extends Activity implements
 
 	@SuppressLint("SimpleDateFormat")
 	public void NotifyImageProcess(String path) {
-		Intent A = new Intent(getApplicationContext(),MonEatingPhotoActivity.class);
+		Intent A = new Intent(getApplicationContext(),
+				MonEatingPhotoActivity.class);
 		A.putExtra(INTENT_EXTRA_KEY_PIC_SAVE_PATH, path);
 		startActivity(A);
 	}

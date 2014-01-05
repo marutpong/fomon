@@ -1,10 +1,10 @@
-package history;
+package historyDatabase;
 
 import java.io.File;
-
-import textGetter.PetDBox;
-
 import com.projnsc.bestprojectever.R;
+
+import foodDatabase.FoodBox;
+import foodDatabase.FoodDatabase;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -58,9 +58,11 @@ public abstract class HistoryAdapter extends BaseAdapter implements ListAdapter 
 			myHolder = (NumHolder) convertView.getTag();
 		}
 
-		PetDBox NumBox = (PetDBox) getItem(position);
-		myHolder.list_foodName.setText(NumBox.getFoodType() + "");
-		File imgFile = new File(NumBox.getPicturePath());
+		HistoryBox hisBox = (HistoryBox) getItem(position);
+		FoodBox foodBox = FoodDatabase.getFoodByID(hisBox.getFoodType());
+
+		myHolder.list_foodName.setText(foodBox.getName() + "");
+		File imgFile = new File(hisBox.getPicturePath());
 		if (imgFile.exists()) {
 
 			try {
@@ -77,12 +79,10 @@ public abstract class HistoryAdapter extends BaseAdapter implements ListAdapter 
 						Toast.LENGTH_LONG).show();
 				myHolder.showImgThumbnail.setImageBitmap(myBitmap);
 			} catch (Exception ex) {
-				
+
 			}
 		}
-		
-//		myHolder.list_DateTime.setText(NumBox.getDay() + "/" + NumBox.getMonthString() + "/" + NumBox.getYear() + " " + NumBox.getHourString()+ ":" + NumBox.getMinutedString());
-		myHolder.list_DateTime.setText(NumBox.getTimebyStringFormat());
+		myHolder.list_DateTime.setText(hisBox.getTimebyStringFormat());
 		return convertView;
 	}
 

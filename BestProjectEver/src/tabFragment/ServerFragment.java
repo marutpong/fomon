@@ -1,8 +1,6 @@
 package tabFragment;
 
 import preferenceSetting.PetUniqueDate;
-import preferenceSetting.PrefDataType;
-import textGetter.PetDataGet;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,9 +17,10 @@ import android.widget.Toast;
 
 import com.projnsc.bestprojectever.FightListActivity;
 import com.projnsc.bestprojectever.R;
-import com.projnsc.bestprojectever.SelectPetFirst;
 
 import connection.MyServer;
+import foodDatabase.FoodBox;
+import foodDatabase.FoodDatabase;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -52,6 +51,33 @@ public class ServerFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
+				/*
+				String arrData[] = FoodDatabase.fb.SelectData(1);
+		    	if(arrData == null)
+		    	{
+		       	 Toast.makeText(getActivity(),"Not found Data!",
+		 			 	Toast.LENGTH_LONG).show(); 
+		    	}
+		    	else
+		    	{
+		          	 Toast.makeText(getActivity(),"ID = " + arrData[0]
+		          			 + ","  + arrData[1] + ","  + arrData[2],
+		      			 	Toast.LENGTH_LONG).show(); 
+		    	}
+		    	*/
+				FoodBox fBox = FoodDatabase.fd.getFoodByName("ÊéÁµÓ");
+		    	if(fBox == null)
+		    	{
+		       	 Toast.makeText(getActivity(),"Not found Data!",
+		 			 	Toast.LENGTH_LONG).show(); 
+		    	}
+		    	else
+		    	{
+		          	 Toast.makeText(getActivity(),"ID = " + fBox.getID()
+		          			 + ","  + fBox.getName() + ","  + fBox.getCalcium(),
+		      			 	Toast.LENGTH_LONG).show(); 
+		    	}
+		    	
 		        // Permission StrictMode
 		        if (android.os.Build.VERSION.SDK_INT > 9) {
 		            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -60,7 +86,8 @@ public class ServerFragment extends Fragment {
 				Log.i("TEST","Click");
 				HttpURLConnection conn = null;
             	try {
-            		String url = MyServer.server_url;
+            		String url = PetUniqueDate.getServerURL();
+            		Toast.makeText(getActivity(), url, Toast.LENGTH_LONG).show();
 					conn = (HttpURLConnection)new URL(url).openConnection();
 					conn.setRequestMethod("GET");
                     conn.setInstanceFollowRedirects(true);
@@ -114,17 +141,5 @@ public class ServerFragment extends Fragment {
 		
 		return mView;
 	}
-	
-	
-	protected void clearALLdataANDReGame() {
-		PetDataGet.setContext(getActivity());
-		PetDataGet.Clear();
-		PetUniqueDate.SetMonName(PrefDataType.NONE);
-		PetUniqueDate.SetMonTypeID(PrefDataType.NONEINT);
-		Intent next = new Intent(getActivity(), SelectPetFirst.class);
-		getActivity().finish();
-		startActivity(next);
-	}
-
 
 }

@@ -32,58 +32,74 @@ import android.widget.Toast;
 import com.projnsc.bestprojectever.R;
 import com.projnsc.bestprojectever.SelectPetFirst;
 
-public class MyServer//  extends Application
+public class MyServer// extends Application
 {
 	private static Context mContext;
-	public static String server_url = "http://10.10.188.72/fomon/";
-    private static MyServer mServer = null;
-    //public static String server_ip = "10.10.188.72";
-    /* (non-Javadoc)
-     * @see android.app.Application#onCreate()
-     */
+	private static MyServer mServer = null;
+
+	// public static String server_ip = "10.10.188.72";
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see android.app.Application#onCreate()
+	 */
 	public MyServer(Context context) {
 		setContext(context);
 	}
+
 	public Context getmContext() {
 		return mContext;
 	}
+
 	public static void setContext(Context mContext) {
 		MyServer.mContext = mContext;
 	}
+
 	/*
-    public static String sever_url() {
-    	//String server_ip = Resources.getSystem().getString(R.string.server_ip);//mContext.getString(R.string.server_ip);//mContext.getResources().getString(R.string.server_ip);
-    	//String get_ip = MyServer.getContext().getResources().getString(R.string.server_ip);
-    	String url = "http://"+server_ip+"/fomon/";
-		return url;
-	}*/
-    public static String saveToServer() {
-    	String strResult = null;
-    	 if (android.os.Build.VERSION.SDK_INT > 9) {
-	            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-	            StrictMode.setThreadPolicy(policy);
-	        }
-			HttpURLConnection conn = null;
-			
-        	String url = MyServer.server_url+"enter.php";
-        	
-    		List<NameValuePair> params = new ArrayList<NameValuePair>();
-    		params.add(new BasicNameValuePair("uid", PetUniqueDate.getFacebookID().toString()));
-            params.add(new BasicNameValuePair("name", PetUniqueDate.getMonName().toString()));
-            params.add(new BasicNameValuePair("type", String.valueOf( PetUniqueDate.getMonTypeID() )));
-            params.add(new BasicNameValuePair("hp", String.valueOf( PetUniqueDate.getMonHP() )));
-            params.add(new BasicNameValuePair("atk", String.valueOf( PetUniqueDate.getMonATK() )));
-            params.add(new BasicNameValuePair("def", String.valueOf( PetUniqueDate.getMonDEF() )));
-            params.add(new BasicNameValuePair("spd", String.valueOf( PetUniqueDate.getMonSPD() )));
-            strResult = getHttpPost(url,params);
-     
-     	return strResult;
+	 * public static String sever_url() { //String server_ip =
+	 * Resources.getSystem
+	 * ().getString(R.string.server_ip);//mContext.getString(R
+	 * .string.server_ip);
+	 * //mContext.getResources().getString(R.string.server_ip); //String get_ip
+	 * = MyServer.getContext().getResources().getString(R.string.server_ip);
+	 * String url = "http://"+server_ip+"/fomon/"; return url; }
+	 */
+	public static String saveToServer() {
+		String strResult = null;
+		if (android.os.Build.VERSION.SDK_INT > 9) {
+			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+					.permitAll().build();
+			StrictMode.setThreadPolicy(policy);
+		}
+		HttpURLConnection conn = null;
+
+		String url = PetUniqueDate.getServerURL() + "enter.php";
+
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("uid", PetUniqueDate.getFacebookID()
+				.toString()));
+		params.add(new BasicNameValuePair("name", PetUniqueDate.getMonName()
+				.toString()));
+		params.add(new BasicNameValuePair("type", String.valueOf(PetUniqueDate
+				.getMonTypeID())));
+		params.add(new BasicNameValuePair("hp", String.valueOf(PetUniqueDate
+				.getMonHP())));
+		params.add(new BasicNameValuePair("atk", String.valueOf(PetUniqueDate
+				.getMonATK())));
+		params.add(new BasicNameValuePair("def", String.valueOf(PetUniqueDate
+				.getMonDEF())));
+		params.add(new BasicNameValuePair("spd", String.valueOf(PetUniqueDate
+				.getMonSPD())));
+		strResult = getHttpPost(url, params);
+
+		return strResult;
 	}
-	public static String getHttpPost(String url,List<NameValuePair> params) {
+
+	public static String getHttpPost(String url, List<NameValuePair> params) {
 		StringBuilder str = new StringBuilder();
 		HttpClient client = new DefaultHttpClient();
 		HttpPost httpPost = new HttpPost(url);
-		
+
 		try {
 			httpPost.setEntity(new UrlEncodedFormEntity(params));
 			HttpResponse response = client.execute(httpPost);
@@ -92,7 +108,8 @@ public class MyServer//  extends Application
 			if (statusCode == 200) { // Status OK
 				HttpEntity entity = response.getEntity();
 				InputStream content = entity.getContent();
-				BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+				BufferedReader reader = new BufferedReader(
+						new InputStreamReader(content));
 				String line;
 				while ((line = reader.readLine()) != null) {
 					str.append(line);
