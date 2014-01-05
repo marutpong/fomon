@@ -1,10 +1,10 @@
 package com.projnsc.bestprojectever;
 
+import historyDatabase.HistoryType;
 import petSelection.SelectMonPanel;
 import petSelection.SelectMonPanel.OnCharacterTouchListener;
 import preferenceSetting.PetUniqueDate;
 import preferenceSetting.PrefDataType;
-import textGetter.PetDataGet;
 import android.os.Bundle;
 import android.provider.Settings.Secure;
 import android.app.Activity;
@@ -132,7 +132,7 @@ public class SelectPetFirst extends Activity implements
     			getContentResolver(),
 	            Secure.ANDROID_ID);
 		PetUniqueDate.SetFacebookID(android_id);
-		PetUniqueDate.SetMonsterBirthDay(PetDataGet.getCurrentTime());
+		PetUniqueDate.SetMonsterBirthDay(HistoryType.getCurrentTime());
 	}
 
 }

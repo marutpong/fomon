@@ -13,6 +13,7 @@ public class PrefDataType {
 	public static final String QUESTPROTIEN = "QuestProtien";
 	public static final String QUESTCARBOHYDRATE = "QuestCarbohydrate";
 	public static final String QUESTFAT = "QuestFat";
+	public static final String SERVER_IP = "ServerIPAddress";
 	public static final String NONE = null;
 	public static final int NONEINT = -1;
 	

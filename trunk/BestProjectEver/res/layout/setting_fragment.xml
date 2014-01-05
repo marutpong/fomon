@@ -138,6 +138,13 @@
         android:text="Change Pet Name" />
 
     <Button
+        android:id="@+id/btn_serverip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="Change Server IP" />
+
+    <Button
         android:id="@+id/btnClearData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

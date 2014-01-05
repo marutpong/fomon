@@ -1,10 +1,10 @@
 package tabFragment;
 
-import history.HistoryAdapter;
-import history.HistoryList;
-import history.HistoryList.OnNumberBoxChange;
-import textGetter.PetDBox;
-import textGetter.PetDataGet;
+
+import historyDatabase.HistoryAdapter;
+import historyDatabase.HistoryDatabase;
+//import historyDatabase.HistoryDatabase.OnNumberBoxChange;
+
 
 import com.projnsc.bestprojectever.HistoryDetail;
 import com.projnsc.bestprojectever.R;
@@ -19,68 +19,61 @@ import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class HistoryFragment extends Fragment implements OnItemClickListener,
-		OnNumberBoxChange {
+historyDatabase.HistoryDatabase.OnNumberBoxChange {
 
-	View mView;
-	// private Button btnWrite;
-	// private Button btnUpdate;
-	// private EditText inputPath;
+View mView;
+// private Button btnWrite;
+// private Button btnUpdate;
+// private EditText inputPath;
 
-	private ListView myListView;
-	private HistoryList myDual;
-	// private Button button;
-	private HistoryAdapter myAdapter;
-	private PetDataGet petData;
+private ListView myListView;
+//private HistoryList myDual;
+// private Button button;
+private HistoryAdapter myAdapter;
+
+@Override
+public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	Bundle savedInstanceState) {
+mView = inflater.inflate(R.layout.activity_history, container, false);
+
+// setContentView(R.layout.activity_history);
+
+HistoryDatabase.hd.setOnNumberBoxChange(this);
+myListView = (ListView) mView.findViewById(R.id.testList);
+// btnWrite = (Button) mView.findViewById(R.id.btnWrite);
+// btnUpdate = (Button) mView.findViewById(R.id.btnUpdate);
+// inputPath = (EditText) mView.findViewById(R.id.inputPath);
+
+/*
+ * btnWrite.setOnClickListener(new OnClickListener() {
+ * 
+ * @Override public void onClick(View v) { RandomNumBox(); } });
+ * btnUpdate.setOnClickListener(new OnClickListener() {
+ * 
+ * @Override public void onClick(View v) { fetchAndUpdate();
+ * 
+ * } });
+ */
+
+myAdapter = new HistoryAdapter(getActivity()) {
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		mView = inflater.inflate(R.layout.activity_history, container, false);
-
-		// setContentView(R.layout.activity_history);
-
-		myDual = new HistoryList();
-		myDual.setOnNumberBoxChange(this);
-		myListView = (ListView) mView.findViewById(R.id.testList);
-		// btnWrite = (Button) mView.findViewById(R.id.btnWrite);
-		// btnUpdate = (Button) mView.findViewById(R.id.btnUpdate);
-		// inputPath = (EditText) mView.findViewById(R.id.inputPath);
-		petData = new PetDataGet(getActivity());
-
-		/*
-		 * btnWrite.setOnClickListener(new OnClickListener() {
-		 * 
-		 * @Override public void onClick(View v) { RandomNumBox(); } });
-		 * btnUpdate.setOnClickListener(new OnClickListener() {
-		 * 
-		 * @Override public void onClick(View v) { fetchAndUpdate();
-		 * 
-		 * } });
-		 */
-
-		myAdapter = new HistoryAdapter(getActivity()) {
-
-			@Override
-			public Object getItem(int position) {
-				return myDual.getNumber(position);
-			}
-
-			@Override
-			public int getCount() {
-				if(PetDataGet.getDataBox(0).getPicturePath() == null)
-					return 0;
-				else
-					return myDual.size();
-			}
-
-		};
-
-		myListView.setAdapter(myAdapter);
-		myListView.setOnItemClickListener(this);
-		fetchAndUpdate();
-
-		return mView;
+	public Object getItem(int position) {
+		return HistoryDatabase.historyList.get(position);
 	}
+
+	@Override
+	public int getCount() {
+			return HistoryDatabase.getDataSize();
+	}
+
+};
+
+myListView.setAdapter(myAdapter);
+myListView.setOnItemClickListener(this);
+HistoryDatabase.SelectAllData();
+return mView;
+}
 
 	/*
 	 * private void RandomNumBox(){ String stringData =
@@ -90,13 +83,9 @@ public class HistoryFragment extends Fragment implements OnItemClickListener,
 	 * 
 	 * }
 	 */
-	@SuppressWarnings("static-access")
-	private void fetchAndUpdate() {
-		myDual.replaceData(petData.getSetData());
-	}
 
 	@Override
-	public void OnNumberChange(HistoryList dual_Number) {
+	public void OnNumberChange(HistoryDatabase dual_Number) {
 		// TODO Auto-generated method stub
 		myAdapter.notifyDataSetChanged();
 	}
@@ -108,8 +97,6 @@ public class HistoryFragment extends Fragment implements OnItemClickListener,
 		// Toast.makeText(getActivity(), position+"",
 		// Toast.LENGTH_SHORT).show();
 		Intent inend = new Intent(getActivity(), HistoryDetail.class);
-		PetDBox box = myDual.getNumber(position);
-		inend.putExtra("imagePath", box.getPicturePath());
 		inend.putExtra("index", position);
 		startActivity(inend);
 

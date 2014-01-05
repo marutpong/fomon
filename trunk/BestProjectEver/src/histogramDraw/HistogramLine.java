@@ -1,7 +1,6 @@
 package histogramDraw;
 
-import textGetter.PetDataType;
-
+import historyDatabase.HistoryType;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -79,13 +78,13 @@ public class HistogramLine {
 				realCal = RealValue;
 			}
 			
-			if(realCal <= PetDataType.RequireCalPerDay*0.5){
+			if(realCal <= HistoryType.RequireCalPerDay*0.5){
 				BrushLineColor = Color.BLUE;
-			}else if(realCal < PetDataType.RequireCalPerDay*0.75){
+			}else if(realCal < HistoryType.RequireCalPerDay*0.75){
 				BrushLineColor = Color.argb(255, 25, 255, 255);
-			}else if(realCal >= PetDataType.RequireCalPerDay*1.5){
+			}else if(realCal >= HistoryType.RequireCalPerDay*1.5){
 				BrushLineColor = Color.RED;
-			}else if(realCal > PetDataType.RequireCalPerDay*1.25){
+			}else if(realCal > HistoryType.RequireCalPerDay*1.25){
 				BrushLineColor = Color.YELLOW;
 			}else{
 				BrushLineColor = Color.GREEN;

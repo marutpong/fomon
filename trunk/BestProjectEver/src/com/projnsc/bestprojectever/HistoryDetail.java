@@ -2,9 +2,11 @@ package com.projnsc.bestprojectever;
 
 import java.io.File;
 
-import textGetter.PetDBox;
-import textGetter.PetDataGet;
-
+import foodDatabase.FoodBox;
+import foodDatabase.FoodDatabase;
+import historyDatabase.HistoryBox;
+import historyDatabase.HistoryDatabase;
+import historyDatabase.HistoryType;
 
 //import android.R;
 import com.projnsc.bestprojectever.R;
@@ -14,36 +16,49 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-@SuppressLint("NewApi") public class HistoryDetail extends Activity {
-	
-	PetDBox pet;
+@SuppressLint("NewApi")
+public class HistoryDetail extends Activity {
+
+	HistoryBox his;
 	Intent old;
-	
+
 	TextView txtFoodname;
 	TextView txtDate;
 	TextView txtCalories;
 	TextView txtProtien;
 	TextView txtCarbohydrate;
 	TextView txtFat;
+	TextView txtCalcium;
+	TextView txtMagnesium;
+	TextView txtPotassium;
+	TextView txtSodium;
+	TextView txtPhosphorus;
+
 	ImageView imageView;
 	Button show_btnBack;
-	//Button show_btnGoNext;
-	
+	Button show_btnTest;
+
+	// Button show_btnGoNext;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_history_detail);
-		
+
 		old = getIntent();
-		pet = PetDataGet.getDataBox(old.getExtras().getInt("index"));
-		
+		Log.i(HistoryDetail.class.getName(), "position:"
+				+ old.getExtras().getInt("index"));
+		his = HistoryDatabase.getDataBox(old.getExtras().getInt("index"));
+
 		txtFoodname = (TextView) findViewById(R.id.txtFoodname);
 		txtDate = (TextView) findViewById(R.id.txtDate);
 		txtCalories = (TextView) findViewById(R.id.txtCalories);
@@ -51,33 +66,51 @@ import android.widget.TextView;
 		txtProtien = (TextView) findViewById(R.id.txtProtien);
 		txtCarbohydrate = (TextView) findViewById(R.id.txtCarbohydrate);
 		txtFat = (TextView) findViewById(R.id.txtFat);
-		//show_btnGoNext = (Button) findViewById(R.id.show_btnGonext);
+		txtCalcium = (TextView) findViewById(R.id.txtCalcium);
+		txtMagnesium = (TextView) findViewById(R.id.txtMagnesium);
+		txtPotassium = (TextView) findViewById(R.id.txtPotassium);
+		txtSodium = (TextView) findViewById(R.id.txtSodium);
+		txtPhosphorus = (TextView) findViewById(R.id.txtPhosphorus);
+
+		// show_btnGoNext = (Button) findViewById(R.id.show_btnGonext);
 		show_btnBack = (Button) findViewById(R.id.show_btnBack);
-		
-//		String stringDate = pet.getDay() + "/" + pet.getMonthString() + "/" + pet.getYear() + " " + pet.getHourString()+ ":" + pet.getMinutedString();
-		String stringDate = pet.getTimebyStringFormat();
-		txtFoodname.setText(pet.getFoodType());
+		show_btnTest = (Button) findViewById(R.id.btb_test);
+
+		FoodBox food = FoodDatabase.getFoodByID(his.getFoodType());
+		Log.i(HistoryDetail.class.getName(), "Foodtype:" + his.getFoodType());
+
+		String stringDate = his.getTimebyStringFormat();
+		String collon = " : ";
+
+		txtFoodname.setText(food.getName());
 		txtDate.setText(stringDate);
-		txtCalories.setText(" : " + pet.getKCalories());
-		txtProtien.setText(" : " + pet.getProtien());
-		txtCarbohydrate.setText(" : " + pet.getCarbohydrate());
-		txtFat.setText(" : " + pet.getFat());
-		
-		setTitle(pet.getFoodType() + " " + stringDate);
-		
-		String text = "";
-		
-		File imgFile = new  File(old.getExtras().getString("imagePath")+"");
-		if(imgFile.exists()){
-		    Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-		    imageView.setImageBitmap(myBitmap);
-		    text = "Found :" + old.getExtras().getString("imagePath");
+		txtCalories.setText(collon + food.getCalories());
+		txtProtien.setText(collon + food.getProtein());
+		txtCarbohydrate.setText(collon + food.getCarbohydrate());
+		txtFat.setText(collon + food.getFat());
+
+		txtCalcium.setText(collon + food.getCalcium());
+		txtMagnesium.setText(collon + food.getMagnesium());
+		txtPotassium.setText(collon + food.getPotassium());
+		txtSodium.setText(collon + food.getSodium());
+		txtPhosphorus.setText(collon + food.getPhosphorus());
+
+		setTitle(food.getName() + " " + stringDate);
+
+		// String text = "";
+
+		File imgFile = new File(old.getExtras().getString("imagePath") + "");
+		if (imgFile.exists()) {
+			Bitmap myBitmap = BitmapFactory.decodeFile(imgFile
+					.getAbsolutePath());
+			imageView.setImageBitmap(myBitmap);
+			// text = "Found :" + old.getExtras().getString("imagePath");
 		} else {
-			text = "Not Found :" + old.getExtras().getString("imagePath");
+			// text = "Not Found :" + old.getExtras().getString("imagePath");
 		}
-		
-		//Toast.makeText(HistoryDetail.this,text ,Toast.LENGTH_LONG).show();
-			
+
+		// Toast.makeText(HistoryDetail.this,text ,Toast.LENGTH_LONG).show();
+
 		show_btnBack.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -85,20 +118,31 @@ import android.widget.TextView;
 			}
 
 		});
-		
-		/*show_btnGoNext.setOnClickListener(new OnClickListener() {
-			
+
+		show_btnTest.setOnClickListener(new OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent inend = new Intent(getApplicationContext(), HistoryBarActivities.class);
-				inend.putExtra("index", old.getExtras().getInt("index"));
-				startActivity(inend);
+				todayList();
 			}
-		});*/
-		
+		});
+		/*
+		 * show_btnGoNext.setOnClickListener(new OnClickListener() {
+		 * 
+		 * @Override public void onClick(View v) { // TODO Auto-generated method
+		 * stub Intent inend = new Intent(getApplicationContext(),
+		 * HistoryBarActivities.class); inend.putExtra("index",
+		 * old.getExtras().getInt("index")); startActivity(inend); } });
+		 */
+
 	}
-	
-	
-	
+
+	public void todayList() {
+		String msg = "";
+		int type = FoodDatabase.Enum.calories.ordinal();
+		msg = String.valueOf(HistoryDatabase.getSumNutritionOfDate(
+				HistoryType.getCurrentDate(), type));
+		Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+	}
 }

@@ -1,13 +1,10 @@
 package histogramDraw;
 
 import histogramDraw.HistogramModule.OnStateChangeListener;
+import historyDatabase.HistoryType;
 
 import java.util.ArrayList;
-
 import petSelection.PetSelectSprite;
-
-import textGetter.PetDataType;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -27,13 +24,13 @@ public class HistogramPanel extends SurfaceView implements Callback,
 	private static final float BaseLineStrokeFactor = (float) 0.02;
 	public static final float HeightMarginFactor = (float) 0.75;
 	private static final float heightBaseFactor = (float) 0.90; // 90%
-	private static int[] ColorList = { Color.YELLOW,
-			Color.argb(255, 255, 0, 255), Color.GREEN,
-			Color.argb(255, 255, 128, 0), Color.BLUE,
-			Color.argb(255, 128, 0, 128), Color.RED };
+	private static int[] ColorList = { Color.RED, Color.YELLOW,
+		Color.argb(255, 255, 0, 255), Color.GREEN,
+		Color.argb(255, 255, 128, 0), Color.BLUE,
+		Color.argb(255, 128, 0, 128) };
 	public static long TextRealSize = 0;
-	private static String[] TextDayList = { "MO", "TU", "WE", "TH", "FR", "SA",
-			"SU" };
+	private static String[] TextDayList = { "SU", "MO", "TU", "WE", "TH", "FR", "SA",
+	 };
 
 	private Paint mpaint;
 	private HistogramThread mThread;
@@ -86,9 +83,9 @@ public class HistogramPanel extends SurfaceView implements Callback,
 					Max = a;
 			}
 		} else {
-			if (Max < PetDataType.RequireCalPerDay
-					* PetDataType.RequireCalFactor)
-				Max = (PetDataType.RequireCalPerDay * PetDataType.RequireCalFactor);
+			if (Max < HistoryType.RequireCalPerDay
+					* HistoryType.RequireCalFactor)
+				Max = (HistoryType.RequireCalPerDay * HistoryType.RequireCalFactor);
 		}
 		HistogramLine.setMaxValue(Max);
 

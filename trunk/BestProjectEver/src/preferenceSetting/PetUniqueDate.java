@@ -68,7 +68,10 @@ public class PetUniqueDate {
 		editPref.putString(PrefDataType.MONBIRTHDAY, monBD);
 		editPref.commit();
 	}
-
+	public static void SetServerIP(String serverIP){
+		editPref.putString(PrefDataType.SERVER_IP, serverIP);
+		editPref.commit();
+	}
 	public static String getMonName() {
 		return mainPref.getString(PrefDataType.MONNAME, PrefDataType.NONE);
 	}
@@ -104,7 +107,15 @@ public class PetUniqueDate {
 	public Context getmContext() {
 		return mContext;
 	}
-
+	public static boolean isServerIPEmpty() {
+		return mainPref.getString(PrefDataType.SERVER_IP, PrefDataType.NONE)==null;
+	}
+	public static String getServerURL() {
+		return "http://"+getServerIP()+"/fomon/";
+	}
+	public static String getServerIP() {
+		return mainPref.getString(PrefDataType.SERVER_IP, PrefDataType.NONE);
+	}
 	public static void setContext(Context mContext) {
 		PetUniqueDate.mContext = mContext;
 		mainPref = mContext.getSharedPreferences(PetUniqueDate.PrefName,
