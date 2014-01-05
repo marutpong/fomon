@@ -60,21 +60,21 @@ public class EatPanel extends SurfaceView implements Callback {
 		this.mPool = mPool;
 	}
 
-	@SuppressLint("NewApi")
+//	@SuppressLint("NewApi")
 	private void init() {
 		getHolder().addCallback(this);
 //		BitmapFactory.Options o = new BitmapFactory.Options();
 //		o.inSampleSize = 2;
 //		o.inDither = false;
 //		o.inPurgeable = true;
-		mFood = BitmapFactory.decodeResource(getResources(),
-				R.drawable.dummyfoodeattest);
-		mFood.setHasAlpha(true);
-		mTFood = mFood.copy(Config.ARGB_8888, true);
-		mPaint.setXfermode(new PorterDuffXfermode(Mode.CLEAR));
+//		mFood = BitmapFactory.decodeResource(getResources(),
+//				R.drawable.dummyfoodeattest);
+//		mFood.setHasAlpha(true);
+//		mTFood = mFood.copy(Config.ARGB_8888, true);
+//		mPaint.setXfermode(new PorterDuffXfermode(Mode.CLEAR));
+//		mEating = new EatingSprite(getResources(), 0, 0);
+//		tempCanvas = new Canvas(mTFood);
 		mThread = new EatThread(this);
-		mEating = new EatingSprite(getResources(), 0, 0);
-		tempCanvas = new Canvas(mTFood);
 	}
 
 	public void doDraw(Canvas canvas) {
@@ -151,6 +151,23 @@ public class EatPanel extends SurfaceView implements Callback {
 		if (mThread.isAlive()) {
 			mThread.setRunning(false);
 		}
+	}
+
+	@SuppressLint("NewApi")
+	public void setImagePicPath(String path) {
+		
+//		BitmapFactory.Options options = new BitmapFactory.Options();
+//		options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+//		mFood = BitmapFactory.decodeFile(path, options);
+		mFood = BitmapFactory.decodeFile(path);
+		
+//		mFood = BitmapFactory.decodeResource(getResources(),
+//				R.drawable.dummyfoodeattest);
+		mFood.setHasAlpha(true);
+		mTFood = mFood.copy(Config.ARGB_8888, true);
+		mPaint.setXfermode(new PorterDuffXfermode(Mode.CLEAR));
+		mEating = new EatingSprite(getResources(), 0, 0);
+		tempCanvas = new Canvas(mTFood);
 	}
 
 }

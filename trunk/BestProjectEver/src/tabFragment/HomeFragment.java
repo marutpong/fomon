@@ -4,6 +4,7 @@ import petHome.PetPanel;
 import petHome.PetPanel.OnPetTouchListener;
 import preferenceSetting.PetUniqueDate;
 
+import com.projnsc.bestprojectever.ImageProcessActivity;
 import com.projnsc.bestprojectever.MonEatingPhotoActivity;
 import com.projnsc.bestprojectever.R;
 import android.os.Bundle;
@@ -40,7 +41,8 @@ public class HomeFragment extends Fragment implements OnPetTouchListener {
 			
 			@Override
 			public void onClick(View v) {
-				Intent tIntent = new Intent(getActivity(), MonEatingPhotoActivity.class);
+				//Intent tIntent = new Intent(getActivity(), MonEatingPhotoActivity.class);
+				Intent tIntent = new Intent(getActivity(), ImageProcessActivity.class);
 				startActivity(tIntent);
 			}
 		});

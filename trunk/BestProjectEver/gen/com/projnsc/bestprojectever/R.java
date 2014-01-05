@@ -9,28 +9,6 @@ package com.projnsc.bestprojectever;
 
 public final class R {
     public static final class attr {
-        /** 
-    The size of the ad. It must be one of BANNER, FULL_BANNER, LEADERBOARD,
-    MEDIUM_RECTANGLE, SMART_BANNER, WIDE_SKYSCRAPER, or
-    &lt;width&gt;x&lt;height&gt;.
-    
-         <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int adSize=0x7f010000;
-        /**  The ad unit ID. 
-         <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int adUnitId=0x7f010001;
         /** <p>Must be a floating point value, such as "<code>1.2</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -71,6 +49,24 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int cameraZoom=0x7f010007;
+        /** <p>May be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+<p>May be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>any</code></td><td>-1</td><td></td></tr>
+<tr><td><code>back</code></td><td>99</td><td></td></tr>
+<tr><td><code>front</code></td><td>98</td><td></td></tr>
+</table>
+         */
+        public static final int camera_id=0x7f010001;
         /** <p>Must be one of the following constant values.</p>
 <table>
 <colgroup align="left" />
@@ -85,6 +81,14 @@ containing a value of this type.
 </table>
          */
         public static final int mapType=0x7f010002;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int show_fps=0x7f010000;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -151,20 +155,20 @@ containing a value of this type.
         public static final int zOrderOnTop=0x7f01000f;
     }
     public static final class color {
-        public static final int common_action_bar_splitter=0x7f040009;
+        public static final int common_action_bar_splitter=0x7f060009;
         /**  Sign-in Button Colors 
          */
-        public static final int common_signin_btn_dark_text_default=0x7f040000;
-        public static final int common_signin_btn_dark_text_disabled=0x7f040002;
-        public static final int common_signin_btn_dark_text_focused=0x7f040003;
-        public static final int common_signin_btn_dark_text_pressed=0x7f040001;
-        public static final int common_signin_btn_default_background=0x7f040008;
-        public static final int common_signin_btn_light_text_default=0x7f040004;
-        public static final int common_signin_btn_light_text_disabled=0x7f040006;
-        public static final int common_signin_btn_light_text_focused=0x7f040007;
-        public static final int common_signin_btn_light_text_pressed=0x7f040005;
-        public static final int common_signin_btn_text_dark=0x7f04000a;
-        public static final int common_signin_btn_text_light=0x7f04000b;
+        public static final int common_signin_btn_dark_text_default=0x7f060000;
+        public static final int common_signin_btn_dark_text_disabled=0x7f060002;
+        public static final int common_signin_btn_dark_text_focused=0x7f060003;
+        public static final int common_signin_btn_dark_text_pressed=0x7f060001;
+        public static final int common_signin_btn_default_background=0x7f060008;
+        public static final int common_signin_btn_light_text_default=0x7f060004;
+        public static final int common_signin_btn_light_text_disabled=0x7f060006;
+        public static final int common_signin_btn_light_text_focused=0x7f060007;
+        public static final int common_signin_btn_light_text_pressed=0x7f060005;
+        public static final int common_signin_btn_text_dark=0x7f06000a;
+        public static final int common_signin_btn_text_light=0x7f06000b;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -221,108 +225,115 @@ containing a value of this type.
         public static final int rpgmakervxballoon=0x7f020029;
     }
     public static final class id {
-        public static final int ColCustomerID=0x7f05003d;
-        public static final int ColEmail=0x7f05003f;
-        public static final int ColName=0x7f05003e;
-        public static final int LinearLayout1=0x7f050005;
-        public static final int LinearLayout2=0x7f050007;
-        public static final int PetNameLabel=0x7f050048;
-        public static final int action_settings=0x7f050062;
-        public static final int atkValue=0x7f05000a;
-        public static final int btnChMode=0x7f050041;
-        public static final int btnChangePetNameSet=0x7f050061;
-        public static final int btnClearData=0x7f050057;
-        public static final int btnEatCancel=0x7f050025;
-        public static final int btnEatClear=0x7f050024;
-        public static final int btnEatFinish=0x7f050023;
-        public static final int btnSearchFood=0x7f050020;
-        public static final int btnTakePhoto=0x7f05001f;
-        public static final int btn_conserver=0x7f050058;
-        public static final int btn_select=0x7f05003b;
-        public static final int button1=0x7f050039;
-        public static final int dummyATKSet=0x7f05005b;
-        public static final int dummyATKemo=0x7f050029;
-        public static final int dummyATTACK=0x7f05004e;
-        public static final int dummyDEFENSE=0x7f050050;
-        public static final int dummyDEFSet=0x7f05005d;
-        public static final int dummyDEFemo=0x7f05002b;
-        public static final int dummyHEALTHPOINT=0x7f05004c;
-        public static final int dummyHPEmo=0x7f050054;
-        public static final int dummyHPSet=0x7f050059;
-        public static final int dummyHPemo=0x7f050027;
-        public static final int dummyLoseText=0x7f050036;
-        public static final int dummyPETNAME=0x7f050049;
-        public static final int dummyPetInputNameLabel=0x7f050021;
-        public static final int dummyPetNameSet=0x7f050055;
-        public static final int dummySPDSet=0x7f05005f;
-        public static final int dummySPDemo=0x7f05002e;
-        public static final int dummySPEED=0x7f050052;
-        public static final int dummyWINText=0x7f050034;
-        public static final int dummyYourResultScore=0x7f050032;
-        public static final int eatPanel1=0x7f050022;
-        public static final int editText1=0x7f050038;
-        public static final int histogramPanel1=0x7f050040;
-        public static final int horizontalscroll=0x7f050045;
-        public static final int hybrid=0x7f050004;
-        public static final int imageThumbnail=0x7f05001d;
-        public static final int imageView1=0x7f05000f;
-        public static final int intxtPetName=0x7f050042;
-        public static final int labelCalories=0x7f050012;
-        public static final int labelCarbohydrate=0x7f050017;
-        public static final int labelFat=0x7f05001a;
-        public static final int labelProtien=0x7f050014;
-        public static final int linearLayout1=0x7f05003c;
-        public static final int listView1=0x7f05003a;
-        public static final int map=0x7f05001e;
-        public static final int none=0x7f050000;
-        public static final int normal=0x7f050001;
-        public static final int pager=0x7f050043;
-        public static final int pager_title_strip=0x7f050044;
-        public static final int petPanel1=0x7f050047;
-        public static final int petShowEmotionPanel1=0x7f050026;
-        public static final int petShowEmotionPanel2=0x7f050031;
-        public static final int progressATK=0x7f050009;
-        public static final int progressDEF=0x7f05002d;
-        public static final int progressHP=0x7f050008;
-        public static final int progressSPD=0x7f050030;
-        public static final int satellite=0x7f050002;
-        public static final int show_btnBack=0x7f05001c;
-        public static final int tableLayout1=0x7f05000b;
-        public static final int tableRow1=0x7f050019;
-        public static final int tableRow2=0x7f05000c;
-        public static final int tableRow3=0x7f05000d;
-        public static final int tableRow4=0x7f05000e;
-        public static final int tableRow5=0x7f050016;
-        public static final int terrain=0x7f050003;
-        public static final int testList=0x7f050006;
-        public static final int txtATKemo=0x7f05002a;
-        public static final int txtCalories=0x7f050013;
-        public static final int txtCarbohydrate=0x7f050018;
-        public static final int txtDEFemo=0x7f05002c;
-        public static final int txtDate=0x7f050011;
-        public static final int txtFat=0x7f05001b;
-        public static final int txtFoodname=0x7f050010;
-        public static final int txtHPemo=0x7f050028;
-        public static final int txtPETBattleLose=0x7f050037;
-        public static final int txtPETBattleWon=0x7f050035;
-        public static final int txtPetATKST=0x7f05004f;
-        public static final int txtPetATKSet=0x7f05005c;
-        public static final int txtPetBattleResult=0x7f050033;
-        public static final int txtPetBirthday=0x7f05004b;
-        public static final int txtPetDEFST=0x7f050051;
-        public static final int txtPetDEFSet=0x7f05005e;
-        public static final int txtPetHPST=0x7f05004d;
-        public static final int txtPetHPSet=0x7f05005a;
-        public static final int txtPetNameST=0x7f05004a;
-        public static final int txtPetNameSet=0x7f050056;
-        public static final int txtPetSPDST=0x7f050053;
-        public static final int txtPetSPDSet=0x7f050060;
-        public static final int txtProtien=0x7f050015;
-        public static final int txtSPDemo=0x7f05002f;
-        public static final int viewpager=0x7f050046;
+        public static final int ColCustomerID=0x7f050040;
+        public static final int ColEmail=0x7f050042;
+        public static final int ColName=0x7f050041;
+        public static final int LinearLayout1=0x7f050008;
+        public static final int LinearLayout2=0x7f05000a;
+        public static final int PetNameLabel=0x7f05004f;
+        public static final int RelativeLayout1=0x7f050045;
+        public static final int action_settings=0x7f050069;
+        public static final int any=0x7f050000;
+        public static final int atkValue=0x7f05000d;
+        public static final int back=0x7f050001;
+        public static final int btnChMode=0x7f050044;
+        public static final int btnChangePetNameSet=0x7f050068;
+        public static final int btnClearData=0x7f05005e;
+        public static final int btnEatCancel=0x7f050028;
+        public static final int btnEatClear=0x7f050027;
+        public static final int btnEatFinish=0x7f050026;
+        public static final int btnSearchFood=0x7f050023;
+        public static final int btnTakePhoto=0x7f050022;
+        public static final int btn_conserver=0x7f05005f;
+        public static final int btn_select=0x7f05003e;
+        public static final int button1=0x7f05003c;
+        public static final int camera1=0x7f050048;
+        public static final int dummyATKSet=0x7f050062;
+        public static final int dummyATKemo=0x7f05002c;
+        public static final int dummyATTACK=0x7f050055;
+        public static final int dummyDEFENSE=0x7f050057;
+        public static final int dummyDEFSet=0x7f050064;
+        public static final int dummyDEFemo=0x7f05002e;
+        public static final int dummyHEALTHPOINT=0x7f050053;
+        public static final int dummyHPEmo=0x7f05005b;
+        public static final int dummyHPSet=0x7f050060;
+        public static final int dummyHPemo=0x7f05002a;
+        public static final int dummyLoseText=0x7f050039;
+        public static final int dummyPETNAME=0x7f050050;
+        public static final int dummyPetInputNameLabel=0x7f050024;
+        public static final int dummyPetNameSet=0x7f05005c;
+        public static final int dummySPDSet=0x7f050066;
+        public static final int dummySPDemo=0x7f050031;
+        public static final int dummySPEED=0x7f050059;
+        public static final int dummyWINText=0x7f050037;
+        public static final int dummyYourResultScore=0x7f050035;
+        public static final int eatPanel1=0x7f050025;
+        public static final int editText1=0x7f05003b;
+        public static final int front=0x7f050002;
+        public static final int histogramPanel1=0x7f050043;
+        public static final int horizontalscroll=0x7f05004c;
+        public static final int hybrid=0x7f050007;
+        public static final int imagePreview=0x7f050046;
+        public static final int imageThumbnail=0x7f050020;
+        public static final int imageView1=0x7f050012;
+        public static final int image_activity_java_surface_view=0x7f050047;
+        public static final int intxtPetName=0x7f050049;
+        public static final int labelCalories=0x7f050015;
+        public static final int labelCarbohydrate=0x7f05001a;
+        public static final int labelFat=0x7f05001d;
+        public static final int labelProtien=0x7f050017;
+        public static final int linearLayout1=0x7f05003f;
+        public static final int listView1=0x7f05003d;
+        public static final int map=0x7f050021;
+        public static final int none=0x7f050003;
+        public static final int normal=0x7f050004;
+        public static final int pager=0x7f05004a;
+        public static final int pager_title_strip=0x7f05004b;
+        public static final int petPanel1=0x7f05004e;
+        public static final int petShowEmotionPanel1=0x7f050029;
+        public static final int petShowEmotionPanel2=0x7f050034;
+        public static final int progressATK=0x7f05000c;
+        public static final int progressDEF=0x7f050030;
+        public static final int progressHP=0x7f05000b;
+        public static final int progressSPD=0x7f050033;
+        public static final int satellite=0x7f050005;
+        public static final int show_btnBack=0x7f05001f;
+        public static final int tableLayout1=0x7f05000e;
+        public static final int tableRow1=0x7f05001c;
+        public static final int tableRow2=0x7f05000f;
+        public static final int tableRow3=0x7f050010;
+        public static final int tableRow4=0x7f050011;
+        public static final int tableRow5=0x7f050019;
+        public static final int terrain=0x7f050006;
+        public static final int testList=0x7f050009;
+        public static final int txtATKemo=0x7f05002d;
+        public static final int txtCalories=0x7f050016;
+        public static final int txtCarbohydrate=0x7f05001b;
+        public static final int txtDEFemo=0x7f05002f;
+        public static final int txtDate=0x7f050014;
+        public static final int txtFat=0x7f05001e;
+        public static final int txtFoodname=0x7f050013;
+        public static final int txtHPemo=0x7f05002b;
+        public static final int txtPETBattleLose=0x7f05003a;
+        public static final int txtPETBattleWon=0x7f050038;
+        public static final int txtPetATKST=0x7f050056;
+        public static final int txtPetATKSet=0x7f050063;
+        public static final int txtPetBattleResult=0x7f050036;
+        public static final int txtPetBirthday=0x7f050052;
+        public static final int txtPetDEFST=0x7f050058;
+        public static final int txtPetDEFSet=0x7f050065;
+        public static final int txtPetHPST=0x7f050054;
+        public static final int txtPetHPSet=0x7f050061;
+        public static final int txtPetNameST=0x7f050051;
+        public static final int txtPetNameSet=0x7f05005d;
+        public static final int txtPetSPDST=0x7f05005a;
+        public static final int txtPetSPDSet=0x7f050067;
+        public static final int txtProtien=0x7f050018;
+        public static final int txtSPDemo=0x7f050032;
+        public static final int viewpager=0x7f05004d;
     }
     public static final class integer {
-        public static final int google_play_services_version=0x7f070000;
+        public static final int google_play_services_version=0x7f090000;
     }
     public static final class layout {
         public static final int activity_history=0x7f030000;
@@ -337,120 +348,123 @@ containing a value of this type.
         public static final int fight_list=0x7f030009;
         public static final int fight_list_column=0x7f03000a;
         public static final int hist_show_fragment=0x7f03000b;
-        public static final int input_textfield=0x7f03000c;
-        public static final int main_pagger=0x7f03000d;
-        public static final int main_pagger_new=0x7f03000e;
-        public static final int pet_home_fragment=0x7f03000f;
-        public static final int pet_status_show=0x7f030010;
-        public static final int quest_fragment=0x7f030011;
-        public static final int server_fragment=0x7f030012;
-        public static final int setting_fragment=0x7f030013;
+        public static final int image_preview=0x7f03000c;
+        public static final int image_process=0x7f03000d;
+        public static final int input_textfield=0x7f03000e;
+        public static final int main_pagger=0x7f03000f;
+        public static final int main_pagger_new=0x7f030010;
+        public static final int pet_home_fragment=0x7f030011;
+        public static final int pet_stat_up_activity=0x7f030012;
+        public static final int pet_status_show=0x7f030013;
+        public static final int quest_fragment=0x7f030014;
+        public static final int server_fragment=0x7f030015;
+        public static final int setting_fragment=0x7f030016;
     }
     public static final class menu {
-        public static final int bar_activities=0x7f0a0000;
-        public static final int pet_main=0x7f0a0001;
+        public static final int bar_activities=0x7f0b0000;
+        public static final int pet_main=0x7f0b0001;
+    }
+    public static final class raw {
+        public static final int gt=0x7f040000;
+        public static final int trainningset=0x7f040001;
     }
     public static final class string {
-        public static final int action_settings=0x7f06001b;
-        public static final int app_name=0x7f06001a;
+        public static final int action_settings=0x7f07001a;
+        public static final int app_name=0x7f070019;
         /**   Title for notification shown when GooglePlayServices needs to be
         enabled for a application to work. [CHAR LIMIT=70] 
          */
-        public static final int auth_client_needs_enabling_title=0x7f060015;
+        public static final int auth_client_needs_enabling_title=0x7f070014;
         /**   Title for notification shown when GooglePlayServices needs to be
         installed for a application to work. [CHAR LIMIT=70] 
          */
-        public static final int auth_client_needs_installation_title=0x7f060016;
+        public static final int auth_client_needs_installation_title=0x7f070015;
         /**   Title for notification shown when GooglePlayServices needs to be
         udpated for a application to work. [CHAR LIMIT=70] 
          */
-        public static final int auth_client_needs_update_title=0x7f060017;
+        public static final int auth_client_needs_update_title=0x7f070016;
         /**   Title for notification shown when GooglePlayServices is unavailable [CHAR LIMIT=42] 
          */
-        public static final int auth_client_play_services_err_notification_msg=0x7f060018;
+        public static final int auth_client_play_services_err_notification_msg=0x7f070017;
         /**   Requested by string saying which app requested the notification. [CHAR LIMIT=42] 
          */
-        public static final int auth_client_requested_by_msg=0x7f060019;
+        public static final int auth_client_requested_by_msg=0x7f070018;
         /**   Title for notification shown when a bad version of GooglePlayServices
         has been installed and needs correction for an application to work.
         [CHAR LIMIT=70] 
          */
-        public static final int auth_client_using_bad_version_title=0x7f060014;
+        public static final int auth_client_using_bad_version_title=0x7f070013;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
          */
-        public static final int common_google_play_services_enable_button=0x7f060006;
+        public static final int common_google_play_services_enable_button=0x7f070006;
         /**  Message in confirmation dialog informing user they need to enable
         Google Play services in application settings [CHAR LIMIT=NONE] 
          */
-        public static final int common_google_play_services_enable_text=0x7f060005;
+        public static final int common_google_play_services_enable_text=0x7f070005;
         /**  Title of confirmation dialog informing user they need to enable
         Google Play services in application settings [CHAR LIMIT=40] 
          */
-        public static final int common_google_play_services_enable_title=0x7f060004;
+        public static final int common_google_play_services_enable_title=0x7f070004;
         /**  Button in confirmation dialog for installing Google Play services [CHAR LIMIT=40] 
          */
-        public static final int common_google_play_services_install_button=0x7f060003;
+        public static final int common_google_play_services_install_button=0x7f070003;
         /**  (For phones) Message in confirmation dialog informing user that
         they need to install Google Play services (from Play Store) [CHAR LIMIT=NONE] 
          */
-        public static final int common_google_play_services_install_text_phone=0x7f060001;
+        public static final int common_google_play_services_install_text_phone=0x7f070001;
         /**  (For tablets) Message in confirmation dialog informing user that
         they need to install Google Play services (from Play Store) [CHAR LIMIT=NONE] 
          */
-        public static final int common_google_play_services_install_text_tablet=0x7f060002;
+        public static final int common_google_play_services_install_text_tablet=0x7f070002;
         /**  Title of confirmation dialog informing user that they need to install
         Google Play services (from Play Store) [CHAR LIMIT=40] 
          */
-        public static final int common_google_play_services_install_title=0x7f060000;
+        public static final int common_google_play_services_install_title=0x7f070000;
         /**  Message in confirmation dialog informing the user that they provided an invalid account. [CHAR LIMIT=NONE] 
          */
-        public static final int common_google_play_services_invalid_account_text=0x7f06000c;
+        public static final int common_google_play_services_invalid_account_text=0x7f07000c;
         /**  Title of confirmation dialog informing the user that they provided an invalid account. [CHAR LIMIT=40] 
          */
-        public static final int common_google_play_services_invalid_account_title=0x7f06000b;
+        public static final int common_google_play_services_invalid_account_title=0x7f07000b;
         /**  Message in confirmation dialog informing the user that a network error occurred. [CHAR LIMIT=NONE] 
          */
-        public static final int common_google_play_services_network_error_text=0x7f06000a;
+        public static final int common_google_play_services_network_error_text=0x7f07000a;
         /**  Title of confirmation dialog informing the user that a network error occurred. [CHAR LIMIT=40] 
          */
-        public static final int common_google_play_services_network_error_title=0x7f060009;
+        public static final int common_google_play_services_network_error_title=0x7f070009;
         /**  Message in confirmation dialog informing user there is an unknown issue in Google Play
         services [CHAR LIMIT=NONE] 
          */
-        public static final int common_google_play_services_unknown_issue=0x7f06000d;
-        /**  Message in confirmation dialog informing user that date on the device is not correct,
-    causing certificate checks to fail. [CHAR LIMIT=NONE] 
-         */
-        public static final int common_google_play_services_unsupported_date_text=0x7f060010;
+        public static final int common_google_play_services_unknown_issue=0x7f07000d;
         /**  Message in confirmation dialog informing user that Google Play services is not supported on their device [CHAR LIMIT=NONE] 
          */
-        public static final int common_google_play_services_unsupported_text=0x7f06000f;
+        public static final int common_google_play_services_unsupported_text=0x7f07000f;
         /**  Title of confirmation dialog informing user that Google Play services is not supported on their device [CHAR LIMIT=40] 
          */
-        public static final int common_google_play_services_unsupported_title=0x7f06000e;
+        public static final int common_google_play_services_unsupported_title=0x7f07000e;
         /**  Button in confirmation dialog for updating Google Play services [CHAR LIMIT=40] 
          */
-        public static final int common_google_play_services_update_button=0x7f060011;
+        public static final int common_google_play_services_update_button=0x7f070010;
         /**  Message in confirmation dialog informing user that they need to update
         Google Play services (from Play Store) [CHAR LIMIT=NONE] 
          */
-        public static final int common_google_play_services_update_text=0x7f060008;
+        public static final int common_google_play_services_update_text=0x7f070008;
         /**  Title of confirmation dialog informing user that they need to update
         Google Play services (from Play Store) [CHAR LIMIT=40] 
          */
-        public static final int common_google_play_services_update_title=0x7f060007;
+        public static final int common_google_play_services_update_title=0x7f070007;
         /**  Sign-in button text [CHAR LIMIT=15] 
          */
-        public static final int common_signin_button_text=0x7f060012;
+        public static final int common_signin_button_text=0x7f070011;
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
-        public static final int common_signin_button_text_long=0x7f060013;
-        public static final int food_search=0x7f06001e;
-        public static final int hello_world=0x7f06001c;
-        public static final int pet_name=0x7f06001f;
-        public static final int take_photo=0x7f06001d;
+        public static final int common_signin_button_text_long=0x7f070012;
+        public static final int food_search=0x7f07001d;
+        public static final int hello_world=0x7f07001b;
+        public static final int pet_name=0x7f07001e;
+        public static final int take_photo=0x7f07001c;
     }
     public static final class style {
         /** 
@@ -474,65 +488,66 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f090000;
+        public static final int AppBaseTheme=0x7f0a0000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f090001;
+        public static final int AppTheme=0x7f0a0001;
     }
     public static final class styleable {
-        /** Attributes that can be used with a AdsAttrs.
+        /** Attributes that can be used with a CameraBridgeViewBase.
            <p>Includes the following attributes:</p>
            <table>
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #AdsAttrs_adSize com.projnsc.bestprojectever:adSize}</code></td><td>
-    The size of the ad.</td></tr>
-           <tr><td><code>{@link #AdsAttrs_adUnitId com.projnsc.bestprojectever:adUnitId}</code></td><td> The ad unit ID.</td></tr>
+           <tr><td><code>{@link #CameraBridgeViewBase_camera_id com.projnsc.bestprojectever:camera_id}</code></td><td></td></tr>
+           <tr><td><code>{@link #CameraBridgeViewBase_show_fps com.projnsc.bestprojectever:show_fps}</code></td><td></td></tr>
            </table>
-           @see #AdsAttrs_adSize
-           @see #AdsAttrs_adUnitId
+           @see #CameraBridgeViewBase_camera_id
+           @see #CameraBridgeViewBase_show_fps
          */
-        public static final int[] AdsAttrs = {
+        public static final int[] CameraBridgeViewBase = {
             0x7f010000, 0x7f010001
         };
         /**
-          <p>
-          @attr description
-          
-    The size of the ad. It must be one of BANNER, FULL_BANNER, LEADERBOARD,
-    MEDIUM_RECTANGLE, SMART_BANNER, WIDE_SKYSCRAPER, or
-    &lt;width&gt;x&lt;height&gt;.
-    
+          <p>This symbol is the offset where the {@link com.projnsc.bestprojectever.R.attr#camera_id}
+          attribute's value can be found in the {@link #CameraBridgeViewBase} array.
 
 
-          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+          <p>May be an integer value, such as "<code>100</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          <p>This is a private symbol.
-          @attr name com.projnsc.bestprojectever:adSize
+<p>May be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>any</code></td><td>-1</td><td></td></tr>
+<tr><td><code>back</code></td><td>99</td><td></td></tr>
+<tr><td><code>front</code></td><td>98</td><td></td></tr>
+</table>
+          @attr name com.projnsc.bestprojectever:camera_id
         */
-        public static final int AdsAttrs_adSize = 0;
+        public static final int CameraBridgeViewBase_camera_id = 1;
         /**
-          <p>
-          @attr description
-           The ad unit ID. 
+          <p>This symbol is the offset where the {@link com.projnsc.bestprojectever.R.attr#show_fps}
+          attribute's value can be found in the {@link #CameraBridgeViewBase} array.
 
 
-          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          <p>This is a private symbol.
-          @attr name com.projnsc.bestprojectever:adUnitId
+          @attr name com.projnsc.bestprojectever:show_fps
         */
-        public static final int AdsAttrs_adUnitId = 1;
+        public static final int CameraBridgeViewBase_show_fps = 0;
         /** Attributes that can be used with a MapAttrs.
            <p>Includes the following attributes:</p>
            <table>
