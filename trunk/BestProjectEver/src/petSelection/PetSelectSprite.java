@@ -23,8 +23,11 @@ public class PetSelectSprite {
 	private int Key;
 
 	public PetSelectSprite(Resources res, int x, int y, int Key) {
+		BitmapFactory.Options o = new BitmapFactory.Options();
+		o.inDither = false;
+		o.inPurgeable = true;
 		mBitmap = BitmapFactory.decodeResource(res,
-				PetUniqueDate.getPetResource(Key));
+				PetUniqueDate.getPetResource(Key),o);
 		Petwidth = mBitmap.getWidth() / BMP_COLUMNS;
 		Petheight = mBitmap.getHeight() / BMP_ROWS;
 		mX = x;
@@ -33,16 +36,11 @@ public class PetSelectSprite {
 	}
 
 	public PetSelectSprite(Resources res, int x, int y) {
-		try {
-			mBitmap = BitmapFactory.decodeResource(res,
-					PetUniqueDate.getPetResource());
-		} catch (OutOfMemoryError E) {
-			BitmapFactory.Options o = new BitmapFactory.Options();
-			o.inDither = false; 
-			o.inPurgeable = true;
-			mBitmap = BitmapFactory.decodeResource(res,
-					PetUniqueDate.getPetResource(), o);
-		}
+		BitmapFactory.Options o = new BitmapFactory.Options();
+		o.inDither = false; 
+		o.inPurgeable = true;
+		mBitmap = BitmapFactory.decodeResource(res,
+				PetUniqueDate.getPetResource(), o);
 		Petwidth = mBitmap.getWidth() / BMP_COLUMNS;
 		Petheight = mBitmap.getHeight() / BMP_ROWS;
 		mX = x;
@@ -73,6 +71,11 @@ public class PetSelectSprite {
 	// CheckForPetClick
 	public boolean isCollition(float x2, float y2) {
 		return x2 > mX && x2 < mX + Petwidth && y2 > mY && y2 < mY + Petheight;
+	}
+	
+	public void forceRecycle(){
+		if(mBitmap!=null)
+			mBitmap.recycle();
 	}
 
 }

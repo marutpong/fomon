@@ -104,6 +104,14 @@
             android:name="PreviewImage"
             android:label="Image Preview" >
         </activity>
+        <activity
+            android:name="PetEvolutionActivity"
+            android:label="Pet Evolution" >
+        </activity>
+        <activity
+            android:name="PetBattleActivity"
+            android:label="Pet Battle Stage" >
+        </activity>
     </application>
 
 </manifest>
