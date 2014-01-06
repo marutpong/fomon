@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import com.projnsc.bestprojectever.PetBattleActivity;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.SurfaceHolder.Callback;
@@ -22,7 +25,8 @@ public class PetBattlePanel extends SurfaceView implements Callback {
 	private Handler msgHandler;
 	private ArrayList<ActionBox> ActionBoxSet;
 	private int BattleTurn = 0;
-	private int TURNDELAY = 0;
+	private PetBattleSprite LeftBitmap;
+	private PetBattleSprite RightBitmap;
 
 	public PetBattlePanel(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
@@ -45,18 +49,53 @@ public class PetBattlePanel extends SurfaceView implements Callback {
 	}
 
 	public void RunAnimate() {
-		if (TURNDELAY  <= 10)
-			TURNDELAY++;
-		else {
-			BattleTurn++;
-			if(BattleTurn%2==0)
-			UpdateProgressBarFromArrayList();
+		try {
+			ActionBox tmp = ActionBoxSet.get(BattleTurn);
+//			Log.i(this.getClass().getName(),BattleTurn + " " + tmp.isLeftSideAction());
+			if (tmp.isLeftSideAction()) {
+				if (!LeftBitmap.isInitialSpeed() && !LeftBitmap.isFinish()) {
+					LeftBitmap.InitialSpeed();
+				}
+				if (LeftBitmap.isWillBack() && !LeftBitmap.isActionOnBar()) {
+					UpdateProgressBarFromArrayList();
+					LeftBitmap.setActionOnBar(true);
+				}
+				if (LeftBitmap.isFinish()) {
+					BattleTurn++;
+					LeftBitmap.clearSpeed();
+				}
+				LeftBitmap.animate(RightBitmap);
+				RightBitmap.animate();
+			} else {
+//				Log.i("Right Bitmap",RightBitmap.isInitialSpeed() + " " + RightBitmap.isFinish());
+				if (!RightBitmap.isInitialSpeed() && !RightBitmap.isFinish()) {
+					RightBitmap.InitialSpeed();
+				}
+				if (RightBitmap.isWillBack() && !RightBitmap.isActionOnBar()) {
+					UpdateProgressBarFromArrayList();
+					RightBitmap.setActionOnBar(true);
+				}
+				if (RightBitmap.isFinish()) {
+					BattleTurn++;
+					RightBitmap.clearSpeed();
+				}
+				RightBitmap.animate(LeftBitmap);
+				LeftBitmap.animate();
+			}
+		} catch (IndexOutOfBoundsException E) {
+
 		}
+		// UpdateProgressBarFromArrayList();
+	}
+
+	public void setEachMonID(int Left, int Right) {
+		LeftBitmap = new PetBattleSprite(getResources(), Left, true);
+		RightBitmap = new PetBattleSprite(getResources(), Right, false);
 	}
 
 	private void UpdateProgressBarFromArrayList() {
 		try {
-			ActionBox tmp = ActionBoxSet.get(BattleTurn/2);
+			ActionBox tmp = ActionBoxSet.get(BattleTurn);
 			if (tmp.isLeftSideAction()) {
 				setProgressBarATRight(tmp.getHPLeft(), tmp.getDamage());
 			} else {
@@ -88,7 +127,9 @@ public class PetBattlePanel extends SurfaceView implements Callback {
 	}
 
 	public void doDraw(Canvas canvas) {
-
+		canvas.drawColor(Color.BLACK);
+		LeftBitmap.doDraw(canvas);
+		RightBitmap.doDraw(canvas);
 	}
 
 	@Override
@@ -96,7 +137,12 @@ public class PetBattlePanel extends SurfaceView implements Callback {
 			int height) {
 		PetFieldHeight = height;
 		PetFieldWidth = width;
-
+		LeftBitmap.setCenPos((int) Math.round(width * 0.2),
+				(int) Math.round(height));
+		RightBitmap.setCenPos((int) Math.round(width * 0.8),
+				(int) Math.round(height));
+		LeftBitmap.setSpeedFromView();
+		RightBitmap.setSpeedFromView();
 	}
 
 	@Override

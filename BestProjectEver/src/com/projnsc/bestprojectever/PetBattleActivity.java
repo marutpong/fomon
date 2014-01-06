@@ -5,6 +5,7 @@ import java.util.Random;
 
 import petBattle.ActionBox;
 import petBattle.PetBattlePanel;
+import preferenceSetting.PetUniqueDate;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
@@ -51,14 +52,18 @@ public class PetBattleActivity extends Activity {
 
 		LeftPetName = "Victorious";
 		RightPetName = "Defeated";
+//		LeftPetAttribute[0] = PetUniqueDate.getMonHP();
+//		LeftPetAttribute[1] = PetUniqueDate.getMonATK();
+//		LeftPetAttribute[2] = PetUniqueDate.getMonDEF();
+//		LeftPetAttribute[3] = PetUniqueDate.getMonSPD();
 		LeftPetAttribute[0] = 100;
-		LeftPetAttribute[1] = 30;
+		LeftPetAttribute[1] = 25;
 		LeftPetAttribute[2] = 15;
-		LeftPetAttribute[3] = 10;
+		LeftPetAttribute[3] = 8;
 		RightPetAttribute[0] = 80;
 		RightPetAttribute[1] = 20;
-		RightPetAttribute[2] = 25;
-		RightPetAttribute[3] = 15;
+		RightPetAttribute[2] = 20;
+		RightPetAttribute[3] = 3;
 
 		LeftName = (TextView) findViewById(R.id.txtBattleMonsterNameL);
 		RightName = (TextView) findViewById(R.id.txtBattleMonsterNameR);
@@ -78,6 +83,7 @@ public class PetBattleActivity extends Activity {
 		PetBattlePanel mPanel = (PetBattlePanel) findViewById(R.id.petBattlePanel1);
 		mPanel.setHandler(msgHandler);
 		mPanel.setActionSeries(ActionSeriesGenerate());
+		mPanel.setEachMonID(PetUniqueDate.getMonTypeID(), 10);
 		mPanel.startThread();
 		super.onCreate(savedInstanceState);
 	}
