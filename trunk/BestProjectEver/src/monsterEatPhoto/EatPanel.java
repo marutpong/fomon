@@ -1,5 +1,6 @@
 package monsterEatPhoto;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Set;
@@ -13,6 +14,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
+import android.media.SoundPool;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -34,6 +36,8 @@ public class EatPanel extends SurfaceView implements Callback {
 	private EatingSprite mEating;
 	private Canvas tempCanvas;
 	private Queue<Pixel> QPixel = new LinkedList<Pixel>();
+	SoundPool soundPool;
+	HashMap<Integer, Integer> soundPoolMap;
 
 	public EatPanel(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
