@@ -387,4 +387,31 @@ public class FoodDatabase extends SQLiteOpenHelper {
 		}
 
 	}
+	
+	public static ArrayList<String> getArrayOfFoodname() {
+		// TODO Auto-generated method stub
+		ArrayList<String> returnList = new ArrayList<String>();
+		try {
+			SQLiteDatabase db;
+			db = fd.getReadableDatabase(); // Read Data
+
+			String strSQL = "SELECT  * FROM " + TABLE_FOOD;
+			Cursor cursor = db.rawQuery(strSQL, null);
+
+			if (cursor != null) {
+				if (cursor.moveToFirst()) {
+					do {
+						returnList.add(cursor.getString(FoodDatabase.Enum.name.ordinal()));
+					} while (cursor.moveToNext());
+				}
+			}
+			cursor.close();
+			db.close();
+
+			return returnList;
+
+		} catch (Exception e) {
+			return null;
+		}
+	}
 }
