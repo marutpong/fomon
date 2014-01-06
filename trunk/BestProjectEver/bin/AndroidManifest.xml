@@ -113,6 +113,7 @@
             android:label="Pet Battle Stage"
             android:screenOrientation="landscape" >
         </activity>
+        <activity android:name="TheTempActivity"></activity>
     </application>
 
 </manifest>

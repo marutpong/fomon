@@ -68,7 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:text="Test" />
+        android:text="Test Server" />
 
     <Button
         android:id="@+id/btn_conserver"
@@ -76,5 +76,12 @@
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:text="Connect Server" />
+
+    <Button
+        android:id="@+id/btn_test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="Test Temp" />
 
 </LinearLayout>
