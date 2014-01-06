@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Set;
 
+import com.projnsc.bestprojectever.R;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -14,6 +16,9 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnCompletionListener;
 import android.media.SoundPool;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -36,8 +41,22 @@ public class EatPanel extends SurfaceView implements Callback {
 	private EatingSprite mEating;
 	private Canvas tempCanvas;
 	private Queue<Pixel> QPixel = new LinkedList<Pixel>();
-	SoundPool soundPool;
-	HashMap<Integer, Integer> soundPoolMap;
+	MediaPlayer mp;
+	private boolean soundPlay = false;
+
+	// private SoundPool soundPool;
+	// private HashMap<Integer, Integer> soundPoolMap;
+	// private AudioManager audioManager = (AudioManager)
+	// getContext().getSystemService(Context.AUDIO_SERVICE);
+	// private float curVolume =
+	// audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+	// private float maxVolume =
+	// audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+	// private float leftVolume = curVolume/maxVolume;
+	// private float rightVolume = curVolume/maxVolume;
+	// private int priority = 1;
+	// private int no_loop = 0;
+	// private float normal_playback_rate = 1f;
 
 	public EatPanel(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
@@ -62,20 +81,31 @@ public class EatPanel extends SurfaceView implements Callback {
 		this.mPool = mPool;
 	}
 
-//	@SuppressLint("NewApi")
+	// @SuppressLint("NewApi")
 	private void init() {
 		getHolder().addCallback(this);
-//		BitmapFactory.Options o = new BitmapFactory.Options();
-//		o.inSampleSize = 2;
-//		o.inDither = false;
-//		o.inPurgeable = true;
-//		mFood = BitmapFactory.decodeResource(getResources(),
-//				R.drawable.dummyfoodeattest);
-//		mFood.setHasAlpha(true);
-//		mTFood = mFood.copy(Config.ARGB_8888, true);
-//		mPaint.setXfermode(new PorterDuffXfermode(Mode.CLEAR));
-//		mEating = new EatingSprite(getResources(), 0, 0);
-//		tempCanvas = new Canvas(mTFood);
+		mp = MediaPlayer.create(getContext(), R.raw.eatsound);
+		mp.setOnCompletionListener(new OnCompletionListener() {
+			
+			@Override
+			public void onCompletion(MediaPlayer mp) {
+				soundPlay = false;
+			}
+		});
+		// soundPool = new SoundPool(4, AudioManager.STREAM_MUSIC, 100);
+		// soundPoolMap = new HashMap<Integer, Integer>();
+		// soundPoolMap.put(1, soundPool.load(getContext(), R.raw.eatsound, 1));
+		// BitmapFactory.Options o = new BitmapFactory.Options();
+		// o.inSampleSize = 2;
+		// o.inDither = false;
+		// o.inPurgeable = true;
+		// mFood = BitmapFactory.decodeResource(getResources(),
+		// R.drawable.dummyfoodeattest);
+		// mFood.setHasAlpha(true);
+		// mTFood = mFood.copy(Config.ARGB_8888, true);
+		// mPaint.setXfermode(new PorterDuffXfermode(Mode.CLEAR));
+		// mEating = new EatingSprite(getResources(), 0, 0);
+		// tempCanvas = new Canvas(mTFood);
 		mThread = new EatThread(this);
 	}
 
@@ -110,12 +140,24 @@ public class EatPanel extends SurfaceView implements Callback {
 				mEating.setPos(XPos, YPos);
 				QPixel.add(new Pixel(XPos, YPos));
 			}
+			if (!soundPlay) {
+				mp.start();
+				soundPlay = true;
+			}
+			// soundPool.play(1, leftVolume, rightVolume, priority, no_loop,
+			// normal_playback_rate);
 		} else if (event.getAction() == MotionEvent.ACTION_MOVE) {
 			synchronized (mPool) {
 				mPool.add(new Pixel(XPos, YPos));
 				mEating.setPos(XPos, YPos);
 				QPixel.add(new Pixel(XPos, YPos));
 			}
+			if (!soundPlay) {
+				mp.start();
+				soundPlay = true;
+			}
+			// soundPool.play(1, leftVolume, rightVolume, priority, no_loop,
+			// normal_playback_rate);
 		}
 		return true;
 	}
@@ -157,14 +199,14 @@ public class EatPanel extends SurfaceView implements Callback {
 
 	@SuppressLint("NewApi")
 	public void setImagePicPath(String path) {
-		
-//		BitmapFactory.Options options = new BitmapFactory.Options();
-//		options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-//		mFood = BitmapFactory.decodeFile(path, options);
+
+		// BitmapFactory.Options options = new BitmapFactory.Options();
+		// options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+		// mFood = BitmapFactory.decodeFile(path, options);
 		mFood = BitmapFactory.decodeFile(path);
-		
-//		mFood = BitmapFactory.decodeResource(getResources(),
-//				R.drawable.dummyfoodeattest);
+
+		// mFood = BitmapFactory.decodeResource(getResources(),
+		// R.drawable.dummyfoodeattest);
 		mFood.setHasAlpha(true);
 		mTFood = mFood.copy(Config.ARGB_8888, true);
 		mPaint.setXfermode(new PorterDuffXfermode(Mode.CLEAR));
