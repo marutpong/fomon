@@ -79,6 +79,24 @@ public class PetUniqueDate {
 		editPref.putInt(PrefDataType.K_KNN, K);
 		editPref.commit();
 	}
+	
+	public static void SetLatitude(float value) {
+		editPref.putFloat(PrefDataType.Latitude, value);
+		editPref.commit();
+	}
+	
+	public static void SetLongtitude(float value) {
+		editPref.putFloat(PrefDataType.Longtitude, value);
+		editPref.commit();
+	}
+	
+	public static float getLongtitude(){
+		return mainPref.getFloat(PrefDataType.Longtitude, PrefDataType.NONEINT);
+	}
+	
+	public static float getLatitude(){
+		return mainPref.getFloat(PrefDataType.Latitude, PrefDataType.NONEINT);
+	}
 
 	public static int getK_Value_KNN() {
 		return mainPref.getInt(PrefDataType.K_KNN, PrefDataType.NONEINT);

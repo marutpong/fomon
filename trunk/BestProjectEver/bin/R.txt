@@ -99,8 +99,8 @@ int id btb_test 0x7f050030
 int id btnChMode 0x7f050058
 int id btnChangePetNameSet 0x7f050085
 int id btnClearData 0x7f05007a
-int id btnEatCancel 0x7f05003a
-int id btnEatClear 0x7f050039
+int id btnEatCancel 0x7f050039
+int id btnEatClear 0x7f05003a
 int id btnEatFinish 0x7f050038
 int id btnSearchFood 0x7f050034
 int id btnTakePhoto 0x7f050033

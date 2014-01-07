@@ -182,8 +182,8 @@ public class ShowStatResultActivity extends Activity implements
 		PetUniqueDate.SetMonSPD(PetUniqueDate.getMonSPD() + SPDUp);
 		HistoryDatabase.insertHistory(
 				getIntent().getExtras().getString(
-						getString(R.string.intentkey_pathforfood)), 11.1212,
-				21.1212, FoodResult.getID(), HistoryType.getCurrentDate(),
+						getString(R.string.intentkey_pathforfood)), PetUniqueDate.getLatitude(),
+				PetUniqueDate.getLongtitude(), FoodResult.getID(), HistoryType.getCurrentDate(),
 				HistoryType.getCurrentTime());
 	}
 
