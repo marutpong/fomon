@@ -7,5 +7,13 @@
     <string name="take_photo">Take Photo</string>
     <string name="food_search">Food Search</string>
     <string name="pet_name">Pet Name</string>
+    <string name="intentkey_pathforfood">INTENTKEY_PathForFood</string>
+    <string name="intentkey_analysisfoodclass1">INTENTKEY_AnalysisFoodClass1</string>
+    <string name="intentkey_analysisfoodclass2">INTENTKEY_AnalysisFoodClass2</string>
+    <string name="intentkey_setfoodclass">INTENTKEY_SETFOODCLASS</string>
+    <string name="intentkey_setspeedstatup">INTENTKEY_SetSpeedSTATUp</string>
+    <string name="intentkey_isfromstatup">INTENTKEY_IsFromStatUp</string>
+    <string name="intentkey_isfromevolution">INTENTKEY_IsFromEvolution</string>
+    <string name="intentkey_battleresult">INTENTKEY_BattleResult</string>
 
 </resources>

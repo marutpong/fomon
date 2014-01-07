@@ -28,6 +28,17 @@ public class PetBattlePanel extends SurfaceView implements Callback {
 	private PetBattleSprite LeftBitmap;
 	private PetBattleSprite RightBitmap;
 
+	public interface OnFinishBattleListener {
+		void OnFinishBattle();
+	}
+
+	private OnFinishBattleListener onFinishBattleListener;
+
+	public void setOnFinishBattleListener(
+			OnFinishBattleListener onFinishBattleListener) {
+		this.onFinishBattleListener = onFinishBattleListener;
+	}
+
 	public PetBattlePanel(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		init();
@@ -51,7 +62,8 @@ public class PetBattlePanel extends SurfaceView implements Callback {
 	public void RunAnimate() {
 		try {
 			ActionBox tmp = ActionBoxSet.get(BattleTurn);
-//			Log.i(this.getClass().getName(),BattleTurn + " " + tmp.isLeftSideAction());
+			// Log.i(this.getClass().getName(),BattleTurn + " " +
+			// tmp.isLeftSideAction());
 			if (tmp.isLeftSideAction()) {
 				if (!LeftBitmap.isInitialSpeed() && !LeftBitmap.isFinish()) {
 					LeftBitmap.InitialSpeed();
@@ -67,7 +79,8 @@ public class PetBattlePanel extends SurfaceView implements Callback {
 				LeftBitmap.animate(RightBitmap);
 				RightBitmap.animate();
 			} else {
-//				Log.i("Right Bitmap",RightBitmap.isInitialSpeed() + " " + RightBitmap.isFinish());
+				// Log.i("Right Bitmap",RightBitmap.isInitialSpeed() + " " +
+				// RightBitmap.isFinish());
 				if (!RightBitmap.isInitialSpeed() && !RightBitmap.isFinish()) {
 					RightBitmap.InitialSpeed();
 				}
@@ -83,7 +96,9 @@ public class PetBattlePanel extends SurfaceView implements Callback {
 				LeftBitmap.animate();
 			}
 		} catch (IndexOutOfBoundsException E) {
-
+			if (onFinishBattleListener != null) {
+				onFinishBattleListener.OnFinishBattle();
+			}
 		}
 		// UpdateProgressBarFromArrayList();
 	}
@@ -102,7 +117,9 @@ public class PetBattlePanel extends SurfaceView implements Callback {
 				setProgressBarATLeft(tmp.getHPLeft(), tmp.getDamage());
 			}
 		} catch (IndexOutOfBoundsException E) {
-
+			if (onFinishBattleListener != null) {
+				onFinishBattleListener.OnFinishBattle();
+			}
 		}
 	}
 

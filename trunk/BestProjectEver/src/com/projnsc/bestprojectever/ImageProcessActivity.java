@@ -44,7 +44,6 @@ import android.widget.Toast;
 @SuppressLint("NewApi")
 public class ImageProcessActivity extends Activity implements
 		CvCameraViewListener2, OnImageProcess {
-	private static final String INTENT_EXTRA_KEY_PIC_SAVE_PATH = "Preview";
 	private static final String TAG = "Activity";
 
 	private ImageProcessView mOpenCvCameraView;
@@ -55,10 +54,6 @@ public class ImageProcessActivity extends Activity implements
 	private SubMenu mResolutionMenu;
 	private String PictureFileName;
 	Button shootCamera;
-
-	public static String getIntentExtraKeyPicSavePath() {
-		return INTENT_EXTRA_KEY_PIC_SAVE_PATH;
-	}
 
 	private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
 		// Unknown by dumb people :3 yep
@@ -251,7 +246,7 @@ public class ImageProcessActivity extends Activity implements
 	public void NotifyImageProcess(String path) {
 		Intent A = new Intent(getApplicationContext(),
 				MonEatingPhotoActivity.class);
-		A.putExtra(INTENT_EXTRA_KEY_PIC_SAVE_PATH, path);
+		A.putExtra(getString(R.string.intentkey_pathforfood), path);
 		startActivity(A);
 	}
 

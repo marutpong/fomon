@@ -1,5 +1,9 @@
 package petShowEmotion;
 
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+
 public class PetStatGradualIncrease {
 
 	public static final int MaxPETHP = 300;
@@ -16,7 +20,7 @@ public class PetStatGradualIncrease {
 	private int curDEF = 0;
 	private int curSPD = 0;
 	private int dummyCounter = 0;
-	private final int MaxDummyCounter = 3*8;
+	private final int MaxDummyCounter = 3 * 8;
 
 	public int getCurATK() {
 		return curATK;
@@ -44,6 +48,7 @@ public class PetStatGradualIncrease {
 	public interface OnMonsterStatChange {
 		void OnMonsterStatHasChange(
 				PetStatGradualIncrease petStatGradualIncrease);
+
 		void OnMonsterStatChangeComplete();
 	}
 
@@ -58,7 +63,7 @@ public class PetStatGradualIncrease {
 		boolean stg2 = curATK <= upATK;
 		boolean stg3 = curDEF <= upDEF;
 		boolean stg4 = curSPD <= upSPD;
-		
+
 		if (stg1)
 			curHP++;
 		if (stg2)
@@ -67,18 +72,17 @@ public class PetStatGradualIncrease {
 			curDEF++;
 		if (stg4)
 			curSPD++;
-		if(!stg1 && !stg2 && !stg3 && !stg4){
-			if(dummyCounter > MaxDummyCounter)
+		if (!stg1 && !stg2 && !stg3 && !stg4) {
+			if (dummyCounter > MaxDummyCounter)
 				NotifyCompleteStatChange();
 			else
 				dummyCounter++;
-		}
-		else
+		} else
 			NotifyStatChange();
 	}
 
 	private void NotifyCompleteStatChange() {
-		if(onMonsterStatChange != null)
+		if (onMonsterStatChange != null)
 			onMonsterStatChange.OnMonsterStatChangeComplete();
 	}
 

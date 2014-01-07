@@ -61,9 +61,4 @@
 		android:maxHeight="40dip"
 		/>
 
-    <petShowEmotion.PetShowEmotionPanel
-        android:id="@+id/petShowEmotionPanel1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
 </LinearLayout>
