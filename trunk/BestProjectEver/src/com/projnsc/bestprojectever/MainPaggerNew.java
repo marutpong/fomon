@@ -138,11 +138,11 @@ public class MainPaggerNew extends FragmentActivity implements
 		try {
 			if (PetUniqueDate.isServerIPEmpty()) {
 
-				PetUniqueDate.SetServerIP("10.73.10.65");
+				PetUniqueDate.SetServerIP("10.73.9.89");
 			}
 		} catch (NullPointerException E) {
 			PetUniqueDate.setContext(getApplicationContext());
-			PetUniqueDate.SetServerIP("10.73.10.65");
+			PetUniqueDate.SetServerIP("10.73.9.89");
 		}
 		// Initial Food Database
 		FoodDatabase.fd = new FoodDatabase(this);

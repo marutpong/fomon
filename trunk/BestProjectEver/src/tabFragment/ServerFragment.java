@@ -128,7 +128,7 @@ public class ServerFragment extends Fragment {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				String result = MyServer.saveToServer();
-				if (result.equalsIgnoreCase("true")) {
+				if (result != null && result.equalsIgnoreCase("true")) {
 					Intent mNext = new Intent(getActivity(),
 							FightListActivity.class);
 					startActivity(mNext);

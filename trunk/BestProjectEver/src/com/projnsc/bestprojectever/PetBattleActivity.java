@@ -162,6 +162,7 @@ public class PetBattleActivity extends Activity implements
 	private void goToResultPAGE() {
 		Intent A = new Intent(this, ShowPetVersusResultActivity.class);
 		A.putExtra(getString(R.string.intentkey_battleresult), LeftWIN);
+		A.putExtra(getString(R.string.intentkey_getenemyid), getIntent().getExtras().getString(getString(R.string.intentkey_getenemyid)));
 		finish();
 		startActivity(A);
 	}

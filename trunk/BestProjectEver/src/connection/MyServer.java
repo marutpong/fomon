@@ -18,6 +18,7 @@ import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
@@ -64,16 +65,33 @@ public class MyServer// extends Application
 	 * = MyServer.getContext().getResources().getString(R.string.server_ip);
 	 * String url = "http://"+server_ip+"/fomon/"; return url; }
 	 */
+	public static boolean isTodayFight(String vsMonID) {
+		if (!isConnectServer()){
+			return false;
+		}
+		String url = PetUniqueDate.getServerURL() + "is_today_fight.php";
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("mon", PetUniqueDate.getFacebookID() ));
+		params.add(new BasicNameValuePair("vsmon", vsMonID.toString()));
+		String strResult = getHttpPost(url, params);
+		return strResult.equalsIgnoreCase("true");
+	}
+	public static String addFightHistory(String vsMonID, boolean isWin) {
+		Log.i("My server", "Add result");
+		String strResult = null;
+		String url = PetUniqueDate.getServerURL() + "fight.php";
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("mon", PetUniqueDate.getFacebookID() ));
+		params.add(new BasicNameValuePair("vsmon", vsMonID.toString()));
+		params.add(new BasicNameValuePair("iswin", String.valueOf(isWin)));
+		strResult = getHttpPost(url, params);
+		Log.i("VS Mode", "My ID :"+PetUniqueDate.getFacebookID() ); 
+		Log.i("VS Mode", "Vs Mon :"+vsMonID.toString());
+		Log.i("VS Mode", "iswin :"+String.valueOf(isWin));
+		return strResult;
+	}
 	public static String saveToServer() {
 		String strResult = null;
-		if (android.os.Build.VERSION.SDK_INT > 9) {
-			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
-					.permitAll().build();
-			StrictMode.setThreadPolicy(policy);
-		}
-		HttpURLConnection conn = null;
-
-		String url = PetUniqueDate.getServerURL() + "enter.php";
 
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("uid", PetUniqueDate.getFacebookID()
@@ -90,15 +108,81 @@ public class MyServer// extends Application
 				.getMonDEF())));
 		params.add(new BasicNameValuePair("spd", String.valueOf(PetUniqueDate
 				.getMonSPD())));
+
+		if (!isConnectServer()){
+			return strResult;
+		}
+
+		String url = PetUniqueDate.getServerURL() + "enter.php";
 		strResult = getHttpPost(url, params);
 
 		return strResult;
 	}
+	
+	public static boolean isConnectServer() {
+		String url = PetUniqueDate.getServerURL();
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("uid", PetUniqueDate.getFacebookID()
+				.toString()));
+		String testFirstServer = getHttpPost(url, params);
+		if (testFirstServer == null) {
+			String secondUrl = "http://myweb.cmu.ac.th/marutpong_c/fomon/getserverip.php";
+			String newServerIP = getHttpPost(secondUrl, params);
+			Log.i("Connect Server", newServerIP);
+			if (newServerIP!=null)
+				PetUniqueDate.SetServerIP(newServerIP);
+		}
+		return true;
+	}
+	public static String getHttpGet(String url) {
+		Log.i("getHttpGet", url);
+		// Permission StrictMode
+		if (android.os.Build.VERSION.SDK_INT > 9) {
+			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+					.permitAll().build();
+			StrictMode.setThreadPolicy(policy);
+		}
+		InputStream inputStream = null;
+		String result = "";
+		try {
+
+			// create HttpClient
+			HttpClient httpclient = new DefaultHttpClient();
+
+			// make GET request to the given URL
+			HttpResponse httpResponse = httpclient.execute(new HttpGet(url));
+
+			// receive response as inputStream
+			inputStream = httpResponse.getEntity().getContent();
+
+			// convert inputstream to string
+			if (inputStream != null)
+				result = inputStream.toString();
+			else
+				Log.i("getHttpGet", url + " Fail");
+				result = "Did not work!";
+				return null;
+
+		} catch (Exception e) {
+			Log.d("InputStream", e.getLocalizedMessage());
+		}
+		Log.i("getHttpGet result", result);
+		return result;
+	}
 
 	public static String getHttpPost(String url, List<NameValuePair> params) {
+		Log.i("getHttpPost", url);
+		if (PetUniqueDate.isServerIPEmpty()){
+			return null;
+		}
+		if (android.os.Build.VERSION.SDK_INT > 9) {
+			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+					.permitAll().build();
+			StrictMode.setThreadPolicy(policy);
+		}
 		StringBuilder str = new StringBuilder();
 		HttpClient client = new DefaultHttpClient();
-		HttpPost httpPost = new HttpPost(url);
+		HttpPost httpPost =  new HttpPost(url);
 
 		try {
 			httpPost.setEntity(new UrlEncodedFormEntity(params));
@@ -116,32 +200,47 @@ public class MyServer// extends Application
 				}
 			} else {
 				Log.e("Log", "Failed to download result..");
+				return null;
 			}
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
+			return null;
 		} catch (IOException e) {
 			e.printStackTrace();
+			return null;
 		}
+		Log.i("getHttpPost", "result:"+str.toString());
 		return str.toString();
 	}
 
-	public static void IncreaseWIN() {
-		
+
+	public static int GetWIN() {
+		int result = -1;
+		String url = PetUniqueDate.getServerURL() + "getWinLost.php";
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("mon", PetUniqueDate.getFacebookID() ));
+		params.add(new BasicNameValuePair("type", "win"));
+		String strResult = getHttpPost(url, params);
+		try {
+			result = Integer.parseInt(strResult);
+		} catch (Exception e){
+			return -1;
+		}
+		return result;
 	}
 
-	public static void IncreaseLOSE() {
-		
+	public static int GetLOSE() {
+		int result = -1;
+		String url = PetUniqueDate.getServerURL() + "getWinLost.php";
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("mon", PetUniqueDate.getFacebookID() ));
+		params.add(new BasicNameValuePair("type", "lose"));
+		String strResult = getHttpPost(url, params);
+		try {
+			result = Integer.parseInt(strResult);
+		} catch (Exception e){
+			return -1;
+		}		return result;
 	}
 
-	public static int GetWIN(){
-		return 0;
-	}
-	
-	public static int GetLOSE(){
-		return 0;
-	}
-	
-	public static void IncreaseRANK() {
-		
-	}
 }
