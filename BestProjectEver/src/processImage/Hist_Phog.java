@@ -40,18 +40,22 @@ import android.util.Log;
 public class Hist_Phog {
 
 	private static final String TAG = "Hist_Phog";
-	private int bin = 8;
-	private int angle = 360;
+	//private int bin = 8;
+	//private int angle = 360;
 	private int L = 0;
 	private static Context context;
 	float y[], z[];
-
+	static int foodnum = 599;
+	//int foodnumtest = 248;
+	static int featurenum = 41;
+	static int featurepc = 15;
+	
 	public int[] histImage(String path) {
 		Log.d(TAG, path);
 		List<Mat> channel = new ArrayList<Mat>();
-		//File folder = new File(Environment.getExternalStorageDirectory()
-		//		+ "/FoMons");
-		//String path = folder + "/1_saladtest3.jpg";
+//		File folder = new File(Environment.getExternalStorageDirectory()
+//				+ "/FoMons");
+//		path = folder + "/14_xxx1.jpg";
 		Mat im = Highgui.imread(path);
 		/*
 		 * Mat imOriginal = im;
@@ -83,7 +87,7 @@ public class Hist_Phog {
 		Mat tmpS = FindHSV(s, "S");
 		Mat tmpV = FindHSV(v, "V");
 		Mat tmpEd = FindEd(path);
-		Mat feature = tmpH;
+		Mat feature = tmpH.clone();
 		feature.push_back(tmpS);
 		feature.push_back(tmpV);
 		feature.push_back(tmpEd);
@@ -112,24 +116,126 @@ public class Hist_Phog {
 	
 	private static int[] KNN(Mat test) {
 		String tag = "TEXT";
-		int foodnum = 210;
-		int featurenum = 41;
-		Mat train = new Mat(foodnum,featurenum,CvType.CV_32F);
-		Mat gt = new Mat(1,foodnum,CvType.CV_32F);
-		InputStream is = context.getResources().openRawResource(
-				R.raw.trainningset);
+		
+		Mat fvtrain = new Mat(foodnum,featurenum,CvType.CV_32F);
+		Mat fvtrainpc = new Mat(foodnum,featurepc,CvType.CV_32F);
+		Mat gt = new Mat(foodnum,1,CvType.CV_32F);
+		Mat meantrain = new Mat(1,featurenum,CvType.CV_32F);
+		Mat stdtrain = new Mat(1,featurenum,CvType.CV_32F);
+		Mat pc = new Mat(featurenum,featurenum,CvType.CV_32F);
+		
+		fvtrain=readText(fvtrain,1);
+		fvtrainpc=readText(fvtrainpc, 2);
+		gt=readText(gt, 3);
+		meantrain=readText(meantrain, 4);
+		stdtrain=readText(stdtrain, 5);
+		pc=readText(pc, 6);
+		
+		
+		Mat fvtestpc = new Mat(1,featurenum,CvType.CV_32F);
+		for(int j=0;j<featurenum;j++){
+				double[] x = test.get(0, j);
+				double[] xmean = meantrain.get(0, j);
+				double[] sd = stdtrain.get(0, j);
+				double cal = (x[0]-xmean[0])/sd[0];
+				Log.d("Hist_Phog","sd "+(j+1)+" "+String.valueOf(cal));
+				fvtestpc.put(0, j, cal);
+			}		
+		
+		
+		Mat mulmattmp = fvtestpc.clone();
+		for(int i=0;i<featurenum;i++){
+			double sumfrommul = 0;
+			int count=0;
+			for(int j=0;j<featurenum;j++){
+				double[] num1 = mulmattmp.get(0,j );
+				double[] num2 = pc.get(j, i);
+				double mul = num1[0]*num2[0];
+				Log.d(tag,"mul "+String.valueOf(num1[0])+" "+String.valueOf(num2[0])+" "+String.valueOf(mul));
+				sumfrommul+=mul;
+			}
+			fvtestpc.put(0, count, sumfrommul);
+			count++;
+		}
+
+		Mat results1 = new Mat();
+		Mat results2 = new Mat();
+		Mat neighborResponses = new Mat();
+		Mat dists = new Mat();
+		CvKNearest knn = new CvKNearest();
+		int[] classFood = {0,0} ;
+		knn.train(fvtrain, gt);
+		knn.find_nearest(test, 1, results1, neighborResponses, dists);
+		double[] tmpclassfood = results1.get(0, 0);
+		int classFoodchk1 = (int)tmpclassfood[0];
+		Log.d(tag,"first "+String.valueOf(classFoodchk1));
+		
+		Mat fvtestpcCut = new Mat(1,featurepc,CvType.CV_32F);
+		for(int j=0;j<featurepc;j++){
+			double[] cuttmp = fvtestpc.get(0, j);
+			fvtestpcCut.put(0, j, cuttmp[0]);
+			Log.d("Hist_Phog","fv "+(j+1)+" "+String.valueOf(cuttmp[0]));
+		}
+		
+		Log.d("TEXT",String.valueOf(fvtestpcCut.size()));
+		
+		knn.train(fvtrainpc, gt);
+		knn.find_nearest(fvtestpcCut, 18, results2, neighborResponses, dists);
+		double[] tmpclassfood1 = results2.get(0, 0);
+		int classFoodchk2 = (int)tmpclassfood1[0];
+		Log.d(tag,"second "+ String.valueOf(classFoodchk2));
+		
+		//classFood = groupClass(classFoodchk);
+		//Log.d(tag, "result "+ String.valueOf(classFood[0])+"  "+String.valueOf(classFood[1]));
+		classFood[0] = classFoodchk1;
+		classFood[1] = classFoodchk2;
+		return classFood;
+	}
+	
+	private static Mat readText(Mat keepfile,int name){
+		InputStream is = null;
+		Mat fvtrain = null;
+		switch (name) {
+		case 1:
+			is = context.getResources().openRawResource(
+					R.raw.fvtrain);
+			break;
+		case 2:
+			is = context.getResources().openRawResource(
+					R.raw.fvtrainpc);
+			break;
+		case 3:
+			is = context.getResources().openRawResource(
+					R.raw.gt);
+			break;
+		case 4:
+			is = context.getResources().openRawResource(
+					R.raw.meantrain);
+			break;
+		case 5:
+			is = context.getResources().openRawResource(
+					R.raw.stdtrain);
+			break;
+		case 6:
+			is = context.getResources().openRawResource(
+					R.raw.pc);
+		default:
+			break;
+		}
+		
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));
 		String readLine = null;
 		try {
 			// While the BufferedReader readLine is not null
 			int j=0;
+			
 			while ((readLine = br.readLine()) != null) {
 				Scanner s = new Scanner(readLine).useDelimiter("\\t");
 				int i=0;
 				while(s.hasNext()){
 					
 					double d = Double.valueOf(s.next());
-					train.put(j, i, d);
+					keepfile.put(j, i, d);
 					i++;
 					//Log.d("TEXT", String.valueOf(d));
 				}
@@ -137,9 +243,18 @@ public class Hist_Phog {
 				//Log.d("TEXT", readLine);
 				//Log.d("TEXT", String.valueOf(d));
 			}
-			double[] chktrain = train.get(100, 20);
-			Log.d(tag,String.valueOf(train.size()));
-			Log.d(tag,String.valueOf(chktrain[0]));
+//			double[] tmpclassfood1 = fvtrain.get(0, 0);
+//			int classFoodchk2 = (int)tmpclassfood1[0];
+//			Log.d("TEXT","chhbe "+ String.valueOf(classFoodchk2));
+//			tmpclassfood1 = fvtrain.get(0, 1);
+//			classFoodchk2 = (int)tmpclassfood1[0];
+//			Log.d("TEXT","chhbe "+ String.valueOf(classFoodchk2));
+//			tmpclassfood1 = fvtrain.get(1, 0);
+//			classFoodchk2 = (int)tmpclassfood1[0];
+//			Log.d("TEXT","chhbe "+ String.valueOf(classFoodchk2));
+//			Log.d("TEXT",String.valueOf(name)+"  "+String.valueOf(keepfile.size()));
+			
+			
 			// Close the InputStream and BufferedReader
 			is.close();
 			br.close();
@@ -148,48 +263,8 @@ public class Hist_Phog {
 			e.printStackTrace();
 		}
 		
-		is = context.getResources().openRawResource(
-				R.raw.gt);
-		br = new BufferedReader(new InputStreamReader(is));
-		readLine = null;
-		try {
-			int j=0;
-			while ((readLine = br.readLine()) != null) {
-				Scanner s = new Scanner(readLine).useDelimiter("\\t");
-				int i=0;
-				while(s.hasNext()){
-					
-					double d = Double.valueOf(s.next());
-					gt.put(j, i, d);
-					i++;
-				}
-				j++;
-			}
-			double[] chktrain = gt.get(0, 209);
-			Log.d(tag,String.valueOf(gt.size()));
-			Log.d(tag,String.valueOf(chktrain[0]));
-			// Close the InputStream and BufferedReader
-			is.close();
-			br.close();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		Mat results = new Mat();
-		Mat neighborResponses = new Mat();
-		Mat dists = new Mat();
-		CvKNearest knn = new CvKNearest();
-		int[] classFood = {0,0} ;
-		knn.train(train, gt);
-		knn.find_nearest(test, 7, results, neighborResponses, dists);
-		double[] tmpclassfood = results.get(0, 0);
-		int classFoodchk = (int)tmpclassfood[0];
-		Log.d(tag, String.valueOf(classFoodchk));
+		return keepfile;
 		
-		classFood = groupClass(classFoodchk);
-		Log.d(tag, "result "+ String.valueOf(classFood[0])+"  "+String.valueOf(classFood[1]));
-		
-		return classFood;
 	}
 	
 	private static int[] groupClass(int first){
@@ -324,7 +399,7 @@ public class Hist_Phog {
 			// double[] xx2 = matH.get(i, 0);
 			// Log.d(TAG, String.valueOf(xx2[0]));
 			// }
-			hist = hist1;
+			hist = hist1.clone();
 			hist.push_back(hist2);
 			hist.push_back(hist3);
 			hist.push_back(hist4);
@@ -348,7 +423,7 @@ public class Hist_Phog {
 			MatOfFloat ranges3 = new MatOfFloat(229.5f, 256f);
 			Imgproc.calcHist(images, channels, new Mat(), hist3, histSize3,
 					ranges3);
-			hist = hist1;
+			hist = hist1.clone();
 			hist.push_back(hist2);
 			hist.push_back(hist3);
 
@@ -370,7 +445,7 @@ public class Hist_Phog {
 			Imgproc.calcHist(images, channels, new Mat(), hist3, histSize3,
 					ranges3);
 
-			hist = hist1;
+			hist = hist1.clone();
 			hist.push_back(hist2);
 			hist.push_back(hist3);
 		}
@@ -542,7 +617,7 @@ public class Hist_Phog {
 		MatOfInt histSize3 = new MatOfInt(1);
 		MatOfFloat ranges3 = new MatOfFloat(9.375f, 1000f);
 		Imgproc.calcHist(images, channels, new Mat(), hist3, histSize3, ranges3);
-		hist = hist1;
+		hist = hist1.clone();
 		hist.push_back(hist2);
 		hist.push_back(hist3);
 
