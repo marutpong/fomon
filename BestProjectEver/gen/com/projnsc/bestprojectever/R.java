@@ -526,6 +526,14 @@ containing a value of this type.
         public static final int common_signin_button_text_long=0x7f070013;
         public static final int food_search=0x7f07001e;
         public static final int hello_world=0x7f07001c;
+        public static final int intentkey_analysisfoodclass1=0x7f070021;
+        public static final int intentkey_analysisfoodclass2=0x7f070022;
+        public static final int intentkey_battleresult=0x7f070027;
+        public static final int intentkey_isfromevolution=0x7f070026;
+        public static final int intentkey_isfromstatup=0x7f070025;
+        public static final int intentkey_pathforfood=0x7f070020;
+        public static final int intentkey_setfoodclass=0x7f070023;
+        public static final int intentkey_setspeedstatup=0x7f070024;
         public static final int pet_name=0x7f07001f;
         public static final int take_photo=0x7f07001d;
     }

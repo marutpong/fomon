@@ -5,14 +5,17 @@ import java.util.Random;
 
 import petBattle.ActionBox;
 import petBattle.PetBattlePanel;
+import petBattle.PetBattlePanel.OnFinishBattleListener;
 import preferenceSetting.PetUniqueDate;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-public class PetBattleActivity extends Activity {
+public class PetBattleActivity extends Activity implements
+		OnFinishBattleListener {
 
 	public static final String PetHPUpdate = "PETHPUpdate";
 	public static final String ISUpdateLeftProgress = "isUPDATELEFT";
@@ -27,7 +30,8 @@ public class PetBattleActivity extends Activity {
 	private String RightPetName;
 	private int[] LeftPetAttribute = new int[4];
 	private int[] RightPetAttribute = new int[4];
-//	private ArrayList<ActionBox> AcionBoxSet;
+	private boolean LeftWIN = false;
+	// private ArrayList<ActionBox> AcionBoxSet;
 
 	private Handler msgHandler = new Handler() {
 
@@ -49,17 +53,18 @@ public class PetBattleActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.pet_battle_activity);
-
-		LeftPetName = "Victorious";
-		RightPetName = "Defeated";
-//		LeftPetAttribute[0] = PetUniqueDate.getMonHP();
-//		LeftPetAttribute[1] = PetUniqueDate.getMonATK();
-//		LeftPetAttribute[2] = PetUniqueDate.getMonDEF();
-//		LeftPetAttribute[3] = PetUniqueDate.getMonSPD();
-		LeftPetAttribute[0] = 100;
-		LeftPetAttribute[1] = 25;
-		LeftPetAttribute[2] = 15;
-		LeftPetAttribute[3] = 8;
+		
+		LeftPetName = PetUniqueDate.getMonName();
+//		RightPetName = getIntent().getExtras().getString("INTENTKEY_GetEnemyName");
+		RightPetName = "NONAME";
+		LeftPetAttribute[0] = PetUniqueDate.getMonHP();
+		LeftPetAttribute[1] = PetUniqueDate.getMonATK();
+		LeftPetAttribute[2] = PetUniqueDate.getMonDEF();
+		LeftPetAttribute[3] = PetUniqueDate.getMonSPD();
+//		RightPetAttribute[0] = getIntent().getExtras().getInt("INTENTKEY_GetEnemyHP");
+//		RightPetAttribute[1] = getIntent().getExtras().getInt("INTENTKEY_GetEnemyATK");
+//		RightPetAttribute[2] = getIntent().getExtras().getInt("INTENTKEY_GetEnemyDEF");
+//		RightPetAttribute[3] = getIntent().getExtras().getInt("INTENTKEY_GetEnemySPD");
 		RightPetAttribute[0] = 80;
 		RightPetAttribute[1] = 20;
 		RightPetAttribute[2] = 20;
@@ -82,8 +87,11 @@ public class PetBattleActivity extends Activity {
 		RightPetHP.setText(RightPetAttribute[0] + " / " + RightPetAttribute[0]);
 		PetBattlePanel mPanel = (PetBattlePanel) findViewById(R.id.petBattlePanel1);
 		mPanel.setHandler(msgHandler);
-		mPanel.setActionSeries(ActionSeriesGenerate());
+		ArrayList<ActionBox> tmp = ActionSeriesGenerate();
+		LeftWIN = tmp.get(tmp.size() - 1).isLeftSideAction();
+		mPanel.setActionSeries(tmp);
 		mPanel.setEachMonID(PetUniqueDate.getMonTypeID(), 10);
+		mPanel.setOnFinishBattleListener(this);
 		mPanel.startThread();
 		super.onCreate(savedInstanceState);
 	}
@@ -122,8 +130,8 @@ public class PetBattleActivity extends Activity {
 				HP2 -= Damage;
 				if (HP2 < 0)
 					HP2 = 0;
-				if(Damage<=0)
-					Damage=0;
+				if (Damage <= 0)
+					Damage = 0;
 				tmpActionSet.add(new ActionBox(true, Damage, HP2));
 			} else {
 				tSPD2 -= SPD1;
@@ -132,8 +140,8 @@ public class PetBattleActivity extends Activity {
 				HP1 -= Damage;
 				if (HP1 < 0)
 					HP1 = 0;
-				if(Damage<=0)
-					Damage=0;
+				if (Damage <= 0)
+					Damage = 0;
 				tmpActionSet.add(new ActionBox(false, Damage, HP1));
 			}
 
@@ -147,6 +155,18 @@ public class PetBattleActivity extends Activity {
 
 		}
 		return tmpActionSet;
+	}
+
+	private void goToResultPAGE() {
+		Intent A = new Intent(this, ShowPetVersusResultActivity.class);
+		A.putExtra(getString(R.string.intentkey_battleresult), LeftWIN);
+		finish();
+		startActivity(A);
+	}
+
+	@Override
+	public void OnFinishBattle() {
+		goToResultPAGE();
 	}
 
 }

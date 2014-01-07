@@ -54,7 +54,7 @@ public class PetEvolutionActivity extends Activity implements OnEvolutionFinishL
 				MainPaggerNew.class);
 //		Intent mNext = new Intent(getApplicationContext(),
 //				PetMainActivity.class);
-		mNext.putExtra("isFromEvolution", true);
+		mNext.putExtra(getString(R.string.intentkey_isfromevolution), true);
 		finish();
 		startActivity(mNext);	
 	}

@@ -112,7 +112,8 @@ public class MainPaggerNew extends FragmentActivity implements
 		this.intialiseViewPager();
 
 		if (getIntent().getExtras() != null
-				&& getIntent().getExtras().getBoolean("isFromEvolution")) {
+				&& getIntent().getExtras().getBoolean(
+						getString(R.string.intentkey_isfromevolution))) {
 			new AlertDialog.Builder(this)
 					.setTitle("Congratulation")
 					.setMessage(
@@ -120,8 +121,24 @@ public class MainPaggerNew extends FragmentActivity implements
 					.setPositiveButton("OK", null).show();
 		}
 
+		if (getIntent().getExtras() != null
+				&& getIntent().getExtras().getBoolean(
+						getString(R.string.intentkey_isfromstatup))) {
+			new AlertDialog.Builder(this)
+					.setTitle("Congratulation")
+					.setMessage(
+							"Some Pet stat has increase because of your food. Your pet seem Happy")
+					.setPositiveButton("OK", null).show();
+		}
+
 		// Set server IP Address
-		if (PetUniqueDate.isServerIPEmpty()) {
+		try {
+			if (PetUniqueDate.isServerIPEmpty()) {
+
+				PetUniqueDate.SetServerIP("10.73.10.65");
+			}
+		} catch (NullPointerException E) {
+			PetUniqueDate.setContext(getApplicationContext());
 			PetUniqueDate.SetServerIP("10.73.10.65");
 		}
 		// Initial Food Database

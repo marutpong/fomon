@@ -11,7 +11,6 @@ import java.util.Set;
 
 import processImage.Hist_Phog;
 
-
 import monsterEatPhoto.EatPanel;
 import monsterEatPhoto.Pixel;
 import com.projnsc.bestprojectever.R;
@@ -20,6 +19,7 @@ import android.os.Environment;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
@@ -41,20 +41,23 @@ public class MonEatingPhotoActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		
+		
 		Log.i("TEXT",
 				getIntent().getExtras().getString(
-						ImageProcessActivity.getIntentExtraKeyPicSavePath()));
+						getString(R.string.intentkey_pathforfood)));
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_mon_eat_pic);
 		// mPanel = new EatPanel(this);
 		mPanel = (EatPanel) findViewById(R.id.eatPanel1);
 		mPanel.setImagePicPath(getIntent().getExtras().getString(
-				ImageProcessActivity.getIntentExtraKeyPicSavePath()));
+				getString(R.string.intentkey_pathforfood)));
 		mPanel.setPixelPool(mPool);
 		// setContentView(mPanel);
 		btnCancel = (Button) findViewById(R.id.btnEatCancel);
 		btnCancel.setOnClickListener(new OnClickListener() {
-
+			
 			@Override
 			public void onClick(View v) {
 				btnCancelPress();
@@ -119,10 +122,10 @@ public class MonEatingPhotoActivity extends Activity {
 		int Heigh = EatPanel.PanelHight;
 		int Width = EatPanel.PanelWidth;
 
-//		Bitmap mFood = BitmapFactory.decodeResource(getResources(),
-//				R.drawable.dummyfoodeattest);
-		Bitmap mFood = BitmapFactory.decodeFile(getIntent().getExtras().getString(
-				ImageProcessActivity.getIntentExtraKeyPicSavePath()));
+		// Bitmap mFood = BitmapFactory.decodeResource(getResources(),
+		// R.drawable.dummyfoodeattest);
+		Bitmap mFood = BitmapFactory.decodeFile(getIntent().getExtras()
+				.getString(getString(R.string.intentkey_pathforfood)));
 		mFood = Bitmap.createScaledBitmap(mFood, Width, Heigh, false);
 		Log.i(this.getClass().getName(), "Width Real: " + mFood.getWidth()
 				+ " Height Real: " + mFood.getHeight());
@@ -141,7 +144,8 @@ public class MonEatingPhotoActivity extends Activity {
 		File myDir = new File(root + "/" + HistoryType.FolderSavedName);
 		myDir.mkdirs();
 		File file = new File(myDir, HistoryType.TempFilePetEatSaveName);
-		fullPath = root + "/" + HistoryType.FolderSavedName + "/" + HistoryType.TempFilePetEatSaveName;
+		fullPath = root + "/" + HistoryType.FolderSavedName + "/"
+				+ HistoryType.TempFilePetEatSaveName;
 		if (file.exists())
 			file.delete();
 		try {
@@ -153,13 +157,20 @@ public class MonEatingPhotoActivity extends Activity {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		int[] classFood  = hist_phog.histImage(fullPath);
-		
-		Log.d("TEXT", String.valueOf(classFood[0])+"  "+String.valueOf(classFood[1]));
 
-		// /
+		int[] classFood = hist_phog.histImage(fullPath);
 
+		Log.d("TEXT",
+				String.valueOf(classFood[0]) + "  "
+						+ String.valueOf(classFood[1]));
+
+		Intent A = new Intent(this,TheTempActivity.class);
+		A.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		A.putExtra(getString(R.string.intentkey_analysisfoodclass1), classFood[0]);
+		A.putExtra(getString(R.string.intentkey_analysisfoodclass2), classFood[1]);
+		A.putExtra(getString(R.string.intentkey_pathforfood) ,getIntent().getExtras().getString(getString(R.string.intentkey_pathforfood)));
+		finish();
+		startActivity(A);
 	}
 
 	protected void btnCancelPress() {

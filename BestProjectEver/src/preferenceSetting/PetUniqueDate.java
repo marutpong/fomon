@@ -63,15 +63,26 @@ public class PetUniqueDate {
 		editPref.putString(PrefDataType.FBID, facebookID);
 		editPref.commit();
 	}
-	
-	public static void SetMonsterBirthDay(String monBD){
+
+	public static void SetMonsterBirthDay(String monBD) {
 		editPref.putString(PrefDataType.MONBIRTHDAY, monBD);
 		editPref.commit();
 	}
-	public static void SetServerIP(String serverIP){
+
+	public static void SetServerIP(String serverIP) {
 		editPref.putString(PrefDataType.SERVER_IP, serverIP);
 		editPref.commit();
 	}
+	
+	public static void SetK_KNN(int K) {
+		editPref.putInt(PrefDataType.K_KNN, K);
+		editPref.commit();
+	}
+
+	public static int getK_Value_KNN() {
+		return mainPref.getInt(PrefDataType.K_KNN, PrefDataType.NONEINT);
+	}
+	
 	public static String getMonName() {
 		return mainPref.getString(PrefDataType.MONNAME, PrefDataType.NONE);
 	}
@@ -99,7 +110,7 @@ public class PetUniqueDate {
 	public static String getFacebookID() {
 		return mainPref.getString(PrefDataType.FBID, PrefDataType.NONE);
 	}
-	
+
 	public static String getMonsterBirthday() {
 		return mainPref.getString(PrefDataType.MONBIRTHDAY, PrefDataType.NONE);
 	}
@@ -107,15 +118,20 @@ public class PetUniqueDate {
 	public Context getmContext() {
 		return mContext;
 	}
+
 	public static boolean isServerIPEmpty() {
-		return mainPref.getString(PrefDataType.SERVER_IP, PrefDataType.NONE)==null;
+		
+		return mainPref.getString(PrefDataType.SERVER_IP, PrefDataType.NONE) == null;
 	}
+
 	public static String getServerURL() {
-		return "http://"+getServerIP()+"/fomon/";
+		return "http://" + getServerIP() + "/fomon/";
 	}
+
 	public static String getServerIP() {
 		return mainPref.getString(PrefDataType.SERVER_IP, PrefDataType.NONE);
 	}
+
 	public static void setContext(Context mContext) {
 		PetUniqueDate.mContext = mContext;
 		mainPref = mContext.getSharedPreferences(PetUniqueDate.PrefName,
@@ -124,19 +140,8 @@ public class PetUniqueDate {
 	}
 
 	public static int getPetResource() {
-		Log.i(PetUniqueDate.class.getName(),getMonTypeID()+"");
-		switch (getMonTypeID()) {
-		case 10:
-			return R.drawable.baby1;
-		case 11:
-			return R.drawable.middle1;
-		case 1:
-			return R.drawable.pet_s7;
-		case 2:
-			return R.drawable.pet_s6;
-		default:
-			return R.drawable.pet_s7;
-		}
+		Log.i(PetUniqueDate.class.getName(), getMonTypeID() + "");
+		return getPetResource(getMonTypeID());
 	}
 
 	public static int getPetResource(int key) {

@@ -3,12 +3,15 @@ package com.projnsc.bestprojectever;
 import java.util.Random;
 
 import petShowEmotion.PetShowEmotionPanel;
+import petShowEmotion.PetShowEmotionPanel.OnPanelTouchListener;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class ShowPetVersusResultActivity extends Activity {
+public class ShowPetVersusResultActivity extends Activity implements
+		OnPanelTouchListener {
 
 	private static final String[] WINText = {
 			"Thank you, Master. I do my BEST",
@@ -25,17 +28,15 @@ public class ShowPetVersusResultActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
-		boolean BattleWON = true;
-		
-		BattleWON = (rand.nextInt(2)==1)? true : false;
-		
+		boolean BattleWON = getIntent().getBooleanExtra(getString(R.string.intentkey_battleresult), false);
 		int WONScore = 0;
 		int LOSEScore = 0;
 
 		setContentView(R.layout.activity_show_versus_result);
 
 		mEmoPanel = (PetShowEmotionPanel) findViewById(R.id.petShowEmotionPanel2);
-
+		mEmoPanel.setOnPanelTouchListener(this);
+		
 		BattleLOSEScore = (TextView) findViewById(R.id.txtPETBattleLose);
 		BattleWONScore = (TextView) findViewById(R.id.txtPETBattleWon);
 		BattleResultShow = (TextView) findViewById(R.id.txtPetBattleResult);
@@ -65,6 +66,18 @@ public class ShowPetVersusResultActivity extends Activity {
 			src.setText(LOSEText[rand.nextInt(LOSEText.length)]);
 		}
 
+	}
+
+	private void goToHOME() {
+		Intent A = new Intent(getApplicationContext(), MainPaggerNew.class);
+		A.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		finish();
+		startActivity(A);
+	}
+
+	@Override
+	public void OnPanelTouch() {
+		goToHOME();
 	}
 
 }
