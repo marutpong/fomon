@@ -169,9 +169,7 @@ public class PetBattlePanel extends SurfaceView implements Callback {
 
 	@Override
 	public void surfaceDestroyed(SurfaceHolder holder) {
-		if (mThread.isAlive()) {
-			mThread.setRunning(false);
-		}
+		stopThread();
 	}
 
 	public void startThread() {
@@ -182,6 +180,12 @@ public class PetBattlePanel extends SurfaceView implements Callback {
 		}
 	}
 
+	public void stopThread(){
+		if (mThread.isAlive()) {
+			mThread.setRunning(false);
+		}
+	}
+	
 	public void setHandler(Handler msgHandler) {
 		this.msgHandler = msgHandler;
 	}
