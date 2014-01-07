@@ -52,18 +52,15 @@ public class ShowStatResultActivity extends Activity implements
 
 		if (HistoryDatabase.getSumNutritionOfDate(HistoryType.getCurrentDate(),
 				FoodDatabase.Enum.calories.ordinal()) <= PetUniqueDate.MAXIMUM) {
-
-			HPUp = 0;
-			ATKUp = 0;
-			DEFUp = 0;
 			if (FoodClass != -1) {
 				FoodResult = FoodDatabase.getFoodByID(FoodClass);
-				HPUp = FoodResult.getHPRandomValue();
-				ATKUp = FoodResult.getATKRamdomValue();
-				DEFUp = FoodResult.getDEFRandomValue();
+				HPUp = HPUPCAL(FoodResult);
+				ATKUp = ATKUPCAL(FoodResult);
+				DEFUp = DEFUPCAL(FoodResult);
+				SPDUp = SPDUPCAL(FoodResult);
 			}
-			SPDUp = getIntent().getExtras().getInt(
-					getString(R.string.intentkey_setspeedstatup));
+			// SPDUp = getIntent().getExtras().getInt(
+			// getString(R.string.intentkey_setspeedstatup));
 		} else {
 			isFULLCALORIES = true;
 			if (FoodClass != -1) {
@@ -75,8 +72,8 @@ public class ShowStatResultActivity extends Activity implements
 		mPetStatModule = new PetStatGradualIncrease(HPUp, ATKUp, DEFUp, SPDUp);
 		mPetStatModule.setOnMonsterStatChange(this);
 		mEmoPanel = (PetShowEmotionPanel) findViewById(R.id.petShowEmotionPanel1);
-		if(!isFULLCALORIES)
-		mEmoPanel.setEmoKey("LOVE");
+		if (!isFULLCALORIES)
+			mEmoPanel.setEmoKey("LOVE");
 		else
 			mEmoPanel.setEmoKey("EXHAUSTED");
 		mEmoPanel.setOnPanelTouchListener(this);
@@ -110,6 +107,52 @@ public class ShowStatResultActivity extends Activity implements
 		barSPD.setProgress(PetUniqueDate.getMonSPD());
 
 		super.onCreate(savedInstanceState);
+	}
+
+	private int SPDUPCAL(FoodBox src) {
+		float Phos = (float) src.getPhosphorus();
+		float Sodi = (float) src.getSodium();
+		float Potas = (float) src.getPotassium();
+		int PhosCal = Math.round(Phos * 3 / 800);
+		int SodiCal = Math.round(Sodi * 3 / 2400);
+		int PotasCal = Math.round(Potas * 5 / 3500);
+		return PhosCal + SodiCal + PotasCal;
+	}
+
+	private int DEFUPCAL(FoodBox src) {
+		float Fat = (float) src.getFat();
+		float Carb = (float) src.getCarbohydrate();
+		float Calc = (float) src.getCalcium();
+		float Sodi = (float) src.getSodium();
+		int FatCal = Math.round(Fat * 9 / 65);
+		int CarbCal = Math.round(Carb * 3 / 300);
+		int CalcCal = Math.round(Calc * 5 / 900);
+		int SodiCal = Math.round(Sodi * 5 / 2400);
+		return FatCal + CarbCal + CalcCal + SodiCal;
+	}
+
+	private int ATKUPCAL(FoodBox src) {
+		float Prot = (float) src.getProtein();
+		float Mag = (float) src.getMagnesium();
+		float Potas = (float) src.getPotassium();
+		int ProtCal = Math.round(Prot * 21 / 50);
+		int MagCal = Math.round(Mag * 5 / 300);
+		int PotasCal = Math.round(Potas * 9 / 3500);
+		return ProtCal + MagCal + PotasCal;
+	}
+
+	private int HPUPCAL(FoodBox src) {
+		float Call = (float) src.getCalories();
+		float Carb = (float) src.getCarbohydrate();
+		float Calc = (float) src.getCalcium();
+		float Mag = (float) src.getMagnesium();
+		float Phos = (float) src.getPhosphorus();
+		int HPCal = Math.round(Call * 20 / 2000);
+		int CarbCal = Math.round(Carb * 9 / 300);
+		int CalcCal = Math.round(Calc * 5 / 900);
+		int MagCal = Math.round(Mag * 9 / 300);
+		int PhosCal = Math.round(Phos * 9 / 800);
+		return HPCal + CarbCal + CalcCal + MagCal + PhosCal;
 	}
 
 	@Override
