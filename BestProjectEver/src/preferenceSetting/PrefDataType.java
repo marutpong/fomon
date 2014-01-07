@@ -2,6 +2,8 @@ package preferenceSetting;
 
 public class PrefDataType {
 
+	public static final String Latitude = "PREF_Latitude";
+	public static final String Longtitude = "PREF_Longtitude";
 	public static final String FBID = "FacebookID";
 	public static final String MONBIRTHDAY = "MonsterBirthday";
 	public static final String MONNAME = "MonsterName";

@@ -37,7 +37,7 @@ public class NavGoogleMAP extends Activity implements OnGPSListener {
 		
 		txt1 = (TextView) findViewById(R.id.dummyPetInputNameLabel);
 		gps = new GPSLocation(this);
-		gps.setOnGPSListenern(this);
+		gps.setOnGPSListener(this);
 		btnWh = (Button) findViewById(R.id.btnTakePhoto);
 		btnHr = (Button) findViewById(R.id.btnSearchFood);
 		btnWh.setOnClickListener(new OnClickListener() {

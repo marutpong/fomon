@@ -40,7 +40,7 @@ public class GPSLocation {
     
     private OnGPSListener onGPSListenern;
     
-	public void setOnGPSListenern(OnGPSListener onGPSListenern) {
+	public void setOnGPSListener(OnGPSListener onGPSListenern) {
 		this.onGPSListenern = onGPSListenern;
 	}
 

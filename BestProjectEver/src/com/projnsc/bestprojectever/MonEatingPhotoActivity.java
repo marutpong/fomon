@@ -1,5 +1,7 @@
 package com.projnsc.bestprojectever;
 
+import gpsLocation.GPSLocation;
+import gpsLocation.GPSLocation.OnGPSListener;
 import historyDatabase.HistoryType;
 
 import java.io.File;
@@ -9,6 +11,7 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 
+import preferenceSetting.PetUniqueDate;
 import processImage.Hist_Phog;
 
 import monsterEatPhoto.EatPanel;
@@ -28,8 +31,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.Toast;
 
-public class MonEatingPhotoActivity extends Activity {
+public class MonEatingPhotoActivity extends Activity implements OnGPSListener {
 	Hist_Phog hist_phog = new Hist_Phog(this);
 	private static final int MENU_CLEAR_ID = 1000;
 	private Set<Pixel> mPool = new HashSet<Pixel>();
@@ -37,12 +41,16 @@ public class MonEatingPhotoActivity extends Activity {
 	Button btnClear;
 	Button btnCancel;
 	Button btnFinish;
+	GPSLocation gps;
+	double latitude = 0;
+	double longtitude = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		
+		gps = new GPSLocation(this);
+		gps.setOnGPSListener(this);
 		
 		Log.i("TEXT",
 				getIntent().getExtras().getString(
@@ -164,6 +172,8 @@ public class MonEatingPhotoActivity extends Activity {
 				String.valueOf(classFood[0]) + "  "
 						+ String.valueOf(classFood[1]));
 
+		PetUniqueDate.SetLatitude((float) latitude);
+		PetUniqueDate.SetLongtitude((float) longtitude);
 		Intent A = new Intent(this,TheTempActivity.class);
 		A.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		A.putExtra(getString(R.string.intentkey_analysisfoodclass1), classFood[0]);
@@ -181,6 +191,32 @@ public class MonEatingPhotoActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add(Menu.NONE, MENU_CLEAR_ID, Menu.NONE, "Clear");
 		return true;
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+        gps.setup();
+    }
+	
+	@Override
+	public void onStart() {
+        super.onStart();
+        gps.onStart(this);
+    }
+
+	@Override
+	public void onStop() {
+        super.onStop();
+        gps.onStop();
+    }
+
+	@Override
+	public void onGPSChange(GPSLocation gpsLocation) {
+//		la.setText(gpsLocation.getLatitude() + "");
+//		lo.setText(gpsLocation.getLongtitude() + "");
+		latitude = gpsLocation.getLatitude();
+		longtitude = gpsLocation.getLongtitude();
 	}
 
 }

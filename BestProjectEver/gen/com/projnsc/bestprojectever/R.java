@@ -274,8 +274,8 @@ containing a value of this type.
         public static final int btnChMode=0x7f050058;
         public static final int btnChangePetNameSet=0x7f050085;
         public static final int btnClearData=0x7f05007a;
-        public static final int btnEatCancel=0x7f05003a;
-        public static final int btnEatClear=0x7f050039;
+        public static final int btnEatCancel=0x7f050039;
+        public static final int btnEatClear=0x7f05003a;
         public static final int btnEatFinish=0x7f050038;
         public static final int btnSearchFood=0x7f050034;
         public static final int btnTakePhoto=0x7f050033;
