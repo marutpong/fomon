@@ -8,6 +8,7 @@ import java.util.Random;
 import foodDatabase.FoodBox;
 import foodDatabase.FoodDatabase;
 import petShowEmotion.PetShowEmotionPanel;
+import petShowEmotion.PetShowEmotionPanel.OnPanelTouchListener;
 import petShowEmotion.PetStatGradualIncrease;
 import petShowEmotion.PetStatGradualIncrease.OnMonsterStatChange;
 import preferenceSetting.PetUniqueDate;
@@ -22,7 +23,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class ShowStatResultActivity extends Activity implements
-		OnMonsterStatChange {
+		OnMonsterStatChange, OnPanelTouchListener {
 
 	private PetShowEmotionPanel mEmoPanel;
 	private ProgressBar barHP;
@@ -39,7 +40,8 @@ public class ShowStatResultActivity extends Activity implements
 	private int ATKUp = 0;
 	private int DEFUp = 0;
 	private int SPDUp = 0;
-	
+	private boolean isFULLCALORIES = false;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
@@ -47,24 +49,37 @@ public class ShowStatResultActivity extends Activity implements
 
 		int FoodClass = getIntent().getExtras().getInt(
 				this.getString(R.string.intentkey_setfoodclass));
-		HPUp = 0;
-		ATKUp = 0;
-		DEFUp = 0;
-		if (FoodClass != -1) {
-			FoodResult = FoodDatabase.getFoodByID(FoodClass);
-			HPUp = FoodResult.getHPRandomValue();
-			ATKUp = FoodResult.getATKRamdomValue();
-			DEFUp = FoodResult.getDEFRandomValue();
-		}
-		SPDUp = getIntent().getExtras().getInt(
-				getString(R.string.intentkey_setspeedstatup));
 
+		if (HistoryDatabase.getSumNutritionOfDate(HistoryType.getCurrentDate(),
+				FoodDatabase.Enum.calories.ordinal()) <= PetUniqueDate.MAXIMUM) {
+
+			HPUp = 0;
+			ATKUp = 0;
+			DEFUp = 0;
+			if (FoodClass != -1) {
+				FoodResult = FoodDatabase.getFoodByID(FoodClass);
+				HPUp = FoodResult.getHPRandomValue();
+				ATKUp = FoodResult.getATKRamdomValue();
+				DEFUp = FoodResult.getDEFRandomValue();
+			}
+			SPDUp = getIntent().getExtras().getInt(
+					getString(R.string.intentkey_setspeedstatup));
+		} else {
+			isFULLCALORIES = true;
+			if (FoodClass != -1) {
+				FoodResult = FoodDatabase.getFoodByID(FoodClass);
+			}
+		}
 		// Save to Database
 
 		mPetStatModule = new PetStatGradualIncrease(HPUp, ATKUp, DEFUp, SPDUp);
 		mPetStatModule.setOnMonsterStatChange(this);
 		mEmoPanel = (PetShowEmotionPanel) findViewById(R.id.petShowEmotionPanel1);
+		if(!isFULLCALORIES)
 		mEmoPanel.setEmoKey("LOVE");
+		else
+			mEmoPanel.setEmoKey("EXHAUSTED");
+		mEmoPanel.setOnPanelTouchListener(this);
 		mEmoPanel.setPetStatModule(mPetStatModule);
 
 		txtHpShow = (TextView) findViewById(R.id.txtHPemo);
@@ -108,8 +123,13 @@ public class ShowStatResultActivity extends Activity implements
 	@Override
 	public void OnMonsterStatChangeComplete() {
 		mEmoPanel.stopThread();
-		Intent A = new Intent(getApplicationContext(),MainPaggerNew.class);
+		Intent A = new Intent(getApplicationContext(), MainPaggerNew.class);
 		A.putExtra(getString(R.string.intentkey_isfromstatup), true);
+		if (isFULLCALORIES) {
+			A.putExtra(getString(R.string.intentkey_ismaxcalories), true);
+		} else {
+			A.putExtra(getString(R.string.intentkey_ismaxcalories), false);
+		}
 		A.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		finish();
 		startActivity(A);
@@ -117,13 +137,22 @@ public class ShowStatResultActivity extends Activity implements
 		PetUniqueDate.SetMonATK(PetUniqueDate.getMonATK() + ATKUp);
 		PetUniqueDate.SetMonDEF(PetUniqueDate.getMonDEF() + DEFUp);
 		PetUniqueDate.SetMonSPD(PetUniqueDate.getMonSPD() + SPDUp);
-		HistoryDatabase.insertHistory(getIntent().getExtras().getString(getString(R.string.intentkey_pathforfood)), 11.1212, 21.1212, FoodResult.getID(), HistoryType.getCurrentDate(), HistoryType.getCurrentTime());
+		HistoryDatabase.insertHistory(
+				getIntent().getExtras().getString(
+						getString(R.string.intentkey_pathforfood)), 11.1212,
+				21.1212, FoodResult.getID(), HistoryType.getCurrentDate(),
+				HistoryType.getCurrentTime());
 	}
 
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
-//		super.onBackPressed();
+		// super.onBackPressed();
 	}
-	
+
+	@Override
+	public void OnPanelTouch() {
+		OnMonsterStatChangeComplete();
+	}
+
 }

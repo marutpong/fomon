@@ -124,10 +124,13 @@ public class MainPaggerNew extends FragmentActivity implements
 		if (getIntent().getExtras() != null
 				&& getIntent().getExtras().getBoolean(
 						getString(R.string.intentkey_isfromstatup))) {
+			String MSG = "Some Pet stat has increase because of your food. Your pet seem Happy";
+			if(getIntent().getExtras().getBoolean(getString(R.string.intentkey_ismaxcalories)))
+				MSG = "You have give your pet some food \nbut it seem useless";
 			new AlertDialog.Builder(this)
 					.setTitle("Congratulation")
 					.setMessage(
-							"Some Pet stat has increase because of your food. Your pet seem Happy")
+							MSG)
 					.setPositiveButton("OK", null).show();
 		}
 

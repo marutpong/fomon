@@ -2,6 +2,8 @@ package com.projnsc.bestprojectever;
 
 import com.projnsc.bestprojectever.R;
 
+import connection.MyServer;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,6 +34,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
@@ -41,9 +44,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 public class FightListActivity extends Activity {
 
+	
+	TextView txtWIN;
+	TextView txtLOSE;
+	
 	@SuppressLint("NewApi")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -73,6 +81,12 @@ public class FightListActivity extends Activity {
 			}
 		});
 
+		txtWIN = (TextView) findViewById(R.id.txtFightWIN);
+		txtLOSE = (TextView) findViewById(R.id.txtFightLOSE);
+		
+		txtWIN.setText("WIN : " + MyServer.GetWIN());
+		txtLOSE.setText("LOSE : " + MyServer.GetLOSE());
+		
 	}
 
 	public void SearchData() {
@@ -142,50 +156,80 @@ public class FightListActivity extends Activity {
 				public void onItemClick(AdapterView<?> myAdapter, View myView,
 						int position, long mylng) {
 
-					String strID = MyArrList.get(position).get("id").toString();
-					String sName = MyArrList.get(position).get("name")
+					final String sID = MyArrList.get(position)
+							.get("id").toString();
+					final String sName = MyArrList.get(position).get("name")
 							.toString();
-					String strType = MyArrList.get(position).get("type")
-							.toString();
-					String strAge = MyArrList.get(position).get("age")
-							.toString();
-					String strHP = MyArrList.get(position).get("hp").toString();
-					String strATK = MyArrList.get(position).get("atk")
-							.toString();
-					String strDEF = MyArrList.get(position).get("def")
-							.toString();
-					String strSPD = MyArrList.get(position).get("spd")
-							.toString();
-					String strWin = MyArrList.get(position).get("win")
-							.toString();
-					String strLose = MyArrList.get(position).get("lose")
-							.toString();
+					final int Type = Integer.parseInt(MyArrList.get(position)
+							.get("type").toString());
+					final String sAge = MyArrList.get(position)
+							.get("age").toString();
+					final int HP = Integer.parseInt(MyArrList.get(position)
+							.get("hp").toString());
+					final int ATK = Integer.parseInt(MyArrList.get(position)
+							.get("atk").toString());
+					final int DEF = Integer.parseInt(MyArrList.get(position)
+							.get("def").toString());
+					final int SPD = Integer.parseInt(MyArrList.get(position)
+							.get("spd").toString());
+					int Win = Integer.parseInt(MyArrList.get(position)
+							.get("win").toString());
+					int Lose = Integer.parseInt(MyArrList.get(position)
+							.get("lose").toString());
+
+					float WinPercent = (((float) Win) / ((float) Lose + Win))*100;
+					if(Lose == Win && Lose == 0)
+						WinPercent = 0;
 
 					viewDetail.setIcon(android.R.drawable.btn_star_big_on);
 					viewDetail.setTitle(sName);
-					viewDetail.setMessage("MemberID : " + strID + "\n"
-							+ "Name : " + sName + "\n" + "Type : " + strType
-							+ "\n" + "Age : " + strAge + "\n" + "HP : " + strHP
-							+ "\n" + "ATK : " + strATK + "\n" + "DEF : "
-							+ strDEF + "\n" + "SPD : " + strSPD + "\n"
-							+ "WIN : " + strWin + "\n" + "Lose : " + strLose);
+					// viewDetail.setMessage("MemberID : " + strID + "\n"
+					// + "Name : " + sName + "\n" + "Type : " + strType
+					// + "\n" + "Age : " + strAge + "\n" + "HP : " + strHP
+					// + "\n" + "ATK : " + strATK + "\n" + "DEF : "
+					// + strDEF + "\n" + "SPD : " + strSPD + "\n"
+					// + "WIN : " + strWin + "\n" + "Lose : " + strLose);
+					viewDetail.setMessage("MemberID : " + sID + "\n" + "Name : "
+							+ sName + "\n" + "Type : " + Type + "\n" + "Age : "
+							+ sAge + "\n" + "Win% :" + WinPercent);
 					viewDetail.setPositiveButton("Cancel",
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int which) {
-									// TODO Auto-generated method stub
 									dialog.dismiss();
 								}
 							});
-					viewDetail.setNeutralButton("Fight",
+					viewDetail.setNegativeButton("Fight",
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
 										int id) {
-									dialog.dismiss();
+									// dialog.dismiss();
 									// context.startActivity(new Intent(context,
 									// Setup.class));
 									// dialog.cancel();
-
+									Intent A = new Intent(getBaseContext(),
+											PetBattleActivity.class);
+									A.putExtra(
+											getString(R.string.intentkey_getenemyhp),
+											HP);
+									A.putExtra(
+											getString(R.string.intentkey_getenemyatk),
+											ATK);
+									A.putExtra(
+											getString(R.string.intentkey_getenemydef),
+											DEF);
+									A.putExtra(
+											getString(R.string.intentkey_getenemyspd),
+											SPD);
+									A.putExtra(
+											getString(R.string.intentkey_getenemyname),
+											sName);
+									A.putExtra(
+											getString(R.string.intentkey_getenemyid),
+											sID);
+									finish();
+									dialog.dismiss();
+									startActivity(A);
 								}
 							});
 					viewDetail.show();

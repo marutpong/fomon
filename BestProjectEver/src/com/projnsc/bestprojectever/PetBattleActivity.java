@@ -53,22 +53,22 @@ public class PetBattleActivity extends Activity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.pet_battle_activity);
-		
+
 		LeftPetName = PetUniqueDate.getMonName();
-//		RightPetName = getIntent().getExtras().getString("INTENTKEY_GetEnemyName");
-		RightPetName = "NONAME";
+		RightPetName = getIntent().getExtras().getString(
+				getString(R.string.intentkey_getenemyname));
 		LeftPetAttribute[0] = PetUniqueDate.getMonHP();
 		LeftPetAttribute[1] = PetUniqueDate.getMonATK();
 		LeftPetAttribute[2] = PetUniqueDate.getMonDEF();
 		LeftPetAttribute[3] = PetUniqueDate.getMonSPD();
-//		RightPetAttribute[0] = getIntent().getExtras().getInt("INTENTKEY_GetEnemyHP");
-//		RightPetAttribute[1] = getIntent().getExtras().getInt("INTENTKEY_GetEnemyATK");
-//		RightPetAttribute[2] = getIntent().getExtras().getInt("INTENTKEY_GetEnemyDEF");
-//		RightPetAttribute[3] = getIntent().getExtras().getInt("INTENTKEY_GetEnemySPD");
-		RightPetAttribute[0] = 80;
-		RightPetAttribute[1] = 20;
-		RightPetAttribute[2] = 20;
-		RightPetAttribute[3] = 3;
+		RightPetAttribute[0] = getIntent().getExtras().getInt(
+				getString(R.string.intentkey_getenemyhp));
+		RightPetAttribute[1] = getIntent().getExtras().getInt(
+				getString(R.string.intentkey_getenemyatk));
+		RightPetAttribute[2] = getIntent().getExtras().getInt(
+				getString(R.string.intentkey_getenemydef));
+		RightPetAttribute[3] = getIntent().getExtras().getInt(
+				getString(R.string.intentkey_getenemyspd));
 
 		LeftName = (TextView) findViewById(R.id.txtBattleMonsterNameL);
 		RightName = (TextView) findViewById(R.id.txtBattleMonsterNameR);
@@ -90,7 +90,8 @@ public class PetBattleActivity extends Activity implements
 		ArrayList<ActionBox> tmp = ActionSeriesGenerate();
 		LeftWIN = tmp.get(tmp.size() - 1).isLeftSideAction();
 		mPanel.setActionSeries(tmp);
-		mPanel.setEachMonID(PetUniqueDate.getMonTypeID(), 10);
+		mPanel.setEachMonID(PetUniqueDate.getMonTypeID(), getIntent()
+				.getExtras().getInt(getString(R.string.intentkey_getenemyid)));
 		mPanel.setOnFinishBattleListener(this);
 		mPanel.startThread();
 		super.onCreate(savedInstanceState);
@@ -127,21 +128,21 @@ public class PetBattleActivity extends Activity implements
 				tSPD1 -= SPD2;
 				Damage = (ATK1 - randGEN.nextInt(rATK1))
 						- (DEF2 - randGEN.nextInt(rDEF2));
+				if (Damage <= 0)
+					Damage = 1;
 				HP2 -= Damage;
 				if (HP2 < 0)
 					HP2 = 0;
-				if (Damage <= 0)
-					Damage = 0;
 				tmpActionSet.add(new ActionBox(true, Damage, HP2));
 			} else {
 				tSPD2 -= SPD1;
 				Damage = (ATK2 - randGEN.nextInt(rATK2))
 						- (DEF1 - randGEN.nextInt(rDEF1));
+				if (Damage <= 0)
+					Damage = 1;
 				HP1 -= Damage;
 				if (HP1 < 0)
 					HP1 = 0;
-				if (Damage <= 0)
-					Damage = 0;
 				tmpActionSet.add(new ActionBox(false, Damage, HP1));
 			}
 

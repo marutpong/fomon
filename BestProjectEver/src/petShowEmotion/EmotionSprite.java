@@ -57,6 +57,8 @@ public class EmotionSprite {
 			return 1;
 		if (emoKey.equalsIgnoreCase("EXAMINATION"))
 			return 0;
+		if(emoKey.equalsIgnoreCase("EXHAUSTED"))
+			return 5; 
 		return -1;
 	}
 

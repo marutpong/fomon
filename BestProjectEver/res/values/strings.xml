@@ -15,5 +15,12 @@
     <string name="intentkey_isfromstatup">INTENTKEY_IsFromStatUp</string>
     <string name="intentkey_isfromevolution">INTENTKEY_IsFromEvolution</string>
     <string name="intentkey_battleresult">INTENTKEY_BattleResult</string>
+    <string name="intentkey_getenemyhp">INTENTKEY_GetEnemyHP</string>
+    <string name="intentkey_getenemyatk">INTENTKEY_GetEnemyATK</string>
+    <string name="intentkey_getenemydef">INTENTKEY_GetEnemyDEF</string>
+    <string name="intentkey_getenemyspd">INTENTKEY_GetEnemySPD</string>
+    <string name="intentkey_getenemyname">INTENTKEY_GetEnemyName</string>
+    <string name="intentkey_getenemyid">INTENTKEY_GetEnemyID</string>
+    <string name="intentkey_ismaxcalories">INTENTKEY_ISMAXCALORIES</string>
 
 </resources>

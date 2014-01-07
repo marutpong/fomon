@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -41,6 +42,13 @@ public class TheTempActivity extends Activity {
 				getString(R.string.intentkey_analysisfoodclass1), -1);
 		ClassFood2 = getIntent().getIntExtra(
 				getString(R.string.intentkey_analysisfoodclass2), -1);
+		
+		if(ClassFood1 == 0)
+			ClassFood1 = 1;
+		if(ClassFood2 == 0)
+			ClassFood2 = 1;
+		
+		Log.i("Food Class", ClassFood1 + " " + ClassFood2);
 		if (ClassFood1 == ClassFood2 && ClassFood1 != -1) {
 			goToStatUpResult(ClassFood1);
 		} else {
@@ -136,7 +144,7 @@ public class TheTempActivity extends Activity {
 				// ListView Clicked item value
 				// String itemValue = (String)
 				// foodListView.getItemAtPosition(position);
-				askConfirmSelect(itemPosition);
+				askConfirmSelect(itemPosition+1);
 				// Show Alert
 			}
 
