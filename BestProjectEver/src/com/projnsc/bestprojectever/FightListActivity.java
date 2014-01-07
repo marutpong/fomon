@@ -33,11 +33,13 @@ import android.os.StrictMode;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
@@ -48,10 +50,9 @@ import android.widget.TextView;
 
 public class FightListActivity extends Activity {
 
-	
 	TextView txtWIN;
 	TextView txtLOSE;
-	
+
 	@SuppressLint("NewApi")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -83,10 +84,10 @@ public class FightListActivity extends Activity {
 
 		txtWIN = (TextView) findViewById(R.id.txtFightWIN);
 		txtLOSE = (TextView) findViewById(R.id.txtFightLOSE);
-		
+
 		txtWIN.setText("WIN : " + MyServer.GetWIN());
 		txtLOSE.setText("LOSE : " + MyServer.GetLOSE());
-		
+
 	}
 
 	public void SearchData() {
@@ -156,14 +157,14 @@ public class FightListActivity extends Activity {
 				public void onItemClick(AdapterView<?> myAdapter, View myView,
 						int position, long mylng) {
 
-					final String sID = MyArrList.get(position)
-							.get("id").toString();
+					final String sID = MyArrList.get(position).get("id")
+							.toString();
 					final String sName = MyArrList.get(position).get("name")
 							.toString();
 					final int Type = Integer.parseInt(MyArrList.get(position)
 							.get("type").toString());
-					final String sAge = MyArrList.get(position)
-							.get("age").toString();
+					final String sAge = MyArrList.get(position).get("age")
+							.toString();
 					final int HP = Integer.parseInt(MyArrList.get(position)
 							.get("hp").toString());
 					final int ATK = Integer.parseInt(MyArrList.get(position)
@@ -177,8 +178,8 @@ public class FightListActivity extends Activity {
 					int Lose = Integer.parseInt(MyArrList.get(position)
 							.get("lose").toString());
 
-					float WinPercent = (((float) Win) / ((float) Lose + Win))*100;
-					if(Lose == Win && Lose == 0)
+					float WinPercent = (((float) Win) / ((float) Lose + Win)) * 100;
+					if (Lose == Win && Lose == 0)
 						WinPercent = 0;
 
 					viewDetail.setIcon(android.R.drawable.btn_star_big_on);
@@ -189,9 +190,10 @@ public class FightListActivity extends Activity {
 					// + "\n" + "ATK : " + strATK + "\n" + "DEF : "
 					// + strDEF + "\n" + "SPD : " + strSPD + "\n"
 					// + "WIN : " + strWin + "\n" + "Lose : " + strLose);
-					viewDetail.setMessage("MemberID : " + sID + "\n" + "Name : "
-							+ sName + "\n" + "Type : " + Type + "\n" + "Age : "
-							+ sAge + "\n" + "Win% :" + WinPercent);
+					viewDetail.setMessage("MemberID : " + sID + "\n"
+							+ "Name : " + sName + "\n" + "Type : " + Type
+							+ "\n" + "Age : " + sAge + "\n" + "Win% :"
+							+ WinPercent);
 					viewDetail.setPositiveButton("Cancel",
 							new DialogInterface.OnClickListener() {
 								public void onClick(DialogInterface dialog,
@@ -207,6 +209,9 @@ public class FightListActivity extends Activity {
 									// context.startActivity(new Intent(context,
 									// Setup.class));
 									// dialog.cancel();
+									InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+									imm.hideSoftInputFromWindow(
+											inputText.getWindowToken(), 0);
 									Intent A = new Intent(getBaseContext(),
 											PetBattleActivity.class);
 									A.putExtra(

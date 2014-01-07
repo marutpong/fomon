@@ -31,6 +31,7 @@ public class PetBattleActivity extends Activity implements
 	private int[] LeftPetAttribute = new int[4];
 	private int[] RightPetAttribute = new int[4];
 	private boolean LeftWIN = false;
+	private PetBattlePanel mPanel;
 	// private ArrayList<ActionBox> AcionBoxSet;
 
 	private Handler msgHandler = new Handler() {
@@ -85,7 +86,7 @@ public class PetBattleActivity extends Activity implements
 		RightName.setText(RightPetName);
 		LeftPetHP.setText(LeftPetAttribute[0] + " / " + LeftPetAttribute[0]);
 		RightPetHP.setText(RightPetAttribute[0] + " / " + RightPetAttribute[0]);
-		PetBattlePanel mPanel = (PetBattlePanel) findViewById(R.id.petBattlePanel1);
+		mPanel = (PetBattlePanel) findViewById(R.id.petBattlePanel1);
 		mPanel.setHandler(msgHandler);
 		ArrayList<ActionBox> tmp = ActionSeriesGenerate();
 		LeftWIN = tmp.get(tmp.size() - 1).isLeftSideAction();
@@ -170,4 +171,12 @@ public class PetBattleActivity extends Activity implements
 		goToResultPAGE();
 	}
 
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		mPanel.stopThread();
+		goToResultPAGE();
+//		super.onBackPressed();
+	}
+	
 }
