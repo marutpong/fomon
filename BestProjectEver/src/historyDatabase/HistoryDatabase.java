@@ -326,7 +326,7 @@ public class HistoryDatabase extends SQLiteOpenHelper {
 			SQLiteDatabase db;
 			db = this.getReadableDatabase(); // Read Data
 
-			String strSQL = "SELECT  * FROM " + TABLE_NAME;
+			String strSQL = "SELECT  * FROM " + TABLE_NAME + " ORDER BY id DESC";
 			Cursor cursor = db.rawQuery(strSQL, null);
 
 			if (cursor != null) {
@@ -362,7 +362,7 @@ public class HistoryDatabase extends SQLiteOpenHelper {
 			SQLiteDatabase db;
 			db = hd.getReadableDatabase(); // Read Data
 
-			String strSQL = "SELECT  * FROM " + TABLE_NAME;
+			String strSQL = "SELECT  * FROM " + TABLE_NAME + " ORDER BY id DESC";
 			Cursor cursor = db.rawQuery(strSQL, null);
 
 			if (cursor != null) {

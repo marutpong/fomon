@@ -2,6 +2,7 @@ package tabFragment;
 
 
 import historyDatabase.HistoryAdapter;
+import historyDatabase.HistoryBox;
 import historyDatabase.HistoryDatabase;
 //import historyDatabase.HistoryDatabase.OnNumberBoxChange;
 
@@ -97,6 +98,8 @@ return mView;
 		// Toast.makeText(getActivity(), position+"",
 		// Toast.LENGTH_SHORT).show();
 		Intent inend = new Intent(getActivity(), HistoryDetail.class);
+		HistoryBox box =  HistoryDatabase.getDataBox(position);
+		inend.putExtra("imagePath", box.getPicturePath());
 		inend.putExtra("index", position);
 		startActivity(inend);
 

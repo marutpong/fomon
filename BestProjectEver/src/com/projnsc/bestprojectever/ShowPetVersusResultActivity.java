@@ -61,14 +61,13 @@ public class ShowPetVersusResultActivity extends Activity implements
 	}
 
 	private void setBattleResultText(TextView src, boolean WIN) {
+		String enemyID = getIntent().getExtras().getString(getString(R.string.intentkey_getenemyid));
+		MyServer.addFightHistory(enemyID, WIN);
 
 		if (WIN) {
 			src.setText(WINText[rand.nextInt(WINText.length)]);
-			MyServer.IncreaseWIN();
-			MyServer.IncreaseRANK();
 		} else {
 			src.setText(LOSEText[rand.nextInt(LOSEText.length)]);
-			MyServer.IncreaseLOSE();
 		}
 
 	}
