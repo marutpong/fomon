@@ -2,6 +2,8 @@ package com.projnsc.bestprojectever;
 
 import java.util.Random;
 
+import connection.MyServer;
+
 import petShowEmotion.PetShowEmotionPanel;
 import petShowEmotion.PetShowEmotionPanel.OnPanelTouchListener;
 
@@ -62,8 +64,11 @@ public class ShowPetVersusResultActivity extends Activity implements
 
 		if (WIN) {
 			src.setText(WINText[rand.nextInt(WINText.length)]);
+			MyServer.IncreaseWIN();
+			MyServer.IncreaseRANK();
 		} else {
 			src.setText(LOSEText[rand.nextInt(LOSEText.length)]);
+			MyServer.IncreaseLOSE();
 		}
 
 	}

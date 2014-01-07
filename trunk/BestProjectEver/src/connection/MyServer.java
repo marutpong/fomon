@@ -124,4 +124,24 @@ public class MyServer// extends Application
 		}
 		return str.toString();
 	}
+
+	public static void IncreaseWIN() {
+		
+	}
+
+	public static void IncreaseLOSE() {
+		
+	}
+
+	public static int GetWIN(){
+		return 0;
+	}
+	
+	public static int GetLOSE(){
+		return 0;
+	}
+	
+	public static void IncreaseRANK() {
+		
+	}
 }

@@ -13,6 +13,7 @@ public class PetUniqueDate {
 	 * Context from Activity
 	 */
 	private static final String PrefName = "PetPref";
+	public static final double MAXIMUM = 2000;
 	private static Context mContext;
 	private static SharedPreferences mainPref;
 	private static SharedPreferences.Editor editPref;
