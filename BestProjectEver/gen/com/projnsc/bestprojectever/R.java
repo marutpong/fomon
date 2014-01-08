@@ -335,8 +335,8 @@ containing a value of this type.
         public static final int pager_title_strip=0x7f05005e;
         public static final int petBattlePanel1=0x7f050069;
         public static final int petPanel1=0x7f05006a;
-        public static final int petShowEmotionPanel1=0x7f05003b;
         public static final int petShowEmotionPanel2=0x7f050046;
+        public static final int petShowEmotionPanelEx=0x7f05003b;
         public static final int progressATK=0x7f05000c;
         public static final int progressDEF=0x7f050042;
         public static final int progressHP=0x7f05000b;

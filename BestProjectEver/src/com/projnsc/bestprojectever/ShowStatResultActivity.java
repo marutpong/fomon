@@ -71,7 +71,7 @@ public class ShowStatResultActivity extends Activity implements
 
 		mPetStatModule = new PetStatGradualIncrease(HPUp, ATKUp, DEFUp, SPDUp);
 		mPetStatModule.setOnMonsterStatChange(this);
-		mEmoPanel = (PetShowEmotionPanel) findViewById(R.id.petShowEmotionPanel1);
+		mEmoPanel = (PetShowEmotionPanel) findViewById(R.id.petShowEmotionPanelEx);
 		if (!isFULLCALORIES)
 			mEmoPanel.setEmoKey("LOVE");
 		else

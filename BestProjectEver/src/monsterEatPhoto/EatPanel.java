@@ -66,7 +66,7 @@ public class EatPanel extends SurfaceView implements Callback {
 
 	public EatPanel(Context context, AttributeSet attrs) {
 		super(context, attrs);
-//		init();
+		init();
 	}
 
 	public EatPanel(Context context) {

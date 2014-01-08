@@ -4,12 +4,15 @@ import com.projnsc.bestprojectever.R;
 
 import foodDatabase.FoodDatabase;
 import java.util.ArrayList;
+
+import petShowEmotion.PetShowEmotionPanel;
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v4.widget.SlidingPaneLayout.PanelSlideListener;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -79,10 +82,12 @@ public class TheTempActivity extends Activity {
 
 		View view = this.getLayoutInflater().inflate(R.layout.thetemp_3button,
 				null);
-
+		
 		final Button btnClass1 = (Button) view.findViewById(R.id.btn_c1);
 		final Button btnClass2 = (Button) view.findViewById(R.id.btn_c2);
 		final Button btnOther = (Button) view.findViewById(R.id.btn_other);
+		final PetShowEmotionPanel ePanel = (PetShowEmotionPanel) view.findViewById(R.id.petShowEmotionPanelEx);
+		ePanel.setEmoKey("QUESTION");
 		btnClass1.setText(NameFood1);
 		btnClass2.setText(NameFood2);
 
