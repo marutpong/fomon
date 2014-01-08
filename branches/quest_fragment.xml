@@ -10,29 +10,42 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".QuestFragment" >
 
-    <TextView
-        android:id="@+id/dummyCalloriesQ"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Callories"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <ProgressBar
-        android:id="@+id/ProgressCalloriesQ"
-        style="?android:attr/progressBarStyleHorizontal"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:progressDrawable="@drawable/custom_progress"
-        android:minHeight="15dip" 
-		android:maxHeight="30dip"
-         />
+        android:layout_height="wrap_content" >
 
-    <TextView
-        android:id="@+id/dummyProtienQ"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Protien"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nutrition Quest"
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/dummyProtienQ"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Protien"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/txtProtienQ"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Medium Text"
+            android:gravity="right"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/ProgressProtienQ"
@@ -40,16 +53,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" 
         android:progressDrawable="@drawable/custom_progress"
-        android:minHeight="15dip" 
-		android:maxHeight="30dip"
+        android:minHeight="20dip" 
+		android:maxHeight="40dip"
 		/>
 
-    <TextView
-        android:id="@+id/dummyFatQ"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fat"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/dummyFatQ"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Fat"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/txtFatQ"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Medium Text"
+            android:gravity="right"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/ProgressFatQ"
@@ -57,16 +85,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" 
         android:progressDrawable="@drawable/custom_progress"
-        android:minHeight="15dip" 
-		android:maxHeight="30dip"
+        android:minHeight="20dip" 
+		android:maxHeight="40dip"
 		/>
 
-    <TextView
-        android:id="@+id/dummyCarbohydrateQ"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Carbohydrate"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/dummyCarbohydrateQ"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Carbohydrate"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/txtCarbohydrateQ"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Medium Text"
+            android:gravity="right"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/ProgressCarbohydrateQ"
@@ -74,16 +117,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" 
         android:progressDrawable="@drawable/custom_progress"
-        android:minHeight="15dip" 
-		android:maxHeight="30dip"
+        android:minHeight="20dip" 
+		android:maxHeight="40dip"
 		/>
 
-    <TextView
-        android:id="@+id/dummyCalciumQ"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Calcium"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/dummyCalciumQ"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Calcium"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/txtCalciumQ"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Medium Text"
+            android:gravity="right"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/ProgressCalciumQ"
@@ -91,16 +149,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" 
         android:progressDrawable="@drawable/custom_progress"
-        android:minHeight="15dip" 
-		android:maxHeight="30dip"
+         android:minHeight="20dip" 
+		android:maxHeight="40dip"
 		/>
 
-    <TextView
-        android:id="@+id/dummyMagnesiumQ"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Magnesium"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/dummyMagnesiumQ"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Magnesium"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/txtMagnesiumQ"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Medium Text"
+            android:gravity="right"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/ProgressMagnesiumQ"
@@ -108,16 +181,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" 
         android:progressDrawable="@drawable/custom_progress"
-        android:minHeight="15dip" 
-		android:maxHeight="30dip"
+        android:minHeight="20dip" 
+		android:maxHeight="40dip"
 		/>
 
-    <TextView
-        android:id="@+id/dummyPotassiumQ"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Potassium"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/dummyPotassiumQ"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Potassium"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/txtPotassiumQ"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Medium Text"
+            android:gravity="right"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/ProgressPotassiumQ"
@@ -125,16 +213,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" 
         android:progressDrawable="@drawable/custom_progress"
-        android:minHeight="15dip" 
-		android:maxHeight="30dip"
+        android:minHeight="20dip" 
+		android:maxHeight="40dip"
 		/>
 
-    <TextView
-        android:id="@+id/dummySodiumQ"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sodium"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/dummySodiumQ"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Sodium"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/txtSodiumQ"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Medium Text"
+            android:gravity="right"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/ProgressSodiumQ"
@@ -142,16 +245,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" 
         android:progressDrawable="@drawable/custom_progress"
-        android:minHeight="15dip" 
-		android:maxHeight="30dip"
+        android:minHeight="20dip" 
+		android:maxHeight="40dip"
 		/>
 
-    <TextView
-        android:id="@+id/dummyPhosphorusQ"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Phosphorus"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/dummyPhosphorusQ"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Phosphorus"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/txtPhosphorusQ"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Medium Text"
+            android:gravity="right"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/ProgressPhosphorusQ"
@@ -159,8 +277,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" 
         android:progressDrawable="@drawable/custom_progress"
-        android:minHeight="15dip" 
-		android:maxHeight="30dip"
+        android:minHeight="20dip" 
+		android:maxHeight="40dip"
 		/>
 
 </LinearLayout>
