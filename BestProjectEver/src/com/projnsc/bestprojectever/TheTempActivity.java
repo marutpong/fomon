@@ -114,6 +114,7 @@ public class TheTempActivity extends Activity {
 
 		selectDialog = new AlertDialog.Builder(this).setTitle("Select Class")
 				.setView(view)
+				.setCancelable(false)
 				// .setPositiveButton("OK", null)
 				.show();
 	}
@@ -174,12 +175,6 @@ public class TheTempActivity extends Activity {
 								}
 							}
 						}).setNegativeButton("No", null).show();
-	}
-	
-	@Override
-	public void onBackPressed() {
-		// TODO Auto-generated method stub
-//		super.onBackPressed();
 	}
 
 }

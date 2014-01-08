@@ -49,7 +49,7 @@ public class SettingFragment extends Fragment {
 		btnRename = (Button) mView.findViewById(R.id.btnChangePetNameSet);
 		btnClear = (Button) mView.findViewById(R.id.btnClearData);
 		btnChangServerIP = (Button) mView.findViewById(R.id.btn_serverip);
-		txtPetNameSet = (TextView) mView.findViewById(R.id.txtPetNameSet);
+		txtPetNameSet = (TextView) mView.findViewById(R.id.txtPetNamePK);
 		txtHPSet = (TextView) mView.findViewById(R.id.txtPetHPSet);
 		txtATKSet = (TextView) mView.findViewById(R.id.txtPetATKSet);
 		txtDEFSet = (TextView) mView.findViewById(R.id.txtPetDEFSet);
@@ -73,8 +73,8 @@ public class SettingFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-//				showRenameDialog();
-				addRandomText();
+				showRenameDialog();
+//				addRandomText();
 				
 			}
 		});

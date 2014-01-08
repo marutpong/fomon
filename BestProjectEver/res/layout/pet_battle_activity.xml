@@ -76,22 +76,23 @@
                 android:layout_height="wrap_content" >
 
                 <TextView
-                    android:id="@+id/txtBattleMonsterNameR"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="left"
-                    android:text="MonName 2"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                <TextView
                     android:id="@+id/txtMonBattleHPRIGHT"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="right"
+                    android:gravity="left"
                     android:text="HPTab2"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <TextView
+                    android:id="@+id/txtBattleMonsterNameR"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="MonName 2"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
             </TableRow>
 
             <TableRow

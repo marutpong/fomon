@@ -134,6 +134,24 @@ public class PetUniqueDate {
 		return mainPref.getString(PrefDataType.MONBIRTHDAY, PrefDataType.NONE);
 	}
 
+	public static void SetMonWON(int value) {
+		editPref.putInt(PrefDataType.MONWON, value);
+		editPref.commit();
+	}
+	
+	public static int getMonWON() {
+		return mainPref.getInt(PrefDataType.MONWON, PrefDataType.NONEINT);
+	}
+	
+	public static void SetMonLOSE(int value) {
+		editPref.putInt(PrefDataType.MONLOSE, value);
+		editPref.commit();
+	}
+	
+	public static int getMonLOSE() {
+		return mainPref.getInt(PrefDataType.MONLOSE, PrefDataType.NONEINT);
+	}
+	
 	public Context getmContext() {
 		return mContext;
 	}
@@ -169,12 +187,13 @@ public class PetUniqueDate {
 			return R.drawable.baby1;
 		case 11:
 			return R.drawable.middle1;
-		case 1:
-			return R.drawable.pet_s7;
+		case 12:
+			return R.drawable.final1;
 		case 2:
 			return R.drawable.pet_s6;
 		default:
 			return R.drawable.pet_s7;
 		}
 	}
+	
 }

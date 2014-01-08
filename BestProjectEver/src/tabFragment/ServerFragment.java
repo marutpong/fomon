@@ -37,7 +37,9 @@ public class ServerFragment extends Fragment {
 	Button btnConnect;
 	Button btnTest;
 
-	TextView txtMessage;
+	TextView txtPETName;
+	TextView txtWON;
+	TextView txtLOSE;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,9 +50,13 @@ public class ServerFragment extends Fragment {
 		btnConnect = (Button) mView.findViewById(R.id.btn_conserver);
 		btnTest = (Button) mView.findViewById(R.id.btn_test);
 
-		txtMessage = (TextView) mView.findViewById(R.id.txtPetNameSet);
+		txtPETName = (TextView) mView.findViewById(R.id.txtPetNamePK);
+		txtWON = (TextView) mView.findViewById(R.id.txtPetWONPK);
+		txtLOSE = (TextView) mView.findViewById(R.id.txtPetLOSEPK);
 
-		txtMessage.setText(" : " + PetUniqueDate.getMonName());
+		txtPETName.setText(" : " + PetUniqueDate.getMonName());
+		txtWON.setText(" : " + PetUniqueDate.getMonWON());
+		txtLOSE.setText(" : " + PetUniqueDate.getMonLOSE());
 
 		btnClear.setOnClickListener(new android.view.View.OnClickListener() {
 
@@ -106,9 +112,9 @@ public class ServerFragment extends Fragment {
 
 						String data = new String(result);
 
-						txtMessage.setText(data);
+						txtPETName.setText(data);
 					} else {
-						txtMessage.setText("Error Code : " + resultServer);
+						txtPETName.setText("Error Code : " + resultServer);
 					}
 
 					conn.disconnect();
