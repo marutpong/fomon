@@ -3,8 +3,6 @@ package com.projnsc.bestprojectever;
 import historyDatabase.HistoryDatabase;
 import historyDatabase.HistoryType;
 
-import java.util.Random;
-
 import foodDatabase.FoodBox;
 import foodDatabase.FoodDatabase;
 import petShowEmotion.PetShowEmotionPanel;
@@ -13,12 +11,8 @@ import petShowEmotion.PetStatGradualIncrease;
 import petShowEmotion.PetStatGradualIncrease.OnMonsterStatChange;
 import preferenceSetting.PetUniqueDate;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 

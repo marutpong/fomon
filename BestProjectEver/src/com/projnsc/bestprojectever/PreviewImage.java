@@ -1,8 +1,6 @@
 package com.projnsc.bestprojectever;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
 import com.projnsc.bestprojectever.R;
 
@@ -13,9 +11,6 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageView;
 
 public class PreviewImage extends Activity {

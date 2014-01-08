@@ -12,8 +12,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v4.widget.SlidingPaneLayout.PanelSlideListener;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -51,7 +49,6 @@ public class TheTempActivity extends Activity {
 		if(ClassFood2 == 0)
 			ClassFood2 = 1;
 		
-		Log.i("Food Class", ClassFood1 + " " + ClassFood2);
 		if (ClassFood1 == ClassFood2 && ClassFood1 != -1) {
 			goToStatUpResult(ClassFood1);
 		} else {

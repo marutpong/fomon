@@ -1,12 +1,9 @@
 package processImage;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.ObjectOutputStream.PutField;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,23 +15,15 @@ import org.opencv.core.Mat;
 import org.opencv.core.MatOfFloat;
 import org.opencv.core.MatOfInt;
 import org.opencv.core.Point;
-import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
-import org.opencv.engine.OpenCVEngineInterface;
-import org.opencv.features2d.DMatch;
-import org.opencv.features2d.DescriptorMatcher;
 import org.opencv.highgui.Highgui;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.ml.CvKNearest;
-import org.opencv.ml.Ml;
-import org.opencv.objdetect.HOGDescriptor;
 import org.opencv.core.Size;
 
 import com.projnsc.bestprojectever.R;
 
 import android.content.Context;
-import android.os.Environment;
-import android.provider.SyncStateContract.Constants;
 import android.util.Log;
 
 public class Hist_Phog {
@@ -42,7 +31,6 @@ public class Hist_Phog {
 	private static final String TAG = "Hist_Phog";
 	//private int bin = 8;
 	//private int angle = 360;
-	private int L = 0;
 	private static Context context;
 	float y[], z[];
 	static int foodnum = 599;
@@ -50,7 +38,19 @@ public class Hist_Phog {
 	static int featurenum = 41;
 	static int featurepc = 15;
 	
+	public interface OnImageProcessListener{
+		void OnImageProcessFinish(int[] classFood); 
+	}
+	
+	private OnImageProcessListener onImageProcessListener;
+	
+	public void setOnImageProcessListener(
+			OnImageProcessListener onImageProcessListener) {
+		this.onImageProcessListener = onImageProcessListener;
+	}
+	
 	public int[] histImage(String path) {
+		
 		Log.d(TAG, path);
 		List<Mat> channel = new ArrayList<Mat>();
 //		File folder = new File(Environment.getExternalStorageDirectory()
@@ -101,7 +101,9 @@ public class Hist_Phog {
 		}
 
 		int[] classFood = KNN(feature);
-
+		
+		onImageProcessListener.OnImageProcessFinish(classFood);
+		
 		return classFood;
 	}
 	public Hist_Phog(Context context) {

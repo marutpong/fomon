@@ -5,18 +5,13 @@ import petEvolution.PetEvolutionPanel.OnEvolutionFinishListener;
 import preferenceSetting.PetUniqueDate;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
-import android.widget.Button;
 
 public class PetEvolutionActivity extends Activity implements OnEvolutionFinishListener{
 
 	private PetEvolutionPanel mEvolPanel;
-	private Button btnBackHome;
 	private int MonFinishID;
 	
 	@Override
