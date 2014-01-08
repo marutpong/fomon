@@ -160,8 +160,8 @@ int id pager 0x7f05005d
 int id pager_title_strip 0x7f05005e
 int id petBattlePanel1 0x7f050069
 int id petPanel1 0x7f05006a
-int id petShowEmotionPanel1 0x7f05003b
 int id petShowEmotionPanel2 0x7f050046
+int id petShowEmotionPanelEx 0x7f05003b
 int id progressATK 0x7f05000c
 int id progressDEF 0x7f050042
 int id progressHP 0x7f05000b

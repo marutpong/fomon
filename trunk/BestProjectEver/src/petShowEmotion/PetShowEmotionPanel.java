@@ -45,7 +45,7 @@ public class PetShowEmotionPanel extends SurfaceView implements Callback {
 	// Comment init() for make view on layout
 	public PetShowEmotionPanel(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		init();
+		 init();
 	}
 
 	public PetShowEmotionPanel(Context context) {
@@ -58,7 +58,7 @@ public class PetShowEmotionPanel extends SurfaceView implements Callback {
 		init(emoKey);
 	}
 
-	private void init() {
+	public void init() {
 		getHolder().addCallback(this);
 		mThread = new PetShowEmotionThread(this);
 		mThread.setRunning(false);
@@ -115,15 +115,15 @@ public class PetShowEmotionPanel extends SurfaceView implements Callback {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		if(event.getAction() == MotionEvent.ACTION_DOWN){
-			if(onPanelTouchListener!=null){
+		if (event.getAction() == MotionEvent.ACTION_DOWN) {
+			if (onPanelTouchListener != null) {
 				onPanelTouchListener.OnPanelTouch();
 			}
 			return true;
 		}
 		return super.onTouchEvent(event);
 	}
-	
+
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
 		startThread();
@@ -145,11 +145,11 @@ public class PetShowEmotionPanel extends SurfaceView implements Callback {
 	}
 
 	public void startThread() {
-		if (!mThread.isAlive()) {
-			mThread = new PetShowEmotionThread(this);
-			mThread.setRunning(true);
-			mThread.start();
-		}
+			if (!mThread.isAlive()) {
+				mThread = new PetShowEmotionThread(this);
+				mThread.setRunning(true);
+				mThread.start();
+			}
 	}
 
 }

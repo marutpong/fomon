@@ -22,4 +22,9 @@
         android:layout_height="wrap_content"
         android:text="Other" />
 
+    <petShowEmotion.PetShowEmotionPanel
+        android:id="@+id/petShowEmotionPanelEx"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </LinearLayout>
