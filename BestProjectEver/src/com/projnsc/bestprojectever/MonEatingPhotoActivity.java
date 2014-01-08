@@ -68,7 +68,8 @@ public class MonEatingPhotoActivity extends Activity implements OnGPSListener {
 			
 			@Override
 			public void onClick(View v) {
-				btnCancelPress();
+//				btnCancelPress();
+				mPanel.setFullView(true);
 			}
 		});
 		btnClear = (Button) findViewById(R.id.btnEatClear);
