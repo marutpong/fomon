@@ -42,8 +42,14 @@ public class PetBattleSprite {
 		BitmapFactory.Options o = new BitmapFactory.Options();
 		o.inDither = false;
 		o.inPurgeable = true;
-		mBitmap = BitmapFactory.decodeResource(res,
-				PetUniqueDate.getPetResource(PetKey), o);
+		try {
+			mBitmap = BitmapFactory.decodeResource(res,
+					PetUniqueDate.getPetResource(PetKey), o);
+		} catch (OutOfMemoryError E) {
+			o.inSampleSize = 2;
+			mBitmap = BitmapFactory.decodeResource(res,
+					PetUniqueDate.getPetResource(PetKey), o);
+		}
 
 		Log.i(this.getClass().getName(), PetUniqueDate.getPetResource(PetKey)
 				+ " " + PetKey);
@@ -83,16 +89,17 @@ public class PetBattleSprite {
 	}
 
 	public void animate(PetBattleSprite mPet) {
-//		Log.i("Speed " + isLeft ,isFinish + " " + isInitialSpeed + " " + isActionOnBar);
+		// Log.i("Speed " + isLeft ,isFinish + " " + isInitialSpeed + " " +
+		// isActionOnBar);
 		if (isFinish()) {
 			setCenPos(realX, realY);
 		} else {
 			setCenPos(realX + mSpeed, realY);
 			if (mPet.isPetCollition(this) && !isWillBack()) {
-				
-				if(mSpeed < 0){
+
+				if (mSpeed < 0) {
 					mSpeed = SpeedBackward;
-				}else{
+				} else {
 					mSpeed = SpeedBackward * -1;
 				}
 
@@ -101,7 +108,7 @@ public class PetBattleSprite {
 				if (isWillPassBase() && !isCleared) {
 					mSpeed = 0;
 					setCenPos(realX, realY);
-					Log.i("Finish " + isLeft,"FINISH");
+					Log.i("Finish " + isLeft, "FINISH");
 					isFinish = true;
 					setCenPos(realX, realY);
 				}
@@ -159,9 +166,9 @@ public class PetBattleSprite {
 	}
 
 	public void InitialSpeed() {
-		Log.i("Initial Speed " + isLeft,"INITIALITED " + isLeft);
+		Log.i("Initial Speed " + isLeft, "INITIALITED " + isLeft);
 		mSpeed = SpeedForward;
-		Log.i("XXX",isLeft + " " + mSpeed + " " + SpeedForward);
+		Log.i("XXX", isLeft + " " + mSpeed + " " + SpeedForward);
 		if (!isLeft)
 			mSpeed *= -1;
 		isInitialSpeed = true;
@@ -177,11 +184,11 @@ public class PetBattleSprite {
 	}
 
 	public void clearSpeed() {
-		Log.i("ClearSpeed " + isLeft,"CLEARED FOR" + isLeft);
+		Log.i("ClearSpeed " + isLeft, "CLEARED FOR" + isLeft);
 		isFinish = false;
 		isInitialSpeed = false;
 		isActionOnBar = false;
-		isCleared  = true;
+		isCleared = true;
 	}
 
 	// public void setInitialSpeed(boolean isInitialSpeed) {
