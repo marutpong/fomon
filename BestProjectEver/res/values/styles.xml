@@ -1,20 +1,49 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
-    <style name="AppBaseTheme" parent="android:Theme.Light">
+    <style name="AppBaseTheme" parent="android:Theme.NoTitleBar.Fullscreen">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
         -->
     </style>
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
+
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+
+
+        <!-- My Customize. -->
+        <item name="android:actionBarStyle">@style/myActionBarTheme</item>
+        <!--  <item name="android:tabWidgetStyle">@style/Widget.TabWidget</item>-->
     </style>
+    <!-- ACustom theme. -->
+    <style name="CustomActionBarTheme" parent="android:style/Theme.Holo">
+        <item name="android:actionBarStyle">@style/myActionBarTheme</item>
+    </style>
+
+    <style name="myActionBarTheme" parent="android:style/Widget.Holo.ActionBar">
+        <item name="android:background">#ff5b54</item>
+        <item name="android:titleTextStyle">@style/myActionBarTitleTextStyle</item>
+        <item name="android:alpha">1.0</item>
+    </style>
+
+    <style name="myActionBarTitleTextStyle" parent="android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">#ffeceb</item>
+    </style>
+
+    <!-- style for the tabs -->
+    <style name="MyActionBarTabStyle" parent="android:style/Theme">
+        <item name="android:background">#fff</item>
+    </style>
+
+    <style name="Widget.TabWidget" parent="android:Theme"> 
+      <item name="android:tabStripEnabled">false</item>
+ </style>  
 
 </resources>

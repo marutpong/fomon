@@ -74,9 +74,9 @@ public abstract class HistoryAdapter extends BaseAdapter implements ListAdapter 
 				Float ratio = height / width;
 				myBitmap = Bitmap.createScaledBitmap(myBitmap, THUMBNAIL_SIZE,
 						(int) (THUMBNAIL_SIZE * ratio), false);
-				Toast.makeText(mContext,
+/*				Toast.makeText(mContext,
 						String.valueOf(myBitmap.getHeight()) + "",
-						Toast.LENGTH_LONG).show();
+						Toast.LENGTH_LONG).show();*/
 				myHolder.showImgThumbnail.setImageBitmap(myBitmap);
 			} catch (Exception ex) {
 

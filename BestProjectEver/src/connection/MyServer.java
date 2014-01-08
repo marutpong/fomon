@@ -128,7 +128,6 @@ public class MyServer// extends Application
 		if (testFirstServer == null) {
 			String secondUrl = "http://myweb.cmu.ac.th/marutpong_c/fomon/getserverip.php";
 			String newServerIP = getHttpPost(secondUrl, params);
-			Log.i("Connect Server", newServerIP);
 			if (newServerIP!=null)
 				PetUniqueDate.SetServerIP(newServerIP);
 		}

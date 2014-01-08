@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/my_red_bg"
     tools:context=".QuestFragment" >
 
     <LinearLayout
@@ -23,7 +24,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="Pet Name"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/my_red_text_red" />
 
         <TextView
             android:id="@+id/txtPetNamePK"
@@ -31,103 +33,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text=": NAME"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-    </LinearLayout>
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/my_red_text_red" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:layout_weight="0" >
-
-        <TextView
-            android:id="@+id/dummyHPSet"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Health Point"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/txtPetHPSet"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text=": HP"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:layout_weight="0" >
-
-        <TextView
-            android:id="@+id/dummyATKSet"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="ATK"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/txtPetATKSet"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text=": ATK"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:layout_weight="0" >
-
-        <TextView
-            android:id="@+id/dummyDEFSet"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="DEF"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/txtPetDEFSet"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text=": DEF"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-    </LinearLayout>
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:layout_weight="0" >
-
-        <TextView
-            android:id="@+id/dummySPDSet"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="SPD"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/txtPetSPDSet"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text=": SPD"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
 
     <Button
@@ -135,20 +43,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
+        style="@style/ButtonRound" android:background="@drawable/bt_red"
+        android:textColor="@color/my_red_text"
         android:text="Change Pet Name" />
 
     <Button
         android:id="@+id/btnClearData"
+        style="@style/ButtonRound"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
+        android:background="@drawable/bt_red"
+        android:textColor="@color/my_red_text"
         android:text="Reset Data" />
-
-    <Button
-        android:id="@+id/btn_serverip"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:text="Change Server IP" />
 
 </LinearLayout>

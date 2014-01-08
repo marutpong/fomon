@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="my_red_press">#ff8883</color>
+    <color name="my_red">#ff5b54</color>
+    <color name="my_red_text">#ffdbd9</color>
+    <color name="my_red_text_red">#ff5b54</color>
+    <color name="my_red_bg">#ffe9e8</color>
+    
+    <color name="blue_dark">#2b3b4a</color>
+    <color name="blue_light">#6abdc3</color>
+    <color name="blue">#5c9aa5</color>
+    
+    <color name="txt_bluegrey">#76b3b8</color>
+</resources>

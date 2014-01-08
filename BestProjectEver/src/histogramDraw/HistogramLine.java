@@ -79,15 +79,15 @@ public class HistogramLine {
 			}
 			
 			if(realCal <= HistoryType.RequireCalPerDay*0.5){
-				BrushLineColor = Color.BLUE;
+				BrushLineColor = Color.argb(255, 128, 255, 255);
 			}else if(realCal < HistoryType.RequireCalPerDay*0.75){
-				BrushLineColor = Color.argb(255, 25, 255, 255);
+				BrushLineColor = Color.argb(255, 89, 201, 255);
 			}else if(realCal >= HistoryType.RequireCalPerDay*1.5){
-				BrushLineColor = Color.RED;
+				BrushLineColor = Color.argb(255, 255, 80, 80);
 			}else if(realCal > HistoryType.RequireCalPerDay*1.25){
-				BrushLineColor = Color.YELLOW;
+				BrushLineColor = Color.argb(255, 255, 255, 128);
 			}else{
-				BrushLineColor = Color.GREEN;
+				BrushLineColor = Color.argb(255, 128, 255, 128);
 			}
 		}
 	}

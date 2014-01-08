@@ -163,7 +163,7 @@ public class HistogramPanel extends SurfaceView implements Callback,
 	}
 
 	public void doDraw(Canvas canvas) {
-		canvas.drawColor(Color.BLACK);
+		canvas.drawColor(Color.parseColor("#ffdfde"));
 		
 		
 		if(mPet!=null){

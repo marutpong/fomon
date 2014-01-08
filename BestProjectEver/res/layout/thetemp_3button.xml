@@ -8,18 +8,21 @@
         android:id="@+id/btn_c1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/ButtonRound" android:background="@drawable/bt_red"
         android:text="Class 1" />
 
     <Button
         android:id="@+id/btn_c2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/ButtonRound" android:background="@drawable/bt_red"
         android:text="Class 2" />
 
     <Button
         android:id="@+id/btn_other"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/ButtonRound" android:background="@drawable/bt_black"
         android:text="Other" />
 
     <petShowEmotion.PetShowEmotionPanel

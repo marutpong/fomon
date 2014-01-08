@@ -22,7 +22,7 @@ public class FoodDatabase extends SQLiteOpenHelper {
 	private static final String TABLE_FOOD = "food";
 
 	public static enum Enum {
-		id, name, calories, protein, fat, carbohydrate, calcium, magnesium, potassium, sodium, min_hp, max_hp, min_atk, max_atk, min_def, max_def
+		id, name, calories, protein, fat, carbohydrate, calcium, magnesium, potassium, sodium, phosphorus, min_hp, max_hp, min_atk, max_atk, min_def, max_def
 	}
 
 	// Common column names

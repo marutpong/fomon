@@ -258,6 +258,12 @@ public class HistoryDatabase extends SQLiteOpenHelper {
 		}
 		return returnValue;
 	}
+	
+	public static int getEatingCount(String theDate) {
+		ArrayList<HistoryBox> tmpHistoryList = HistoryDatabase
+				.getListOFDate(theDate);
+		return tmpHistoryList.size();
+	}
 
 	public ArrayList<String[]> getListOfDateString(String theDate) {
 		// TODO Auto-generated method stub

@@ -10,35 +10,34 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
-
-    <TextView
-        android:id="@+id/PetNameLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/pet_name"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
+<!-- android:background="#ff5b54" -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0" >
+        
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/PetNameLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/pet_name"
+            android:textColor="#fd564e"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Button
             android:id="@+id/btnTakePhoto"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            style="@style/ButtonRound"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="0"
+	        android:textColor="@color/my_red_text"
+            android:background="@drawable/bt_red"
+            android:drawableLeft="@drawable/camera_white"
             android:text="@string/take_photo" />
 
-        <Button
-            android:id="@+id/btnSearchFood"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/food_search" />
     </LinearLayout>
 
 </LinearLayout>

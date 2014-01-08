@@ -33,13 +33,9 @@ public class SettingFragment extends Fragment {
 	View mView;
 	Button btnRename;
 	Button btnClear;
-	Button btnChangServerIP;
 
 	TextView txtPetNameSet;
-	TextView txtHPSet;
-	TextView txtATKSet;
-	TextView txtDEFSet;
-	TextView txtSPDSet;
+
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,18 +44,10 @@ public class SettingFragment extends Fragment {
 
 		btnRename = (Button) mView.findViewById(R.id.btnChangePetNameSet);
 		btnClear = (Button) mView.findViewById(R.id.btnClearData);
-		btnChangServerIP = (Button) mView.findViewById(R.id.btn_serverip);
 		txtPetNameSet = (TextView) mView.findViewById(R.id.txtPetNamePK);
-		txtHPSet = (TextView) mView.findViewById(R.id.txtPetHPSet);
-		txtATKSet = (TextView) mView.findViewById(R.id.txtPetATKSet);
-		txtDEFSet = (TextView) mView.findViewById(R.id.txtPetDEFSet);
-		txtSPDSet = (TextView) mView.findViewById(R.id.txtPetSPDSet);
+
 
 		txtPetNameSet.setText(" : " + PetUniqueDate.getMonName());
-		txtHPSet.setText(" : " + PetUniqueDate.getMonHP());
-		txtATKSet.setText(" : " + PetUniqueDate.getMonATK());
-		txtDEFSet.setText(" : " + PetUniqueDate.getMonDEF());
-		txtSPDSet.setText(" : " + PetUniqueDate.getMonSPD());
 
 		btnClear.setOnClickListener(new android.view.View.OnClickListener() {
 
@@ -76,15 +64,6 @@ public class SettingFragment extends Fragment {
 				showRenameDialog();
 //				addRandomText();
 				
-			}
-		});
-		
-		btnChangServerIP.setOnClickListener(new android.view.View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				showChangeServerIPDialog();
 			}
 		});
 		return mView;

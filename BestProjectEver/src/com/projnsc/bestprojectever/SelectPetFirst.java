@@ -132,7 +132,7 @@ public class SelectPetFirst extends Activity implements
     			getContentResolver(),
 	            Secure.ANDROID_ID);
 		PetUniqueDate.SetFacebookID(android_id);
-		PetUniqueDate.SetMonsterBirthDay(HistoryType.getCurrentTime());
+		PetUniqueDate.SetMonsterBirthDay(HistoryType.getCurrentDate());
 		resetPrefData();
 	}
 	
