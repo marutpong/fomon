@@ -124,15 +124,25 @@ public class SelectPetFirst extends Activity implements
 	protected void setFirstMonStatus(String name) {
 		PetUniqueDate.SetMonName(name);
 		PetUniqueDate.SetMonTypeID(MonSelectedID);
+		PetUniqueDate.SetMonHP(20);
 		PetUniqueDate.SetMonATK(10);
-		PetUniqueDate.SetMonDEF(10);
-		PetUniqueDate.SetMonHP(30);
-		PetUniqueDate.SetMonSPD(5);
+		PetUniqueDate.SetMonDEF(5);
+		PetUniqueDate.SetMonSPD(3);
 		String android_id = Secure.getString(
     			getContentResolver(),
 	            Secure.ANDROID_ID);
 		PetUniqueDate.SetFacebookID(android_id);
 		PetUniqueDate.SetMonsterBirthDay(HistoryType.getCurrentTime());
+		resetPrefData();
+	}
+	
+	private void resetPrefData(){
+		PetUniqueDate.SetK_KNN(2);
+		//Set La & Long for put data into SQLLite. It's unusual.
+		PetUniqueDate.SetLatitude(0);
+		PetUniqueDate.SetLongtitude(0);
+		PetUniqueDate.SetMonWON(0);
+		PetUniqueDate.SetMonLOSE(0);
 	}
 
 }

@@ -10,6 +10,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
@@ -83,9 +84,10 @@ public class HistogramPanel extends SurfaceView implements Callback,
 					Max = a;
 			}
 		} else {
-			if (Max < HistoryType.RequireCalPerDay
-					* HistoryType.RequireCalFactor)
-				Max = (HistoryType.RequireCalPerDay * HistoryType.RequireCalFactor);
+//			if (Max < HistoryType.RequireCalPerDay
+//					* HistoryType.RequireCalFactor)
+//				Max = (HistoryType.RequireCalPerDay * HistoryType.RequireCalFactor);
+			Max = CalData.get(0);
 		}
 		HistogramLine.setMaxValue(Max);
 
@@ -108,6 +110,7 @@ public class HistogramPanel extends SurfaceView implements Callback,
 								ColorList[i % 7], TextDayList[i % 7]));
 					}
 				} else {
+					Log.i(this.getClass().getName()+"BBBBB",CalData.size()+" "+CalData.get(0));
 					mPet = new PetSelectSprite(getResources(),
 							Math.round(init), (int) (((float) viewHeight) * ((float) 0.75)));
 					mPet.setmPos(Math.round(init), ((float) viewHeight) * ((float) 0.75));
@@ -197,6 +200,7 @@ public class HistogramPanel extends SurfaceView implements Callback,
 		defaultBasePosY = Math.round(height * heightBaseFactor);
 		BaseLineStrokeWidth = (int) (viewHeight * BaseLineStrokeFactor);
 		TextRealSize = Math.round((viewHeight * 0.025)); 
+		Log.i(this.getClass().getName(), LineSet.size()+"");
 		if (LineSet.size() >= 1)
 			AddLinetoThread();
 	}

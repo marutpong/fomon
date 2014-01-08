@@ -47,9 +47,7 @@ public class HistogramLine {
 		textPaint.setColor(android.graphics.Color.WHITE);
 	    textPaint.setTextAlign(Align.CENTER);
 	    textPaint.setTextSize(HistogramPanel.TextRealSize);
-	    
-	    Log.i("ASSDD",HistogramPanel.LineStrokeWidth+"");
-		
+	    	
 		int Height = HistogramPanel.getViewHeight();
 		float idelViewHeight = (float) HistogramPanel.HeightMarginFactor
 				* (float) Height;
@@ -65,6 +63,8 @@ public class HistogramLine {
 		this.SelfMax = (SelfMax / MaxValue) * (idelViewHeight);
 		INVERSTVALUE = MaxValue / (HistogramPanel.HeightMarginFactor * Height);
 		this.SpeedUp = (int) Math.round(this.SelfMax/idelViewHeight*SpeedFactor );
+		Log.i(this.getClass().getName(),SelfMax+"");
+		Log.i(this.getClass().getName(),this.SelfMax+"");
 	}
 
 	public void animate() {
@@ -97,6 +97,9 @@ public class HistogramLine {
 		/*
 		 * set brush style before draw line
 		 */
+		
+//		Log.i(this.getClass().getName(),SelfMax+"");
+		
 		mPaint.setStrokeWidth(HistogramPanel.LineStrokeWidth);
 		mPaint.setColor(BrushLineColor);
 		canvas.drawLine(iniX, HistogramPanel.defaultBasePosY, iniX,

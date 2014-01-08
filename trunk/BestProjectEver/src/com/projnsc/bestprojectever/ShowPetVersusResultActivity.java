@@ -6,6 +6,7 @@ import connection.MyServer;
 
 import petShowEmotion.PetShowEmotionPanel;
 import petShowEmotion.PetShowEmotionPanel.OnPanelTouchListener;
+import preferenceSetting.PetUniqueDate;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -66,8 +67,14 @@ public class ShowPetVersusResultActivity extends Activity implements
 
 		if (WIN) {
 			src.setText(WINText[rand.nextInt(WINText.length)]);
+			int sWIN = MyServer.GetWIN();
+			BattleWONScore.setText(sWIN+"");
+			PetUniqueDate.SetMonWON(sWIN);
 		} else {
 			src.setText(LOSEText[rand.nextInt(LOSEText.length)]);
+			int sLOSE = MyServer.GetLOSE();
+			BattleWONScore.setText(sLOSE+"");
+			PetUniqueDate.SetMonLOSE(sLOSE);
 		}
 
 	}
@@ -81,6 +88,7 @@ public class ShowPetVersusResultActivity extends Activity implements
 
 	@Override
 	public void OnPanelTouch() {
+		mEmoPanel.stopThread();
 		goToHOME();
 	}
 
