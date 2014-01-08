@@ -43,6 +43,7 @@ public class EatPanel extends SurfaceView implements Callback {
 	private Queue<Pixel> QPixel = new LinkedList<Pixel>();
 	MediaPlayer mp;
 	private boolean soundPlay = false;
+	private boolean FullView = false;
 
 	// private SoundPool soundPool;
 	// private HashMap<Integer, Integer> soundPoolMap;
@@ -65,7 +66,7 @@ public class EatPanel extends SurfaceView implements Callback {
 
 	public EatPanel(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		init();
+//		init();
 	}
 
 	public EatPanel(Context context) {
@@ -86,7 +87,7 @@ public class EatPanel extends SurfaceView implements Callback {
 		getHolder().addCallback(this);
 		mp = MediaPlayer.create(getContext(), R.raw.eatsound);
 		mp.setOnCompletionListener(new OnCompletionListener() {
-			
+
 			@Override
 			public void onCompletion(MediaPlayer mp) {
 				soundPlay = false;
@@ -111,9 +112,11 @@ public class EatPanel extends SurfaceView implements Callback {
 
 	public void doDraw(Canvas canvas) {
 		Log.i("SIZE", mPool.size() + "");
+
 		canvas.drawBitmap(mFood, 0, 0, null);
 		canvas.drawARGB(170, 0, 0, 0);
 		if (ClearView) {
+			FullView = false;
 			tempCanvas.drawBitmap(mFood, 0, 0, null);
 			ClearView = false;
 		}
@@ -126,7 +129,15 @@ public class EatPanel extends SurfaceView implements Callback {
 			}
 		}
 
-		canvas.drawBitmap(mTFood, 0, 0, null);
+		if (FullView) {
+			synchronized (mPool) {
+				mPool.clear();
+				mPool.add(new Pixel(0, 0));
+				mPool.add(new Pixel(PanelWidth, PanelHight));
+			}
+		}else{
+			canvas.drawBitmap(mTFood, 0, 0, null);
+		}
 		mEating.doDraw(canvas);
 	}
 
@@ -212,6 +223,10 @@ public class EatPanel extends SurfaceView implements Callback {
 		mPaint.setXfermode(new PorterDuffXfermode(Mode.CLEAR));
 		mEating = new EatingSprite(getResources(), 0, 0);
 		tempCanvas = new Canvas(mTFood);
+	}
+
+	public void setFullView(boolean fullView) {
+		FullView = fullView;
 	}
 
 }
