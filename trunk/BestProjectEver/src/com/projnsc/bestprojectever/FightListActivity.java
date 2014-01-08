@@ -153,6 +153,7 @@ public class FightListActivity extends Activity {
 
 			final AlertDialog.Builder viewDetail = new AlertDialog.Builder(this);
 			// OnClick Item
+			
 			lisView1.setOnItemClickListener(new OnItemClickListener() {
 				public void onItemClick(AdapterView<?> myAdapter, View myView,
 						int position, long mylng) {

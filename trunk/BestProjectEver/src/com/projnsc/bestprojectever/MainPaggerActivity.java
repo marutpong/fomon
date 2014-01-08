@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
+import android.view.Window;
 
 public class MainPaggerActivity extends FragmentActivity {
 
@@ -21,7 +22,8 @@ public class MainPaggerActivity extends FragmentActivity {
   
     TheFragmentPagerAdapter adapter = 
         new TheFragmentPagerAdapter(fm);
-    
+
+
     
     // Seta o adapter do ViewPager 
     viewPager.setAdapter(adapter);

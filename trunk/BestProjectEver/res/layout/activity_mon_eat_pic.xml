@@ -23,6 +23,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+           	style="@style/ButtonRound" android:background="@drawable/bt_red"
             android:text="Finish" />
 
         <Button
@@ -30,6 +31,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            style="@style/ButtonRound" android:background="@drawable/bt_red"
             android:text="Eat All" />
 
         <Button
@@ -37,6 +39,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            style="@style/ButtonRound" android:background="@drawable/bt_red"
             android:text="Clear" />
     </LinearLayout>
 

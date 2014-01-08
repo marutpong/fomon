@@ -10,13 +10,14 @@
       android:layout_height="wrap_content" >
      
      <TextView
-        android:id="@+id/dummyHPemo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Search Name : "
-        android:layout_span="1"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+         android:id="@+id/dummyHPemo"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_span="1"
+         android:gravity="center"
+         android:text="Search Name : "
+         android:textAppearance="?android:attr/textAppearanceMedium"
+         android:textColor="@color/txt_bluegrey" />
 
      <EditText
          android:id="@+id/editText1"
@@ -28,8 +29,10 @@
 
      <Button
          android:id="@+id/button1"
+         style="@style/ButtonRound"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
+         android:background="@drawable/bt_blue"
          android:text="OK" />
   	        
  	</TableRow>
@@ -68,7 +71,8 @@
    	        android:layout_height="wrap_content"
    	        android:layout_weight="1"
    	        android:text="WIN : "
-   	        android:textAppearance="?android:attr/textAppearanceLarge" />
+   	        android:textAppearance="?android:attr/textAppearanceLarge"
+   	        android:textColor="@color/my_red_text_red" />
 
    	    <TextView
    	        android:id="@+id/txtFightLOSE"
@@ -76,6 +80,7 @@
    	        android:layout_height="wrap_content"
    	        android:layout_weight="1"
    	        android:text="LOSE : "
+   	        android:textColor="@color/my_red_text_red"
    	        android:textAppearance="?android:attr/textAppearanceLarge" />
 
    	    <Button
@@ -83,6 +88,7 @@
    	        android:layout_width="wrap_content"
    	        android:layout_height="wrap_content"
    	        android:layout_weight="0"
+   	        style="@style/ButtonRound" android:background="@drawable/bt_red"
    	        android:text="Back" />
    	</LinearLayout>
 	

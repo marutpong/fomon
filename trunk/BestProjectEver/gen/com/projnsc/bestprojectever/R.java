@@ -177,6 +177,9 @@ containing a value of this type.
         public static final int zOrderOnTop=0x7f010011;
     }
     public static final class color {
+        public static final int blue=0x7f060011;
+        public static final int blue_dark=0x7f06000f;
+        public static final int blue_light=0x7f060010;
         public static final int common_action_bar_splitter=0x7f060009;
         /**  Sign-in Button Colors 
          */
@@ -189,8 +192,14 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f060006;
         public static final int common_signin_btn_light_text_focused=0x7f060007;
         public static final int common_signin_btn_light_text_pressed=0x7f060005;
-        public static final int common_signin_btn_text_dark=0x7f06000a;
-        public static final int common_signin_btn_text_light=0x7f06000b;
+        public static final int common_signin_btn_text_dark=0x7f060013;
+        public static final int common_signin_btn_text_light=0x7f060014;
+        public static final int my_red=0x7f06000b;
+        public static final int my_red_bg=0x7f06000e;
+        public static final int my_red_press=0x7f06000a;
+        public static final int my_red_text=0x7f06000c;
+        public static final int my_red_text_red=0x7f06000d;
+        public static final int txt_bluegrey=0x7f060012;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -205,193 +214,243 @@ containing a value of this type.
     public static final class drawable {
         public static final int baby1=0x7f020000;
         public static final int bg_forest=0x7f020001;
-        public static final int common_signin_btn_icon_dark=0x7f020002;
-        public static final int common_signin_btn_icon_disabled_dark=0x7f020003;
-        public static final int common_signin_btn_icon_disabled_focus_dark=0x7f020004;
-        public static final int common_signin_btn_icon_disabled_focus_light=0x7f020005;
-        public static final int common_signin_btn_icon_disabled_light=0x7f020006;
-        public static final int common_signin_btn_icon_focus_dark=0x7f020007;
-        public static final int common_signin_btn_icon_focus_light=0x7f020008;
-        public static final int common_signin_btn_icon_light=0x7f020009;
-        public static final int common_signin_btn_icon_normal_dark=0x7f02000a;
-        public static final int common_signin_btn_icon_normal_light=0x7f02000b;
-        public static final int common_signin_btn_icon_pressed_dark=0x7f02000c;
-        public static final int common_signin_btn_icon_pressed_light=0x7f02000d;
-        public static final int common_signin_btn_text_dark=0x7f02000e;
-        public static final int common_signin_btn_text_disabled_dark=0x7f02000f;
-        public static final int common_signin_btn_text_disabled_focus_dark=0x7f020010;
-        public static final int common_signin_btn_text_disabled_focus_light=0x7f020011;
-        public static final int common_signin_btn_text_disabled_light=0x7f020012;
-        public static final int common_signin_btn_text_focus_dark=0x7f020013;
-        public static final int common_signin_btn_text_focus_light=0x7f020014;
-        public static final int common_signin_btn_text_light=0x7f020015;
-        public static final int common_signin_btn_text_normal_dark=0x7f020016;
-        public static final int common_signin_btn_text_normal_light=0x7f020017;
-        public static final int common_signin_btn_text_pressed_dark=0x7f020018;
-        public static final int common_signin_btn_text_pressed_light=0x7f020019;
-        public static final int custom_progress=0x7f02001a;
-        public static final int defaultphoto=0x7f02001b;
-        public static final int defaultphoto_tmb=0x7f02001c;
-        public static final int dummyfoodeattest=0x7f02001d;
-        public static final int dummyfoodeattest2=0x7f02001e;
-        public static final int dummyfoodeattest3=0x7f02001f;
-        public static final int eating_spite=0x7f020020;
-        public static final int final1=0x7f020021;
-        public static final int ic_launcher=0x7f020022;
-        public static final int ic_plusone_medium_off_client=0x7f020023;
-        public static final int ic_plusone_small_off_client=0x7f020024;
-        public static final int ic_plusone_standard_off_client=0x7f020025;
-        public static final int ic_plusone_tall_off_client=0x7f020026;
-        public static final int middle1=0x7f020027;
-        public static final int pet_s6=0x7f020028;
-        public static final int pet_s7=0x7f020029;
-        public static final int rpgmakervxballoon=0x7f02002a;
+        public static final int bg_forest3=0x7f020002;
+        public static final int bg_titlebar=0x7f020003;
+        public static final int blue_shad=0x7f020004;
+        public static final int bt_black=0x7f020005;
+        public static final int bt_blue=0x7f020006;
+        public static final int bt_green=0x7f020007;
+        public static final int bt_purple=0x7f020008;
+        public static final int bt_red=0x7f020009;
+        public static final int bt_white=0x7f02000a;
+        public static final int bt_yellow=0x7f02000b;
+        public static final int camera=0x7f02000c;
+        public static final int camera_white=0x7f02000d;
+        public static final int circle_button=0x7f02000e;
+        public static final int circle_red=0x7f02000f;
+        public static final int common_signin_btn_icon_dark=0x7f020010;
+        public static final int common_signin_btn_icon_disabled_dark=0x7f020011;
+        public static final int common_signin_btn_icon_disabled_focus_dark=0x7f020012;
+        public static final int common_signin_btn_icon_disabled_focus_light=0x7f020013;
+        public static final int common_signin_btn_icon_disabled_light=0x7f020014;
+        public static final int common_signin_btn_icon_focus_dark=0x7f020015;
+        public static final int common_signin_btn_icon_focus_light=0x7f020016;
+        public static final int common_signin_btn_icon_light=0x7f020017;
+        public static final int common_signin_btn_icon_normal_dark=0x7f020018;
+        public static final int common_signin_btn_icon_normal_light=0x7f020019;
+        public static final int common_signin_btn_icon_pressed_dark=0x7f02001a;
+        public static final int common_signin_btn_icon_pressed_light=0x7f02001b;
+        public static final int common_signin_btn_text_dark=0x7f02001c;
+        public static final int common_signin_btn_text_disabled_dark=0x7f02001d;
+        public static final int common_signin_btn_text_disabled_focus_dark=0x7f02001e;
+        public static final int common_signin_btn_text_disabled_focus_light=0x7f02001f;
+        public static final int common_signin_btn_text_disabled_light=0x7f020020;
+        public static final int common_signin_btn_text_focus_dark=0x7f020021;
+        public static final int common_signin_btn_text_focus_light=0x7f020022;
+        public static final int common_signin_btn_text_light=0x7f020023;
+        public static final int common_signin_btn_text_normal_dark=0x7f020024;
+        public static final int common_signin_btn_text_normal_light=0x7f020025;
+        public static final int common_signin_btn_text_pressed_dark=0x7f020026;
+        public static final int common_signin_btn_text_pressed_light=0x7f020027;
+        public static final int custom_progress=0x7f020028;
+        public static final int custom_progress_old=0x7f020029;
+        public static final int defaultphoto=0x7f02002a;
+        public static final int defaultphoto_2=0x7f02002b;
+        public static final int defaultphoto_tmb=0x7f02002c;
+        public static final int defaultphoto_tmb_2=0x7f02002d;
+        public static final int dummyfoodeattest=0x7f02002e;
+        public static final int dummyfoodeattest2=0x7f02002f;
+        public static final int dummyfoodeattest3=0x7f020030;
+        public static final int eating_spite=0x7f020031;
+        public static final int final1=0x7f020032;
+        public static final int gray_gradient=0x7f020033;
+        public static final int ic_launcher=0x7f020034;
+        public static final int ic_plusone_medium_off_client=0x7f020035;
+        public static final int ic_plusone_small_off_client=0x7f020036;
+        public static final int ic_plusone_standard_off_client=0x7f020037;
+        public static final int ic_plusone_tall_off_client=0x7f020038;
+        public static final int linear_gradient_green=0x7f020039;
+        public static final int middle1=0x7f02003a;
+        public static final int pet_atk=0x7f02003b;
+        public static final int pet_def=0x7f02003c;
+        public static final int pet_hp=0x7f02003d;
+        public static final int pet_s6=0x7f02003e;
+        public static final int pet_s7=0x7f02003f;
+        public static final int pet_spd=0x7f020040;
+        public static final int rpgmakervxballoon=0x7f020041;
+        public static final int swap=0x7f020042;
+        public static final int swap_red=0x7f020043;
+        public static final int take_cam=0x7f020044;
+        public static final int take_m=0x7f020045;
     }
     public static final class id {
-        public static final int BattleLeftProgressBar=0x7f050064;
-        public static final int BattleRightProgressBar=0x7f050068;
-        public static final int ColCustomerID=0x7f050054;
-        public static final int ColEmail=0x7f050056;
-        public static final int ColName=0x7f050055;
+        public static final int BattleLeftProgressBar=0x7f050063;
+        public static final int BattleRightProgressBar=0x7f050067;
+        public static final int ColCustomerID=0x7f050053;
+        public static final int ColEmail=0x7f050055;
+        public static final int ColName=0x7f050054;
         public static final int LinearLayout1=0x7f050008;
         public static final int LinearLayout2=0x7f05000a;
-        public static final int PetNameLabel=0x7f05006b;
-        public static final int RelativeLayout1=0x7f050036;
+        public static final int PetNameLabel=0x7f05006a;
+        public static final int ProgressCalciumQ=0x7f050082;
+        public static final int ProgressCarbohydrateQ=0x7f05007f;
+        public static final int ProgressFatQ=0x7f05007c;
+        public static final int ProgressMagnesiumQ=0x7f050085;
+        public static final int ProgressPhosphorusQ=0x7f05008e;
+        public static final int ProgressPotassiumQ=0x7f050088;
+        public static final int ProgressProtienQ=0x7f050079;
+        public static final int ProgressSodiumQ=0x7f05008b;
+        public static final int RelativeLayout1=0x7f050035;
         public static final int TableRow01=0x7f050020;
         public static final int TableRow02=0x7f050026;
         public static final int TableRow03=0x7f050023;
         public static final int TableRow05=0x7f05002c;
         public static final int TableRow06=0x7f050029;
         public static final int TextView01=0x7f050021;
+        public static final int TextView02=0x7f050093;
+        public static final int TextView03=0x7f050096;
         public static final int TextView04=0x7f050027;
         public static final int TextView05=0x7f050024;
         public static final int TextView07=0x7f05002d;
         public static final int TextView08=0x7f05002a;
-        public static final int action_settings=0x7f05008f;
+        public static final int action_settings=0x7f0500a6;
         public static final int any=0x7f050000;
         public static final int atkValue=0x7f05000d;
         public static final int back=0x7f050001;
-        public static final int btb_test=0x7f050030;
-        public static final int btnChMode=0x7f050058;
-        public static final int btnChangePetNameSet=0x7f050089;
-        public static final int btnClearData=0x7f05007e;
-        public static final int btnEatCancel=0x7f050039;
-        public static final int btnEatClear=0x7f05003a;
-        public static final int btnEatFinish=0x7f050038;
-        public static final int btnSearchFood=0x7f050034;
-        public static final int btnTakePhoto=0x7f050033;
-        public static final int btn_c1=0x7f05008b;
-        public static final int btn_c2=0x7f05008c;
-        public static final int btn_conserver=0x7f05007f;
-        public static final int btn_other=0x7f05008d;
-        public static final int btn_select=0x7f050052;
-        public static final int btn_serverip=0x7f05008a;
-        public static final int btn_test=0x7f050080;
-        public static final int button1=0x7f05004e;
-        public static final int camera1=0x7f05005b;
-        public static final int dummyATKSet=0x7f050083;
-        public static final int dummyATKemo=0x7f05003e;
-        public static final int dummyATTACK=0x7f050071;
-        public static final int dummyDEFENSE=0x7f050073;
-        public static final int dummyDEFSet=0x7f050085;
-        public static final int dummyDEFemo=0x7f050040;
-        public static final int dummyHEALTHPOINT=0x7f05006f;
-        public static final int dummyHPEmo=0x7f050077;
-        public static final int dummyHPSet=0x7f050081;
-        public static final int dummyHPemo=0x7f05003c;
-        public static final int dummyLoseText=0x7f05004b;
-        public static final int dummyPETLoseScore=0x7f05007c;
-        public static final int dummyPETNAME=0x7f05006c;
-        public static final int dummyPETWonscore=0x7f05007a;
-        public static final int dummyPetInputNameLabel=0x7f050035;
-        public static final int dummyPetNameSet=0x7f050078;
-        public static final int dummySPDSet=0x7f050087;
-        public static final int dummySPDemo=0x7f050043;
-        public static final int dummySPEED=0x7f050075;
-        public static final int dummyWINText=0x7f050049;
-        public static final int dummyYourResultScore=0x7f050047;
-        public static final int eatPanel1=0x7f050037;
-        public static final int editText1=0x7f05004d;
-        public static final int foodlist=0x7f05008e;
+        public static final int btnChMode=0x7f050057;
+        public static final int btnChangePetNameSet=0x7f0500a0;
+        public static final int btnClearData=0x7f0500a1;
+        public static final int btnEatCancel=0x7f050038;
+        public static final int btnEatClear=0x7f050039;
+        public static final int btnEatFinish=0x7f050037;
+        public static final int btnSearchFood=0x7f050033;
+        public static final int btnTakePhoto=0x7f050032;
+        public static final int btn_c1=0x7f0500a2;
+        public static final int btn_c2=0x7f0500a3;
+        public static final int btn_conserver=0x7f05009f;
+        public static final int btn_other=0x7f0500a4;
+        public static final int btn_select=0x7f050051;
+        public static final int button1=0x7f05004d;
+        public static final int camera1=0x7f05005a;
+        public static final int dummyATKSet=0x7f050094;
+        public static final int dummyATKemo=0x7f05003d;
+        public static final int dummyATTACK=0x7f050070;
+        public static final int dummyCalciumQ=0x7f050080;
+        public static final int dummyCarbohydrateQ=0x7f05007d;
+        public static final int dummyDEFENSE=0x7f050072;
+        public static final int dummyDEFSet=0x7f050097;
+        public static final int dummyDEFemo=0x7f05003f;
+        public static final int dummyFatQ=0x7f05007a;
+        public static final int dummyHEALTHPOINT=0x7f05006e;
+        public static final int dummyHPSet=0x7f050091;
+        public static final int dummyHPemo=0x7f05003b;
+        public static final int dummyLoseText=0x7f05004a;
+        public static final int dummyMagnesiumQ=0x7f050083;
+        public static final int dummyPETLoseScore=0x7f05009d;
+        public static final int dummyPETNAME=0x7f05006b;
+        public static final int dummyPETWonscore=0x7f05009b;
+        public static final int dummyPetInputNameLabel=0x7f050034;
+        public static final int dummyPetNameSet=0x7f05008f;
+        public static final int dummyPhosphorusQ=0x7f05008c;
+        public static final int dummyPotassiumQ=0x7f050086;
+        public static final int dummyProtienQ=0x7f050077;
+        public static final int dummySPDSet=0x7f050099;
+        public static final int dummySPDemo=0x7f050042;
+        public static final int dummySPEED=0x7f050074;
+        public static final int dummySodiumQ=0x7f050089;
+        public static final int dummyWINText=0x7f050048;
+        public static final int dummyYourResultScore=0x7f050046;
+        public static final int eatPanel1=0x7f050036;
+        public static final int editText1=0x7f05004c;
+        public static final int foodlist=0x7f0500a5;
         public static final int front=0x7f050002;
-        public static final int histogramPanel1=0x7f050057;
-        public static final int horizontalscroll=0x7f05005f;
+        public static final int histogramPanel1=0x7f050056;
+        public static final int horizontalscroll=0x7f05005e;
         public static final int hybrid=0x7f050007;
-        public static final int imagePreview=0x7f050059;
-        public static final int imageThumbnail=0x7f050031;
+        public static final int imagePreview=0x7f050058;
+        public static final int imageThumbnail=0x7f050030;
         public static final int imageView1=0x7f050013;
-        public static final int image_activity_java_surface_view=0x7f05005a;
-        public static final int intxtPetName=0x7f05005c;
+        public static final int image_activity_java_surface_view=0x7f050059;
+        public static final int intxtPetName=0x7f05005b;
         public static final int labelCalories=0x7f050016;
         public static final int labelCarbohydrate=0x7f05001b;
         public static final int labelFat=0x7f05001e;
         public static final int labelProtien=0x7f050018;
-        public static final int linearLayout1=0x7f050053;
-        public static final int listView1=0x7f05004f;
-        public static final int map=0x7f050032;
+        public static final int linearLayout1=0x7f050052;
+        public static final int listView1=0x7f05004e;
+        public static final int map=0x7f050031;
         public static final int none=0x7f050003;
         public static final int normal=0x7f050004;
-        public static final int pager=0x7f05005d;
-        public static final int pager_title_strip=0x7f05005e;
-        public static final int petBattlePanel1=0x7f050069;
-        public static final int petPanel1=0x7f05006a;
-        public static final int petShowEmotionPanel2=0x7f050046;
-        public static final int petShowEmotionPanelEx=0x7f05003b;
+        public static final int pager=0x7f05005c;
+        public static final int pager_title_strip=0x7f05005d;
+        public static final int petBattlePanel1=0x7f050068;
+        public static final int petPanel1=0x7f050069;
+        public static final int petShowEmotionPanel2=0x7f050045;
+        public static final int petShowEmotionPanelEx=0x7f05003a;
         public static final int progressATK=0x7f05000c;
-        public static final int progressDEF=0x7f050042;
+        public static final int progressDEF=0x7f050041;
         public static final int progressHP=0x7f05000b;
-        public static final int progressSPD=0x7f050045;
+        public static final int progressSPD=0x7f050044;
         public static final int satellite=0x7f050005;
         public static final int scrollView1=0x7f050012;
         public static final int show_btnBack=0x7f05002f;
         public static final int tableLayout1=0x7f05000e;
         public static final int tableRow1=0x7f05001d;
-        public static final int tableRow10=0x7f050065;
+        public static final int tableRow10=0x7f050064;
         public static final int tableRow2=0x7f05000f;
         public static final int tableRow3=0x7f050010;
         public static final int tableRow4=0x7f050011;
         public static final int tableRow5=0x7f05001a;
-        public static final int tableRow9=0x7f050063;
+        public static final int tableRow9=0x7f050062;
         public static final int terrain=0x7f050006;
         public static final int testList=0x7f050009;
-        public static final int txtATKemo=0x7f05003f;
-        public static final int txtBattleMonsterNameL=0x7f050061;
-        public static final int txtBattleMonsterNameR=0x7f050067;
+        public static final int textView9=0x7f050076;
+        public static final int txtATKemo=0x7f05003e;
+        public static final int txtBattleMonsterNameL=0x7f050060;
+        public static final int txtBattleMonsterNameR=0x7f050066;
         public static final int txtCalcium=0x7f050022;
+        public static final int txtCalciumQ=0x7f050081;
         public static final int txtCalories=0x7f050017;
         public static final int txtCarbohydrate=0x7f05001c;
-        public static final int txtDEFemo=0x7f050041;
+        public static final int txtCarbohydrateQ=0x7f05007e;
+        public static final int txtDEFemo=0x7f050040;
         public static final int txtDate=0x7f050015;
         public static final int txtFat=0x7f05001f;
-        public static final int txtFightLOSE=0x7f050051;
-        public static final int txtFightWIN=0x7f050050;
+        public static final int txtFatQ=0x7f05007b;
+        public static final int txtFightLOSE=0x7f050050;
+        public static final int txtFightWIN=0x7f05004f;
         public static final int txtFoodname=0x7f050014;
-        public static final int txtHPemo=0x7f05003d;
+        public static final int txtHPemo=0x7f05003c;
         public static final int txtMagnesium=0x7f050025;
-        public static final int txtMonBattleHPLEFT=0x7f050062;
-        public static final int txtMonBattleHPRIGHT=0x7f050066;
-        public static final int txtPETBattleLose=0x7f05004c;
-        public static final int txtPETBattleWon=0x7f05004a;
-        public static final int txtPetATKST=0x7f050072;
-        public static final int txtPetATKSet=0x7f050084;
-        public static final int txtPetBattleResult=0x7f050048;
-        public static final int txtPetBirthday=0x7f05006e;
-        public static final int txtPetDEFST=0x7f050074;
-        public static final int txtPetDEFSet=0x7f050086;
-        public static final int txtPetHPST=0x7f050070;
-        public static final int txtPetHPSet=0x7f050082;
-        public static final int txtPetLOSEPK=0x7f05007d;
-        public static final int txtPetNamePK=0x7f050079;
-        public static final int txtPetNameST=0x7f05006d;
-        public static final int txtPetSPDST=0x7f050076;
-        public static final int txtPetSPDSet=0x7f050088;
-        public static final int txtPetWONPK=0x7f05007b;
+        public static final int txtMagnesiumQ=0x7f050084;
+        public static final int txtMonBattleHPLEFT=0x7f050061;
+        public static final int txtMonBattleHPRIGHT=0x7f050065;
+        public static final int txtPETBattleLose=0x7f05004b;
+        public static final int txtPETBattleWon=0x7f050049;
+        public static final int txtPetATKST=0x7f050071;
+        public static final int txtPetATKSet=0x7f050095;
+        public static final int txtPetBattleResult=0x7f050047;
+        public static final int txtPetBirthday=0x7f05006d;
+        public static final int txtPetDEFST=0x7f050073;
+        public static final int txtPetDEFSet=0x7f050098;
+        public static final int txtPetHPST=0x7f05006f;
+        public static final int txtPetHPSet=0x7f050092;
+        public static final int txtPetLOSEPK=0x7f05009e;
+        public static final int txtPetNamePK=0x7f050090;
+        public static final int txtPetNameST=0x7f05006c;
+        public static final int txtPetSPDST=0x7f050075;
+        public static final int txtPetSPDSet=0x7f05009a;
+        public static final int txtPetWONPK=0x7f05009c;
         public static final int txtPhosphorus=0x7f05002e;
+        public static final int txtPhosphorusQ=0x7f05008d;
         public static final int txtPotassium=0x7f050028;
+        public static final int txtPotassiumQ=0x7f050087;
         public static final int txtProtien=0x7f050019;
-        public static final int txtSPDemo=0x7f050044;
+        public static final int txtProtienQ=0x7f050078;
+        public static final int txtSPDemo=0x7f050043;
         public static final int txtSodium=0x7f05002b;
-        public static final int viewpager=0x7f050060;
+        public static final int txtSodiumQ=0x7f05008a;
+        public static final int viewpager=0x7f05005f;
     }
     public static final class integer {
         public static final int google_play_services_version=0x7f080000;
@@ -561,11 +620,17 @@ containing a value of this type.
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
+
+
     
 
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
+
+
+
         
 
         Base application theme for API 11+. This theme completely replaces
@@ -579,11 +644,23 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f0a0000;
+        public static final int AppBaseTheme=0x7f0a0003;
         /**  Application theme. 
- All customizations that are NOT specific to a particular API-level can go here. 
+  <item name="android:tabWidgetStyle">@style/Widget.TabWidget</item>
          */
-        public static final int AppTheme=0x7f0a0001;
+        public static final int AppTheme=0x7f0a0004;
+        public static final int ButtonRound=0x7f0a0000;
+        public static final int ButtonRound_Red=0x7f0a0001;
+        public static final int Button_my=0x7f0a0002;
+        /**  ACustom theme. 
+         */
+        public static final int CustomActionBarTheme=0x7f0a0005;
+        /**  style for the tabs 
+         */
+        public static final int MyActionBarTabStyle=0x7f0a0008;
+        public static final int Widget_TabWidget=0x7f0a0009;
+        public static final int myActionBarTheme=0x7f0a0006;
+        public static final int myActionBarTitleTextStyle=0x7f0a0007;
     }
     public static final class styleable {
         /** Attributes that can be used with a AdsAttrs.

@@ -60,7 +60,7 @@
                     android:layout_weight="1"
                     android:maxHeight="40dip"
                     android:minHeight="30dip"
-                    android:progressDrawable="@drawable/custom_progress" />
+                    android:progressDrawable="@drawable/custom_progress_old" />
             </TableRow>
         </TableLayout>
 
@@ -110,7 +110,7 @@
                     android:layout_weight="1"
                     android:maxHeight="40dip"
                     android:minHeight="30dip"
-                    android:progressDrawable="@drawable/custom_progress" />
+                    android:progressDrawable="@drawable/custom_progress_old" />
             </TableRow>
         </TableLayout>
     </LinearLayout>

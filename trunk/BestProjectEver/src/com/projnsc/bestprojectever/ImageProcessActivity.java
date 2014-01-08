@@ -227,8 +227,8 @@ public class ImageProcessActivity extends Activity implements
 		Log.i(TAG, "called onOptionsItemSelected; selected item: " + item);
 		if (item.getGroupId() == 1) {
 			mOpenCvCameraView.setEffect((String) item.getTitle());
-			Toast.makeText(this, mOpenCvCameraView.getEffect(),
-					Toast.LENGTH_SHORT).show();
+			/*Toast.makeText(this, mOpenCvCameraView.getEffect(),
+					Toast.LENGTH_SHORT).show();*/
 		} else if (item.getGroupId() == 2) {
 			int id = item.getItemId();
 			Size resolution = mResolutionList.get(id);
@@ -236,7 +236,7 @@ public class ImageProcessActivity extends Activity implements
 			resolution = mOpenCvCameraView.getResolution();
 			String caption = Integer.valueOf(resolution.width).toString() + "x"
 					+ Integer.valueOf(resolution.height).toString();
-			Toast.makeText(this, caption, Toast.LENGTH_SHORT).show();
+			//Toast.makeText(this, caption, Toast.LENGTH_SHORT).show();
 		}
 
 		return true;

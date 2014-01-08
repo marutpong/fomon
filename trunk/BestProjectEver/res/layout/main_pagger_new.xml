@@ -2,6 +2,7 @@
  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="fill_parent"
+        android:background="@color/my_red_bg"
         android:layout_height="fill_parent">
 	<TabHost
 	    android:id="@android:id/tabhost"
@@ -27,7 +28,9 @@
 		            android:layout_width="fill_parent"
 		            android:layout_height="wrap_content"
 		            android:layout_weight="0"
+		            style="@style/MyActionBarTabStyle"
 		            />
+		            <!-- style="@style/MyActionBarTabStyle" -->
 			</HorizontalScrollView>
 	        <FrameLayout
 	            android:id="@android:id/tabcontent"

@@ -18,6 +18,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -44,7 +45,7 @@ public class HistoryDetail extends Activity {
 
 	ImageView imageView;
 	Button show_btnBack;
-	Button show_btnTest;
+	//Button show_btnTest;
 
 	// Button show_btnGoNext;
 
@@ -52,6 +53,7 @@ public class HistoryDetail extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_history_detail);
 
 		old = getIntent();
@@ -74,7 +76,7 @@ public class HistoryDetail extends Activity {
 
 		// show_btnGoNext = (Button) findViewById(R.id.show_btnGonext);
 		show_btnBack = (Button) findViewById(R.id.show_btnBack);
-		show_btnTest = (Button) findViewById(R.id.btb_test);
+//		show_btnTest = (Button) findViewById(R.id.btb_test);
 
 		FoodBox food = FoodDatabase.getFoodByID(his.getFoodType());
 		Log.i(HistoryDetail.class.getName(), "Foodtype:" + his.getFoodType());
@@ -119,7 +121,7 @@ public class HistoryDetail extends Activity {
 
 		});
 
-		show_btnTest.setOnClickListener(new OnClickListener() {
+		/*show_btnTest.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -127,7 +129,7 @@ public class HistoryDetail extends Activity {
 				todayList();
 			}
 		});
-		/*
+*/		/*
 		 * show_btnGoNext.setOnClickListener(new OnClickListener() {
 		 * 
 		 * @Override public void onClick(View v) { // TODO Auto-generated method
@@ -143,6 +145,6 @@ public class HistoryDetail extends Activity {
 		int type = FoodDatabase.Enum.calories.ordinal();
 		msg = String.valueOf(HistoryDatabase.getSumNutritionOfDate(
 				HistoryType.getCurrentDate(), type));
-		Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+		//Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
 	}
 }

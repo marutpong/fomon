@@ -22,5 +22,30 @@
     <string name="intentkey_getenemyname">INTENTKEY_GetEnemyName</string>
     <string name="intentkey_getenemyid">INTENTKEY_GetEnemyID</string>
     <string name="intentkey_ismaxcalories">INTENTKEY_ISMAXCALORIES</string>
+    
+	<style name="ButtonRound">
+	    <item name="android:layout_width">fill_parent</item>
+	    <item name="android:layout_height">wrap_content</item>
+	    <item name="android:textColor">#ffffff</item>
+	    <item name="android:gravity">center</item>
+	    <item name="android:layout_margin">3dp</item>
+	    <item name="android:textSize">18dp</item>
+	</style>
+	<style name="ButtonRound_Red">
+	    <item name="android:layout_width">fill_parent</item>
+	    <item name="android:layout_height">wrap_content</item>
+	    <item name="android:textColor">#ff5b54</item>
+	    <item name="android:gravity">center</item>
+	    <item name="android:layout_margin">3dp</item>
+	    <item name="android:textSize">18dp</item>
+	   
+	</style>
+		<style name="Button_my">
+	    <item name="android:textColor">#ff5b54</item>
+	    <item name="android:gravity">center</item>
+	    <item name="android:layout_margin">3dp</item>
+	    <item name="android:textSize">18dp</item>
+	   
+	</style>
 
 </resources>
