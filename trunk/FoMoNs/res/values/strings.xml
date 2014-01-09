@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FoMons</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="food_search">Food Search</string>
+    <string name="pet_name">FoMons</string>
+    <string name="intentkey_pathforfood">INTENTKEY_PathForFood</string>
+    <string name="intentkey_analysisfoodclass1">INTENTKEY_AnalysisFoodClass1</string>
+    <string name="intentkey_analysisfoodclass2">INTENTKEY_AnalysisFoodClass2</string>
+    <string name="intentkey_setfoodclass">INTENTKEY_SETFOODCLASS</string>
+    <string name="intentkey_setspeedstatup">INTENTKEY_SetSpeedSTATUp</string>
+    <string name="intentkey_isfromstatup">INTENTKEY_IsFromStatUp</string>
+    <string name="intentkey_isfromevolution">INTENTKEY_IsFromEvolution</string>
+    <string name="intentkey_battleresult">INTENTKEY_BattleResult</string>
+    <string name="intentkey_getenemyhp">INTENTKEY_GetEnemyHP</string>
+    <string name="intentkey_getenemyatk">INTENTKEY_GetEnemyATK</string>
+    <string name="intentkey_getenemydef">INTENTKEY_GetEnemyDEF</string>
+    <string name="intentkey_getenemyspd">INTENTKEY_GetEnemySPD</string>
+    <string name="intentkey_getenemyname">INTENTKEY_GetEnemyName</string>
+    <string name="intentkey_getenemyid">INTENTKEY_GetEnemyID</string>
+    <string name="intentkey_ismaxcalories">INTENTKEY_ISMAXCALORIES</string>
+    
+	<style name="ButtonRound">
+	    <item name="android:layout_width">fill_parent</item>
+	    <item name="android:layout_height">wrap_content</item>
+	    <item name="android:textColor">#ffffff</item>
+	    <item name="android:gravity">center</item>
+	    <item name="android:layout_margin">3dp</item>
+	    <item name="android:textSize">18dp</item>
+	</style>
+	<style name="ButtonRound_Red">
+	    <item name="android:layout_width">fill_parent</item>
+	    <item name="android:layout_height">wrap_content</item>
+	    <item name="android:textColor">#ff5b54</item>
+	    <item name="android:gravity">center</item>
+	    <item name="android:layout_margin">3dp</item>
+	    <item name="android:textSize">18dp</item>
+	   
+	</style>
+		<style name="Button_my">
+	    <item name="android:textColor">#ff5b54</item>
+	    <item name="android:gravity">center</item>
+	    <item name="android:layout_margin">3dp</item>
+	    <item name="android:textSize">18dp</item>
+	   
+	</style>
+	    <string name="intentkey_getenemytype">INTENTKEY_GetEnemyType</string>
+
+</resources>

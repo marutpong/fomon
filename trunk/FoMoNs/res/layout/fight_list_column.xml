@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayout1"
+    android:layout_width="fill_parent"
+    android:gravity="center_vertical"
+    android:layout_height="45dp" >
+
+	<TextView
+	    android:id="@+id/ColCustomerID"
+	    android:layout_width="40dp"
+	    android:layout_height="40dp"
+	    android:background="@drawable/circle_blue"
+	    android:gravity="center"
+	    android:text="ID"
+	    android:textAppearance="?android:attr/textAppearanceSmall"
+	    android:textColor="#fff"
+	    android:textSize="18sp" />
+
+	<TextView
+		android:id="@+id/ColName" 
+		android:layout_width="0dp"
+		android:layout_height="wrap_content" 
+		android:layout_weight="1.0"
+		android:layout_marginLeft="10dp"
+		android:textColor="@color/blue_dark"
+		android:text="Name"
+		android:textSize="20dp"
+		android:textAppearance="?android:attr/textAppearanceSmall" />
+
+	<TextView
+	    android:id="@+id/ColEmail"
+	    android:layout_width="0dp"
+	    android:layout_height="wrap_content"
+	    android:layout_weight="1"
+	    android:textColor="@color/blue"
+	    android:text="Email"
+	    android:textSize="20dp"
+	    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+</LinearLayout>
