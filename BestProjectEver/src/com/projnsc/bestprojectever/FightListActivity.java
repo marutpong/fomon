@@ -39,6 +39,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -58,7 +59,7 @@ public class FightListActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.fight_list);
-
+		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		// Permission StrictMode
 		if (android.os.Build.VERSION.SDK_INT > 9) {
 			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
@@ -139,15 +140,24 @@ public class FightListActivity extends Activity {
 				map.put("spd", c.getString("spd"));
 				map.put("win", c.getString("win"));
 				map.put("lose", c.getString("lose"));
-
+				map.put("rank", c.getString("rank"));
+				
+				float getWin = Float.parseFloat(c.getString("win"));
+				float getLose = Float.parseFloat(c.getString("lose"));
+				
+				float WinPercent = (((float) getWin) / ((float) getLose + getWin)) * 100;
+				if (getLose == getWin && getLose == 0)
+					WinPercent = 0;
+				
+				map.put("winpercent", String.valueOf(WinPercent) );
 				MyArrList.add(map);
 
 			}
 
 			SimpleAdapter sAdap;
 			sAdap = new SimpleAdapter(FightListActivity.this, MyArrList,
-					R.layout.fight_list_column, new String[] { "type", "name",
-							"hp" }, new int[] { R.id.ColCustomerID,
+					R.layout.fight_list_column, new String[] { "rank", "name",
+							"winpercent" }, new int[] { R.id.ColCustomerID,
 							R.id.ColName, R.id.ColEmail });
 			lisView1.setAdapter(sAdap);
 
@@ -179,9 +189,9 @@ public class FightListActivity extends Activity {
 					int Lose = Integer.parseInt(MyArrList.get(position)
 							.get("lose").toString());
 
-					float WinPercent = (((float) Win) / ((float) Lose + Win)) * 100;
-					if (Lose == Win && Lose == 0)
-						WinPercent = 0;
+					float WinPercent = Float.parseFloat(MyArrList.get(position)
+							.get("winpercent").toString()); 
+					
 
 					viewDetail.setIcon(android.R.drawable.btn_star_big_on);
 					viewDetail.setTitle(sName);

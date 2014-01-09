@@ -148,7 +148,7 @@ public class Hist_Phog {
 		Mat mulmattmp = fvtestpc.clone();
 		for(int i=0;i<featurenum;i++){
 			double sumfrommul = 0;
-			int count=0;
+			//int count=0;
 			for(int j=0;j<featurenum;j++){
 				double[] num1 = mulmattmp.get(0,j );
 				double[] num2 = pc.get(j, i);
@@ -156,8 +156,8 @@ public class Hist_Phog {
 				Log.d(tag,"mul "+String.valueOf(num1[0])+" "+String.valueOf(num2[0])+" "+String.valueOf(mul));
 				sumfrommul+=mul;
 			}
-			fvtestpc.put(0, count, sumfrommul);
-			count++;
+			fvtestpc.put(0, i, sumfrommul);
+			//count++;
 		}
 
 		Mat results1 = new Mat();

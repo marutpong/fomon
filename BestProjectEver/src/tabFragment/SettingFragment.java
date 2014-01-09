@@ -101,6 +101,8 @@ public class SettingFragment extends Fragment {
 		HistoryDatabase.Clear();
 		PetUniqueDate.SetMonName(PrefDataType.NONE);
 		PetUniqueDate.SetMonTypeID(PrefDataType.NONEINT);
+		PetUniqueDate.SetMonWON(0);
+		PetUniqueDate.SetMonLOSE(0);
 		Intent next = new Intent(getActivity(), SelectPetFirst.class);
 		getActivity().finish();
 		startActivity(next);
