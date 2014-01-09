@@ -1,0 +1,60 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/my_red_bg"
+    tools:context=".QuestFragment" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_weight="0" >
+
+        <TextView
+            android:id="@+id/dummyPetNameSet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Pet Name"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/my_red_text_red" />
+
+        <TextView
+            android:id="@+id/txtPetNamePK"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text=": NAME"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/my_red_text_red" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnChangePetNameSet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        style="@style/ButtonRound" android:background="@drawable/bt_red"
+        android:textColor="@color/my_red_text"
+        android:text="Change Pet Name" />
+
+    <Button
+        android:id="@+id/btnClearData"
+        style="@style/ButtonRound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:background="@drawable/bt_red"
+        android:textColor="@color/my_red_text"
+        android:text="Reset Data" />
+
+</LinearLayout>
