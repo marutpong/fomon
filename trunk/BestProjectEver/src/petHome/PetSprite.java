@@ -30,7 +30,15 @@ public class PetSprite {
 		BitmapFactory.Options o = new BitmapFactory.Options();
 		o.inDither = false;
 		o.inPurgeable = true;
-		mBitmap = BitmapFactory.decodeResource(res, PetUniqueDate.getPetResource(),o);
+		try {
+			o.inSampleSize = 2;
+			mBitmap = BitmapFactory.decodeResource(res,
+					PetUniqueDate.getPetResource(), o);
+		} catch (OutOfMemoryError E) {
+			o.inSampleSize = 4;
+			mBitmap = BitmapFactory.decodeResource(res,
+					PetUniqueDate.getPetResource(), o);
+		}
 		Petwidth = mBitmap.getWidth() / BMP_COLUMNS;
 		Petheight = mBitmap.getHeight() / BMP_ROWS;
 		mX = x;

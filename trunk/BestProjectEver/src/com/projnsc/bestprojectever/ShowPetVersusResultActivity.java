@@ -28,11 +28,13 @@ public class ShowPetVersusResultActivity extends Activity implements
 	TextView BattleResultShow;
 	private PetShowEmotionPanel mEmoPanel;
 	private static Random rand = new Random();
+	private boolean BattleWON = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
-		boolean BattleWON = getIntent().getBooleanExtra(getString(R.string.intentkey_battleresult), false);
+		BattleWON = getIntent().getBooleanExtra(
+				getString(R.string.intentkey_battleresult), false);
 		int WONScore = 0;
 		int LOSEScore = 0;
 
@@ -40,7 +42,7 @@ public class ShowPetVersusResultActivity extends Activity implements
 
 		mEmoPanel = (PetShowEmotionPanel) findViewById(R.id.petShowEmotionPanel2);
 		mEmoPanel.setOnPanelTouchListener(this);
-		
+
 		BattleLOSEScore = (TextView) findViewById(R.id.txtPETBattleLose);
 		BattleWONScore = (TextView) findViewById(R.id.txtPETBattleWon);
 		BattleResultShow = (TextView) findViewById(R.id.txtPetBattleResult);
@@ -50,11 +52,11 @@ public class ShowPetVersusResultActivity extends Activity implements
 
 		if (BattleWON) {
 			mEmoPanel.setEmoKey("WIN");
-			//Save to Database
+			// Save to Database
 			BattleWONScore.setText(LOSEScore + " ( +1)");
 		} else {
 			mEmoPanel.setEmoKey("LOSE");
-			//Save to Database
+			// Save to Database
 			BattleLOSEScore.setText(LOSEScore + " ( +1)");
 		}
 		setBattleResultText(BattleResultShow, BattleWON);
@@ -63,12 +65,13 @@ public class ShowPetVersusResultActivity extends Activity implements
 	}
 
 	private void setBattleResultText(TextView src, boolean WIN) {
-		String enemyID = getIntent().getExtras().getString(getString(R.string.intentkey_getenemyid));
+		String enemyID = getIntent().getExtras().getString(
+				getString(R.string.intentkey_getenemyid));
 		MyServer.addFightHistory(enemyID, WIN);
-		
+
 		int sWIN = MyServer.GetWIN();
 		int sLOSE = MyServer.GetLOSE();
-		Log.i(this.getClass().getName(),sWIN + " " + sLOSE);
+		Log.i(this.getClass().getName(), sWIN + " " + sLOSE);
 		if (WIN) {
 			src.setText(WINText[rand.nextInt(WINText.length)]);
 		} else {
@@ -76,9 +79,14 @@ public class ShowPetVersusResultActivity extends Activity implements
 		}
 		PetUniqueDate.SetMonWON(sWIN);
 		PetUniqueDate.SetMonLOSE(sLOSE);
-		Log.i(this.getClass().getName()+" HTML",sWIN + " " + sLOSE);
-		BattleWONScore.setText(sWIN+"");
-		BattleLOSEScore.setText(sLOSE+"");
+		Log.i(this.getClass().getName() + " HTML", sWIN + " " + sLOSE);
+		if (BattleWON) {
+			BattleWONScore.setText(sWIN + " ( +1)");
+			BattleLOSEScore.setText(sLOSE + "");
+		} else {
+			BattleLOSEScore.setText(sLOSE + " ( +1)");
+			BattleWONScore.setText(sWIN + "");
+		}
 
 	}
 

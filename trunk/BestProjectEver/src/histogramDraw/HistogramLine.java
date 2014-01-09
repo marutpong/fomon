@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
-import android.util.Log;
 
 public class HistogramLine {
 
@@ -63,8 +62,6 @@ public class HistogramLine {
 		this.SelfMax = (SelfMax / MaxValue) * (idelViewHeight);
 		INVERSTVALUE = MaxValue / (HistogramPanel.HeightMarginFactor * Height);
 		this.SpeedUp = (int) Math.round(this.SelfMax/idelViewHeight*SpeedFactor );
-		Log.i(this.getClass().getName(),SelfMax+"");
-		Log.i(this.getClass().getName(),this.SelfMax+"");
 	}
 
 	public void animate() {
