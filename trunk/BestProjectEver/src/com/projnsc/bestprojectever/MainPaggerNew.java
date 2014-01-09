@@ -340,11 +340,11 @@ public class MainPaggerNew extends FragmentActivity implements
 				(tabInfo = new TabInfo("Tab1", HomeFragment.class, args)));
 		this.mapTabInfo.put(tabInfo.tag, tabInfo);
 		MainPaggerNew.AddTab(this, this.mTabHost,
-				this.mTabHost.newTabSpec("Tab2").setIndicator("Histogram"),
+				this.mTabHost.newTabSpec("Tab2").setIndicator("Calories"),
 				(tabInfo = new TabInfo("Tab2", HistogramFragment.class, args)));
 		this.mapTabInfo.put(tabInfo.tag, tabInfo);
 		MainPaggerNew.AddTab(this, this.mTabHost,
-				this.mTabHost.newTabSpec("Tab3").setIndicator("Calories"),
+				this.mTabHost.newTabSpec("Tab3").setIndicator("History"),
 				(tabInfo = new TabInfo("Tab3", HistoryFragment.class, args)));
 		this.mapTabInfo.put(tabInfo.tag, tabInfo);
 

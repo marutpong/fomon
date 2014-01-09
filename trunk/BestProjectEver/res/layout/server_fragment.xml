@@ -236,7 +236,7 @@
                     android:layout_weight="1"
                     android:text="setWON"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@color/my_red_text_red" />
+                    android:textColor="@color/blue" />
             </LinearLayout>
 
             <LinearLayout
@@ -262,7 +262,7 @@
                     android:layout_weight="1"
                     android:text="setLOSE"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@color/my_red_text_red" />
+                    android:textColor="@color/blue" />
             </LinearLayout>
 
             <Button
