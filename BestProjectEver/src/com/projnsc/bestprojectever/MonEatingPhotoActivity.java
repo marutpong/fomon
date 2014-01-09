@@ -102,6 +102,11 @@ public class MonEatingPhotoActivity extends Activity implements OnGPSListener, O
 							@Override
 							public void onClick(DialogInterface dialog,
 									int which) {
+								if(mPool.size() <= 1){
+									mPool.add(new Pixel(0, 0));
+									mPool.add(new Pixel(mPanel.getWidth(), mPanel.getHeight()));
+									mPanel.setFullView(true);
+								}
 								gotoCalculatePicEat();
 							}
 						}).setNegativeButton("No", null).show();
@@ -123,6 +128,7 @@ public class MonEatingPhotoActivity extends Activity implements OnGPSListener, O
 				return lhs.getX() - rhs.getX();
 			}
 		});
+		Log.i(this.getClass().getName(),PixelPool.length+"");
 		minX = PixelPool[0].getX();
 		maxX = PixelPool[PixelPool.length - 1].getX();
 		Arrays.sort(PixelPool, new Comparator<Pixel>() {

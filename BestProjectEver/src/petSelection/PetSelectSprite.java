@@ -26,8 +26,15 @@ public class PetSelectSprite {
 		BitmapFactory.Options o = new BitmapFactory.Options();
 		o.inDither = false;
 		o.inPurgeable = true;
-		mBitmap = BitmapFactory.decodeResource(res,
-				PetUniqueDate.getPetResource(Key), o);
+		o.inSampleSize = 2;
+		try {
+			mBitmap = BitmapFactory.decodeResource(res,
+					PetUniqueDate.getPetResource(Key), o);
+		} catch (OutOfMemoryError E) {
+			o.inSampleSize = 4;
+			mBitmap = BitmapFactory.decodeResource(res,
+					PetUniqueDate.getPetResource(Key), o);
+		}
 		Petwidth = mBitmap.getWidth() / BMP_COLUMNS;
 		Petheight = mBitmap.getHeight() / BMP_ROWS;
 		mX = x;
@@ -40,6 +47,7 @@ public class PetSelectSprite {
 		o.inDither = false;
 		o.inPurgeable = true;
 		try {
+			o.inSampleSize = 2;
 			mBitmap = BitmapFactory.decodeResource(res,
 					PetUniqueDate.getPetResource(), o);
 		} catch (OutOfMemoryError E) {

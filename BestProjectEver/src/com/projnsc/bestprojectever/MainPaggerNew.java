@@ -17,11 +17,13 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.HorizontalScrollView;
@@ -124,13 +126,8 @@ public class MainPaggerNew extends FragmentActivity implements
 					.setTitle("Congratulation")
 					.setMessage(
 							"You pet has change its form but you still have to take care of it")
-					.setPositiveButton("OK", new OnClickListener() {
-
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							onEvolution();
-						}
-					}).show();
+					.setCancelable(false)
+					.setPositiveButton("OK",null).show();
 		}
 
 		if (getIntent().getExtras() != null
@@ -141,12 +138,13 @@ public class MainPaggerNew extends FragmentActivity implements
 					getString(R.string.intentkey_ismaxcalories)))
 				MSG = "You have give your pet some food \nbut it seem useless";
 			new AlertDialog.Builder(this).setTitle("Congratulation")
-					.setMessage(MSG)
+					.setMessage(MSG).setCancelable(false)
 					.setPositiveButton("OK", new OnClickListener() {
 
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							onEvolution();
+							Log.i("A2", "go by full");
 						}
 					}).show();
 		}
@@ -224,7 +222,14 @@ public class MainPaggerNew extends FragmentActivity implements
 		// Strong if Protien >>
 		// Thin if Carb < Carb/2
 
-		if (HistoryDatabase.getEatingCount(HistoryType.getCurrentDate()) % 3 == 0) {
+		Log.i("A3",
+				"CHECK "
+						+ HistoryDatabase.getEatingCount(HistoryType
+								.getCurrentDate()));
+
+		// Log.i(this.getClass().getName(),HistoryDatabase.getEatingCount(HistoryType.getCurrentDate())+"");
+
+		if (HistoryDatabase.getEatingCount(HistoryType.getCurrentDate()) % 1 == 0) {
 
 			double TotalProtien = HistoryDatabase.getSumNutritionOfDate(
 					HistoryType.getCurrentDate(),
@@ -241,32 +246,48 @@ public class MainPaggerNew extends FragmentActivity implements
 			if (A != -1) {
 				ResultEvo = CalculateNextStage(TotalProtien, TotalCarbohydrate,
 						TotalFat, A);
+				if(ResultEvo != -1)
+					ResultEvo = TYPE1[ResultEvo];
 			} else {
 				A = Arrays.binarySearch(TYPE2, PetUniqueDate.getMonTypeID());
 				ResultEvo = CalculateNextStage(TotalProtien, TotalCarbohydrate,
 						TotalFat, A);
+				if(ResultEvo != -1)
+					ResultEvo = TYPE2[ResultEvo];
 			}
+
+			if (ResultEvo != -1) {
+				Intent B = new Intent(this, PetEvolutionActivity.class);
+				B.putExtra("INTENTKET_PETEVOLUTIONTO", ResultEvo);
+				finish();
+				startActivity(B);
+			}
+
 		}
 
 	}
-
+	
 	private int CalculateNextStage(double TotalProtien,
 			double TotalCarbohydrate, double TotalFat, int A) {
 		int ResultEvo = A;
+		int OldRes = A;
 		if (A < 2) {
 			ResultEvo = A + 1;
 		} else {
-			if (TotalFat >= TotalProtien * 2) {
-				ResultEvo = 3;
-			}
-			if (TotalProtien >= TotalFat * 2) {
-				ResultEvo = 4;
-			}
+
 			if (TotalCarbohydrate <= 150) {
 				ResultEvo = 5;
+			} else {
+				if (TotalFat >= TotalProtien * 2) {
+					ResultEvo = 3;
+				} else if (TotalProtien >= TotalFat * 2) {
+					ResultEvo = 4;
+				} else {
+					ResultEvo = 2;
+				}
 			}
 		}
-		return ResultEvo;
+		return (ResultEvo == OldRes) ? -1 : ResultEvo;
 	}
 
 	/**
@@ -298,7 +319,7 @@ public class MainPaggerNew extends FragmentActivity implements
 				.add(Fragment.instantiate(this, ServerFragment.class.getName()));
 		fragments.add(Fragment.instantiate(this,
 				SettingFragment.class.getName()));
-		
+
 		this.mPagerAdapter = new PagerAdapterNew(
 				super.getSupportFragmentManager(), fragments);
 		//
@@ -332,13 +353,11 @@ public class MainPaggerNew extends FragmentActivity implements
 				(tabInfo = new TabInfo("Tab4", QuestFragment.class, args)));
 		this.mapTabInfo.put(tabInfo.tag, tabInfo);
 
-
-
 		MainPaggerNew.AddTab(this, this.mTabHost,
 				this.mTabHost.newTabSpec("Tab5").setIndicator("Battle"),
 				(tabInfo = new TabInfo("Tab5", ServerFragment.class, args)));
 		this.mapTabInfo.put(tabInfo.tag, tabInfo);
-		
+
 		MainPaggerNew.AddTab(this, this.mTabHost,
 				this.mTabHost.newTabSpec("Tab6").setIndicator("Setting"),
 				(tabInfo = new TabInfo("Tab6", SettingFragment.class, args)));

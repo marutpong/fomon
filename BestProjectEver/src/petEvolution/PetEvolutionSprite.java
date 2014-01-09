@@ -139,6 +139,7 @@ public class PetEvolutionSprite {
 		BitmapFactory.Options o = new BitmapFactory.Options();
 		o.inDither = false;
 		o.inPurgeable = true;
+		o.inSampleSize = 2;
 		sBitmap = BitmapFactory.decodeResource(res,
 				PetUniqueDate.getPetResource(monStartID), o);
 

@@ -11,24 +11,24 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 
-public class PetPanel extends SurfaceView implements Callback{
+public class PetPanel extends SurfaceView implements Callback {
 
 	private PetSprite mPet;
 	private PetFieldThread mThread;
 	public static int PetFieldWidth;
 	public static int PetFieldHeight;
 	private Bitmap BACKGROUND;
-	
-	public interface OnPetTouchListener{
+
+	public interface OnPetTouchListener {
 		void OnPetTouch();
 	}
-	
+
 	private OnPetTouchListener onPetTouchListener;
-	
+
 	public void setOnPetTouchListener(OnPetTouchListener onPetTouchListener) {
 		this.onPetTouchListener = onPetTouchListener;
 	}
-	
+
 	public PetPanel(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		init();
@@ -43,20 +43,30 @@ public class PetPanel extends SurfaceView implements Callback{
 		super(context);
 		init();
 	}
-	
+
 	private void init() {
 		getHolder().addCallback(this);
 		mThread = new PetFieldThread(this);
 		mPet = new PetSprite(getResources(), 0, 0);
-		BACKGROUND = BitmapFactory.decodeResource(getResources(), R.drawable.bg_forest);
+		BitmapFactory.Options o = new BitmapFactory.Options();
+		o.inDither = false;
+		o.inPurgeable = true;
+		try {
+			BACKGROUND = BitmapFactory.decodeResource(getResources(),
+					R.drawable.bg_forest, o);
+		} catch (OutOfMemoryError E) {
+			o.inSampleSize = 2;
+			BACKGROUND = BitmapFactory.decodeResource(getResources(),
+					R.drawable.bg_forest, o);
+		}
 	}
 
 	public void RunAnimate() {
 		mPet.animate();
 	}
-	
-	public void doDraw(Canvas canvas){
-//		canvas.drawColor(Color.BLACK);
+
+	public void doDraw(Canvas canvas) {
+		// canvas.drawColor(Color.BLACK);
 		canvas.drawBitmap(BACKGROUND, 0, 0, null);
 		mPet.doDraw(canvas);
 	}
@@ -68,14 +78,15 @@ public class PetPanel extends SurfaceView implements Callback{
 		PetFieldHeight = height;
 		PetFieldWidth = width;
 		mPet.setPetFirstRandomPosition(width, height);
-		nBACKGROUND = Bitmap.createScaledBitmap(BACKGROUND, width, height, false);
+		nBACKGROUND = Bitmap.createScaledBitmap(BACKGROUND, width, height,
+				false);
 		BACKGROUND.recycle();
 		BACKGROUND = nBACKGROUND;
 	}
 
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
-		if(!mThread.isAlive()){
+		if (!mThread.isAlive()) {
 			mThread = new PetFieldThread(this);
 			mThread.setRunning(true);
 			mThread.start();
@@ -84,22 +95,22 @@ public class PetPanel extends SurfaceView implements Callback{
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		
+
 		boolean PetTouched = false;
-		if(mPet.isCollition(event.getX(), event.getY())){
+		if (mPet.isCollition(event.getX(), event.getY())) {
 			PetTouched = true;
 		}
-		
-		if(PetTouched && onPetTouchListener != null){
+
+		if (PetTouched && onPetTouchListener != null) {
 			onPetTouchListener.OnPetTouch();
 		}
-		
+
 		return super.onTouchEvent(event);
 	}
-	
+
 	@Override
 	public void surfaceDestroyed(SurfaceHolder holder) {
-		if(mThread.isAlive()){
+		if (mThread.isAlive()) {
 			mThread.setRunning(false);
 		}
 	}

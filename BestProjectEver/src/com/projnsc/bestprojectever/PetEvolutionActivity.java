@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 public class PetEvolutionActivity extends Activity implements OnEvolutionFinishListener{
 
@@ -17,7 +18,7 @@ public class PetEvolutionActivity extends Activity implements OnEvolutionFinishL
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
-		MonFinishID = 11;
+		MonFinishID = getIntent().getExtras().getInt("INTENTKET_PETEVOLUTIONTO");
 		
 		mEvolPanel = new PetEvolutionPanel(this);
 		mEvolPanel.setOnEvolutionFinishListener(this);
@@ -55,7 +56,7 @@ public class PetEvolutionActivity extends Activity implements OnEvolutionFinishL
 	}
 
 	protected void goBack() {
-
+		
 	}
 	
 }
