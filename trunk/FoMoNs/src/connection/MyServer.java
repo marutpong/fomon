@@ -242,4 +242,12 @@ public class MyServer// extends Application
 		}		return result;
 	}
 
+	public static void UpdataUserWINLOSE() {
+		int upWON = PetUniqueDate.getMonWON();
+		int upLOSE = PetUniqueDate.getMonLOSE();
+		
+		//UPDATE HERE
+		
+	}
+
 }

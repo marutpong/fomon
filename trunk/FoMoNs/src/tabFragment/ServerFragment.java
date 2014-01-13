@@ -79,11 +79,14 @@ public class ServerFragment extends Fragment {
 				// TODO Auto-generated method stub
 				String result = MyServer.saveToServer();
 				if (result != null && result.equalsIgnoreCase("true")) {
+					
+					MyServer.UpdataUserWINLOSE();
+					
 					Intent mNext = new Intent(getActivity(),
 							FightListActivity.class);
 					startActivity(mNext);
 				} else {
-					Toast.makeText(getActivity(), "Please connect WIFI.",
+					Toast.makeText(getActivity(), "Please connect WIFI",
 							Toast.LENGTH_LONG).show();
 				}
 			}
