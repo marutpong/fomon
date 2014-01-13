@@ -45,12 +45,13 @@ public class TheTempActivity extends Activity {
 				getString(R.string.intentkey_analysisfoodclass2), -1);
 
 		if (ClassFood1 == 0)
-			ClassFood1 = 1;
+			ClassFood1 = -1;
 		if (ClassFood2 == 0)
-			ClassFood2 = 1;
+			ClassFood2 = -1;
 
 		if (ClassFood1 == ClassFood2 && ClassFood1 != -1) {
 			// goToStatUpResult(ClassFood1);
+			this.showSelectDialog();
 			askConfirmSelect(ClassFood1);
 
 		} // else {
@@ -65,7 +66,9 @@ public class TheTempActivity extends Activity {
 				finish();
 			}
 		});
-		this.showSelectDialog();
+		
+		if(ClassFood1 != ClassFood2)
+			this.showSelectDialog();
 
 	}
 
