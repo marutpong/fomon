@@ -290,9 +290,9 @@ containing a value of this type.
     public static final class id {
         public static final int BattleLeftProgressBar=0x7f050063;
         public static final int BattleRightProgressBar=0x7f050067;
-        public static final int ColCustomerID=0x7f050053;
-        public static final int ColEmail=0x7f050055;
-        public static final int ColName=0x7f050054;
+        public static final int ColCustomerID=0x7f05004e;
+        public static final int ColEmail=0x7f050050;
+        public static final int ColName=0x7f05004f;
         public static final int LinearLayout1=0x7f050008;
         public static final int LinearLayout2=0x7f05000a;
         public static final int PetNameLabel=0x7f05006a;
@@ -333,7 +333,7 @@ containing a value of this type.
         public static final int btn_c2=0x7f0500a3;
         public static final int btn_conserver=0x7f05009f;
         public static final int btn_other=0x7f0500a4;
-        public static final int btn_select=0x7f050051;
+        public static final int btn_select=0x7f050054;
         public static final int button1=0x7f05004d;
         public static final int camera1=0x7f05005a;
         public static final int dummyATKSet=0x7f050094;
@@ -380,8 +380,8 @@ containing a value of this type.
         public static final int labelCarbohydrate=0x7f05001b;
         public static final int labelFat=0x7f05001e;
         public static final int labelProtien=0x7f050018;
-        public static final int linearLayout1=0x7f050052;
-        public static final int listView1=0x7f05004e;
+        public static final int linearLayout1=0x7f050055;
+        public static final int listView1=0x7f050051;
         public static final int map=0x7f050031;
         public static final int none=0x7f050003;
         public static final int normal=0x7f050004;
@@ -421,8 +421,8 @@ containing a value of this type.
         public static final int txtDate=0x7f050015;
         public static final int txtFat=0x7f05001f;
         public static final int txtFatQ=0x7f05007b;
-        public static final int txtFightLOSE=0x7f050050;
-        public static final int txtFightWIN=0x7f05004f;
+        public static final int txtFightLOSE=0x7f050053;
+        public static final int txtFightWIN=0x7f050052;
         public static final int txtFoodname=0x7f050014;
         public static final int txtHPemo=0x7f05003c;
         public static final int txtMagnesium=0x7f050025;
