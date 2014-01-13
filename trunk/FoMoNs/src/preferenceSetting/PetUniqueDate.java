@@ -189,6 +189,12 @@ public class PetUniqueDate {
 			return R.drawable.middle1;
 		case 12:
 			return R.drawable.final1;
+		case 121:
+			return R.drawable.fat1;
+		case 122:
+			return R.drawable.strong1;
+		case 123:
+			return R.drawable.slim1;
 		case 2:
 			return R.drawable.pet_s6;
 		default:
@@ -209,6 +215,12 @@ public class PetUniqueDate {
 			return R.drawable.f_middle1;
 		case 12:
 			return R.drawable.f_final1;
+		case 121:
+			return R.drawable.f_fat1;
+		case 122:
+			return R.drawable.f_strong1;
+		case 123:
+			return R.drawable.f_slim1;
 		case 2:
 			return R.drawable.pet_s6;
 		default:
