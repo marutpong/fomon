@@ -55,6 +55,7 @@ public class TheTempActivity extends Activity {
 			askConfirmSelect(ClassFood1);
 
 		} // else {
+		
 		NameFood1 = FoodDatabase.getFoodByID(ClassFood1).getName();
 		NameFood2 = FoodDatabase.getFoodByID(ClassFood2).getName();
 		// }
