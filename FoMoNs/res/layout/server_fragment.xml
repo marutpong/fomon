@@ -57,14 +57,15 @@
 
                 <TableRow
                     android:id="@+id/tableRow1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" >
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
-                        android:layout_weight="0" >
+                        android:layout_weight="1" >
 
                         <TextView
                             android:id="@+id/TextView01"
@@ -98,7 +99,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
-                        android:layout_weight="0" >
+                        android:layout_weight="1" >
 
                         <TextView
                             android:id="@+id/TextView02"
@@ -128,19 +129,19 @@
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/blue_dark" />
                     </LinearLayout>
-
                 </TableRow>
 
                 <TableRow
                     android:id="@+id/tableRow2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" >
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
-                        android:layout_weight="0" >
+                        android:layout_weight="1" >
 
                         <TextView
                             android:id="@+id/TextView03"
@@ -174,7 +175,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
-                        android:layout_weight="0" >
+                        android:layout_weight="1" >
 
                         <TextView
                             android:id="@+id/TextView04"
@@ -203,13 +204,13 @@
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/blue_dark" />
                     </LinearLayout>
-
                 </TableRow>
 
                 <TableRow
                     android:id="@+id/tableRow3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" >
                 </TableRow>
             </TableLayout>
 
