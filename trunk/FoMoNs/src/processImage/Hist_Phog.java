@@ -2,8 +2,10 @@ package processImage;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -40,7 +42,7 @@ public class Hist_Phog implements Runnable {
 	// private int angle = 360;
 	private static Context context;
 	float y[], z[];
-	static int foodnum = readNum();
+	static int foodnum = 0; // = readNum();
 	// int foodnumtest = 248;
 	static int featurenum = 41;
 	static int featurepc = 15;
@@ -113,6 +115,7 @@ public class Hist_Phog implements Runnable {
 
 	public Hist_Phog(Context context) {
 		setContext(context);
+		foodnum = readNum();
 	}
 
 	public Context getContext() {
@@ -318,7 +321,7 @@ public class Hist_Phog implements Runnable {
 			break;
 		case 2:
 			file = new File(folder, "fvtrain.txt");
-			
+
 			break;
 		case 3:
 			file = new File(folder, "gt.txt");
@@ -338,26 +341,27 @@ public class Hist_Phog implements Runnable {
 		try {
 			// While the BufferedReader readLine is not null
 			if (name == 3) {
-				
+
 				for (int i = 0; i < keepfile.rows(); i++) {
 					double[] d = keepfile.get(i, 0);
 					String dtmp = String.valueOf(d[0]);
-//					Log.d("Add", "Check write keepfile = "+dtmp);
+					// Log.d("Add", "Check write keepfile = "+dtmp);
 					bw.write(dtmp + "\n");
 				}
 			} else {
-				
+
 				for (int i = 0; i < keepfile.rows(); i++) {
 					for (int j = 0; j < keepfile.cols(); j++) {
 						double[] d = keepfile.get(i, j);
 						String tmpd = String.valueOf(d[0]);
 						bw.write(tmpd + "\t");
-						
+
 					}
 					bw.write("\n");
 				}
-				double[] xx = keepfile.get(keepfile.rows()-1, keepfile.cols()-1);
-				Log.d("Add", "all name chk = "+name+"  "+xx[0]);
+				double[] xx = keepfile.get(keepfile.rows() - 1,
+						keepfile.cols() - 1);
+				Log.d("Add", "all name chk = " + name + "  " + xx[0]);
 
 			}
 
@@ -402,7 +406,31 @@ public class Hist_Phog implements Runnable {
 		File folder = new File(Environment.getExternalStorageDirectory()
 				+ "/FoMons");
 		File file = new File(folder, "foodnum.txt");
+		if (!file.exists()) {
+			
+			Log.i("mul",context + " ");
+			
+			InputStream ins = context.getResources().openRawResource(R.raw.foodnum);
+			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+			int size = 0;
+			// Read the entire resource into a local byte buffer.
+			byte[] buffer = new byte[1024];
+			try {
+				while ((size = ins.read(buffer, 0, 1024)) >= 0) {
+					outputStream.write(buffer, 0, size);
+				}
+				ins.close();
 
+				buffer = outputStream.toByteArray();
+				FileOutputStream fos = new FileOutputStream(file);
+				fos.write(buffer);
+				fos.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 		BufferedReader br = null;
 		try {
 			br = new BufferedReader(new FileReader(file));
@@ -471,7 +499,34 @@ public class Hist_Phog implements Runnable {
 		default:
 			break;
 		}
+		if (!file.exists()) {
+			InputStream ins = null;
+			if (name == 1) {
+				ins = context.getResources().openRawResource(
+						R.raw.fvtrain);
+			} else if (name == 3) {
+				ins = context.getResources().openRawResource(
+						R.raw.gt);
+			}
+			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+			int size = 0;
+			// Read the entire resource into a local byte buffer.
+			byte[] buffer = new byte[1024];
+			try {
+				while ((size = ins.read(buffer, 0, 1024)) >= 0) {
+					outputStream.write(buffer, 0, size);
+				}
+				ins.close();
 
+				buffer = outputStream.toByteArray();
+				FileOutputStream fos = new FileOutputStream(file);
+				fos.write(buffer);
+				fos.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		BufferedReader br = null;
 		try {
 			br = new BufferedReader(new FileReader(file));

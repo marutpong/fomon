@@ -113,6 +113,7 @@ public class MonEatingPhotoActivity extends Activity implements OnGPSListener {
 	protected void gotoCalculatePicEat() {
 		
 		FinishDialog.dismiss();
+		PetUniqueDate.setContext(this);
 		PetUniqueDate.SetLatitude((float) latitude);
 		PetUniqueDate.SetLongtitude((float) longtitude);
 		
