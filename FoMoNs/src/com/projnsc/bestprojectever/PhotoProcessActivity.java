@@ -13,7 +13,7 @@ public class PhotoProcessActivity extends Activity implements
 		OnImageProcessListener {
 
 	private ProgressDialog mPDialog = null;
-	private Hist_Phog hist_phog = new Hist_Phog(this);
+	private Hist_Phog hist_phog;
 	private Thread mThread;
 
 	@Override
@@ -23,7 +23,7 @@ public class PhotoProcessActivity extends Activity implements
 				getString(R.string.intentkey_pathforfood));
 		
 		setContentView(R.layout.thetemp_activity);
-		
+		hist_phog = new Hist_Phog(this);
 		hist_phog.setOnImageProcessListener(this);
 		hist_phog.setPath(fullPath);
 		mThread = new Thread(hist_phog);
