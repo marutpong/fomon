@@ -12,8 +12,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import preferenceSetting.PetUniqueDate;
-import processImage.Hist_Phog;
-import processImage.Hist_Phog.OnImageProcessListener;
 
 import monsterEatPhoto.EatPanel;
 import monsterEatPhoto.Pixel;
@@ -26,15 +24,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
+//import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
 
-public class MonEatingPhotoActivity extends Activity implements OnGPSListener, OnImageProcessListener {
-	Hist_Phog hist_phog = new Hist_Phog(this);
+public class MonEatingPhotoActivity extends Activity implements OnGPSListener {
+//	Hist_Phog hist_phog = new Hist_Phog(this);
 	private static final int MENU_CLEAR_ID = 1000;
 	private Set<Pixel> mPool = new HashSet<Pixel>();
 	private EatPanel mPanel;
@@ -53,9 +51,9 @@ public class MonEatingPhotoActivity extends Activity implements OnGPSListener, O
 		gps = new GPSLocation(this);
 		gps.setOnGPSListener(this);
 		
-		Log.i("TEXT",
-				getIntent().getExtras().getString(
-						getString(R.string.intentkey_pathforfood)));
+//		Log.i("TEXT",
+//				getIntent().getExtras().getString(
+//						getString(R.string.intentkey_pathforfood)));
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_mon_eat_pic);
 		// mPanel = new EatPanel(this);
@@ -118,7 +116,7 @@ public class MonEatingPhotoActivity extends Activity implements OnGPSListener, O
 		PetUniqueDate.SetLatitude((float) latitude);
 		PetUniqueDate.SetLongtitude((float) longtitude);
 		
-		String fullPath;
+//		String fullPath;
 		Pixel[] PixelPool = mPool.toArray(new Pixel[0]);
 		int minX, minY, maxX, maxY;
 		Arrays.sort(PixelPool, new Comparator<Pixel>() {
@@ -128,7 +126,7 @@ public class MonEatingPhotoActivity extends Activity implements OnGPSListener, O
 				return lhs.getX() - rhs.getX();
 			}
 		});
-		Log.i(this.getClass().getName(),PixelPool.length+"");
+//		Log.i(this.getClass().getName(),PixelPool.length+"");
 		minX = PixelPool[0].getX();
 		maxX = PixelPool[PixelPool.length - 1].getX();
 		Arrays.sort(PixelPool, new Comparator<Pixel>() {
@@ -148,12 +146,12 @@ public class MonEatingPhotoActivity extends Activity implements OnGPSListener, O
 		Bitmap mFood = BitmapFactory.decodeFile(getIntent().getExtras()
 				.getString(getString(R.string.intentkey_pathforfood)));
 		mFood = Bitmap.createScaledBitmap(mFood, Width, Heigh, false);
-		Log.i(this.getClass().getName(), "Width Real: " + mFood.getWidth()
-				+ " Height Real: " + mFood.getHeight());
-		Log.i(this.getClass().getName(), "miX: " + minX + " mxX: " + maxX
-				+ " abs: " + Math.abs(maxX - minX));
-		Log.i(this.getClass().getName(), "miY: " + minY + " mxY: " + maxY
-				+ " abs: " + Math.abs(maxY - minY));
+//		Log.i(this.getClass().getName(), "Width Real: " + mFood.getWidth()
+//				+ " Height Real: " + mFood.getHeight());
+//		Log.i(this.getClass().getName(), "miX: " + minX + " mxX: " + maxX
+//				+ " abs: " + Math.abs(maxX - minX));
+//		Log.i(this.getClass().getName(), "miY: " + minY + " mxY: " + maxY
+//				+ " abs: " + Math.abs(maxY - minY));
 		// for(int i=0; i<PixelPool.length; i++){
 		// Log.i(this.getClass().getName()+" OK", PixelPool[i].getX() + " " +
 		// PixelPool[i].getY());
@@ -165,8 +163,8 @@ public class MonEatingPhotoActivity extends Activity implements OnGPSListener, O
 		File myDir = new File(root + "/" + HistoryType.FolderSavedName);
 		myDir.mkdirs();
 		File file = new File(myDir, HistoryType.TempFilePetEatSaveName);
-		fullPath = root + "/" + HistoryType.FolderSavedName + "/"
-				+ HistoryType.TempFilePetEatSaveName;
+//		fullPath = root + "/" + HistoryType.FolderSavedName + "/"
+//				+ HistoryType.TempFilePetEatSaveName;
 		if (file.exists())
 			file.delete();
 		try {
@@ -174,16 +172,19 @@ public class MonEatingPhotoActivity extends Activity implements OnGPSListener, O
 			mFood.compress(Bitmap.CompressFormat.JPEG, 100, out);
 			out.flush();
 			out.close();
-			Log.i(this.getClass().getName(), "Success!!!");
+//			Log.i(this.getClass().getName(), "Success!!!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		hist_phog.setOnImageProcessListener(this);
-		int[] classFood = hist_phog.histImage(fullPath);
-
-		Log.d("TEXT",
-				String.valueOf(classFood[0]) + "  "
-						+ String.valueOf(classFood[1]));
+		
+		GoforProcessPicture();
+		
+//		hist_phog.setOnImageProcessListener(this);
+//		int[] classFood = hist_phog.histImage(fullPath);
+//
+//		Log.d("TEXT",
+//				String.valueOf(classFood[0]) + "  "
+//						+ String.valueOf(classFood[1]));
 	}
 
 	protected void btnCancelPress() {
@@ -220,12 +221,11 @@ public class MonEatingPhotoActivity extends Activity implements OnGPSListener, O
 		longtitude = gpsLocation.getLongtitude();
 	}
 
-	@Override
-	public void OnImageProcessFinish(int[] classFood) {
-		Intent A = new Intent(this,TheTempActivity.class);
-		A.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		A.putExtra(getString(R.string.intentkey_analysisfoodclass1), classFood[0]);
-		A.putExtra(getString(R.string.intentkey_analysisfoodclass2), classFood[1]);
+	public void GoforProcessPicture() {
+		Intent A = new Intent(this,PhotoProcessActivity.class);
+//		A.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//		A.putExtra(getString(R.string.intentkey_analysisfoodclass1), classFood[0]);
+//		A.putExtra(getString(R.string.intentkey_analysisfoodclass2), classFood[1]);
 		A.putExtra(getString(R.string.intentkey_pathforfood) ,getIntent().getExtras().getString(getString(R.string.intentkey_pathforfood)));
 		finish();
 		startActivity(A);

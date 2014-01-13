@@ -39,7 +39,6 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
-import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -184,10 +183,10 @@ public class FightListActivity extends Activity {
 							.get("def").toString());
 					final int SPD = Integer.parseInt(MyArrList.get(position)
 							.get("spd").toString());
-					int Win = Integer.parseInt(MyArrList.get(position)
-							.get("win").toString());
-					int Lose = Integer.parseInt(MyArrList.get(position)
-							.get("lose").toString());
+//					int Win = Integer.parseInt(MyArrList.get(position)
+//							.get("win").toString());
+//					int Lose = Integer.parseInt(MyArrList.get(position)
+//							.get("lose").toString());
 
 					float WinPercent = Float.parseFloat(MyArrList.get(position)
 							.get("winpercent").toString()); 

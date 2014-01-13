@@ -22,7 +22,7 @@ import android.widget.ListView;
 
 public class TheTempActivity extends Activity {
 
-	private int result = -1;
+//	private int result = -1;
 	AlertDialog selectDialog;
 	AlertDialog foodListDialog = null;
 	private int ClassFood1;
@@ -50,7 +50,10 @@ public class TheTempActivity extends Activity {
 			ClassFood2 = 1;
 		
 		if (ClassFood1 == ClassFood2 && ClassFood1 != -1) {
-			goToStatUpResult(ClassFood1);
+//			goToStatUpResult(ClassFood1);
+			
+			askConfirmSelect(ClassFood1);
+			
 		} else {
 			NameFood1 = FoodDatabase.getFoodByID(ClassFood1).getName();
 			NameFood2 = FoodDatabase.getFoodByID(ClassFood2).getName();
@@ -169,7 +172,7 @@ public class TheTempActivity extends Activity {
 							public void onClick(DialogInterface dialog,
 									int which) {
 
-								result = theInt;
+//								result = theInt;
 								selectDialog.dismiss();
 								goToStatUpResult(theInt);
 								if (foodListDialog != null) {

@@ -11,7 +11,7 @@ import preferenceSetting.PetUniqueDate;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+//import android.util.Log;
 import android.widget.TextView;
 
 public class ShowPetVersusResultActivity extends Activity implements
@@ -71,7 +71,7 @@ public class ShowPetVersusResultActivity extends Activity implements
 
 		int sWIN = MyServer.GetWIN();
 		int sLOSE = MyServer.GetLOSE();
-		Log.i(this.getClass().getName(), sWIN + " " + sLOSE);
+//		Log.i(this.getClass().getName(), sWIN + " " + sLOSE);
 		if (WIN) {
 			src.setText(WINText[rand.nextInt(WINText.length)]);
 		} else {
@@ -79,7 +79,7 @@ public class ShowPetVersusResultActivity extends Activity implements
 		}
 		PetUniqueDate.SetMonWON(sWIN);
 		PetUniqueDate.SetMonLOSE(sLOSE);
-		Log.i(this.getClass().getName() + " HTML", sWIN + " " + sLOSE);
+//		Log.i(this.getClass().getName() + " HTML", sWIN + " " + sLOSE);
 		if (BattleWON) {
 			BattleWONScore.setText(sWIN + " ( +1)");
 			BattleLOSEScore.setText(sLOSE + "");

@@ -6,7 +6,6 @@ import foodDatabase.FoodBox;
 import foodDatabase.FoodDatabase;
 import historyDatabase.HistoryBox;
 import historyDatabase.HistoryDatabase;
-import historyDatabase.HistoryType;
 
 //import android.R;
 import com.projnsc.bestprojectever.R;
@@ -16,14 +15,14 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
+//import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+//import android.widget.Toast;
 
 @SuppressLint("NewApi")
 public class HistoryDetail extends Activity {
@@ -57,8 +56,6 @@ public class HistoryDetail extends Activity {
 		setContentView(R.layout.activity_history_detail);
 
 		old = getIntent();
-		Log.i(HistoryDetail.class.getName(), "position:"
-				+ old.getExtras().getInt("index"));
 		his = HistoryDatabase.getDataBox(old.getExtras().getInt("index"));
 
 		txtFoodname = (TextView) findViewById(R.id.txtFoodname);
@@ -79,7 +76,6 @@ public class HistoryDetail extends Activity {
 //		show_btnTest = (Button) findViewById(R.id.btb_test);
 
 		FoodBox food = FoodDatabase.getFoodByID(his.getFoodType());
-		Log.i(HistoryDetail.class.getName(), "Foodtype:" + his.getFoodType());
 
 		String stringDate = his.getTimebyStringFormat();
 		String collon = " : ";
@@ -141,10 +137,10 @@ public class HistoryDetail extends Activity {
 	}
 
 	public void todayList() {
-		String msg = "";
-		int type = FoodDatabase.Enum.calories.ordinal();
-		msg = String.valueOf(HistoryDatabase.getSumNutritionOfDate(
-				HistoryType.getCurrentDate(), type));
-		//Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+//		String msg = "";
+//		int type = FoodDatabase.Enum.calories.ordinal();
+//		msg = String.valueOf(HistoryDatabase.getSumNutritionOfDate(
+//				HistoryType.getCurrentDate(), type));
+//		//Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
 	}
 }
