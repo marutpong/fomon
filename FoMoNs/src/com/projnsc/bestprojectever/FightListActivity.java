@@ -58,7 +58,7 @@ public class FightListActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.fight_list);
-		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		// this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		// Permission StrictMode
 		if (android.os.Build.VERSION.SDK_INT > 9) {
 			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
@@ -140,15 +140,15 @@ public class FightListActivity extends Activity {
 				map.put("win", c.getString("win"));
 				map.put("lose", c.getString("lose"));
 				map.put("rank", c.getString("rank"));
-				
+
 				float getWin = Float.parseFloat(c.getString("win"));
 				float getLose = Float.parseFloat(c.getString("lose"));
-				
+
 				float WinPercent = (((float) getWin) / ((float) getLose + getWin)) * 100;
 				if (getLose == getWin && getLose == 0)
 					WinPercent = 0;
-				
-				map.put("winpercent", String.valueOf(WinPercent) );
+
+				map.put("winpercent", String.valueOf(WinPercent));
 				MyArrList.add(map);
 
 			}
@@ -162,7 +162,7 @@ public class FightListActivity extends Activity {
 
 			final AlertDialog.Builder viewDetail = new AlertDialog.Builder(this);
 			// OnClick Item
-			
+
 			lisView1.setOnItemClickListener(new OnItemClickListener() {
 				public void onItemClick(AdapterView<?> myAdapter, View myView,
 						int position, long mylng) {
@@ -183,73 +183,83 @@ public class FightListActivity extends Activity {
 							.get("def").toString());
 					final int SPD = Integer.parseInt(MyArrList.get(position)
 							.get("spd").toString());
-//					int Win = Integer.parseInt(MyArrList.get(position)
-//							.get("win").toString());
-//					int Lose = Integer.parseInt(MyArrList.get(position)
-//							.get("lose").toString());
+					// int Win = Integer.parseInt(MyArrList.get(position)
+					// .get("win").toString());
+					// int Lose = Integer.parseInt(MyArrList.get(position)
+					// .get("lose").toString());
 
 					float WinPercent = Float.parseFloat(MyArrList.get(position)
-							.get("winpercent").toString()); 
-					
+							.get("winpercent").toString());
 
-					viewDetail.setIcon(android.R.drawable.btn_star_big_on);
-					viewDetail.setTitle(sName);
-					// viewDetail.setMessage("MemberID : " + strID + "\n"
-					// + "Name : " + sName + "\n" + "Type : " + strType
-					// + "\n" + "Age : " + strAge + "\n" + "HP : " + strHP
-					// + "\n" + "ATK : " + strATK + "\n" + "DEF : "
-					// + strDEF + "\n" + "SPD : " + strSPD + "\n"
-					// + "WIN : " + strWin + "\n" + "Lose : " + strLose);
-					viewDetail.setMessage("MemberID : " + sID + "\n"
-							+ "Name : " + sName + "\n" + "Type : " + Type
-							+ "\n" + "Age : " + sAge + "\n" + "Win% :"
-							+ WinPercent);
-					viewDetail.setPositiveButton("Cancel",
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int which) {
-									dialog.dismiss();
-								}
-							});
-					viewDetail.setNegativeButton("Fight",
-							new DialogInterface.OnClickListener() {
-								public void onClick(DialogInterface dialog,
-										int id) {
-									// dialog.dismiss();
-									// context.startActivity(new Intent(context,
-									// Setup.class));
-									// dialog.cancel();
-									InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-									imm.hideSoftInputFromWindow(
-											inputText.getWindowToken(), 0);
-									Intent A = new Intent(getBaseContext(),
-											PetBattleActivity.class);
-									A.putExtra(
-											getString(R.string.intentkey_getenemyhp),
-											HP);
-									A.putExtra(
-											getString(R.string.intentkey_getenemyatk),
-											ATK);
-									A.putExtra(
-											getString(R.string.intentkey_getenemydef),
-											DEF);
-									A.putExtra(
-											getString(R.string.intentkey_getenemyspd),
-											SPD);
-									A.putExtra(
-											getString(R.string.intentkey_getenemyname),
-											sName);
-									A.putExtra(
-											getString(R.string.intentkey_getenemyid),
-											sID);
-									A.putExtra(getString(R.string.intentkey_getenemytype),
-											Type);
-									finish();
-									dialog.dismiss();
-									startActivity(A);
-								}
-							});
-					viewDetail.show();
+					if (sID != PetUniqueDate.getFacebookID()) {
+
+						viewDetail.setIcon(android.R.drawable.btn_star_big_on);
+						viewDetail.setTitle(sName);
+						// viewDetail.setMessage("MemberID : " + strID + "\n"
+						// + "Name : " + sName + "\n" + "Type : " + strType
+						// + "\n" + "Age : " + strAge + "\n" + "HP : " + strHP
+						// + "\n" + "ATK : " + strATK + "\n" + "DEF : "
+						// + strDEF + "\n" + "SPD : " + strSPD + "\n"
+						// + "WIN : " + strWin + "\n" + "Lose : " + strLose);
+						viewDetail.setMessage("MemberID : " + sID + "\n"
+								+ "Name : " + sName + "\n" + "Type : " + Type
+								+ "\n" + "Age : " + sAge + "\n" + "Win% :"
+								+ WinPercent);
+						viewDetail.setPositiveButton("Cancel",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int which) {
+										dialog.dismiss();
+									}
+								});
+						viewDetail.setNegativeButton("Fight",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int id) {
+										// dialog.dismiss();
+										// context.startActivity(new
+										// Intent(context,
+										// Setup.class));
+										// dialog.cancel();
+										InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+										imm.hideSoftInputFromWindow(
+												inputText.getWindowToken(), 0);
+										Intent A = new Intent(getBaseContext(),
+												PetBattleActivity.class);
+										A.putExtra(
+												getString(R.string.intentkey_getenemyhp),
+												HP);
+										A.putExtra(
+												getString(R.string.intentkey_getenemyatk),
+												ATK);
+										A.putExtra(
+												getString(R.string.intentkey_getenemydef),
+												DEF);
+										A.putExtra(
+												getString(R.string.intentkey_getenemyspd),
+												SPD);
+										A.putExtra(
+												getString(R.string.intentkey_getenemyname),
+												sName);
+										A.putExtra(
+												getString(R.string.intentkey_getenemyid),
+												sID);
+										A.putExtra(
+												getString(R.string.intentkey_getenemytype),
+												Type);
+										finish();
+										dialog.dismiss();
+										startActivity(A);
+									}
+								});
+						viewDetail.show();
+					} else {
+						
+						new AlertDialog.Builder(getApplicationContext()).setTitle("Error")
+						.setMessage("You have selected yourself.")
+						.setPositiveButton("OK", null)
+						.show();
+					}
 
 				}
 			});

@@ -53,7 +53,7 @@ public class ShowPetVersusResultActivity extends Activity implements
 		if (BattleWON) {
 			mEmoPanel.setEmoKey("WIN");
 			// Save to Database
-			BattleWONScore.setText(LOSEScore + " ( +1)");
+			BattleWONScore.setText(WONScore + " ( +1)");
 		} else {
 			mEmoPanel.setEmoKey("LOSE");
 			// Save to Database
