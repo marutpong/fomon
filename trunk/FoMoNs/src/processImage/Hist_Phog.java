@@ -1,6 +1,11 @@
 package processImage;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -12,6 +17,7 @@ import java.util.Scanner;
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
+import org.opencv.core.MatOfDouble;
 import org.opencv.core.MatOfFloat;
 import org.opencv.core.MatOfInt;
 import org.opencv.core.Point;
@@ -24,6 +30,7 @@ import org.opencv.core.Size;
 import com.projnsc.bestprojectever.R;
 
 import android.content.Context;
+import android.os.Environment;
 import android.util.Log;
 
 public class Hist_Phog implements Runnable {
@@ -33,7 +40,7 @@ public class Hist_Phog implements Runnable {
 	// private int angle = 360;
 	private static Context context;
 	float y[], z[];
-	static int foodnum = 599;
+	static int foodnum = readNum();
 	// int foodnumtest = 248;
 	static int featurenum = 41;
 	static int featurepc = 15;
@@ -55,35 +62,21 @@ public class Hist_Phog implements Runnable {
 		int[] Class = histImage(this.path);
 		onImageProcessListener.OnImageProcessFinish(Class);
 	}
-	
+
 	public void setPath(String path) {
 		this.path = path;
 	}
-	
+
 	public int[] histImage(String path) {
 
 		Log.d(TAG, path);
+		Log.d(TAG, String.valueOf(foodnum));
 		List<Mat> channel = new ArrayList<Mat>();
 		// File folder = new File(Environment.getExternalStorageDirectory()
 		// + "/FoMons");
-		// path = folder + "/14_xxx1.jpg";
+		// path = folder + "/use1.jpg";
 		Mat im = Highgui.imread(path);
-		/*
-		 * Mat imOriginal = im;
-		 * 
-		 * Core.split(imOriginal, channel);
-		 * 
-		 * Mat b = channel.get(0); Mat g = channel.get(1); Mat r =
-		 * channel.get(2);
-		 * 
-		 * double[] check = b.get(0, 0); Log.d(TAG, "b "
-		 * +String.valueOf(check[0])); check = g.get(0, 0); Log.d(TAG, "g "
-		 * +String.valueOf(check[0])); check = r.get(0, 0); Log.d(TAG, "r "
-		 * +String.valueOf(check[0]));
-		 */
-		// Mat im = Highgui.imread(pathFile);
-		// Size tempSize = new Size(im.cols() / 4, im.rows() / 4);
-		// Imgproc.resize(im, im, tempSize);
+
 		Imgproc.cvtColor(im, im, Imgproc.COLOR_BGR2HSV);
 		Core.split(im, channel);
 
@@ -113,7 +106,7 @@ public class Hist_Phog implements Runnable {
 
 		int[] classFood = KNN(feature);
 
-//		onImageProcessListener.OnImageProcessFinish(classFood);
+		// onImageProcessListener.OnImageProcessFinish(classFood);
 
 		return classFood;
 	}
@@ -141,11 +134,45 @@ public class Hist_Phog implements Runnable {
 		Mat pc = new Mat(featurenum, featurenum, CvType.CV_32F);
 
 		fvtrain = readText(fvtrain, 1);
-		fvtrainpc = readText(fvtrainpc, 2);
 		gt = readText(gt, 3);
-		meantrain = readText(meantrain, 4);
-		stdtrain = readText(stdtrain, 5);
-		pc = readText(pc, 6);
+
+		// // find mean std
+		Log.d(tag, "rowww = " + fvtrain.rows());
+		Mat tmpmeanstd = new Mat(foodnum, 1, CvType.CV_32F);
+		for (int i = 0; i < featurenum; i++) {
+			for (int j = 0; j < foodnum; j++) {
+				double[] tmpval = fvtrain.get(j, i);
+				tmpmeanstd.put(j, 0, tmpval);
+			}
+			MatOfDouble mean = new MatOfDouble();
+			MatOfDouble stddev = new MatOfDouble();
+			Core.meanStdDev(tmpmeanstd, mean, stddev);
+			double[] val = mean.get(0, 0);
+			meantrain.put(0, i, val[0]);
+			val = stddev.get(0, 0);
+			stdtrain.put(0, i, val[0]);
+		}
+
+		for (int i = 0; i < featurenum; i++) {
+			double[] val1 = meantrain.get(0, i);
+			double[] val2 = stdtrain.get(0, i);
+			// Log.d(tag,"chk mean std "+String.valueOf(val1[0])+"   "+String.valueOf(val2[0]));
+		}
+		// Log.d(tag,"chksize "+
+		// String.valueOf(mean.size())+" "+String.valueOf(stddev.size()));
+
+		// Core.PCACompute(fvtrain, mean, eigenvectors, maxComponents)
+		Mat fvtrainnor = new Mat(foodnum, featurenum, CvType.CV_32F);
+		for (int i = 0; i < foodnum; i++) {
+			for (int j = 0; j < featurenum; j++) {
+				double[] x = fvtrain.get(i, j);
+				double[] xmean = meantrain.get(0, j);
+				double[] sd = stdtrain.get(0, j);
+				double cal = (x[0] - xmean[0]) / sd[0];
+				// Log.d("Hist_Phog","train nor "+String.valueOf(i)+" "+String.valueOf(j)+" "+String.valueOf(cal));
+				fvtrainnor.put(i, j, cal);
+			}
+		}
 
 		Mat fvtestpc = new Mat(1, featurenum, CvType.CV_32F);
 		for (int j = 0; j < featurenum; j++) {
@@ -153,26 +180,55 @@ public class Hist_Phog implements Runnable {
 			double[] xmean = meantrain.get(0, j);
 			double[] sd = stdtrain.get(0, j);
 			double cal = (x[0] - xmean[0]) / sd[0];
-			Log.d("Hist_Phog", "sd " + (j + 1) + " " + String.valueOf(cal));
+			// Log.d("Hist_Phog","sd "+(j+1)+" "+String.valueOf(cal));
 			fvtestpc.put(0, j, cal);
+		}
+
+		Mat mean = new Mat();
+
+		Core.PCACompute(fvtrainnor, mean, pc);
+
+		Log.d("TEXT", "PC " + String.valueOf(pc.size()));
+		for (int i = 0; i < featurenum; i++) {
+			for (int j = 0; j < featurenum; j++) {
+
+				double[] val1 = pc.get(i, j);
+				Log.d("Hist_Phog",
+						"chk PC " + i + " " + j + "  "
+								+ String.valueOf(val1[0]));
+
+			}
+		}
+
+		for (int k = 0; k < foodnum; k++) {
+			for (int i = 0; i < featurenum; i++) {
+				double sumfrommul = 0;
+				for (int j = 0; j < featurenum; j++) {
+					double[] num1 = fvtrainnor.get(k, j);
+					double[] num2 = pc.get(j, i);
+					double mul = num1[0] * num2[0];
+					// Log.d(tag,"mul "+String.valueOf(num1[0])+" "+String.valueOf(num2[0])+" "+String.valueOf(mul));
+					sumfrommul += mul;
+				}
+				fvtrainpc.put(k, i, sumfrommul);
+
+			}
+			// double[] val1 = fvtrainpc.get(k, 0);
+			// Log.d("mul",String.valueOf(k)+" 0 "+String.valueOf(val1[0]));
 		}
 
 		Mat mulmattmp = fvtestpc.clone();
 		for (int i = 0; i < featurenum; i++) {
 			double sumfrommul = 0;
-			// int count=0;
+
 			for (int j = 0; j < featurenum; j++) {
 				double[] num1 = mulmattmp.get(0, j);
 				double[] num2 = pc.get(j, i);
 				double mul = num1[0] * num2[0];
-				Log.d(tag,
-						"mul " + String.valueOf(num1[0]) + " "
-								+ String.valueOf(num2[0]) + " "
-								+ String.valueOf(mul));
+				// Log.d(tag,"mul "+String.valueOf(num1[0])+" "+String.valueOf(num2[0])+" "+String.valueOf(mul));
 				sumfrommul += mul;
 			}
 			fvtestpc.put(0, i, sumfrommul);
-			// count++;
 		}
 
 		Mat results1 = new Mat();
@@ -187,18 +243,24 @@ public class Hist_Phog implements Runnable {
 		int classFoodchk1 = (int) tmpclassfood[0];
 		Log.d(tag, "first " + String.valueOf(classFoodchk1));
 
+		Mat fvtrainpcCut = new Mat(foodnum, featurepc, CvType.CV_32F);
+		for (int j = 0; j < featurepc; j++) {
+			double[] cuttmp = fvtestpc.get(0, j);
+			fvtrainpcCut.put(0, j, cuttmp[0]);
+			// Log.d("Hist_Phog","fv "+(j+1)+" "+String.valueOf(cuttmp[0]));
+		}
+
 		Mat fvtestpcCut = new Mat(1, featurepc, CvType.CV_32F);
 		for (int j = 0; j < featurepc; j++) {
 			double[] cuttmp = fvtestpc.get(0, j);
 			fvtestpcCut.put(0, j, cuttmp[0]);
-			Log.d("Hist_Phog",
-					"fv " + (j + 1) + " " + String.valueOf(cuttmp[0]));
+			// Log.d("Hist_Phog","fv "+(j+1)+" "+String.valueOf(cuttmp[0]));
 		}
 
 		Log.d("TEXT", String.valueOf(fvtestpcCut.size()));
 
 		knn.train(fvtrainpc, gt);
-		knn.find_nearest(fvtestpcCut, 18, results2, neighborResponses, dists);
+		knn.find_nearest(fvtrainpcCut, 18, results2, neighborResponses, dists);
 		double[] tmpclassfood1 = results2.get(0, 0);
 		int classFoodchk2 = (int) tmpclassfood1[0];
 		Log.d(tag, "second " + String.valueOf(classFoodchk2));
@@ -208,35 +270,146 @@ public class Hist_Phog implements Runnable {
 		// String.valueOf(classFood[0])+"  "+String.valueOf(classFood[1]));
 		classFood[0] = classFoodchk1;
 		classFood[1] = classFoodchk2;
+
+		writeText(test, 1);
+
 		return classFood;
 	}
 
-	private static Mat readText(Mat keepfile, int name) {
-		InputStream is = null;
-		Mat fvtrain = null;
+	public static void writeNew(int classfood) {
+		int num = readNum();
+		Log.d("Add", "all num = " + String.valueOf(num));
+		// Mat tmp = new Mat(num-1,featurenum,CvType.CV_32F);
+		Mat all = new Mat(num, featurenum, CvType.CV_32F);
+		Mat testtmp = new Mat(1, featurenum, CvType.CV_32F);
+		all = readText(all, 1);
+		testtmp = readText(testtmp, 2);
+		for (int i = 0; i < featurenum; i++) {
+			double[] val = testtmp.get(0, i);
+			all.put(num - 1, i, val[0]);
+		}
+		writeText(all, 2);
+
+		Log.d("Add", "all new = " + String.valueOf(all.size()));
+
+		Mat allgt = new Mat(num, 1, CvType.CV_32F);
+		allgt = readText(allgt, 3);
+		Log.d("Add", " class = " + String.valueOf(classfood));
+
+		allgt.put(num - 1, 0, classfood);
+
+		double[] xx = allgt.get(num - 1, 0);
+		Log.d("Add", " last train = " + xx[0]);
+
+		writeText(allgt, 3);
+
+		Log.d("Add", "allgt new = " + String.valueOf(allgt.size()));
+
+	}
+
+	private static void writeText(Mat keepfile, int name) {
+		// FileWriter fw = null;
+		File folder = new File(Environment.getExternalStorageDirectory()
+				+ "/FoMons");
+		File file = null;
 		switch (name) {
 		case 1:
-			is = context.getResources().openRawResource(R.raw.fvtrain);
+			file = new File(folder, "keeptrain.txt");
 			break;
 		case 2:
-			is = context.getResources().openRawResource(R.raw.fvtrainpc);
+			file = new File(folder, "fvtrain.txt");
+			
 			break;
 		case 3:
-			is = context.getResources().openRawResource(R.raw.gt);
+			file = new File(folder, "gt.txt");
 			break;
-		case 4:
-			is = context.getResources().openRawResource(R.raw.meantrain);
-			break;
-		case 5:
-			is = context.getResources().openRawResource(R.raw.stdtrain);
-			break;
-		case 6:
-			is = context.getResources().openRawResource(R.raw.pc);
 		default:
 			break;
 		}
 
-		BufferedReader br = new BufferedReader(new InputStreamReader(is));
+		BufferedWriter bw = null;
+		try {
+			bw = new BufferedWriter(new FileWriter(file));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		try {
+			// While the BufferedReader readLine is not null
+			if (name == 3) {
+				
+				for (int i = 0; i < keepfile.rows(); i++) {
+					double[] d = keepfile.get(i, 0);
+					String dtmp = String.valueOf(d[0]);
+//					Log.d("Add", "Check write keepfile = "+dtmp);
+					bw.write(dtmp + "\n");
+				}
+			} else {
+				
+				for (int i = 0; i < keepfile.rows(); i++) {
+					for (int j = 0; j < keepfile.cols(); j++) {
+						double[] d = keepfile.get(i, j);
+						String tmpd = String.valueOf(d[0]);
+						bw.write(tmpd + "\t");
+						
+					}
+					bw.write("\n");
+				}
+				double[] xx = keepfile.get(keepfile.rows()-1, keepfile.cols()-1);
+				Log.d("Add", "all name chk = "+name+"  "+xx[0]);
+
+			}
+
+			// Close the InputStream and BufferedReader
+			// fw.close();
+			bw.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void writeNum() {
+		File folder = new File(Environment.getExternalStorageDirectory()
+				+ "/FoMons");
+		File file = new File(folder, "foodnum.txt");
+		;
+		BufferedWriter bw = null;
+		try {
+			bw = new BufferedWriter(new FileWriter(file));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		try {
+			// While the BufferedReader readLine is not null
+			String foodnumber = String.valueOf(foodnum + 1);
+			bw.write(foodnumber);
+
+			// Close the InputStream and BufferedReader
+			// fw.close();
+			bw.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private static int readNum() {
+		int num = 0;
+		File folder = new File(Environment.getExternalStorageDirectory()
+				+ "/FoMons");
+		File file = new File(folder, "foodnum.txt");
+
+		BufferedReader br = null;
+		try {
+			br = new BufferedReader(new FileReader(file));
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		String readLine = null;
 		try {
 			// While the BufferedReader readLine is not null
@@ -247,8 +420,7 @@ public class Hist_Phog implements Runnable {
 				int i = 0;
 				while (s.hasNext()) {
 
-					double d = Double.valueOf(s.next());
-					keepfile.put(j, i, d);
+					num = Integer.parseInt(s.next());
 					i++;
 					// Log.d("TEXT", String.valueOf(d));
 				}
@@ -256,19 +428,98 @@ public class Hist_Phog implements Runnable {
 				// Log.d("TEXT", readLine);
 				// Log.d("TEXT", String.valueOf(d));
 			}
-			// double[] tmpclassfood1 = fvtrain.get(0, 0);
-			// int classFoodchk2 = (int)tmpclassfood1[0];
-			// Log.d("TEXT","chhbe "+ String.valueOf(classFoodchk2));
-			// tmpclassfood1 = fvtrain.get(0, 1);
-			// classFoodchk2 = (int)tmpclassfood1[0];
-			// Log.d("TEXT","chhbe "+ String.valueOf(classFoodchk2));
-			// tmpclassfood1 = fvtrain.get(1, 0);
-			// classFoodchk2 = (int)tmpclassfood1[0];
-			// Log.d("TEXT","chhbe "+ String.valueOf(classFoodchk2));
-			// Log.d("TEXT",String.valueOf(name)+"  "+String.valueOf(keepfile.size()));
 
 			// Close the InputStream and BufferedReader
-			is.close();
+			// is.close();
+			br.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return num;
+	}
+
+	private static Mat readText(Mat keepfile, int name) {
+
+		File folder = new File(Environment.getExternalStorageDirectory()
+				+ "/FoMons");
+		File file = null;
+
+		switch (name) {
+		case 1:
+
+			file = new File(folder, "fvtrain.txt");
+
+			break;
+		case 2:
+			file = new File(folder, "keeptrain.txt");
+
+			break;
+		case 3:
+			file = new File(folder, "gt.txt");
+
+			break;
+		case 4:
+			// is = context.getResources().openRawResource(R.raw.meantrain);
+			break;
+		case 5:
+			// is = context.getResources().openRawResource(R.raw.stdtrain);
+			break;
+		case 6:
+			// is = context.getResources().openRawResource(R.raw.pc);
+		default:
+			break;
+		}
+
+		BufferedReader br = null;
+		try {
+			br = new BufferedReader(new FileReader(file));
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String readLine = null;
+		try {
+			// While the BufferedReader readLine is not null
+			if (name == 3) {
+				int j = 0;
+
+				while ((readLine = br.readLine()) != null) {
+					Scanner s = new Scanner(readLine).useDelimiter("\\t");
+					int i = 0;
+					while (s.hasNext()) {
+
+						double d = Double.parseDouble(s.next());
+						keepfile.put(j, i, d);
+						i++;
+						// Log.d("TEXT", String.valueOf(d));
+					}
+					j++;
+					// Log.d("TEXT", readLine);
+					// Log.d("TEXT", String.valueOf(d));
+				}
+			} else {
+				int j = 0;
+
+				while ((readLine = br.readLine()) != null) {
+					Scanner s = new Scanner(readLine).useDelimiter("\\t");
+					int i = 0;
+					while (s.hasNext()) {
+
+						double d = Double.parseDouble(s.next());
+						keepfile.put(j, i, d);
+						i++;
+						// Log.d("TEXT", String.valueOf(d));
+					}
+					j++;
+					// Log.d("TEXT", readLine);
+					// Log.d("TEXT", String.valueOf(d));
+				}
+
+				// Close the InputStream and BufferedReader
+				// is.close();
+			}
 			br.close();
 
 		} catch (IOException e) {

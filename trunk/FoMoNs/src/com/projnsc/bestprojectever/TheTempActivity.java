@@ -6,12 +6,14 @@ import foodDatabase.FoodDatabase;
 import java.util.ArrayList;
 
 import petShowEmotion.PetShowEmotionPanel;
+import processImage.Hist_Phog;
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -43,21 +45,20 @@ public class TheTempActivity extends Activity {
 				getString(R.string.intentkey_analysisfoodclass1), -1);
 		ClassFood2 = getIntent().getIntExtra(
 				getString(R.string.intentkey_analysisfoodclass2), -1);
-
-		if (ClassFood1 == 0)
-			ClassFood1 = -1;
-		if (ClassFood2 == 0)
-			ClassFood2 = -1;
-
-		if (ClassFood1 == ClassFood2 && ClassFood1 != -1) {
+		
+		NameFood1 = FoodDatabase.getFoodByID(ClassFood1).getName();
+		NameFood2 = FoodDatabase.getFoodByID(ClassFood2).getName();
+		
+		if (ClassFood1 == ClassFood2) {
 			// goToStatUpResult(ClassFood1);
 			this.showSelectDialog();
 			askConfirmSelect(ClassFood1);
 
 		} // else {
 		
-		NameFood1 = FoodDatabase.getFoodByID(ClassFood1).getName();
-		NameFood2 = FoodDatabase.getFoodByID(ClassFood2).getName();
+		Log.i(this.getClass().getName(),ClassFood1 + " " + ClassFood2);
+//		NameFood1 = FoodDatabase.getFoodByID(ClassFood1).getName();
+//		NameFood2 = FoodDatabase.getFoodByID(ClassFood2).getName();
 		// }
 
 		final Button btn_select = (Button) findViewById(R.id.btn_select);
@@ -74,6 +75,11 @@ public class TheTempActivity extends Activity {
 	}
 
 	private void goToStatUpResult(int classFood) {
+		
+		Hist_Phog.setContext(this);
+		Hist_Phog.writeNum();
+		Hist_Phog.writeNew(classFood);
+		
 		Intent A = new Intent(this, ShowStatResultActivity.class);
 		A.putExtra(getString(R.string.intentkey_setfoodclass), classFood);
 		A.putExtra(
