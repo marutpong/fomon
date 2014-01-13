@@ -12,7 +12,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
-import android.util.Log;
+//import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -82,7 +82,7 @@ public class SelectPetFirst extends Activity implements
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						Log.i("THIS", nameInput.getText().toString());
+//						Log.i("THIS", nameInput.getText().toString());
 						if (nameInput.getText().toString().length() > 0) {
 							success(nameInput.getText().toString());
 						} else {

@@ -110,8 +110,8 @@
         </activity>
         <activity
             android:name="PetEvolutionActivity"
-             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:label="Pet Evolution" >
+            android:label="Pet Evolution"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
         <activity
             android:name="PetBattleActivity"
@@ -119,7 +119,14 @@
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
-        <activity android:name="TheTempActivity" >
+        <activity
+            android:name="TheTempActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name="PhotoProcessActivity"
+            android:label="Photo Process"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
         </activity>
     </application>
 

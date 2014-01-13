@@ -9,12 +9,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.widget.ImageView;
 
 public class PreviewImage extends Activity {
-	private static final String TAG = "Test";
+//	private static final String TAG = "Test";
 	
 	
 	@Override
@@ -22,7 +21,7 @@ public class PreviewImage extends Activity {
 		
 		super.onCreate(savedInstanceState);
 		this.setContentView ( R.layout.image_preview );
-		Log.i(TAG, "Preview Image");
+//		Log.i(TAG, "Preview Image");
 		final ImageView myImage = (ImageView) findViewById(R.id.imagePreview);
 		
 		
