@@ -96,7 +96,7 @@ public class MyServer// extends Application
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("uid", PetUniqueDate.getFacebookID()
 				.toString()));
-		params.add(new BasicNameValuePair("name", PetUniqueDate.getMonName()
+		params.add(new BasicNameValuePair("uname", PetUniqueDate.getMonName()
 				.toString()));
 		params.add(new BasicNameValuePair("type", String.valueOf(PetUniqueDate
 				.getMonTypeID())));
@@ -109,6 +109,8 @@ public class MyServer// extends Application
 		params.add(new BasicNameValuePair("spd", String.valueOf(PetUniqueDate
 				.getMonSPD())));
 
+		Log.i("MyServer",PetUniqueDate.getMonName()+" "+PetUniqueDate.getMonTypeID());
+		
 		if (!isConnectServer()){
 			return strResult;
 		}

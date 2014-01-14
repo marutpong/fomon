@@ -2,6 +2,7 @@ package tabFragment;
 
 import preferenceSetting.PetUniqueDate;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -32,19 +33,19 @@ import java.net.URL;
 
 public class ServerFragment extends Fragment {
 
-	View mView;
+	private View mView;
 	//Button btnClear;
-	Button btnConnect;
+	private Button btnConnect;
 	//Button btnTest;
 
-	TextView txtPETName;
-	TextView txtWON;
-	TextView txtLOSE;
+	private TextView txtPETName;
+	private TextView txtWON;
+	private TextView txtLOSE;
 
-	TextView txtHPSet;
-	TextView txtATKSet;
-	TextView txtDEFSet;
-	TextView txtSPDSet;
+	private TextView txtHPSet;
+	private TextView txtATKSet;
+	private TextView txtDEFSet;
+	private TextView txtSPDSet;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,10 +77,9 @@ public class ServerFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+
 				String result = MyServer.saveToServer();
 				if (result != null && result.equalsIgnoreCase("true")) {
-					
 					MyServer.UpdataUserWINLOSE();
 					
 					Intent mNext = new Intent(getActivity(),
