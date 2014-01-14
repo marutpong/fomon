@@ -108,7 +108,10 @@ public class MyServer// extends Application
 				.getMonDEF())));
 		params.add(new BasicNameValuePair("spd", String.valueOf(PetUniqueDate
 				.getMonSPD())));
-
+		params.add(new BasicNameValuePair("win", String.valueOf(PetUniqueDate
+				.getMonWON())));
+		params.add(new BasicNameValuePair("lose", String.valueOf(PetUniqueDate
+				.getMonLOSE())));
 		Log.i("MyServer",PetUniqueDate.getMonName()+" "+PetUniqueDate.getMonTypeID());
 		
 		if (!isConnectServer()){
