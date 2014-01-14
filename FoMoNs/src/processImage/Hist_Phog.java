@@ -71,8 +71,8 @@ public class Hist_Phog implements Runnable {
 
 	public int[] histImage(String path) {
 
-		Log.d(TAG, path);
-		Log.d(TAG, String.valueOf(foodnum));
+//		Log.d(TAG, path);
+//		Log.d(TAG, String.valueOf(foodnum));
 		List<Mat> channel = new ArrayList<Mat>();
 		// File folder = new File(Environment.getExternalStorageDirectory()
 		// + "/FoMons");
@@ -99,12 +99,12 @@ public class Hist_Phog implements Runnable {
 		feature.push_back(tmpEd);
 		Core.transpose(feature, feature);
 
-		Log.d(TAG, String.valueOf(feature.size()));
-		Log.d(TAG, String.valueOf(feature.cols()));
-		for (int i = 0; i < feature.cols(); i++) {
-			double[] xx2 = feature.get(0, i);
-			Log.d(TAG, (i + 1) + "  " + String.valueOf(xx2[0]));
-		}
+//		Log.d(TAG, String.valueOf(feature.size()));
+//		Log.d(TAG, String.valueOf(feature.cols()));
+//		for (int i = 0; i < feature.cols(); i++) {
+//			double[] xx2 = feature.get(0, i);
+////			Log.d(TAG, (i + 1) + "  " + String.valueOf(xx2[0]));
+//		}
 
 		int[] classFood = KNN(feature);
 
@@ -140,7 +140,7 @@ public class Hist_Phog implements Runnable {
 		gt = readText(gt, 3);
 
 		// // find mean std
-		Log.d(tag, "rowww = " + fvtrain.rows());
+//		Log.d(tag, "rowww = " + fvtrain.rows());
 		Mat tmpmeanstd = new Mat(foodnum, 1, CvType.CV_32F);
 		for (int i = 0; i < featurenum; i++) {
 			for (int j = 0; j < foodnum; j++) {
@@ -191,17 +191,17 @@ public class Hist_Phog implements Runnable {
 
 		Core.PCACompute(fvtrainnor, mean, pc);
 
-		Log.d("TEXT", "PC " + String.valueOf(pc.size()));
-		for (int i = 0; i < featurenum; i++) {
-			for (int j = 0; j < featurenum; j++) {
-
-				double[] val1 = pc.get(i, j);
-				Log.d("Hist_Phog",
-						"chk PC " + i + " " + j + "  "
-								+ String.valueOf(val1[0]));
-
-			}
-		}
+//		Log.d("TEXT", "PC " + String.valueOf(pc.size()));
+//		for (int i = 0; i < featurenum; i++) {
+//			for (int j = 0; j < featurenum; j++) {
+//
+//				double[] val1 = pc.get(i, j);
+//				Log.d("Hist_Phog",
+//						"chk PC " + i + " " + j + "  "
+//								+ String.valueOf(val1[0]));
+//
+//			}
+//		}
 
 		for (int k = 0; k < foodnum; k++) {
 			for (int i = 0; i < featurenum; i++) {
@@ -244,7 +244,7 @@ public class Hist_Phog implements Runnable {
 		knn.find_nearest(test, 1, results1, neighborResponses, dists);
 		double[] tmpclassfood = results1.get(0, 0);
 		int classFoodchk1 = (int) tmpclassfood[0];
-		Log.d(tag, "first " + String.valueOf(classFoodchk1));
+//		Log.d(tag, "first " + String.valueOf(classFoodchk1));
 
 		Mat fvtrainpcCut = new Mat(foodnum, featurepc, CvType.CV_32F);
 		for (int j = 0; j < featurepc; j++) {
@@ -260,13 +260,13 @@ public class Hist_Phog implements Runnable {
 			// Log.d("Hist_Phog","fv "+(j+1)+" "+String.valueOf(cuttmp[0]));
 		}
 
-		Log.d("TEXT", String.valueOf(fvtestpcCut.size()));
+//		Log.d("TEXT", String.valueOf(fvtestpcCut.size()));
 
 		knn.train(fvtrainpc, gt);
 		knn.find_nearest(fvtrainpcCut, 18, results2, neighborResponses, dists);
 		double[] tmpclassfood1 = results2.get(0, 0);
 		int classFoodchk2 = (int) tmpclassfood1[0];
-		Log.d(tag, "second " + String.valueOf(classFoodchk2));
+//		Log.d(tag, "second " + String.valueOf(classFoodchk2));
 
 		// classFood = groupClass(classFoodchk);
 		// Log.d(tag, "result "+
@@ -292,7 +292,7 @@ public class Hist_Phog implements Runnable {
 
 	public static void writeNew(int classfood) {
 		int num = readNum();
-		Log.d("Add", "all num = " + String.valueOf(num));
+//		Log.d("Add", "all num = " + String.valueOf(num));
 		// Mat tmp = new Mat(num-1,featurenum,CvType.CV_32F);
 		Mat all = new Mat(num, featurenum, CvType.CV_32F);
 		Mat testtmp = new Mat(1, featurenum, CvType.CV_32F);
@@ -304,20 +304,20 @@ public class Hist_Phog implements Runnable {
 		}
 		writeText(all, 2);
 
-		Log.d("Add", "all new = " + String.valueOf(all.size()));
+//		Log.d("Add", "all new = " + String.valueOf(all.size()));
 
 		Mat allgt = new Mat(num, 1, CvType.CV_32F);
 		allgt = readText(allgt, 3);
-		Log.d("Add", " class = " + String.valueOf(classfood));
+//		Log.d("Add", " class = " + String.valueOf(classfood));
 
 		allgt.put(num - 1, 0, classfood);
 
 		double[] xx = allgt.get(num - 1, 0);
-		Log.d("Add", " last train = " + xx[0]);
+//		Log.d("Add", " last train = " + xx[0]);
 
 		writeText(allgt, 3);
 
-		Log.d("Add", "allgt new = " + String.valueOf(allgt.size()));
+//		Log.d("Add", "allgt new = " + String.valueOf(allgt.size()));
 
 	}
 
@@ -372,7 +372,7 @@ public class Hist_Phog implements Runnable {
 				}
 				double[] xx = keepfile.get(keepfile.rows() - 1,
 						keepfile.cols() - 1);
-				Log.d("Add", "all name chk = " + name + "  " + xx[0]);
+//				Log.d("Add", "all name chk = " + name + "  " + xx[0]);
 
 			}
 
@@ -419,7 +419,7 @@ public class Hist_Phog implements Runnable {
 		File file = new File(folder, "foodnum.txt");
 		if (!file.exists()) {
 
-			Log.i("mul", context + " ");
+//			Log.i("mul", context + " ");
 
 			InputStream ins = context.getResources().openRawResource(
 					R.raw.foodnum);
