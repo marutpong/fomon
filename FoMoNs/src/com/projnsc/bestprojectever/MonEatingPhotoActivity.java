@@ -92,8 +92,7 @@ public class MonEatingPhotoActivity extends Activity implements OnGPSListener {
 
 	protected void EataskFinish() {
 		FinishDialog = new AlertDialog.Builder(this)
-				.setTitle("Finish Eating!")
-				.setMessage("Do you eat all food")
+				.setTitle("Eating finish!?")
 				.setPositiveButton("Yes",
 						new android.content.DialogInterface.OnClickListener() {
 
