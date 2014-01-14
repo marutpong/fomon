@@ -195,10 +195,10 @@ public class PetUniqueDate {
 			return R.drawable.strong1;
 		case 123:
 			return R.drawable.slim1;
-		case 2:
-			return R.drawable.pet_s6;
+		case 20:
+			return R.drawable.baby1;
 		default:
-			return R.drawable.pet_s7;
+			return R.drawable.baby1;
 		}
 	}
 	
@@ -221,10 +221,10 @@ public class PetUniqueDate {
 			return R.drawable.f_strong1;
 		case 123:
 			return R.drawable.f_slim1;
-		case 2:
-			return R.drawable.pet_s6;
+		case 20:
+			return R.drawable.f_baby2;
 		default:
-			return R.drawable.pet_s7;
+			return R.drawable.f_baby1;
 		}
 	}
 	

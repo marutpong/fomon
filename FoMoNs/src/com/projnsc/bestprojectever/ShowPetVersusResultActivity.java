@@ -21,7 +21,7 @@ public class ShowPetVersusResultActivity extends Activity implements
 			"Thank you, Master. I do my BEST",
 			"Ha ha ha, No one can beat me cause of my healthy" };
 	private static final String[] LOSEText = { "Sorry Master, I'm too weak",
-			"I think I can do better, Please give me a food" };
+			"I think I can do better, Please give me healthy food" };
 
 	TextView BattleWONScore;
 	TextView BattleLOSEScore;

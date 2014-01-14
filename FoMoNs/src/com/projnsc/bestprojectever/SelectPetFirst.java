@@ -6,6 +6,7 @@ import petSelection.SelectMonPanel.OnCharacterTouchListener;
 import preferenceSetting.PetUniqueDate;
 import preferenceSetting.PrefDataType;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings.Secure;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -16,20 +17,33 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 public class SelectPetFirst extends Activity implements
 		OnCharacterTouchListener {
 
 	private int MonSelectedID = -1;
+	private Handler msgHandler = new Handler() {
 
+		public void handleMessage(android.os.Message msg) {
+			Bundle bundle = msg.getData();
+			DialogSelectPetShow(); 
+		}
+	};
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		DialogSelectPetShow();
+		
 		PetUniqueDate.setContext(this);
 
 		if (PetUniqueDate.getMonName() == PrefDataType.NONE) {
 			SelectMonPanel A = new SelectMonPanel(this);
+			A.setHandler(msgHandler);
 			A.setOnCharacterTouchListener(this);
 			setContentView(A);
 		} else {
@@ -37,6 +51,13 @@ public class SelectPetFirst extends Activity implements
 		}
 	}
 
+	private void DialogSelectPetShow(){
+		new AlertDialog.Builder(this)
+		.setMessage("Please select one type of pet that you want")
+		.setPositiveButton(R.string.ok, null)
+		.show();
+	}
+	
 	private void goToHomePetActivity() {
 		Intent mNext = new Intent(getApplicationContext(),
 				MainPaggerNew.class);
@@ -54,12 +75,12 @@ public class SelectPetFirst extends Activity implements
 	@Override
 	public void CharacterTouched(int ID) {
 		MonSelectedID = ID;
-		String name = (ID == 1 ? "Moragon" : "¢¹Á¼Ô§");
+		String name = (ID == 1 ? "Jelly" : "Gummy");
 
-		new AlertDialog.Builder(this).setTitle("Confirm Monster Selection")
-				.setMessage("Do you want to select " + name)
-				.setNegativeButton("Cancel", null)
-				.setPositiveButton("OK", new OnClickListener() {
+		new AlertDialog.Builder(this).setTitle("Confirm Selection")
+				.setMessage("Do you want to select \"" + name + "\" as your pet")
+				.setNegativeButton(R.string.cancel, null)
+				.setPositiveButton(R.string.ok, new OnClickListener() {
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
@@ -76,9 +97,9 @@ public class SelectPetFirst extends Activity implements
 		final EditText nameInput = (EditText) view
 				.findViewById(R.id.intxtPetName);
 
-		new AlertDialog.Builder(this).setTitle("Input your new pet name")
-				.setView(view).setNegativeButton("Cancel", null)
-				.setPositiveButton("OK", new OnClickListener() {
+		new AlertDialog.Builder(this).setTitle("Input your pet name")
+				.setView(view).setNegativeButton(R.string.cancel, null)
+				.setPositiveButton(R.string.ok, new OnClickListener() {
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
@@ -94,9 +115,9 @@ public class SelectPetFirst extends Activity implements
 
 	protected void fail() {
 
-		new AlertDialog.Builder(this).setTitle("Warning!")
-				.setMessage("You can't leave your pet name as Blank")
-				.setNegativeButton("OK", new OnClickListener() {
+		new AlertDialog.Builder(this).setTitle("Warning!!!")
+				.setMessage("You can't leave your pet name as blank")
+				.setNegativeButton(R.string.ok, new OnClickListener() {
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
@@ -108,9 +129,9 @@ public class SelectPetFirst extends Activity implements
 
 	protected void success(final String name) {
 
-		new AlertDialog.Builder(this).setTitle("Success")
-				.setMessage("Your new Pet name is " + name)
-				.setPositiveButton("OK", new OnClickListener() {
+		new AlertDialog.Builder(this).setTitle("Congratulation")
+				.setMessage("\"" + name +"\" is your pet now")
+				.setPositiveButton(R.string.ok, new OnClickListener() {
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
