@@ -237,7 +237,7 @@ public class MainPaggerNew extends FragmentActivity implements
 
 		// Log.i(this.getClass().getName(),HistoryDatabase.getEatingCount(HistoryType.getCurrentDate())+"");
 
-		if (HistoryDatabase.getEatingCount(HistoryType.getCurrentDate()) % 3 == 0) {
+		if (HistoryDatabase.getEatingCount(HistoryType.getCurrentDate()) % 1 == 0) {
 
 			double TotalProtien = HistoryDatabase.getSumNutritionOfDate(
 					HistoryType.getCurrentDate(),

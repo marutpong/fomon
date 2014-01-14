@@ -130,7 +130,7 @@ public class TheTempActivity extends Activity {
 			}
 		});
 
-		selectDialog = new AlertDialog.Builder(this).setTitle("Select Class")
+		selectDialog = new AlertDialog.Builder(this).setTitle("What food that you eat?")
 				.setView(view).setCancelable(false)
 				// .setPositiveButton("OK", null)
 				.show();
@@ -175,8 +175,8 @@ public class TheTempActivity extends Activity {
 	protected void askConfirmSelect(final int theInt) {
 		String FoodName = FoodDatabase.getFoodByID(theInt).getName();
 		new AlertDialog.Builder(this)
-				.setTitle("Are you sure?")
-				.setMessage("You seleted " + FoodName)
+				.setTitle("Confirm Selection")
+				.setMessage("You have select \"" + FoodName +"\"")
 				.setPositiveButton("Yes",
 						new android.content.DialogInterface.OnClickListener() {
 
@@ -191,7 +191,7 @@ public class TheTempActivity extends Activity {
 									foodListDialog.dismiss();
 								}
 							}
-						}).setNegativeButton("No", null).show();
+						}).setNegativeButton("Cancel", null).show();
 	}
 
 }
