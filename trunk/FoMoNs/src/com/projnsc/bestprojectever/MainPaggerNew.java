@@ -125,7 +125,7 @@ public class MainPaggerNew extends FragmentActivity implements
 			new AlertDialog.Builder(this)
 					.setTitle("Congratulation")
 					.setMessage(
-							"You pet has change its form but you still have to take care of it")
+							"You pet has change its form but you still have to take care of it.")
 					.setCancelable(false)
 					.setPositiveButton("OK",null).show();
 		}
@@ -133,10 +133,10 @@ public class MainPaggerNew extends FragmentActivity implements
 		if (getIntent().getExtras() != null
 				&& getIntent().getExtras().getBoolean(
 						getString(R.string.intentkey_isfromstatup))) {
-			String MSG = "Some Pet stat has increase because of your food. Your pet seem Happy";
+			String MSG = "Some Pet stat has increase because of your food.\nYour pet seem Happy!";
 			if (getIntent().getExtras().getBoolean(
 					getString(R.string.intentkey_ismaxcalories)))
-				MSG = "You have give your pet some food \nbut it seem useless";
+				MSG = "You have give your pet some food \nbut it seem useless.";
 			new AlertDialog.Builder(this).setTitle("Congratulation")
 					.setMessage(MSG).setCancelable(false)
 					.setPositiveButton("OK", new OnClickListener() {

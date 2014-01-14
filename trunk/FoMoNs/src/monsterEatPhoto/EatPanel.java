@@ -21,7 +21,7 @@ import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.media.SoundPool;
 import android.util.AttributeSet;
-import android.util.Log;
+//import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
@@ -111,7 +111,7 @@ public class EatPanel extends SurfaceView implements Callback {
 	}
 
 	public void doDraw(Canvas canvas) {
-		Log.i("SIZE", mPool.size() + "");
+//		Log.i("SIZE", mPool.size() + "");
 
 		canvas.drawBitmap(mFood, 0, 0, null);
 		canvas.drawARGB(170, 0, 0, 0);

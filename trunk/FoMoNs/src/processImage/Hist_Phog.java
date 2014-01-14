@@ -271,8 +271,19 @@ public class Hist_Phog implements Runnable {
 		// classFood = groupClass(classFoodchk);
 		// Log.d(tag, "result "+
 		// String.valueOf(classFood[0])+"  "+String.valueOf(classFood[1]));
-		classFood[0] = classFoodchk1;
-		classFood[1] = classFoodchk2;
+		if ((classFoodchk1 == 2 && classFoodchk2 == 2)
+				|| (classFoodchk1 == 9 && classFoodchk2 == 9)) {
+			classFood[0] = 2;
+			classFood[1] = 9;
+		} else if ((classFoodchk1 == 3 && classFoodchk2 == 3)
+				|| (classFoodchk1 == 13 && classFoodchk2 == 13)) {
+			classFood[0] = 3;
+			classFood[1] = 13;
+
+		} else {
+			classFood[0] = classFoodchk1;
+			classFood[1] = classFoodchk2;
+		}
 
 		writeText(test, 1);
 
@@ -407,10 +418,11 @@ public class Hist_Phog implements Runnable {
 				+ "/FoMons");
 		File file = new File(folder, "foodnum.txt");
 		if (!file.exists()) {
-			
-			Log.i("mul",context + " ");
-			
-			InputStream ins = context.getResources().openRawResource(R.raw.foodnum);
+
+			Log.i("mul", context + " ");
+
+			InputStream ins = context.getResources().openRawResource(
+					R.raw.foodnum);
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 			int size = 0;
 			// Read the entire resource into a local byte buffer.
@@ -430,7 +442,7 @@ public class Hist_Phog implements Runnable {
 				e.printStackTrace();
 			}
 		}
-		
+
 		BufferedReader br = null;
 		try {
 			br = new BufferedReader(new FileReader(file));
@@ -502,11 +514,9 @@ public class Hist_Phog implements Runnable {
 		if (!file.exists()) {
 			InputStream ins = null;
 			if (name == 1) {
-				ins = context.getResources().openRawResource(
-						R.raw.fvtrain);
+				ins = context.getResources().openRawResource(R.raw.fvtrain);
 			} else if (name == 3) {
-				ins = context.getResources().openRawResource(
-						R.raw.gt);
+				ins = context.getResources().openRawResource(R.raw.gt);
 			}
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 			int size = 0;

@@ -48,5 +48,7 @@
 	   
 	</style>
 	    <string name="intentkey_getenemytype">INTENTKEY_GetEnemyType</string>
+	    <string name="cancel">Cancel</string>
+	    <string name="ok">OK</string>
 
 </resources>

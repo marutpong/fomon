@@ -2,12 +2,16 @@ package petSelection;
 
 import java.util.ArrayList;
 
+import com.projnsc.bestprojectever.PetBattleActivity;
 import com.projnsc.bestprojectever.R;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -28,6 +32,7 @@ public class SelectMonPanel extends SurfaceView implements Callback{
 	}
 	
 	private OnCharacterTouchListener onCharacterTouchListener;
+	private Handler mHandler;
 	
 	public void setOnCharacterTouchListener(
 			OnCharacterTouchListener onCharacterTouchListener) {
@@ -56,7 +61,7 @@ public class SelectMonPanel extends SurfaceView implements Callback{
 		o.inPurgeable = true;
 		getHolder().addCallback(this);
 		mThread = new PetFieldThread(this);
-		mPetSet.add(new PetSelectSprite(getResources(), 0, 0, 12));
+		mPetSet.add(new PetSelectSprite(getResources(), 0, 0, 20));
 		mPetSet.add(new PetSelectSprite(getResources(), 0, 0, 10));
 		BACKGROUND = BitmapFactory.decodeResource(getResources(), R.drawable.bg_forest,o);
 	}
@@ -81,6 +86,9 @@ public class SelectMonPanel extends SurfaceView implements Callback{
 					Key = mPet.getKey();
 				}
 			}
+			
+			if(Key == -1)
+				showDialogAtPage();
 		
 			if(Key != -1 && onCharacterTouchListener != null){
 				onCharacterTouchListener.CharacterTouched(Key);
@@ -94,6 +102,14 @@ public class SelectMonPanel extends SurfaceView implements Callback{
 		for(PetSelectSprite mPet: mPetSet){
 			mPet.animate();
 		}
+	}
+	
+	private void showDialogAtPage() {
+		Message msg = mHandler.obtainMessage();
+		Bundle bundle = new Bundle();
+		bundle.putBoolean(PetBattleActivity.ISUpdateLeftProgress, false);
+		msg.setData(bundle);
+		mHandler.sendMessage(msg);
 	}
 	
 	public void doDraw(Canvas canvas){
@@ -135,6 +151,10 @@ public class SelectMonPanel extends SurfaceView implements Callback{
 		if(mThread.isAlive()){
 			mThread.setRunning(false);
 		}
+	}
+
+	public void setHandler(Handler msgHandler) {
+		mHandler = msgHandler;
 	}
 
 }
