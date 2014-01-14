@@ -36,8 +36,6 @@ public class SelectPetFirst extends Activity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		DialogSelectPetShow();
 		
 		PetUniqueDate.setContext(this);
 
@@ -46,6 +44,7 @@ public class SelectPetFirst extends Activity implements
 			A.setHandler(msgHandler);
 			A.setOnCharacterTouchListener(this);
 			setContentView(A);
+			DialogSelectPetShow();
 		} else {
 			goToHomePetActivity();
 		}
